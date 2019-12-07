@@ -9,13 +9,20 @@
 /* Begin PBXBuildFile section */
 		7D4A53F3239C66ED0079A96A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4A53F2239C66ED0079A96A /* AppDelegate.swift */; };
 		7D4A53F5239C66ED0079A96A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4A53F4239C66ED0079A96A /* SceneDelegate.swift */; };
-		7D4A53F7239C66ED0079A96A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4A53F6239C66ED0079A96A /* ViewController.swift */; };
 		7D4A53FA239C66ED0079A96A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D4A53F8239C66ED0079A96A /* Main.storyboard */; };
 		7D4A53FD239C66ED0079A96A /* Petstagram.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 7D4A53FB239C66ED0079A96A /* Petstagram.xcdatamodeld */; };
 		7D4A53FF239C66EE0079A96A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 7D4A53FE239C66EE0079A96A /* Assets.xcassets */; };
 		7D4A5402239C66EE0079A96A /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D4A5400239C66EE0079A96A /* LaunchScreen.storyboard */; };
 		7D4A540D239C66EE0079A96A /* PetstagramTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4A540C239C66EE0079A96A /* PetstagramTests.swift */; };
 		7D4A5418239C66EE0079A96A /* PetstagramUITests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4A5417239C66EE0079A96A /* PetstagramUITests.swift */; };
+		7D4A5426239C67500079A96A /* Fonts in Resources */ = {isa = PBXBuildFile; fileRef = 7D4A5425239C67500079A96A /* Fonts */; };
+		7D4A5428239C677A0079A96A /* Controllers in Resources */ = {isa = PBXBuildFile; fileRef = 7D4A5427239C677A0079A96A /* Controllers */; };
+		7D4A542A239C67860079A96A /* Extensions in Resources */ = {isa = PBXBuildFile; fileRef = 7D4A5429239C67860079A96A /* Extensions */; };
+		7D4A542C239C678E0079A96A /* Keys in Resources */ = {isa = PBXBuildFile; fileRef = 7D4A542B239C678E0079A96A /* Keys */; };
+		7D4A5431239C67AF0079A96A /* ImageUploadStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D4A542D239C67AF0079A96A /* ImageUploadStoryboard.storyboard */; };
+		7D4A5432239C67AF0079A96A /* LikesStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D4A542E239C67AF0079A96A /* LikesStoryboard.storyboard */; };
+		7D4A5433239C67AF0079A96A /* SearchStoryboard.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D4A542F239C67AF0079A96A /* SearchStoryboard.storyboard */; };
+		7D4A5434239C67AF0079A96A /* UserProfile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D4A5430239C67AF0079A96A /* UserProfile.storyboard */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -39,7 +46,6 @@
 		7D4A53EF239C66ED0079A96A /* Petstagram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Petstagram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D4A53F2239C66ED0079A96A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7D4A53F4239C66ED0079A96A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		7D4A53F6239C66ED0079A96A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		7D4A53F9239C66ED0079A96A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		7D4A53FC239C66ED0079A96A /* Petstagram.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Petstagram.xcdatamodel; sourceTree = "<group>"; };
 		7D4A53FE239C66EE0079A96A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -51,6 +57,14 @@
 		7D4A5413239C66EE0079A96A /* PetstagramUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PetstagramUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D4A5417239C66EE0079A96A /* PetstagramUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetstagramUITests.swift; sourceTree = "<group>"; };
 		7D4A5419239C66EE0079A96A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7D4A5425239C67500079A96A /* Fonts */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Fonts; sourceTree = "<group>"; };
+		7D4A5427239C677A0079A96A /* Controllers */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Controllers; sourceTree = "<group>"; };
+		7D4A5429239C67860079A96A /* Extensions */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Extensions; sourceTree = "<group>"; };
+		7D4A542B239C678E0079A96A /* Keys */ = {isa = PBXFileReference; lastKnownFileType = folder; path = Keys; sourceTree = "<group>"; };
+		7D4A542D239C67AF0079A96A /* ImageUploadStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = ImageUploadStoryboard.storyboard; sourceTree = "<group>"; };
+		7D4A542E239C67AF0079A96A /* LikesStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = LikesStoryboard.storyboard; sourceTree = "<group>"; };
+		7D4A542F239C67AF0079A96A /* SearchStoryboard.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = SearchStoryboard.storyboard; sourceTree = "<group>"; };
+		7D4A5430239C67AF0079A96A /* UserProfile.storyboard */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = file.storyboard; path = UserProfile.storyboard; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -101,10 +115,17 @@
 		7D4A53F1239C66ED0079A96A /* Petstagram */ = {
 			isa = PBXGroup;
 			children = (
+				7D4A5425239C67500079A96A /* Fonts */,
 				7D4A53F2239C66ED0079A96A /* AppDelegate.swift */,
 				7D4A53F4239C66ED0079A96A /* SceneDelegate.swift */,
-				7D4A53F6239C66ED0079A96A /* ViewController.swift */,
+				7D4A5427239C677A0079A96A /* Controllers */,
+				7D4A5429239C67860079A96A /* Extensions */,
+				7D4A542B239C678E0079A96A /* Keys */,
 				7D4A53F8239C66ED0079A96A /* Main.storyboard */,
+				7D4A542D239C67AF0079A96A /* ImageUploadStoryboard.storyboard */,
+				7D4A542E239C67AF0079A96A /* LikesStoryboard.storyboard */,
+				7D4A542F239C67AF0079A96A /* SearchStoryboard.storyboard */,
+				7D4A5430239C67AF0079A96A /* UserProfile.storyboard */,
 				7D4A53FE239C66EE0079A96A /* Assets.xcassets */,
 				7D4A5400239C66EE0079A96A /* LaunchScreen.storyboard */,
 				7D4A5403239C66EE0079A96A /* Info.plist */,
@@ -235,9 +256,17 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7D4A5431239C67AF0079A96A /* ImageUploadStoryboard.storyboard in Resources */,
+				7D4A5433239C67AF0079A96A /* SearchStoryboard.storyboard in Resources */,
+				7D4A542A239C67860079A96A /* Extensions in Resources */,
+				7D4A542C239C678E0079A96A /* Keys in Resources */,
+				7D4A5428239C677A0079A96A /* Controllers in Resources */,
 				7D4A5402239C66EE0079A96A /* LaunchScreen.storyboard in Resources */,
+				7D4A5432239C67AF0079A96A /* LikesStoryboard.storyboard in Resources */,
 				7D4A53FF239C66EE0079A96A /* Assets.xcassets in Resources */,
 				7D4A53FA239C66ED0079A96A /* Main.storyboard in Resources */,
+				7D4A5426239C67500079A96A /* Fonts in Resources */,
+				7D4A5434239C67AF0079A96A /* UserProfile.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -262,7 +291,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7D4A53F7239C66ED0079A96A /* ViewController.swift in Sources */,
 				7D4A53F3239C66ED0079A96A /* AppDelegate.swift in Sources */,
 				7D4A53F5239C66ED0079A96A /* SceneDelegate.swift in Sources */,
 				7D4A53FD239C66ED0079A96A /* Petstagram.xcdatamodeld in Sources */,
@@ -445,7 +473,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.duhmarket.Petstagram;
+				PRODUCT_BUNDLE_IDENTIFIER = com.duhmarket.PetstagramApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -463,7 +491,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.duhmarket.Petstagram;
+				PRODUCT_BUNDLE_IDENTIFIER = com.duhmarket.PetstagramApp;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
