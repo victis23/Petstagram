@@ -9,7 +9,7 @@
 import UIKit
 import Combine
 
-class LoginScreen: UIViewController {
+class AppLogin: UIViewController {
 	
 	@IBOutlet weak var loginArea: UIView!
 	@IBOutlet weak var signInButton: UIButton!

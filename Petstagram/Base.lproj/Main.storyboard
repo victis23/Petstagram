@@ -13,10 +13,10 @@
         </array>
     </customFonts>
     <scenes>
-        <!--Login Screen-->
+        <!--App Login-->
         <scene sceneID="5l1-fI-cp3">
             <objects>
-                <viewController id="uwe-WB-4UD" customClass="LoginScreen" customModule="Petstagram" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="uwe-WB-4UD" customClass="AppLogin" customModule="Petstagram" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ovq-EL-36X">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -28,7 +28,7 @@
                                 <rect key="frame" x="25" y="64" width="364" height="601"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Petstagram" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Efd-x2-mXh">
-                                        <rect key="frame" x="-50" y="66" width="464" height="111"/>
+                                        <rect key="frame" x="31.5" y="66" width="301" height="111"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="111" id="v3Q-t6-oiC"/>
                                         </constraints>
@@ -116,7 +116,7 @@
                         <outlet property="passwordTextField" destination="cCz-jO-NjJ" id="mbz-ol-Iym"/>
                         <outlet property="signInButton" destination="ebA-Md-mCQ" id="aQZ-hg-7ZY"/>
                         <outlet property="usernameTextField" destination="a8j-c8-Ppv" id="imp-YZ-Q4d"/>
-                        <segue destination="rLW-7k-yHr" kind="presentation" identifier="accessSegue" modalPresentationStyle="fullScreen" id="MW7-Wg-l1B"/>
+                        <segue destination="rLW-7k-yHr" kind="presentation" identifier="accessSegue" modalPresentationStyle="fullScreen" id="8QK-0f-cjh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Ibt-mk-iGl" sceneMemberID="firstResponder"/>
