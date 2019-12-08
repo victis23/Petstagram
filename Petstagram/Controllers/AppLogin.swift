@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import Combine
 
 class AppLogin: UIViewController {
 	
@@ -39,7 +38,6 @@ class AppLogin: UIViewController {
 		])
 		textfield.layer.sublayerTransform = CATransform3DMakeTranslation(10, 0, 10)
 		textfield.translatesAutoresizingMaskIntoConstraints = false
-//		textfield.addTarget(self, action: #selector(saveUserData), for: .editingChanged)
 		return textfield
 	}()
 	let createPasswordTextField : UITextField = {
@@ -81,13 +79,10 @@ class AppLogin: UIViewController {
 		button.translatesAutoresizingMaskIntoConstraints = false
 		button.isEnabled = false
 		button.alpha = 0.2
-//		button.addTarget(self, action: #selector(createUserButtonTapped), for: .touchUpInside)
 		return button
 	}()
 	
 	//MARK: - Class Properties
-	var passwordCredentials : AnyCancellable!
-	var usernameCredentials : AnyCancellable!
 	@Published var userName : String!
 	@Published var password : String!
 	@Published var passwordConfirmation : String!
@@ -110,45 +105,6 @@ class AppLogin: UIViewController {
 	}
 	
 	func setupSubscribers(){
-//
-//		usernameCredentials = $userName
-//			.debounce(for: 0.1, scheduler: DispatchQueue.global(qos: .background))
-//			.removeDuplicates()
-//			.sink(receiveValue: { (usernameInput) in
-//				guard let user = usernameInput else {return}
-//				print(user)
-//			})
-//
-//		let passwordValue = $password
-//			.removeDuplicates()
-//			.eraseToAnyPublisher()
-//
-//		let passwordConfirmation = $passwordConfirmation
-//			.removeDuplicates()
-//			.eraseToAnyPublisher()
-//
-//		passwordCredentials = passwordValue
-//		.zip(passwordConfirmation)
-//			.debounce(for: 3, scheduler: RunLoop.main)
-//			.map({ (password,passwordConfirmation) -> Bool in
-//				if password == passwordConfirmation {
-//					return true
-//				}else{
-//					return false
-//				}
-//			})
-//			.assign(to: \UIButton.isEnabled , on: submitButton)
-//	}
-//
-//	@objc func saveUserData(){
-//		userName = createUsernameTextField.text
-//		password = createPasswordTextField.text
-//		passwordConfirmation = passwordConfirmationTextField.text
-//	}
-//
-//	@objc func createUserButtonTapped(){
-//		print("Username: \(userName!)|Password: \(password!)")
-//	}
 	}
 	
 }
