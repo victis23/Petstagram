@@ -33,7 +33,7 @@
                                             <constraint firstAttribute="height" constant="111" id="v3Q-t6-oiC"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" name="Billabong" family="Billabong" pointSize="90"/>
-                                        <color key="textColor" red="0.90953391790000004" green="0.39391732219999998" blue="0.75068444010000002" alpha="0.9994506836" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="textColor" red="0.90953391790390015" green="0.39391732215881348" blue="0.75068444013595581" alpha="0.9994506836" colorSpace="custom" customColorSpace="sRGB"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="31" translatesAutoresizingMaskIntoConstraints="NO" id="a8P-HO-aFI">
@@ -113,6 +113,7 @@
                     </view>
                     <connections>
                         <outlet property="loginArea" destination="71l-Ob-dzr" id="sG0-3h-iPl"/>
+                        <outlet property="logo" destination="Efd-x2-mXh" id="PYv-mc-R3j"/>
                         <outlet property="passwordTextField" destination="cCz-jO-NjJ" id="mbz-ol-Iym"/>
                         <outlet property="signInButton" destination="ebA-Md-mCQ" id="aQZ-hg-7ZY"/>
                         <outlet property="usernameTextField" destination="a8j-c8-Ppv" id="imp-YZ-Q4d"/>

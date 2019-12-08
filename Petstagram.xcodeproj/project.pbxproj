@@ -3,7 +3,7 @@
 	archiveVersion = 1;
 	classes = {
 	};
-	objectVersion = 50;
+	objectVersion = 52;
 	objects = {
 
 /* Begin PBXBuildFile section */
@@ -27,6 +27,8 @@
 		7D4A5444239C6A410079A96A /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4A5443239C6A410079A96A /* Keys.swift */; };
 		7D4A5447239C6A800079A96A /* Billabong.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7D4A5446239C6A800079A96A /* Billabong.ttf */; };
 		7D4A5449239C6AFA0079A96A /* AppLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4A5448239C6AFA0079A96A /* AppLogin.swift */; };
+		7D4A544C239C91E90079A96A /* CreateAccountAppLoginExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4A544B239C91E90079A96A /* CreateAccountAppLoginExtension.swift */; };
+		7D4A544F239CBBEC0079A96A /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 7D4A544E239CBBEC0079A96A /* IQKeyboardManagerSwift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -73,6 +75,7 @@
 		7D4A5443239C6A410079A96A /* Keys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		7D4A5446239C6A800079A96A /* Billabong.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Billabong.ttf; sourceTree = "<group>"; };
 		7D4A5448239C6AFA0079A96A /* AppLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLogin.swift; sourceTree = "<group>"; };
+		7D4A544B239C91E90079A96A /* CreateAccountAppLoginExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountAppLoginExtension.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -80,6 +83,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7D4A544F239CBBEC0079A96A /* IQKeyboardManagerSwift in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -162,6 +166,7 @@
 		7D4A5435239C69DE0079A96A /* Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				7D4A544A239C91B00079A96A /* Extensions */,
 				7D4A543B239C69F00079A96A /* ImageUploadViewController.swift */,
 				7D4A5437239C69EF0079A96A /* LikesViewController.swift */,
 				7D4A5436239C69EF0079A96A /* SearchControllerViewController.swift */,
@@ -188,6 +193,14 @@
 			path = Font;
 			sourceTree = "<group>";
 		};
+		7D4A544A239C91B00079A96A /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				7D4A544B239C91E90079A96A /* CreateAccountAppLoginExtension.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -204,6 +217,9 @@
 			dependencies = (
 			);
 			name = Petstagram;
+			packageProductDependencies = (
+				7D4A544E239CBBEC0079A96A /* IQKeyboardManagerSwift */,
+			);
 			productName = Petstagram;
 			productReference = 7D4A53EF239C66ED0079A96A /* Petstagram.app */;
 			productType = "com.apple.product-type.application";
@@ -276,6 +292,9 @@
 				Base,
 			);
 			mainGroup = 7D4A53E6239C66ED0079A96A;
+			packageReferences = (
+				7D4A544D239CBBEC0079A96A /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
+			);
 			productRefGroup = 7D4A53F0239C66ED0079A96A /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -324,6 +343,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7D4A544C239C91E90079A96A /* CreateAccountAppLoginExtension.swift in Sources */,
 				7D4A5441239C69F00079A96A /* ImageUploadViewController.swift in Sources */,
 				7D4A543C239C69F00079A96A /* SearchControllerViewController.swift in Sources */,
 				7D4A5440239C69F00079A96A /* UserProfileViewController.swift in Sources */,
@@ -662,6 +682,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		7D4A544D239CBBEC0079A96A /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 6.5.4;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		7D4A544E239CBBEC0079A96A /* IQKeyboardManagerSwift */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 7D4A544D239CBBEC0079A96A /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
+			productName = IQKeyboardManagerSwift;
+		};
+/* End XCSwiftPackageProductDependency section */
 
 /* Begin XCVersionGroup section */
 		7D4A53FB239C66ED0079A96A /* Petstagram.xcdatamodeld */ = {
