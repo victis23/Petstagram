@@ -27,9 +27,67 @@ class AppLogin: UIViewController {
 		uiView.layer.shadowRadius = 20
 		return uiView
 	}()
+	let createUsernameTextField : UITextField = {
+		let textfield = UITextField()
+		textfield.backgroundColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 0.03)
+		textfield.layer.borderColor = UIColor.tertiaryLabel.cgColor
+		textfield.layer.borderWidth = 0.5
+		textfield.layer.cornerRadius = 5
+		textfield.attributedPlaceholder = NSAttributedString(string: "Username", attributes: [
+			NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 22),
+			NSAttributedString.Key.foregroundColor : UIColor(red: 0, green: 0, blue: 0, alpha: 0.1),
+		])
+		textfield.layer.sublayerTransform = CATransform3DMakeTranslation(10, 0, 10)
+		textfield.translatesAutoresizingMaskIntoConstraints = false
+//		textfield.addTarget(self, action: #selector(saveUserData), for: .editingChanged)
+		return textfield
+	}()
+	let createPasswordTextField : UITextField = {
+		let textfield = UITextField()
+		textfield.backgroundColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 0.03)
+		textfield.layer.borderColor = UIColor.tertiaryLabel.cgColor
+		textfield.layer.borderWidth = 0.5
+		textfield.layer.cornerRadius = 5
+		textfield.attributedPlaceholder = NSAttributedString(string: "Password", attributes: [
+			NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 22),
+			NSAttributedString.Key.foregroundColor : UIColor(red: 0, green: 0, blue: 0, alpha: 0.1),
+		])
+		textfield.layer.sublayerTransform = CATransform3DMakeTranslation(10, 0, 10)
+		textfield.translatesAutoresizingMaskIntoConstraints = false
+		return textfield
+	}()
+	let passwordConfirmationTextField : UITextField = {
+		let textfield = UITextField()
+		textfield.backgroundColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 0.03)
+		textfield.layer.borderColor = UIColor.tertiaryLabel.cgColor
+		textfield.layer.borderWidth = 0.5
+		textfield.layer.cornerRadius = 5
+		textfield.attributedPlaceholder = NSAttributedString(string: "Password Confirmation", attributes: [
+			NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 22),
+			NSAttributedString.Key.foregroundColor : UIColor(red: 0, green: 0, blue: 0, alpha: 0.1),
+		])
+		textfield.layer.sublayerTransform = CATransform3DMakeTranslation(10, 0, 10)
+		textfield.translatesAutoresizingMaskIntoConstraints = false
+		return textfield
+	}()
+	let submitButton : UIButton = {
+		let button = UIButton()
+		button.setAttributedTitle(NSAttributedString.init(string: "Create Account", attributes: [
+			NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 22),
+			NSAttributedString.Key.foregroundColor : UIColor.white,
+		]), for: .normal)
+		button.layer.cornerRadius = 5
+		button.backgroundColor = .systemBlue
+		button.translatesAutoresizingMaskIntoConstraints = false
+		button.isEnabled = false
+		button.alpha = 0.2
+//		button.addTarget(self, action: #selector(createUserButtonTapped), for: .touchUpInside)
+		return button
+	}()
 	
-	var userNameSubscriber : AnyCancellable!
-	var passwordSubscriber : AnyCancellable!
+	//MARK: - Class Properties
+	var passwordCredentials : AnyCancellable!
+	var usernameCredentials : AnyCancellable!
 	@Published var userName : String!
 	@Published var password : String!
 	@Published var passwordConfirmation : String!
@@ -37,8 +95,8 @@ class AppLogin: UIViewController {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		
 		setLoginArea()
+		setupSubscribers()
 	}
 	
 	@IBAction func logInButtonTapped(_ sender: Any) {
@@ -51,8 +109,50 @@ class AppLogin: UIViewController {
 		createViewForAccountCreation()
 	}
 	
-}
+	func setupSubscribers(){
+//
+//		usernameCredentials = $userName
+//			.debounce(for: 0.1, scheduler: DispatchQueue.global(qos: .background))
+//			.removeDuplicates()
+//			.sink(receiveValue: { (usernameInput) in
+//				guard let user = usernameInput else {return}
+//				print(user)
+//			})
+//
+//		let passwordValue = $password
+//			.removeDuplicates()
+//			.eraseToAnyPublisher()
+//
+//		let passwordConfirmation = $passwordConfirmation
+//			.removeDuplicates()
+//			.eraseToAnyPublisher()
+//
+//		passwordCredentials = passwordValue
+//		.zip(passwordConfirmation)
+//			.debounce(for: 3, scheduler: RunLoop.main)
+//			.map({ (password,passwordConfirmation) -> Bool in
+//				if password == passwordConfirmation {
+//					return true
+//				}else{
+//					return false
+//				}
+//			})
+//			.assign(to: \UIButton.isEnabled , on: submitButton)
+//	}
+//
+//	@objc func saveUserData(){
+//		userName = createUsernameTextField.text
+//		password = createPasswordTextField.text
+//		passwordConfirmation = passwordConfirmationTextField.text
+//	}
+//
+//	@objc func createUserButtonTapped(){
+//		print("Username: \(userName!)|Password: \(password!)")
+//	}
+	}
 	
+}
+
 
 
 
