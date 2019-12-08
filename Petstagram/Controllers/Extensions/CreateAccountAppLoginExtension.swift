@@ -29,16 +29,26 @@ extension AppLogin {
 		
 		NSLayoutConstraint.activate([
 			accountCreationUIView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-			accountCreationUIView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 812),
+			accountCreationUIView.centerYAnchor.constraint(equalTo: view.centerYAnchor, constant: 896),
 			accountCreationUIView.heightAnchor.constraint(equalToConstant: loginArea.frame.height),
 			accountCreationUIView.widthAnchor.constraint(equalToConstant: loginArea.frame.width)
 		])
 	}
 	
 	func animateAccountCreationView(){
+	
+		var raisedValue = CGFloat()
+		
+		if view.frame.height > 812 {
+			// iPhone 11 Pro Max Screen Size.
+			raisedValue = 800 * -1
+		}else{
+			// Standard Iphone Screen Size.
+			raisedValue = 834 * -1
+		}
 		
 		UIView.animate(withDuration: 0.8, delay: 0, usingSpringWithDamping: 0.4, initialSpringVelocity: 0.5, options: .curveEaseIn, animations: {
-			self.accountCreationUIView.transform = CGAffineTransform(translationX: 0, y: -750)
+			self.accountCreationUIView.transform = CGAffineTransform(translationX: 0, y: raisedValue)
 		}, completion: nil)
 	}
 	
