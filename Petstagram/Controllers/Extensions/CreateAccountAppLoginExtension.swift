@@ -37,19 +37,27 @@ extension AppLogin {
 	
 	func animateAccountCreationView(){
 	
+		
+		
+		UIView.animate(withDuration: 0.8, delay: 0, usingSpringWithDamping: 0.4, initialSpringVelocity: 0.5, options: .curveEaseIn, animations: {
+			self.accountCreationUIView.transform = CGAffineTransform(translationX: 0, y: self.deviceSizeChecker().raisedValue)
+		}, completion: nil)
+	}
+	
+	func deviceSizeChecker() -> (raisedValue:CGFloat,dragLimit:CGFloat){
 		var raisedValue = CGFloat()
+		var limitPercentage = CGFloat()
 		
 		if view.frame.height > 812 {
 			// iPhone 11 Pro Max Screen Size.
 			raisedValue = 800 * -1
+			limitPercentage = 1.499
 		}else{
 			// Standard Iphone Screen Size.
 			raisedValue = 834 * -1
+			limitPercentage = 1.599
 		}
-		
-		UIView.animate(withDuration: 0.8, delay: 0, usingSpringWithDamping: 0.4, initialSpringVelocity: 0.5, options: .curveEaseIn, animations: {
-			self.accountCreationUIView.transform = CGAffineTransform(translationX: 0, y: raisedValue)
-		}, completion: nil)
+		return (raisedValue,limitPercentage)
 	}
 	
 	@objc func handleGesture(panGesture : UIPanGestureRecognizer){
@@ -57,7 +65,7 @@ extension AppLogin {
 		let translation = panGesture.translation(in: self.view)
 		guard let viewToDrag = panGesture.view else {return}
 		//		guard let originalCenter = panGesture.view?.center.y else {fatalError()}
-		let originalCenter :CGFloat = 1210
+		let originalCenter :CGFloat = view.frame.height * deviceSizeChecker().dragLimit
 		
 		if panGesture.state == .changed {
 			
@@ -72,7 +80,7 @@ extension AppLogin {
 		}
 		
 		if panGesture.state == .ended {
-			if viewToDrag.center.y > 1250 {
+			if viewToDrag.center.y > originalCenter + 50 {
 				UIView.animate(withDuration: 0.5, animations: {
 					self.accountCreationUIView.transform = .identity
 				}) { _ in
