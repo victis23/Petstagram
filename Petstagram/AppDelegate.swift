@@ -22,6 +22,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		keyboardManger.enable = true
 		keyboardManger.enableAutoToolbar = false
 		keyboardManger.shouldResignOnTouchOutside = true
+		keyboardManger.keyboardDistanceFromTextField = 100
 		
 		return true
 	}

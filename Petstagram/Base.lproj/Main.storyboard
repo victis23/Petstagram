@@ -28,7 +28,7 @@
                                 <rect key="frame" x="25" y="64" width="364" height="601"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Petstagram" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Efd-x2-mXh">
-                                        <rect key="frame" x="-50" y="66" width="464" height="111"/>
+                                        <rect key="frame" x="31.5" y="66" width="301" height="111"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="111" id="v3Q-t6-oiC"/>
                                         </constraints>
@@ -50,7 +50,7 @@
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cCz-jO-NjJ">
                                                 <rect key="frame" x="0.0" y="81" width="324" height="50"/>
-                                                <color key="backgroundColor" red="0.052587918939999999" green="0.02329427563" blue="0.071207232770000004" alpha="0.03358824824" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <color key="backgroundColor" red="0.05125016209068492" green="0.02329427563" blue="0.071207232770000004" alpha="0.03358824824" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="cvz-uk-eV1"/>
                                                 </constraints>

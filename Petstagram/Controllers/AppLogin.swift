@@ -30,6 +30,9 @@ class AppLogin: UIViewController {
 	
 	var userNameSubscriber : AnyCancellable!
 	var passwordSubscriber : AnyCancellable!
+	@Published var userName : String!
+	@Published var password : String!
+	@Published var passwordConfirmation : String!
 	
 	
 	override func viewDidLoad() {

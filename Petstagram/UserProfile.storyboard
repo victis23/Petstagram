@@ -10,17 +10,23 @@
         <!--User Profile View Controller-->
         <scene sceneID="QNy-TY-hGQ">
             <objects>
-                <viewController id="wmT-Bf-7fd" customClass="UserProfileViewController" customModule="fakerGram" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="wmT-Bf-7fd" customClass="UserProfileViewController" customModule="Petstagram" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1pZ-ni-cV9">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <viewLayoutGuide key="safeArea" id="KUT-Ac-bBr"/>
                     </view>
+                    <navigationItem key="navigationItem" id="2ne-DK-efs">
+                        <barButtonItem key="rightBarButtonItem" image="settings" id="oRT-8i-TgO"/>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YKw-R3-n0L" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="236" y="157"/>
+            <point key="canvasLocation" x="1144.9275362318842" y="156.69642857142856"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="settings" width="25" height="25"/>
+    </resources>
 </document>
