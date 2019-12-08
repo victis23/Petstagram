@@ -28,7 +28,7 @@
                                 <rect key="frame" x="25" y="64" width="364" height="601"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Petstagram" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Efd-x2-mXh">
-                                        <rect key="frame" x="31.5" y="66" width="301" height="111"/>
+                                        <rect key="frame" x="-50" y="66" width="464" height="111"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="111" id="v3Q-t6-oiC"/>
                                         </constraints>
@@ -197,7 +197,16 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="Tka-Lm-7YO"/>
                     </view>
-                    <navigationItem key="navigationItem" id="3n4-2A-03H"/>
+                    <navigationItem key="navigationItem" id="3n4-2A-03H">
+                        <leftBarButtonItems>
+                            <barButtonItem id="B9c-d9-SUD"/>
+                            <barButtonItem image="camera.circle" catalog="system" id="VzH-fQ-AEC"/>
+                        </leftBarButtonItems>
+                        <rightBarButtonItems>
+                            <barButtonItem image="message.circle" catalog="system" id="My0-SB-b3F"/>
+                            <barButtonItem image="tv.circle" catalog="system" id="Ngo-fO-rqa"/>
+                        </rightBarButtonItems>
+                    </navigationItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="eB9-TR-iO3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -222,6 +231,10 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="ewX-7n-voh">
                         <rect key="frame" x="0.0" y="44" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                        <textAttributes key="titleTextAttributes">
+                            <color key="textColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
+                        </textAttributes>
                     </navigationBar>
                     <nil name="viewControllers"/>
                     <connections>
@@ -242,6 +255,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="1000" height="1000"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="tintColor" systemColor="labelColor" cocoaTouchSystemColor="darkTextColor"/>
                     </tabBar>
                     <connections>
                         <segue destination="cg7-Kk-eR3" kind="relationship" relationship="viewControllers" id="MLT-yp-Xj8"/>
@@ -363,11 +377,14 @@
         </scene>
     </scenes>
     <resources>
+        <image name="camera.circle" catalog="system" width="64" height="60"/>
         <image name="heart" catalog="system" width="64" height="54"/>
         <image name="house" catalog="system" width="64" height="54"/>
         <image name="magnifyingglass" catalog="system" width="64" height="56"/>
+        <image name="message.circle" catalog="system" width="64" height="60"/>
         <image name="person" catalog="system" width="64" height="58"/>
         <image name="plus.app" catalog="system" width="64" height="56"/>
         <image name="simpleGradiantBG" width="1000" height="1000"/>
+        <image name="tv.circle" catalog="system" width="64" height="60"/>
     </resources>
 </document>

@@ -8,20 +8,22 @@
 
 import UIKit
 
-extension AppLogin : UIGestureRecognizerDelegate {
-	
-
+extension AppLogin {
 	
 	func createViewForAccountCreation(){
 		
-		
 		let dragGesture : UIPanGestureRecognizer = {
 			let pan = UIPanGestureRecognizer(target: self, action: #selector(handleGesture(panGesture:)))
-			pan.delegate = self
 			return pan
 		}()
 		
 		view.addSubview(accountCreationUIView)
+		addConstraintsToAccountCreationView()
+		animateAccountCreationView()
+		accountCreationUIView.addGestureRecognizer(dragGesture)
+	}
+	
+	func addConstraintsToAccountCreationView(){
 		
 		NSLayoutConstraint.activate([
 			accountCreationUIView.centerXAnchor.constraint(equalTo: view.centerXAnchor),
@@ -29,27 +31,13 @@ extension AppLogin : UIGestureRecognizerDelegate {
 			accountCreationUIView.heightAnchor.constraint(equalToConstant: loginArea.frame.height),
 			accountCreationUIView.widthAnchor.constraint(equalToConstant: loginArea.frame.width)
 		])
-		
-		/*
-		print(view.frame.height)
-		print(loginArea.frame.height)
-		print(loginArea.center)
-		print(view.center)
-		print("viewCenter - loginCenter = \(view.center.y - loginArea.center.y)")
-		print("viewFrame - loginFrame = \(view.frame.height - loginArea.frame.height)")
-		*/
-		
-		UIView.animate(withDuration: 0.8) {
-			self.accountCreationUIView.transform = CGAffineTransform(translationX: 0, y: -750)
-		}
-		
-		accountCreationUIView.addGestureRecognizer(dragGesture)
-		
 	}
 	
-	func gestureRecognizerShouldBegin(_ gestureRecognizer: UIGestureRecognizer) -> Bool {
+	func animateAccountCreationView(){
 		
-		return true
+		UIView.animate(withDuration: 0.8, delay: 0, usingSpringWithDamping: 0.4, initialSpringVelocity: 0.5, options: .curveEaseIn, animations: {
+			self.accountCreationUIView.transform = CGAffineTransform(translationX: 0, y: -750)
+		}, completion: nil)
 	}
 	
 	@objc func handleGesture(panGesture : UIPanGestureRecognizer){
@@ -81,6 +69,4 @@ extension AppLogin : UIGestureRecognizerDelegate {
 			}
 		}
 	}
-	
-	
 }
