@@ -8,6 +8,7 @@
 
 import UIKit
 import Combine
+import CoreData
 
 class AppLogin: UIViewController {
 	

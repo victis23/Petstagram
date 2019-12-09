@@ -1,0 +1,6 @@
+framework module Pods_Petstagram {
+  umbrella header "Pods-Petstagram-umbrella.h"
+
+  export *
+  module * { export * }
+}
