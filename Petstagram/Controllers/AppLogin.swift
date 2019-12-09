@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Combine
 
 class AppLogin: UIViewController {
 	
@@ -32,12 +33,14 @@ class AppLogin: UIViewController {
 		textfield.layer.borderColor = UIColor.tertiaryLabel.cgColor
 		textfield.layer.borderWidth = 0.5
 		textfield.layer.cornerRadius = 5
+		textfield.layer.sublayerTransform = CATransform3DMakeTranslation(10, 0, 10)
+		textfield.translatesAutoresizingMaskIntoConstraints = false
+		
 		textfield.attributedPlaceholder = NSAttributedString(string: "Username", attributes: [
 			NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 22),
 			NSAttributedString.Key.foregroundColor : UIColor(red: 0, green: 0, blue: 0, alpha: 0.1),
 		])
-		textfield.layer.sublayerTransform = CATransform3DMakeTranslation(10, 0, 10)
-		textfield.translatesAutoresizingMaskIntoConstraints = false
+		textfield.addTarget(self, action: #selector(setUserName), for: .editingChanged)
 		return textfield
 	}()
 	let createPasswordTextField : UITextField = {
@@ -105,8 +108,12 @@ class AppLogin: UIViewController {
 	}
 	
 	func setupSubscribers(){
+		
 	}
 	
+	@objc func setUserName(){
+		
+	}
 }
 
 

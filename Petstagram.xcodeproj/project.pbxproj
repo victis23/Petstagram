@@ -28,8 +28,11 @@
 		7D4A5447239C6A800079A96A /* Billabong.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7D4A5446239C6A800079A96A /* Billabong.ttf */; };
 		7D4A5449239C6AFA0079A96A /* AppLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4A5448239C6AFA0079A96A /* AppLogin.swift */; };
 		7D4A544C239C91E90079A96A /* CreateAccountAppLoginExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4A544B239C91E90079A96A /* CreateAccountAppLoginExtension.swift */; };
-		7D4A544F239CBBEC0079A96A /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 7D4A544E239CBBEC0079A96A /* IQKeyboardManagerSwift */; };
+		7D4A544F239CBBEC0079A96A /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 7D4A544E239CBBEC0079A96A /* SwiftPackageProductDependency */; };
 		7D55817F239D2C710076AFEB /* setLoginAreaAppLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D55817E239D2C710076AFEB /* setLoginAreaAppLogin.swift */; };
+		7D558181239DDE2D0076AFEB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7D558180239DDE2D0076AFEB /* GoogleService-Info.plist */; };
+		7D558183239DDE810076AFEB /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 7D558182239DDE810076AFEB /* Podfile */; };
+		CA3BA1F47FF6371A405E2A88 /* Pods_Petstagram.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0F63C2E600878E17487E8C0 /* Pods_Petstagram.framework */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -50,6 +53,7 @@
 /* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
+		30BAF6D66359D4754EAD6306 /* Pods-Petstagram.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Petstagram.release.xcconfig"; path = "Target Support Files/Pods-Petstagram/Pods-Petstagram.release.xcconfig"; sourceTree = "<group>"; };
 		7D4A53EF239C66ED0079A96A /* Petstagram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Petstagram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D4A53F2239C66ED0079A96A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7D4A53F4239C66ED0079A96A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -78,6 +82,10 @@
 		7D4A5448239C6AFA0079A96A /* AppLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLogin.swift; sourceTree = "<group>"; };
 		7D4A544B239C91E90079A96A /* CreateAccountAppLoginExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountAppLoginExtension.swift; sourceTree = "<group>"; };
 		7D55817E239D2C710076AFEB /* setLoginAreaAppLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = setLoginAreaAppLogin.swift; sourceTree = "<group>"; };
+		7D558180239DDE2D0076AFEB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		7D558182239DDE810076AFEB /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		ADB9CC2E38F2A8EE4903487C /* Pods-Petstagram.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Petstagram.debug.xcconfig"; path = "Target Support Files/Pods-Petstagram/Pods-Petstagram.debug.xcconfig"; sourceTree = "<group>"; };
+		F0F63C2E600878E17487E8C0 /* Pods_Petstagram.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Petstagram.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -85,7 +93,8 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7D4A544F239CBBEC0079A96A /* IQKeyboardManagerSwift in Frameworks */,
+				7D4A544F239CBBEC0079A96A /* BuildFile in Frameworks */,
+				CA3BA1F47FF6371A405E2A88 /* Pods_Petstagram.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -106,6 +115,24 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		081BA26094B7FD432F43680B /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				ADB9CC2E38F2A8EE4903487C /* Pods-Petstagram.debug.xcconfig */,
+				30BAF6D66359D4754EAD6306 /* Pods-Petstagram.release.xcconfig */,
+			);
+			name = Pods;
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		545AEDA17896944478FD0A83 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F0F63C2E600878E17487E8C0 /* Pods_Petstagram.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 		7D4A53E6239C66ED0079A96A = {
 			isa = PBXGroup;
 			children = (
@@ -113,6 +140,8 @@
 				7D4A540B239C66EE0079A96A /* PetstagramTests */,
 				7D4A5416239C66EE0079A96A /* PetstagramUITests */,
 				7D4A53F0239C66ED0079A96A /* Products */,
+				081BA26094B7FD432F43680B /* Pods */,
+				545AEDA17896944478FD0A83 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -142,6 +171,8 @@
 				7D4A53FE239C66EE0079A96A /* Assets.xcassets */,
 				7D4A5400239C66EE0079A96A /* LaunchScreen.storyboard */,
 				7D4A5403239C66EE0079A96A /* Info.plist */,
+				7D558182239DDE810076AFEB /* Podfile */,
+				7D558180239DDE2D0076AFEB /* GoogleService-Info.plist */,
 				7D4A53FB239C66ED0079A96A /* Petstagram.xcdatamodeld */,
 			);
 			path = Petstagram;
@@ -211,9 +242,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7D4A541C239C66EE0079A96A /* Build configuration list for PBXNativeTarget "Petstagram" */;
 			buildPhases = (
+				6347EBB85D7CD1E58BFEE17F /* [CP] Check Pods Manifest.lock */,
 				7D4A53EB239C66ED0079A96A /* Sources */,
 				7D4A53EC239C66ED0079A96A /* Frameworks */,
 				7D4A53ED239C66ED0079A96A /* Resources */,
+				73EE0767E0B7D82C3223EB41 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -221,7 +254,7 @@
 			);
 			name = Petstagram;
 			packageProductDependencies = (
-				7D4A544E239CBBEC0079A96A /* IQKeyboardManagerSwift */,
+				7D4A544E239CBBEC0079A96A /* SwiftPackageProductDependency */,
 			);
 			productName = Petstagram;
 			productReference = 7D4A53EF239C66ED0079A96A /* Petstagram.app */;
@@ -296,7 +329,7 @@
 			);
 			mainGroup = 7D4A53E6239C66ED0079A96A;
 			packageReferences = (
-				7D4A544D239CBBEC0079A96A /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
+				7D4A544D239CBBEC0079A96A /* RemoteSwiftPackageReference */,
 			);
 			productRefGroup = 7D4A53F0239C66ED0079A96A /* Products */;
 			projectDirPath = "";
@@ -314,8 +347,10 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7D558183239DDE810076AFEB /* Podfile in Resources */,
 				7D4A5431239C67AF0079A96A /* ImageUploadStoryboard.storyboard in Resources */,
 				7D4A5433239C67AF0079A96A /* SearchStoryboard.storyboard in Resources */,
+				7D558181239DDE2D0076AFEB /* GoogleService-Info.plist in Resources */,
 				7D4A5402239C66EE0079A96A /* LaunchScreen.storyboard in Resources */,
 				7D4A5432239C67AF0079A96A /* LikesStoryboard.storyboard in Resources */,
 				7D4A53FF239C66EE0079A96A /* Assets.xcassets in Resources */,
@@ -340,6 +375,48 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		6347EBB85D7CD1E58BFEE17F /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-Petstagram-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		73EE0767E0B7D82C3223EB41 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Petstagram/Pods-Petstagram-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Petstagram/Pods-Petstagram-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Petstagram/Pods-Petstagram-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		7D4A53EB239C66ED0079A96A /* Sources */ = {
@@ -528,6 +605,7 @@
 		};
 		7D4A541D239C66EE0079A96A /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = ADB9CC2E38F2A8EE4903487C /* Pods-Petstagram.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -546,6 +624,7 @@
 		};
 		7D4A541E239C66EE0079A96A /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 30BAF6D66359D4754EAD6306 /* Pods-Petstagram.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
@@ -688,7 +767,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		7D4A544D239CBBEC0079A96A /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
+		7D4A544D239CBBEC0079A96A /* RemoteSwiftPackageReference */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager.git";
 			requirement = {
@@ -699,9 +778,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		7D4A544E239CBBEC0079A96A /* IQKeyboardManagerSwift */ = {
+		7D4A544E239CBBEC0079A96A /* SwiftPackageProductDependency */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 7D4A544D239CBBEC0079A96A /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
+			package = 7D4A544D239CBBEC0079A96A /* RemoteSwiftPackageReference */;
 			productName = IQKeyboardManagerSwift;
 		};
 /* End XCSwiftPackageProductDependency section */
