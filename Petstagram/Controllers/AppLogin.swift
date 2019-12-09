@@ -122,12 +122,10 @@ class AppLogin: UIViewController{
 	private var passwordConfirmationPublisher : AnyPublisher<String?,Never>!
 	
 	private var accountCreationPublisher : AnyPublisher<(String?,String?,String?,String?),Never>!
+	private var signInPublisher : AnyPublisher<(String?,String?),Never>!
 	
-	private var userNameSubscriber : AnyCancellable!
-	private var emailSubscriber : AnyCancellable!
-	private var passwordSubscriber : AnyCancellable!
-	private var confirmedPasswordSubscriber : AnyCancellable!
-	
+	var accountCreationSubscriber : AnyCancellable!
+	var signInSubscriber : AnyCancellable!
 	
 	//MARK:  App LifeCycle
 	
@@ -136,6 +134,7 @@ class AppLogin: UIViewController{
 		setLoginArea()
 		setTextFieldDelegates()
 		setupPublishers()
+		setSubscribers()
 	}
 	
 	func setTextFieldDelegates(){
@@ -146,10 +145,7 @@ class AppLogin: UIViewController{
 			createEmailTextField,
 			createPasswordTextField,
 			passwordConfirmationTextField
-			].enumerated().forEach {
-				//				$0.element?.delegate = self
-				$0.element?.tag = $0.offset
-		}
+			].enumerated().forEach {$0.element?.tag = $0.offset}
 	}
 	
 	@IBAction func logInButtonTapped(_ sender: Any) {
@@ -168,12 +164,33 @@ class AppLogin: UIViewController{
 		emailPublisher = createPublisher(publisher: $email)
 		passwordPublisher = createPublisher(publisher: $password)
 		passwordConfirmationPublisher = createPublisher(publisher: $passwordConfirmation)
+		
+		accountCreationPublisher = Publishers.CombineLatest4(userNamePublisher, emailPublisher, passwordPublisher, passwordConfirmationPublisher)
+			.eraseToAnyPublisher()
+		signInPublisher = Publishers.CombineLatest(emailPublisher, passwordPublisher)
+			.eraseToAnyPublisher()
+	}
+	
+	func setSubscribers(){
+		
+		accountCreationSubscriber = accountCreationPublisher
+			.receive(on: DispatchQueue.main)
+			.map({ (value1, value2, value3, value4) -> Bool in
+				if value1 != nil,value2 != nil,value3 != nil, value4 != nil, value1 != "", value2 != "", value3 != "", value4 != "", value3 == value4{
+					self.submitButton.alpha = 1.0
+					return true
+				}else{
+					self.submitButton.alpha = 0.2
+					return false
+				}
+			})
+			.assign(to: \UIButton.isEnabled, on: submitButton)
 	}
 	
 	func createPublisher(publisher : Published<String?>.Publisher)->AnyPublisher<String?,Never>{
 		
 		let pub = publisher
-			.debounce(for: 3, scheduler: DispatchQueue.global(qos: .background))
+			.debounce(for: 2, scheduler: DispatchQueue.global(qos: .background))
 			.removeDuplicates()
 			.eraseToAnyPublisher()
 		return pub
@@ -182,12 +199,10 @@ class AppLogin: UIViewController{
 	@objc func createNewAccount(){
 		
 	}
-	
-	
 }
 
 extension AppLogin {
-
+	
 	@objc func textFieldValueChanged(_ textField: UITextField){
 		let tag = textField.tag
 		guard let text = textField.text else {return}
