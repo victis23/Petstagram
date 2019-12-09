@@ -77,7 +77,7 @@
                                         <rect key="frame" x="212" y="342" width="126" height="30"/>
                                         <state key="normal" title="Create an account"/>
                                         <connections>
-                                            <action selector="createAnAccount:" destination="uwe-WB-4UD" eventType="touchUpInside" id="ClZ-IW-RPA"/>
+                                            <action selector="userRequestsNewAccountCreationButtonTapped:" destination="uwe-WB-4UD" eventType="touchUpInside" id="ClZ-IW-RPA"/>
                                         </connections>
                                     </button>
                                 </subviews>

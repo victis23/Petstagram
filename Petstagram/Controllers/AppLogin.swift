@@ -40,10 +40,9 @@ class AppLogin: UIViewController {
 			NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 22),
 			NSAttributedString.Key.foregroundColor : UIColor(red: 0, green: 0, blue: 0, alpha: 0.1),
 		])
-		textfield.addTarget(self, action: #selector(setEmailForUser), for: .editingChanged)
 		return textfield
 	}()
-	let userName : UITextField = {
+	let userNameTextField : UITextField = {
 		let textfield = UITextField()
 		textfield.backgroundColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 0.03)
 		textfield.layer.borderColor = UIColor.tertiaryLabel.cgColor
@@ -97,22 +96,28 @@ class AppLogin: UIViewController {
 		button.translatesAutoresizingMaskIntoConstraints = false
 		button.isEnabled = false
 		button.alpha = 0.2
+		button.addTarget(self, action: #selector(createNewAccount), for: .touchUpInside)
 		return button
 	}()
 	
-	//MARK: - Class Properties
+	//MARK: - Publishers & Subscribers
+	
 	@Published var email : String!
 	@Published var password : String!
 	@Published var passwordConfirmation : String!
+	@Published var userName : String!
+	private var mainPublisher : AnyPublisher<(String,String,String,String),Never>!
 	private var emailSubscriber : AnyCancellable!
 	private var passwordSubscriber : AnyCancellable!
 	private var confirmedPasswordSubscriber : AnyCancellable!
+	private var userNameSubscriber : AnyCancellable!
 	
+	//MARK:  App LifeCycle
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		setLoginArea()
-		setupSubscribers()
+		setupPublishers()
 	}
 	
 	@IBAction func logInButtonTapped(_ sender: Any) {
@@ -121,18 +126,19 @@ class AppLogin: UIViewController {
 	}
 	
 	/// Called when new users tap on button for account creation.
-	@IBAction func createAnAccount(_ sender: Any) {
+	@IBAction func userRequestsNewAccountCreationButtonTapped(_ sender: Any) {
 		
 		createViewForAccountCreation()
 	}
 	
-	func setupSubscribers(){
+	func setupPublishers(){
 		
 	}
 	
-	@objc func setEmailForUser(){
+	@objc func createNewAccount(){
 		
 	}
+	
 }
 
 
