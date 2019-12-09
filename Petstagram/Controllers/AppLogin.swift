@@ -10,7 +10,11 @@ import UIKit
 import Combine
 import CoreData
 
-class AppLogin: UIViewController {
+class AppLogin: UIViewController{
+	
+	private let applicationDelegate = UIApplication.shared.delegate as! AppDelegate
+	private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+	let authenticationModel = AuthenticationItems()
 	
 	@IBOutlet weak var loginArea: UIView!
 	@IBOutlet weak var signInButton: UIButton!
@@ -41,6 +45,7 @@ class AppLogin: UIViewController {
 			NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 22),
 			NSAttributedString.Key.foregroundColor : UIColor(red: 0, green: 0, blue: 0, alpha: 0.1),
 		])
+		textfield.addTarget(self, action: #selector(textFieldValueChanged(_:)), for: .editingChanged)
 		return textfield
 	}()
 	let userNameTextField : UITextField = {
@@ -56,6 +61,7 @@ class AppLogin: UIViewController {
 			NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 22),
 			NSAttributedString.Key.foregroundColor : UIColor(red: 0, green: 0, blue: 0, alpha: 0.1),
 		])
+		textfield.addTarget(self, action: #selector(textFieldValueChanged(_:)), for: .editingChanged)
 		return textfield
 	}()
 	let createPasswordTextField : UITextField = {
@@ -70,6 +76,7 @@ class AppLogin: UIViewController {
 		])
 		textfield.layer.sublayerTransform = CATransform3DMakeTranslation(10, 0, 10)
 		textfield.translatesAutoresizingMaskIntoConstraints = false
+		textfield.addTarget(self, action: #selector(textFieldValueChanged(_:)), for: .editingChanged)
 		return textfield
 	}()
 	let passwordConfirmationTextField : UITextField = {
@@ -84,6 +91,7 @@ class AppLogin: UIViewController {
 		])
 		textfield.layer.sublayerTransform = CATransform3DMakeTranslation(10, 0, 10)
 		textfield.translatesAutoresizingMaskIntoConstraints = false
+		textfield.addTarget(self, action: #selector(textFieldValueChanged(_:)), for: .editingChanged)
 		return textfield
 	}()
 	let submitButton : UIButton = {
@@ -107,18 +115,41 @@ class AppLogin: UIViewController {
 	@Published var password : String!
 	@Published var passwordConfirmation : String!
 	@Published var userName : String!
-	private var mainPublisher : AnyPublisher<(String,String,String,String),Never>!
+	
+	private var userNamePublisher : AnyPublisher<String?,Never>!
+	private var emailPublisher : AnyPublisher<String?,Never>!
+	private var passwordPublisher : AnyPublisher<String?,Never>!
+	private var passwordConfirmationPublisher : AnyPublisher<String?,Never>!
+	
+	private var accountCreationPublisher : AnyPublisher<(String?,String?,String?,String?),Never>!
+	
+	private var userNameSubscriber : AnyCancellable!
 	private var emailSubscriber : AnyCancellable!
 	private var passwordSubscriber : AnyCancellable!
 	private var confirmedPasswordSubscriber : AnyCancellable!
-	private var userNameSubscriber : AnyCancellable!
+	
 	
 	//MARK:  App LifeCycle
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		setLoginArea()
+		setTextFieldDelegates()
 		setupPublishers()
+	}
+	
+	func setTextFieldDelegates(){
+		[
+			userNameTextField,
+			emailAddressTextField,
+			passwordTextField,
+			createEmailTextField,
+			createPasswordTextField,
+			passwordConfirmationTextField
+			].enumerated().forEach {
+				//				$0.element?.delegate = self
+				$0.element?.tag = $0.offset
+		}
 	}
 	
 	@IBAction func logInButtonTapped(_ sender: Any) {
@@ -133,13 +164,51 @@ class AppLogin: UIViewController {
 	}
 	
 	func setupPublishers(){
+		userNamePublisher = createPublisher(publisher: $userName)
+		emailPublisher = createPublisher(publisher: $email)
+		passwordPublisher = createPublisher(publisher: $password)
+		passwordConfirmationPublisher = createPublisher(publisher: $passwordConfirmation)
+	}
+	
+	func createPublisher(publisher : Published<String?>.Publisher)->AnyPublisher<String?,Never>{
 		
+		let pub = publisher
+			.debounce(for: 3, scheduler: DispatchQueue.global(qos: .background))
+			.removeDuplicates()
+			.eraseToAnyPublisher()
+		return pub
 	}
 	
 	@objc func createNewAccount(){
 		
 	}
 	
+	
+}
+
+extension AppLogin {
+
+	@objc func textFieldValueChanged(_ textField: UITextField){
+		let tag = textField.tag
+		guard let text = textField.text else {return}
+		
+		switch tag {
+		case 0:
+			userName = text
+		case 1:
+			email = text
+		case 2:
+			password = text
+		case 3:
+			email = text
+		case 4:
+			password = text
+		case 5:
+			passwordConfirmation = text
+		default:
+			break
+		}
+	}
 }
 
 

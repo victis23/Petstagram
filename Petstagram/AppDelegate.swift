@@ -27,6 +27,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		keyboardManger.keyboardDistanceFromTextField = 100
 		
 		FirebaseApp.configure()
+/*
+		let fetchedCreds : NSFetchedResultsController<AuthenticationItems>!
+*/
+		
+//		let context = persistentContainer.viewContext
+//		guard let authenticationObjects = try? context.fetch(AuthenticationItems.fetchRequest()) else {return true}
+//		let items = authenticationObjects as! [AuthenticationItems]
+//		guard let credential = items.last?.coreDataCredential as? AuthCredential else {return true}
+//		let firebaseAuth = Auth.auth()
+//		firebaseAuth.signIn(with: credential) { (result, error) in
+//
+//		}
 		
 		return true
 	}

@@ -2,10 +2,10 @@
 <Workspace
    version = "1.0">
    <FileRef
-      location = "group:/Users/scottleonard/Downloads/Coding/Projects/Petstagram/Petstagram/Models/AuthenticationItems+CoreDataClass.swift">
+      location = "group:AuthenticationItems+CoreDataClass.swift">
    </FileRef>
    <FileRef
-      location = "group:/Users/scottleonard/Downloads/Coding/Projects/Petstagram/Petstagram/Models/AuthenticationItems+CoreDataProperties.swift">
+      location = "group:AuthenticationItems+CoreDataProperties.swift">
    </FileRef>
    <FileRef
       location = "group:Petstagram.xcodeproj">

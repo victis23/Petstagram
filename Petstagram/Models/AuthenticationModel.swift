@@ -14,6 +14,7 @@ struct Authentication {
 	var email :String
 	var password :String
 	var userName :String
+	var authentication : AuthCredential?
 	
 	func firebaseUserRegistration(isRegistration: Bool, segue : @escaping (_ result: AuthDataResult)->()){
 		let firebaseAuthentication = Auth.auth()

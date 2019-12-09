@@ -33,8 +33,6 @@
 		7D558181239DDE2D0076AFEB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7D558180239DDE2D0076AFEB /* GoogleService-Info.plist */; };
 		7D558183239DDE810076AFEB /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 7D558182239DDE810076AFEB /* Podfile */; };
 		7D558186239DE31C0076AFEB /* AuthenticationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D558185239DE31C0076AFEB /* AuthenticationModel.swift */; };
-		7D558189239DF0D50076AFEB /* AuthenticationItems+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D558187239DF0D50076AFEB /* AuthenticationItems+CoreDataClass.swift */; };
-		7D55818A239DF0D50076AFEB /* AuthenticationItems+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D558188239DF0D50076AFEB /* AuthenticationItems+CoreDataProperties.swift */; };
 		CA3BA1F47FF6371A405E2A88 /* Pods_Petstagram.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0F63C2E600878E17487E8C0 /* Pods_Petstagram.framework */; };
 /* End PBXBuildFile section */
 
@@ -88,8 +86,6 @@
 		7D558180239DDE2D0076AFEB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7D558182239DDE810076AFEB /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		7D558185239DE31C0076AFEB /* AuthenticationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationModel.swift; sourceTree = "<group>"; };
-		7D558187239DF0D50076AFEB /* AuthenticationItems+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "AuthenticationItems+CoreDataClass.swift"; path = "/Users/scottleonard/Downloads/Coding/Projects/Petstagram/Petstagram/Models/AuthenticationItems+CoreDataClass.swift"; sourceTree = "<absolute>"; };
-		7D558188239DF0D50076AFEB /* AuthenticationItems+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "AuthenticationItems+CoreDataProperties.swift"; path = "/Users/scottleonard/Downloads/Coding/Projects/Petstagram/Petstagram/Models/AuthenticationItems+CoreDataProperties.swift"; sourceTree = "<absolute>"; };
 		ADB9CC2E38F2A8EE4903487C /* Pods-Petstagram.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Petstagram.debug.xcconfig"; path = "Target Support Files/Pods-Petstagram/Pods-Petstagram.debug.xcconfig"; sourceTree = "<group>"; };
 		F0F63C2E600878E17487E8C0 /* Pods_Petstagram.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Petstagram.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -163,8 +159,8 @@
 		7D4A53F1239C66ED0079A96A /* Petstagram */ = {
 			isa = PBXGroup;
 			children = (
-				7D558184239DE3080076AFEB /* Models */,
 				7D4A53F2239C66ED0079A96A /* AppDelegate.swift */,
+				7D558184239DE3080076AFEB /* Models */,
 				7D4A5442239C6A300079A96A /* KeyModel */,
 				7D4A5435239C69DE0079A96A /* Controllers */,
 				7D4A5445239C6A710079A96A /* Font */,
@@ -245,8 +241,6 @@
 			isa = PBXGroup;
 			children = (
 				7D558185239DE31C0076AFEB /* AuthenticationModel.swift */,
-				7D558187239DF0D50076AFEB /* AuthenticationItems+CoreDataClass.swift */,
-				7D558188239DF0D50076AFEB /* AuthenticationItems+CoreDataProperties.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -449,10 +443,8 @@
 				7D4A53F3239C66ED0079A96A /* AppDelegate.swift in Sources */,
 				7D4A543F239C69F00079A96A /* UserFeedViewController.swift in Sources */,
 				7D4A53F5239C66ED0079A96A /* SceneDelegate.swift in Sources */,
-				7D558189239DF0D50076AFEB /* AuthenticationItems+CoreDataClass.swift in Sources */,
 				7D4A5449239C6AFA0079A96A /* AppLogin.swift in Sources */,
 				7D4A53FD239C66ED0079A96A /* Petstagram.xcdatamodeld in Sources */,
-				7D55818A239DF0D50076AFEB /* AuthenticationItems+CoreDataProperties.swift in Sources */,
 				7D4A5444239C6A410079A96A /* Keys.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
