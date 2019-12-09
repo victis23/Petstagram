@@ -10,6 +10,7 @@ import UIKit
 import CoreData
 import IQKeyboardManagerSwift
 import FirebaseAuth
+import FirebaseCore
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -24,6 +25,8 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		keyboardManger.enableAutoToolbar = false
 		keyboardManger.shouldResignOnTouchOutside = true
 		keyboardManger.keyboardDistanceFromTextField = 100
+		
+		FirebaseApp.configure()
 		
 		return true
 	}

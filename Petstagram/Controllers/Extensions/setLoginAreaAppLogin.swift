@@ -29,15 +29,15 @@ extension AppLogin {
 			NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 20)
 		]
 		// NSAttributed String For Username
-		let usernamePlaceHolderText = NSAttributedString(string: "Username", attributes : placeHolderAttributes)
+		let usernamePlaceHolderText = NSAttributedString(string: "Email", attributes : placeHolderAttributes)
 		// Username Placeholder Text — Seperated into two parts just for clarification purposes.
-		usernameTextField.attributedPlaceholder = usernamePlaceHolderText
+		emailAddressTextField.attributedPlaceholder = usernamePlaceHolderText
 		
 		// Password PlaceHolder Text (All toghether).
 		passwordTextField.attributedPlaceholder = NSAttributedString(string: "Password", attributes : placeHolderAttributes)
 		
 		// Attributes for user input.
-		usernameTextField.font = UIFont.boldSystemFont(ofSize: 20)
+		emailAddressTextField.font = UIFont.boldSystemFont(ofSize: 20)
 		passwordTextField.font = UIFont.boldSystemFont(ofSize: 20)
 		passwordTextField.textContentType = .password
 		passwordTextField.isSecureTextEntry = true

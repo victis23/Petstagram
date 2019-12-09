@@ -28,10 +28,11 @@
 		7D4A5447239C6A800079A96A /* Billabong.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7D4A5446239C6A800079A96A /* Billabong.ttf */; };
 		7D4A5449239C6AFA0079A96A /* AppLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4A5448239C6AFA0079A96A /* AppLogin.swift */; };
 		7D4A544C239C91E90079A96A /* CreateAccountAppLoginExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4A544B239C91E90079A96A /* CreateAccountAppLoginExtension.swift */; };
-		7D4A544F239CBBEC0079A96A /* BuildFile in Frameworks */ = {isa = PBXBuildFile; productRef = 7D4A544E239CBBEC0079A96A /* SwiftPackageProductDependency */; };
+		7D4A544F239CBBEC0079A96A /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 7D4A544E239CBBEC0079A96A /* IQKeyboardManagerSwift */; };
 		7D55817F239D2C710076AFEB /* setLoginAreaAppLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D55817E239D2C710076AFEB /* setLoginAreaAppLogin.swift */; };
 		7D558181239DDE2D0076AFEB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7D558180239DDE2D0076AFEB /* GoogleService-Info.plist */; };
 		7D558183239DDE810076AFEB /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 7D558182239DDE810076AFEB /* Podfile */; };
+		7D558186239DE31C0076AFEB /* AuthenticationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D558185239DE31C0076AFEB /* AuthenticationModel.swift */; };
 		CA3BA1F47FF6371A405E2A88 /* Pods_Petstagram.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0F63C2E600878E17487E8C0 /* Pods_Petstagram.framework */; };
 /* End PBXBuildFile section */
 
@@ -84,6 +85,7 @@
 		7D55817E239D2C710076AFEB /* setLoginAreaAppLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = setLoginAreaAppLogin.swift; sourceTree = "<group>"; };
 		7D558180239DDE2D0076AFEB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7D558182239DDE810076AFEB /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		7D558185239DE31C0076AFEB /* AuthenticationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationModel.swift; sourceTree = "<group>"; };
 		ADB9CC2E38F2A8EE4903487C /* Pods-Petstagram.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Petstagram.debug.xcconfig"; path = "Target Support Files/Pods-Petstagram/Pods-Petstagram.debug.xcconfig"; sourceTree = "<group>"; };
 		F0F63C2E600878E17487E8C0 /* Pods_Petstagram.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Petstagram.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -93,7 +95,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7D4A544F239CBBEC0079A96A /* BuildFile in Frameworks */,
+				7D4A544F239CBBEC0079A96A /* IQKeyboardManagerSwift in Frameworks */,
 				CA3BA1F47FF6371A405E2A88 /* Pods_Petstagram.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -121,7 +123,6 @@
 				ADB9CC2E38F2A8EE4903487C /* Pods-Petstagram.debug.xcconfig */,
 				30BAF6D66359D4754EAD6306 /* Pods-Petstagram.release.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -158,6 +159,7 @@
 		7D4A53F1239C66ED0079A96A /* Petstagram */ = {
 			isa = PBXGroup;
 			children = (
+				7D558184239DE3080076AFEB /* Models */,
 				7D4A53F2239C66ED0079A96A /* AppDelegate.swift */,
 				7D4A5442239C6A300079A96A /* KeyModel */,
 				7D4A5435239C69DE0079A96A /* Controllers */,
@@ -235,6 +237,14 @@
 			path = Extensions;
 			sourceTree = "<group>";
 		};
+		7D558184239DE3080076AFEB /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				7D558185239DE31C0076AFEB /* AuthenticationModel.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -254,7 +264,7 @@
 			);
 			name = Petstagram;
 			packageProductDependencies = (
-				7D4A544E239CBBEC0079A96A /* SwiftPackageProductDependency */,
+				7D4A544E239CBBEC0079A96A /* IQKeyboardManagerSwift */,
 			);
 			productName = Petstagram;
 			productReference = 7D4A53EF239C66ED0079A96A /* Petstagram.app */;
@@ -329,7 +339,7 @@
 			);
 			mainGroup = 7D4A53E6239C66ED0079A96A;
 			packageReferences = (
-				7D4A544D239CBBEC0079A96A /* RemoteSwiftPackageReference */,
+				7D4A544D239CBBEC0079A96A /* XCRemoteSwiftPackageReference "IQKeyboardManager" */,
 			);
 			productRefGroup = 7D4A53F0239C66ED0079A96A /* Products */;
 			projectDirPath = "";
@@ -424,6 +434,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7D4A544C239C91E90079A96A /* CreateAccountAppLoginExtension.swift in Sources */,
+				7D558186239DE31C0076AFEB /* AuthenticationModel.swift in Sources */,
 				7D55817F239D2C710076AFEB /* setLoginAreaAppLogin.swift in Sources */,
 				7D4A5441239C69F00079A96A /* ImageUploadViewController.swift in Sources */,
 				7D4A543C239C69F00079A96A /* SearchControllerViewController.swift in Sources */,
@@ -767,7 +778,7 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
-		7D4A544D239CBBEC0079A96A /* RemoteSwiftPackageReference */ = {
+		7D4A544D239CBBEC0079A96A /* XCRemoteSwiftPackageReference "IQKeyboardManager" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/hackiftekhar/IQKeyboardManager.git";
 			requirement = {
@@ -778,9 +789,9 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
-		7D4A544E239CBBEC0079A96A /* SwiftPackageProductDependency */ = {
+		7D4A544E239CBBEC0079A96A /* IQKeyboardManagerSwift */ = {
 			isa = XCSwiftPackageProductDependency;
-			package = 7D4A544D239CBBEC0079A96A /* RemoteSwiftPackageReference */;
+			package = 7D4A544D239CBBEC0079A96A /* XCRemoteSwiftPackageReference "IQKeyboardManager" */;
 			productName = IQKeyboardManagerSwift;
 		};
 /* End XCSwiftPackageProductDependency section */

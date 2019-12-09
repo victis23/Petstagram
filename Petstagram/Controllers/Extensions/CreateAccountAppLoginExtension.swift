@@ -111,7 +111,7 @@ extension AppLogin {
 		
 		accountCreationUIView.addSubview(dragIndicator)
 		accountCreationUIView.addSubview(verticalStack)
-		[createUsernameTextField,createPasswordTextField,passwordConfirmationTextField,submitButton].forEach {
+		[userName,createEmailTextField,createPasswordTextField,passwordConfirmationTextField,submitButton].forEach {
 			
 			verticalStack.addArrangedSubview($0)
 		}
@@ -123,8 +123,10 @@ extension AppLogin {
 			dragIndicator.widthAnchor.constraint(equalToConstant: 100),
 			dragIndicator.heightAnchor.constraint(equalToConstant: 5),
 			dragIndicator.centerXAnchor.constraint(equalTo: accountCreationUIView.centerXAnchor),
-			createUsernameTextField.heightAnchor.constraint(equalToConstant: 50),
-			createUsernameTextField.widthAnchor.constraint(equalToConstant: 284),
+			createEmailTextField.heightAnchor.constraint(equalToConstant: 50),
+			createEmailTextField.widthAnchor.constraint(equalToConstant: 284),
+			userName.heightAnchor.constraint(equalToConstant: 50),
+			userName.widthAnchor.constraint(equalToConstant: 284),
 			createPasswordTextField.heightAnchor.constraint(equalToConstant: 50),
 			createPasswordTextField.widthAnchor.constraint(equalToConstant: 284),
 			passwordConfirmationTextField.heightAnchor.constraint(equalToConstant: 50),

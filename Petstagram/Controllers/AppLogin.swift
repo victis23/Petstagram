@@ -13,7 +13,7 @@ class AppLogin: UIViewController {
 	
 	@IBOutlet weak var loginArea: UIView!
 	@IBOutlet weak var signInButton: UIButton!
-	@IBOutlet weak var usernameTextField: UITextField!
+	@IBOutlet weak var emailAddressTextField: UITextField!
 	@IBOutlet weak var passwordTextField: UITextField!
 	@IBOutlet weak var logo: UILabel!
 	
@@ -27,7 +27,23 @@ class AppLogin: UIViewController {
 		uiView.layer.shadowRadius = 20
 		return uiView
 	}()
-	let createUsernameTextField : UITextField = {
+	let createEmailTextField : UITextField = {
+		let textfield = UITextField()
+		textfield.backgroundColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 0.03)
+		textfield.layer.borderColor = UIColor.tertiaryLabel.cgColor
+		textfield.layer.borderWidth = 0.5
+		textfield.layer.cornerRadius = 5
+		textfield.layer.sublayerTransform = CATransform3DMakeTranslation(10, 0, 10)
+		textfield.translatesAutoresizingMaskIntoConstraints = false
+		
+		textfield.attributedPlaceholder = NSAttributedString(string: "Email", attributes: [
+			NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 22),
+			NSAttributedString.Key.foregroundColor : UIColor(red: 0, green: 0, blue: 0, alpha: 0.1),
+		])
+		textfield.addTarget(self, action: #selector(setEmailForUser), for: .editingChanged)
+		return textfield
+	}()
+	let userName : UITextField = {
 		let textfield = UITextField()
 		textfield.backgroundColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 0.03)
 		textfield.layer.borderColor = UIColor.tertiaryLabel.cgColor
@@ -40,7 +56,6 @@ class AppLogin: UIViewController {
 			NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 22),
 			NSAttributedString.Key.foregroundColor : UIColor(red: 0, green: 0, blue: 0, alpha: 0.1),
 		])
-		textfield.addTarget(self, action: #selector(setUserName), for: .editingChanged)
 		return textfield
 	}()
 	let createPasswordTextField : UITextField = {
@@ -86,9 +101,12 @@ class AppLogin: UIViewController {
 	}()
 	
 	//MARK: - Class Properties
-	@Published var userName : String!
+	@Published var email : String!
 	@Published var password : String!
 	@Published var passwordConfirmation : String!
+	private var emailSubscriber : AnyCancellable!
+	private var passwordSubscriber : AnyCancellable!
+	private var confirmedPasswordSubscriber : AnyCancellable!
 	
 	
 	override func viewDidLoad() {
@@ -102,6 +120,7 @@ class AppLogin: UIViewController {
 		performSegue(withIdentifier: Keys.Segues.accessSegue, sender: nil)
 	}
 	
+	/// Called when new users tap on button for account creation.
 	@IBAction func createAnAccount(_ sender: Any) {
 		
 		createViewForAccountCreation()
@@ -111,7 +130,7 @@ class AppLogin: UIViewController {
 		
 	}
 	
-	@objc func setUserName(){
+	@objc func setEmailForUser(){
 		
 	}
 }
