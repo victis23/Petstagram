@@ -134,6 +134,8 @@ class AppLogin: UIViewController{
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		signInButton.isEnabled = false
+		signInButton.alpha = 0.2
 		setLoginArea()
 		setTextFieldDelegates()
 		setupPublishers()
@@ -151,31 +153,9 @@ class AppLogin: UIViewController{
 			].enumerated().forEach {
 				$0.element?.tag = $0.offset
 				$0.element?.addTarget(self, action: #selector(textFieldValueChanged(_:)), for: .editingChanged)
-		}
-	}
-	
-	@IBAction func logInButtonTapped(_ sender: Any) {
-		
-		userAuth = Authentication(email: email.lowercased(), password: password)
-		do {
-			try userAuth.firebaseUserRegistration(isRegistration: false) { [weak self](authResult) in
-				self?.coreDataAuthModel.coreDataEmail = self?.userAuth.email
-				self?.coreDataAuthModel.coreDataPassword = self?.userAuth.password
-				self?.coreDataAuthModel.coreDataCredential = self?.userAuth.authentication
-				do {
-					try self?.context.save()
-				}
-				catch(let saveError){
-					print(saveError.localizedDescription)
-				}
-				self?.userAuth.authentication = authResult.credential
-				self?.performSegue(withIdentifier: Keys.Segues.accessSegue, sender: nil)
-			}
-		}catch{
-			createEmailTextField = nil
-			userNameTextField = nil
-			createPasswordTextField = nil
-			passwordConfirmation = nil
+				$0.element?.autocapitalizationType = .none
+				$0.element?.textColor = .black
+				$0.element?.font = UIFont.boldSystemFont(ofSize: 20)
 		}
 	}
 	
@@ -231,11 +211,13 @@ class AppLogin: UIViewController{
 	func createPublisher(publisher : Published<String?>.Publisher)->AnyPublisher<String?,Never>{
 		
 		let pub = publisher
-			.debounce(for: 2, scheduler: DispatchQueue.global(qos: .background))
+			.debounce(for: 3, scheduler: DispatchQueue.global(qos: .background))
 			.removeDuplicates()
 			.eraseToAnyPublisher()
 		return pub
 	}
+	
+	//MARK: - Account Creation & Signin Methods
 	
 	@objc func createNewAccount(){
 		
@@ -243,6 +225,7 @@ class AppLogin: UIViewController{
 		do {
 			try userAuth.firebaseUserRegistration(isRegistration: true) { [weak self](authorizationResult) in
 				self?.userAuth.authentication = authorizationResult.credential
+				/*
 				self?.coreDataAuthModel.coreDataEmail = self?.userAuth.email
 				self?.coreDataAuthModel.coreDataPassword = self?.userAuth.password
 				self?.coreDataAuthModel.coreDataUserName = self?.userAuth.userName
@@ -253,6 +236,7 @@ class AppLogin: UIViewController{
 				catch(let saveError){
 					print(saveError.localizedDescription)
 				}
+				*/
 				self?.performSegue(withIdentifier: Keys.Segues.accessSegue, sender: nil)
 			}
 		}
@@ -261,8 +245,41 @@ class AppLogin: UIViewController{
 			passwordTextField = nil
 		}
 	}
+	
+	@IBAction func logInButtonTapped(_ sender: Any) {
+		
+		userAuth = Authentication(email: email.lowercased(), password: password)
+		do {
+			try userAuth.firebaseUserRegistration(isRegistration: false) { [weak self](authResult) in
+				self?.userAuth.authentication = authResult.credential
+				/*
+				self?.coreDataAuthModel.coreDataEmail = self?.userAuth.email
+				self?.coreDataAuthModel.coreDataPassword = self?.userAuth.password
+				self?.coreDataAuthModel.coreDataCredential = self?.userAuth.authentication
+				do {
+					try self?.context.save()
+				}
+				catch(let saveError){
+					print(saveError.localizedDescription)
+				}
+				*/
+				self?.performSegue(withIdentifier: Keys.Segues.accessSegue, sender: nil)
+			}
+		}catch{
+			createEmailTextField = nil
+			userNameTextField = nil
+			createPasswordTextField = nil
+			passwordConfirmation = nil
+		}
+	}
+	
+	//MARK: - Navigation
+	
+	@IBAction func unwindToLogin(_ unwindSegue: UIStoryboardSegue) {
+	}
 }
 
+//MARK: Textfield Observer
 extension AppLogin {
 	
 	@objc func textFieldValueChanged(_ textField: UITextField){

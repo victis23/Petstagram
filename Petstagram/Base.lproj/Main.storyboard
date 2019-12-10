@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="uwe-WB-4UD">
+    <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
@@ -17,17 +18,17 @@
             <objects>
                 <viewController id="uwe-WB-4UD" customClass="AppLogin" customModule="Petstagram" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Ovq-EL-36X">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFill" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="simpleGradiantBG" translatesAutoresizingMaskIntoConstraints="NO" id="yCN-T4-hYZ">
-                                <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                             </imageView>
                             <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="71l-Ob-dzr">
-                                <rect key="frame" x="25" y="20" width="550" height="383"/>
+                                <rect key="frame" x="25" y="64" width="364" height="601"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Petstagram" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Efd-x2-mXh">
-                                        <rect key="frame" x="43.5" y="-43" width="463.5" height="111"/>
+                                        <rect key="frame" x="31.5" y="66" width="301" height="111"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="111" id="v3Q-t6-oiC"/>
                                         </constraints>
@@ -36,30 +37,32 @@
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="31" translatesAutoresizingMaskIntoConstraints="NO" id="a8P-HO-aFI">
-                                        <rect key="frame" x="20" y="98" width="510" height="131"/>
+                                        <rect key="frame" x="20" y="207" width="324" height="131"/>
                                         <subviews>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="a8j-c8-Ppv">
-                                                <rect key="frame" x="0.0" y="0.0" width="510" height="50"/>
+                                                <rect key="frame" x="0.0" y="0.0" width="324" height="50"/>
                                                 <color key="backgroundColor" red="0.052587918939999999" green="0.02329427563" blue="0.071207232770000004" alpha="0.03358824824" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="4HH-MP-8wr"/>
                                                 </constraints>
+                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="cCz-jO-NjJ">
-                                                <rect key="frame" x="0.0" y="81" width="510" height="50"/>
+                                                <rect key="frame" x="0.0" y="81" width="324" height="50"/>
                                                 <color key="backgroundColor" red="0.05125016209068492" green="0.02329427563" blue="0.071207232770000004" alpha="0.03358824824" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="50" id="cvz-uk-eV1"/>
                                                 </constraints>
+                                                <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
                                             </textField>
                                         </subviews>
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="ebA-Md-mCQ">
-                                        <rect key="frame" x="137.5" y="274" width="275" height="52"/>
+                                        <rect key="frame" x="44.5" y="383" width="275" height="52"/>
                                         <color key="backgroundColor" red="0.0087562231349999995" green="0.50618195529999999" blue="0.9892657399" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="52" id="W1L-Oo-Bxn"/>
@@ -74,7 +77,7 @@
                                         </connections>
                                     </button>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kM9-lC-8A0">
-                                        <rect key="frame" x="212" y="342" width="126" height="30"/>
+                                        <rect key="frame" x="119" y="451" width="126" height="30"/>
                                         <state key="normal" title="Create an account"/>
                                         <connections>
                                             <action selector="userRequestsNewAccountCreationButtonTapped:" destination="uwe-WB-4UD" eventType="touchUpInside" id="ClZ-IW-RPA"/>
@@ -128,11 +131,11 @@
             <objects>
                 <viewController id="IZr-WV-pon" customClass="UserFeedViewController" customModule="Petstagram" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Umi-c7-xTm">
-                        <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="XHJ-pZ-1U3">
-                                <rect key="frame" x="0.0" y="44" width="414" height="104"/>
+                                <rect key="frame" x="0.0" y="88" width="414" height="104"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="414" id="iqS-Hh-bAz"/>
@@ -156,18 +159,18 @@
                                 </cells>
                             </collectionView>
                             <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="Agx-OH-mWK">
-                                <rect key="frame" x="0.0" y="156" width="600" height="395"/>
+                                <rect key="frame" x="0.0" y="200" width="414" height="613"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
                                     <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" selectionStyle="blue" hidesAccessoryWhenEditing="NO" indentationLevel="1" indentationWidth="0.0" reuseIdentifier="feedCells" rowHeight="600" id="1qR-lt-aZj" customClass="UserFeedCellTableViewCell" customModule="Petstagram" customModuleProvider="target">
-                                        <rect key="frame" x="0.0" y="28" width="600" height="600"/>
+                                        <rect key="frame" x="0.0" y="28" width="414" height="600"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="1qR-lt-aZj" id="uG4-Xg-TZI">
-                                            <rect key="frame" x="0.0" y="0.0" width="600" height="600"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="414" height="600"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
                                                 <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="d4g-9q-DgY">
-                                                    <rect key="frame" x="0.0" y="65" width="600" height="414"/>
+                                                    <rect key="frame" x="0.0" y="65" width="414" height="414"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="414" id="8NW-Ml-V0l"/>
                                                         <constraint firstAttribute="width" constant="414" id="C4u-za-voW"/>

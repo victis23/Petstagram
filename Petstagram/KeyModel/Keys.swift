@@ -11,5 +11,6 @@ import Foundation
 struct Keys {
 	struct Segues {
 		static var accessSegue = "accessSegue"
+		static var signOut = "unwindToLogin"
 	}
 }

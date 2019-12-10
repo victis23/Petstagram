@@ -37,8 +37,6 @@ extension AppLogin {
 		passwordTextField.attributedPlaceholder = NSAttributedString(string: "Password", attributes : placeHolderAttributes)
 		
 		// Attributes for user input.
-		emailAddressTextField.font = UIFont.boldSystemFont(ofSize: 20)
-		passwordTextField.font = UIFont.boldSystemFont(ofSize: 20)
 		passwordTextField.textContentType = .password
 		passwordTextField.isSecureTextEntry = true
 		
