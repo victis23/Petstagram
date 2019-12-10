@@ -13,15 +13,15 @@ import FirebaseAuth
 struct Authentication {
 	var email :String
 	var password :String
-	var userName :String
+	var userName :String?
 	var authentication : AuthCredential?
 	
-	func firebaseUserRegistration(isRegistration: Bool, segue : @escaping (_ result: AuthDataResult)->()){
+	func firebaseUserRegistration(isRegistration: Bool, segue : @escaping (_ result: AuthDataResult)->())throws{
 		let firebaseAuthentication = Auth.auth()
 		
 		switch isRegistration {
 		case true:
-			firebaseAuthentication.createUser(withEmail: userName, password: password) { (result, error) in
+			firebaseAuthentication.createUser(withEmail: email, password: password) { (result, error) in
 				if let error = error {
 					print(error.localizedDescription)
 					return
@@ -30,7 +30,7 @@ struct Authentication {
 				segue(result)
 			}
 		default:
-			firebaseAuthentication.signIn(withEmail: userName, password: password) { (result, error) in
+			firebaseAuthentication.signIn(withEmail: email, password: password) { (result, error) in
 				if let error = error {
 					print(error.localizedDescription)
 					return
@@ -40,4 +40,8 @@ struct Authentication {
 			}
 		}
 	}
+}
+
+enum FireBaseError : Error {
+	case unableToAuthenticate
 }

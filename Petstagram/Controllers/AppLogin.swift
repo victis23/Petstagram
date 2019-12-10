@@ -9,12 +9,13 @@
 import UIKit
 import Combine
 import CoreData
+import FirebaseAuth
 
 class AppLogin: UIViewController{
 	
 	private let applicationDelegate = UIApplication.shared.delegate as! AppDelegate
 	private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-	let authenticationModel = AuthenticationItems()
+	let coreDataAuthModel = AuthenticationItems()
 	
 	@IBOutlet weak var loginArea: UIView!
 	@IBOutlet weak var signInButton: UIButton!
@@ -32,7 +33,7 @@ class AppLogin: UIViewController{
 		uiView.layer.shadowRadius = 20
 		return uiView
 	}()
-	let createEmailTextField : UITextField = {
+	var createEmailTextField : UITextField! = {
 		let textfield = UITextField()
 		textfield.backgroundColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 0.03)
 		textfield.layer.borderColor = UIColor.tertiaryLabel.cgColor
@@ -45,10 +46,9 @@ class AppLogin: UIViewController{
 			NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 22),
 			NSAttributedString.Key.foregroundColor : UIColor(red: 0, green: 0, blue: 0, alpha: 0.1),
 		])
-		textfield.addTarget(self, action: #selector(textFieldValueChanged(_:)), for: .editingChanged)
 		return textfield
 	}()
-	let userNameTextField : UITextField = {
+	var userNameTextField : UITextField! = {
 		let textfield = UITextField()
 		textfield.backgroundColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 0.03)
 		textfield.layer.borderColor = UIColor.tertiaryLabel.cgColor
@@ -61,10 +61,9 @@ class AppLogin: UIViewController{
 			NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 22),
 			NSAttributedString.Key.foregroundColor : UIColor(red: 0, green: 0, blue: 0, alpha: 0.1),
 		])
-		textfield.addTarget(self, action: #selector(textFieldValueChanged(_:)), for: .editingChanged)
 		return textfield
 	}()
-	let createPasswordTextField : UITextField = {
+	var createPasswordTextField : UITextField! = {
 		let textfield = UITextField()
 		textfield.backgroundColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 0.03)
 		textfield.layer.borderColor = UIColor.tertiaryLabel.cgColor
@@ -76,10 +75,9 @@ class AppLogin: UIViewController{
 		])
 		textfield.layer.sublayerTransform = CATransform3DMakeTranslation(10, 0, 10)
 		textfield.translatesAutoresizingMaskIntoConstraints = false
-		textfield.addTarget(self, action: #selector(textFieldValueChanged(_:)), for: .editingChanged)
 		return textfield
 	}()
-	let passwordConfirmationTextField : UITextField = {
+	var passwordConfirmationTextField : UITextField! = {
 		let textfield = UITextField()
 		textfield.backgroundColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 0.03)
 		textfield.layer.borderColor = UIColor.tertiaryLabel.cgColor
@@ -91,7 +89,6 @@ class AppLogin: UIViewController{
 		])
 		textfield.layer.sublayerTransform = CATransform3DMakeTranslation(10, 0, 10)
 		textfield.translatesAutoresizingMaskIntoConstraints = false
-		textfield.addTarget(self, action: #selector(textFieldValueChanged(_:)), for: .editingChanged)
 		return textfield
 	}()
 	let submitButton : UIButton = {
@@ -111,15 +108,21 @@ class AppLogin: UIViewController{
 	
 	//MARK: - Publishers & Subscribers
 	
+	var userAuth : Authentication!
+	
 	@Published var email : String!
 	@Published var password : String!
+	@Published var submittedEmail : String!
+	@Published var submittedPassword : String!
 	@Published var passwordConfirmation : String!
 	@Published var userName : String!
 	
 	private var userNamePublisher : AnyPublisher<String?,Never>!
+	private var submittedEmailPublisher : AnyPublisher<String?,Never>!
+	private var submittedPasswordPublisher : AnyPublisher<String?,Never>!
+	private var passwordConfirmationPublisher : AnyPublisher<String?,Never>!
 	private var emailPublisher : AnyPublisher<String?,Never>!
 	private var passwordPublisher : AnyPublisher<String?,Never>!
-	private var passwordConfirmationPublisher : AnyPublisher<String?,Never>!
 	
 	private var accountCreationPublisher : AnyPublisher<(String?,String?,String?,String?),Never>!
 	private var signInPublisher : AnyPublisher<(String?,String?),Never>!
@@ -145,12 +148,35 @@ class AppLogin: UIViewController{
 			createEmailTextField,
 			createPasswordTextField,
 			passwordConfirmationTextField
-			].enumerated().forEach {$0.element?.tag = $0.offset}
+			].enumerated().forEach {
+				$0.element?.tag = $0.offset
+				$0.element?.addTarget(self, action: #selector(textFieldValueChanged(_:)), for: .editingChanged)
+		}
 	}
 	
 	@IBAction func logInButtonTapped(_ sender: Any) {
 		
-		performSegue(withIdentifier: Keys.Segues.accessSegue, sender: nil)
+		userAuth = Authentication(email: email.lowercased(), password: password)
+		do {
+			try userAuth.firebaseUserRegistration(isRegistration: false) { [weak self](authResult) in
+				self?.coreDataAuthModel.coreDataEmail = self?.userAuth.email
+				self?.coreDataAuthModel.coreDataPassword = self?.userAuth.password
+				self?.coreDataAuthModel.coreDataCredential = self?.userAuth.authentication
+				do {
+					try self?.context.save()
+				}
+				catch(let saveError){
+					print(saveError.localizedDescription)
+				}
+				self?.userAuth.authentication = authResult.credential
+				self?.performSegue(withIdentifier: Keys.Segues.accessSegue, sender: nil)
+			}
+		}catch{
+			createEmailTextField = nil
+			userNameTextField = nil
+			createPasswordTextField = nil
+			passwordConfirmation = nil
+		}
 	}
 	
 	/// Called when new users tap on button for account creation.
@@ -161,11 +187,13 @@ class AppLogin: UIViewController{
 	
 	func setupPublishers(){
 		userNamePublisher = createPublisher(publisher: $userName)
+		submittedEmailPublisher = createPublisher(publisher: $submittedEmail)
+		submittedPasswordPublisher = createPublisher(publisher: $submittedPassword)
+		passwordConfirmationPublisher = createPublisher(publisher: $passwordConfirmation)
 		emailPublisher = createPublisher(publisher: $email)
 		passwordPublisher = createPublisher(publisher: $password)
-		passwordConfirmationPublisher = createPublisher(publisher: $passwordConfirmation)
 		
-		accountCreationPublisher = Publishers.CombineLatest4(userNamePublisher, emailPublisher, passwordPublisher, passwordConfirmationPublisher)
+		accountCreationPublisher = Publishers.CombineLatest4(userNamePublisher, submittedEmailPublisher, submittedPasswordPublisher, passwordConfirmationPublisher)
 			.eraseToAnyPublisher()
 		signInPublisher = Publishers.CombineLatest(emailPublisher, passwordPublisher)
 			.eraseToAnyPublisher()
@@ -175,16 +203,29 @@ class AppLogin: UIViewController{
 		
 		accountCreationSubscriber = accountCreationPublisher
 			.receive(on: DispatchQueue.main)
-			.map({ (value1, value2, value3, value4) -> Bool in
-				if value1 != nil,value2 != nil,value3 != nil, value4 != nil, value1 != "", value2 != "", value3 != "", value4 != "", value3 == value4{
-					self.submitButton.alpha = 1.0
+			.map({ [weak self](username, email, password, passwordConfirmation) -> Bool in
+				if username != nil,email != nil,password != nil, passwordConfirmation != nil, username != "", email != "", password != "", passwordConfirmation != "", password == passwordConfirmation, email!.contains("@"){
+					self?.submitButton.alpha = 1.0
 					return true
 				}else{
-					self.submitButton.alpha = 0.2
+					self?.submitButton.alpha = 0.2
 					return false
 				}
 			})
 			.assign(to: \UIButton.isEnabled, on: submitButton)
+		
+		signInSubscriber = signInPublisher
+			.receive(on: DispatchQueue.main)
+			.map({ [weak self](email, passwords) -> Bool in
+				if email != nil, email != "",email!.contains("@"), passwords != nil, passwords != "" {
+					self?.signInButton.alpha = 1.0
+					return true
+				}else{
+					self?.signInButton.alpha = 0.2
+					return false
+				}
+			})
+			.assign(to: \UIButton.isEnabled, on: signInButton)
 	}
 	
 	func createPublisher(publisher : Published<String?>.Publisher)->AnyPublisher<String?,Never>{
@@ -198,6 +239,27 @@ class AppLogin: UIViewController{
 	
 	@objc func createNewAccount(){
 		
+		userAuth = Authentication(email: submittedEmail.lowercased(), password: passwordConfirmation, userName: userName.lowercased())
+		do {
+			try userAuth.firebaseUserRegistration(isRegistration: true) { [weak self](authorizationResult) in
+				self?.userAuth.authentication = authorizationResult.credential
+				self?.coreDataAuthModel.coreDataEmail = self?.userAuth.email
+				self?.coreDataAuthModel.coreDataPassword = self?.userAuth.password
+				self?.coreDataAuthModel.coreDataUserName = self?.userAuth.userName
+				self?.coreDataAuthModel.coreDataCredential = self?.userAuth.authentication
+				do {
+					try self?.context.save()
+				}
+				catch(let saveError){
+					print(saveError.localizedDescription)
+				}
+				self?.performSegue(withIdentifier: Keys.Segues.accessSegue, sender: nil)
+			}
+		}
+		catch{
+			emailAddressTextField = nil
+			passwordTextField = nil
+		}
 	}
 }
 
@@ -215,9 +277,9 @@ extension AppLogin {
 		case 2:
 			password = text
 		case 3:
-			email = text
+			submittedEmail = text
 		case 4:
-			password = text
+			submittedPassword = text
 		case 5:
 			passwordConfirmation = text
 		default:
