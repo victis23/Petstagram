@@ -13,4 +13,8 @@ struct Keys {
 		static var accessSegue = "accessSegue"
 		static var signOut = "unwindToLogin"
 	}
+	struct errorKeys {
+		static var loginFailed = "loginError"
+		static var accountCreationFailed = "failedCreation"
+	}
 }

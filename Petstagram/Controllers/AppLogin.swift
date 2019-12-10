@@ -129,6 +129,8 @@ class AppLogin: UIViewController{
 	
 	var accountCreationSubscriber : AnyCancellable!
 	var signInSubscriber : AnyCancellable!
+	var signinError : AnyCancellable!
+	var accountCreationError : AnyCancellable!
 	
 	//MARK:  App LifeCycle
 	
@@ -223,26 +225,29 @@ class AppLogin: UIViewController{
 		
 		userAuth = Authentication(email: submittedEmail.lowercased(), password: passwordConfirmation, userName: userName.lowercased())
 		do {
-			try userAuth.firebaseUserRegistration(isRegistration: true) { [weak self](authorizationResult) in
-				self?.userAuth.authentication = authorizationResult.credential
-				/*
-				self?.coreDataAuthModel.coreDataEmail = self?.userAuth.email
-				self?.coreDataAuthModel.coreDataPassword = self?.userAuth.password
-				self?.coreDataAuthModel.coreDataUserName = self?.userAuth.userName
-				self?.coreDataAuthModel.coreDataCredential = self?.userAuth.authentication
-				do {
+			try userAuth.firebaseUserRegistration(isRegistration: true, isError: { [weak self] in
+				
+				self?.resetUserInput(isRegistration: true)
+				
+				}, segue: { [weak self](authorizationResult) in
+					self?.userAuth.authentication = authorizationResult.credential
+					/*
+					self?.coreDataAuthModel.coreDataEmail = self?.userAuth.email
+					self?.coreDataAuthModel.coreDataPassword = self?.userAuth.password
+					self?.coreDataAuthModel.coreDataUserName = self?.userAuth.userName
+					self?.coreDataAuthModel.coreDataCredential = self?.userAuth.authentication
+					do {
 					try self?.context.save()
-				}
-				catch(let saveError){
+					}
+					catch(let saveError){
 					print(saveError.localizedDescription)
-				}
-				*/
-				self?.performSegue(withIdentifier: Keys.Segues.accessSegue, sender: nil)
-			}
+					}
+					*/
+					self?.performSegue(withIdentifier: Keys.Segues.accessSegue, sender: nil)
+			})
 		}
-		catch{
-			emailAddressTextField = nil
-			passwordTextField = nil
+		catch(let authError){
+			print(authError.localizedDescription)
 		}
 	}
 	
@@ -250,26 +255,47 @@ class AppLogin: UIViewController{
 		
 		userAuth = Authentication(email: email.lowercased(), password: password)
 		do {
-			try userAuth.firebaseUserRegistration(isRegistration: false) { [weak self](authResult) in
-				self?.userAuth.authentication = authResult.credential
-				/*
-				self?.coreDataAuthModel.coreDataEmail = self?.userAuth.email
-				self?.coreDataAuthModel.coreDataPassword = self?.userAuth.password
-				self?.coreDataAuthModel.coreDataCredential = self?.userAuth.authentication
-				do {
+			try userAuth.firebaseUserRegistration(isRegistration: false, isError: { [weak self] in
+				
+				self?.resetUserInput(isRegistration: false)
+				
+				}, segue: { [weak self](authResult) in
+					
+					self?.userAuth.authentication = authResult.credential
+					/*
+					self?.coreDataAuthModel.coreDataEmail = self?.userAuth.email
+					self?.coreDataAuthModel.coreDataPassword = self?.userAuth.password
+					self?.coreDataAuthModel.coreDataCredential = self?.userAuth.authentication
+					do {
 					try self?.context.save()
-				}
-				catch(let saveError){
+					}
+					catch(let saveError){
 					print(saveError.localizedDescription)
-				}
-				*/
-				self?.performSegue(withIdentifier: Keys.Segues.accessSegue, sender: nil)
-			}
-		}catch{
-			createEmailTextField = nil
-			userNameTextField = nil
-			createPasswordTextField = nil
-			passwordConfirmation = nil
+					}
+					*/
+					self?.performSegue(withIdentifier: Keys.Segues.accessSegue, sender: nil)
+			})
+		}catch(let error){
+			print(error.localizedDescription)
+		}
+	}
+	
+	func resetUserInput(isRegistration:Bool){
+		switch isRegistration {
+		case true:
+			userNameTextField.text = nil
+			createEmailTextField.text = nil
+			createPasswordTextField.text = nil
+			passwordConfirmationTextField.text = nil
+			submitButton.isEnabled = false
+			submitButton.alpha = 0.2
+			userNameTextField.becomeFirstResponder()
+		default:
+			emailAddressTextField.text = nil
+			passwordTextField.text = nil
+			signInButton.isEnabled = false
+			signInButton.alpha = 0.2
+			emailAddressTextField.becomeFirstResponder()
 		}
 	}
 	

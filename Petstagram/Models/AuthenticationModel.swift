@@ -16,13 +16,15 @@ struct Authentication {
 	var userName :String?
 	var authentication : AuthCredential?
 	
-	func firebaseUserRegistration(isRegistration: Bool, segue : @escaping (_ result: AuthDataResult)->())throws{
+	func firebaseUserRegistration(isRegistration: Bool,isError: @escaping ()->(Void) ,segue : @escaping (_ result: AuthDataResult)->())throws{
+	
 		let firebaseAuthentication = Auth.auth()
 		
 		switch isRegistration {
 		case true:
 			firebaseAuthentication.createUser(withEmail: email, password: password) { (result, error) in
 				if let error = error {
+					isError()
 					print(error.localizedDescription)
 					return
 				}
@@ -32,6 +34,7 @@ struct Authentication {
 		default:
 			firebaseAuthentication.signIn(withEmail: email, password: password) { (result, error) in
 				if let error = error {
+					isError()
 					print(error.localizedDescription)
 					return
 				}
