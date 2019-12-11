@@ -44,7 +44,3 @@ struct Authentication {
 		}
 	}
 }
-
-enum FireBaseError : Error {
-	case unableToAuthenticate
-}

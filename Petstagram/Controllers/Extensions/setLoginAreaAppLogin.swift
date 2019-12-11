@@ -8,8 +8,10 @@
 
 import UIKit
 
+///Handles attributes for views.
 extension AppLogin {
 	
+	/// Handles attributes for submission buttons.
 	func setLoginArea(){
 		
 		// Login Layer
@@ -22,23 +24,50 @@ extension AppLogin {
 		// SignIn Button
 		let signInButtonLayer = signInButton.layer
 		signInButtonLayer.cornerRadius = 5
+	}
+	
+	
+	
+	/// Handles attributes for all textfields.
+	func setTextFieldDelegates(){
 		
-		// Username & Password TextFields.
+		[
+			userNameTextField,
+			emailAddressTextField,
+			passwordTextField,
+			createEmailTextField,
+			createPasswordTextField,
+			passwordConfirmationTextField
+			].enumerated().forEach {
+				$0.element?.tag = $0.offset
+				$0.element?.addTarget(self, action: #selector(textFieldValueChanged(_:)), for: .editingChanged)
+				$0.element?.autocapitalizationType = .none
+				$0.element?.textColor = .black
+				$0.element?.font = UIFont.boldSystemFont(ofSize: 20)
+		}
+		//Password TextField Attributes.
+		passwordTextField.textContentType = .password
+		passwordTextField.isSecureTextEntry = true
+		createPasswordTextField.textContentType = .newPassword
+		createPasswordTextField.isSecureTextEntry = true
+		passwordConfirmationTextField.textContentType = .newPassword
+		passwordConfirmationTextField.isSecureTextEntry = true
+		
+		
+		//MARK: PlaceHolder Text
+		
+		// Username & Password Placeholder Attributed Text
 		let placeHolderAttributes : [NSAttributedString.Key:Any] = [
 			NSAttributedString.Key.foregroundColor : UIColor(red: 0, green: 0, blue: 0, alpha: 0.2),
 			NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 20)
 		]
-		// NSAttributed String For Username
-		let usernamePlaceHolderText = NSAttributedString(string: "Email", attributes : placeHolderAttributes)
-		// Username Placeholder Text — Seperated into two parts just for clarification purposes.
-		emailAddressTextField.attributedPlaceholder = usernamePlaceHolderText
 		
 		// Password PlaceHolder Text (All toghether).
 		passwordTextField.attributedPlaceholder = NSAttributedString(string: "Password", attributes : placeHolderAttributes)
 		
-		// Attributes for user input.
-		passwordTextField.textContentType = .password
-		passwordTextField.isSecureTextEntry = true
-		
+		// NSAttributed String For Username
+		let usernamePlaceHolderText = NSAttributedString(string: "Email", attributes : placeHolderAttributes)
+		// Username Placeholder Text — Seperated into two parts just for clarification purposes.
+		emailAddressTextField.attributedPlaceholder = usernamePlaceHolderText
 	}
 }

@@ -33,6 +33,7 @@ class AppLogin: UIViewController{
 		uiView.layer.shadowRadius = 20
 		return uiView
 	}()
+	
 	var createEmailTextField : UITextField! = {
 		let textfield = UITextField()
 		textfield.backgroundColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 0.03)
@@ -41,13 +42,13 @@ class AppLogin: UIViewController{
 		textfield.layer.cornerRadius = 5
 		textfield.layer.sublayerTransform = CATransform3DMakeTranslation(10, 0, 10)
 		textfield.translatesAutoresizingMaskIntoConstraints = false
-		
 		textfield.attributedPlaceholder = NSAttributedString(string: "Email", attributes: [
 			NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 22),
 			NSAttributedString.Key.foregroundColor : UIColor(red: 0, green: 0, blue: 0, alpha: 0.1),
 		])
 		return textfield
 	}()
+	
 	var userNameTextField : UITextField! = {
 		let textfield = UITextField()
 		textfield.backgroundColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 0.03)
@@ -56,13 +57,13 @@ class AppLogin: UIViewController{
 		textfield.layer.cornerRadius = 5
 		textfield.layer.sublayerTransform = CATransform3DMakeTranslation(10, 0, 10)
 		textfield.translatesAutoresizingMaskIntoConstraints = false
-		
 		textfield.attributedPlaceholder = NSAttributedString(string: "Username", attributes: [
 			NSAttributedString.Key.font : UIFont.boldSystemFont(ofSize: 22),
 			NSAttributedString.Key.foregroundColor : UIColor(red: 0, green: 0, blue: 0, alpha: 0.1),
 		])
 		return textfield
 	}()
+	
 	var createPasswordTextField : UITextField! = {
 		let textfield = UITextField()
 		textfield.backgroundColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 0.03)
@@ -77,6 +78,7 @@ class AppLogin: UIViewController{
 		textfield.translatesAutoresizingMaskIntoConstraints = false
 		return textfield
 	}()
+	
 	var passwordConfirmationTextField : UITextField! = {
 		let textfield = UITextField()
 		textfield.backgroundColor = UIColor.init(red: 0, green: 0, blue: 0, alpha: 0.03)
@@ -91,6 +93,7 @@ class AppLogin: UIViewController{
 		textfield.translatesAutoresizingMaskIntoConstraints = false
 		return textfield
 	}()
+	
 	let submitButton : UIButton = {
 		let button = UIButton()
 		button.setAttributedTitle(NSAttributedString.init(string: "Create Account", attributes: [
@@ -108,6 +111,7 @@ class AppLogin: UIViewController{
 	
 	//MARK: - Publishers & Subscribers
 	
+	//Object that will be used to hold user authentification data.
 	var userAuth : Authentication!
 	
 	@Published var email : String!
@@ -116,7 +120,7 @@ class AppLogin: UIViewController{
 	@Published var submittedPassword : String!
 	@Published var passwordConfirmation : String!
 	@Published var userName : String!
-	
+
 	private var userNamePublisher : AnyPublisher<String?,Never>!
 	private var submittedEmailPublisher : AnyPublisher<String?,Never>!
 	private var submittedPasswordPublisher : AnyPublisher<String?,Never>!
@@ -127,10 +131,9 @@ class AppLogin: UIViewController{
 	private var accountCreationPublisher : AnyPublisher<(String?,String?,String?,String?),Never>!
 	private var signInPublisher : AnyPublisher<(String?,String?),Never>!
 	
+	//Subscribers
 	var accountCreationSubscriber : AnyCancellable!
 	var signInSubscriber : AnyCancellable!
-	var signinError : AnyCancellable!
-	var accountCreationError : AnyCancellable!
 	
 	//MARK:  App LifeCycle
 	
@@ -144,30 +147,18 @@ class AppLogin: UIViewController{
 		setSubscribers()
 	}
 	
-	func setTextFieldDelegates(){
-		[
-			userNameTextField,
-			emailAddressTextField,
-			passwordTextField,
-			createEmailTextField,
-			createPasswordTextField,
-			passwordConfirmationTextField
-			].enumerated().forEach {
-				$0.element?.tag = $0.offset
-				$0.element?.addTarget(self, action: #selector(textFieldValueChanged(_:)), for: .editingChanged)
-				$0.element?.autocapitalizationType = .none
-				$0.element?.textColor = .black
-				$0.element?.font = UIFont.boldSystemFont(ofSize: 20)
-		}
-	}
-	
-	/// Called when new users tap on button for account creation.
+	/// Modelly presents view for user to create a new account.
+	/// - Note: This method is called when the user taps on the `Create an account` button.
 	@IBAction func userRequestsNewAccountCreationButtonTapped(_ sender: Any) {
 		
 		createViewForAccountCreation()
 	}
 	
+	/// Observes value changes in textfield views.
+	/// - Note: The textfield publishers have been left as individual callable publishers available for future use if required.
+	/// - Important: `CombineLatest` operator is used vs. `Zip` since we require values to be published as they arrive not as a bundle.
 	func setupPublishers(){
+		
 		userNamePublisher = createPublisher(publisher: $userName)
 		submittedEmailPublisher = createPublisher(publisher: $submittedEmail)
 		submittedPasswordPublisher = createPublisher(publisher: $submittedPassword)
@@ -181,6 +172,7 @@ class AppLogin: UIViewController{
 			.eraseToAnyPublisher()
 	}
 	
+	/// Sets subsribers and updates `.isEnabled` property on the corresponding button based on whether certain constraints are met.
 	func setSubscribers(){
 		
 		accountCreationSubscriber = accountCreationPublisher
@@ -210,6 +202,10 @@ class AppLogin: UIViewController{
 			.assign(to: \UIButton.isEnabled, on: signInButton)
 	}
 	
+	
+	/// Creates a new generic publisher `<String?,Never>`
+	/// - Parameter publisher: Publisher created from textfield.
+	/// - Returns: A new publisher that will be used in a `Combine` operator.
 	func createPublisher(publisher : Published<String?>.Publisher)->AnyPublisher<String?,Never>{
 		
 		let pub = publisher
@@ -280,6 +276,7 @@ class AppLogin: UIViewController{
 		}
 	}
 	
+	/// Based on whether the current data is being originated from the login screen or not this method will reset the correct fields.
 	func resetUserInput(isRegistration:Bool){
 		switch isRegistration {
 		case true:
@@ -301,11 +298,14 @@ class AppLogin: UIViewController{
 	
 	//MARK: - Navigation
 	
+	/// Will be called from corresponding viewcontroller to sign users out.
 	@IBAction func unwindToLogin(_ unwindSegue: UIStoryboardSegue) {
 	}
 }
 
 //MARK: Textfield Observer
+
+/// Determines which textfield is the source of the incoming text based on its `tag` property.
 extension AppLogin {
 	
 	@objc func textFieldValueChanged(_ textField: UITextField){
