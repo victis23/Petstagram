@@ -2,7 +2,7 @@
 //  AuthenticationItems+CoreDataProperties.swift
 //  
 //
-//  Created by Scott Leonard on 12/8/19.
+//  Created by Scott Leonard on 12/16/19.
 //
 //
 
@@ -16,9 +16,9 @@ extension AuthenticationItems {
         return NSFetchRequest<AuthenticationItems>(entityName: "AuthenticationItems")
     }
 
-    @NSManaged public var coreDataUserName: String?
-    @NSManaged public var coreDataPassword: String?
-    @NSManaged public var coreDataEmail: String?
     @NSManaged public var coreDataCredential: NSObject?
+    @NSManaged public var coreDataEmail: String?
+    @NSManaged public var coreDataPassword: String?
+    @NSManaged public var coreDataUserName: String?
 
 }

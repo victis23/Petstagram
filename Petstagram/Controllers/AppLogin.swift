@@ -15,7 +15,7 @@ class AppLogin: UIViewController{
 	
 	private let applicationDelegate = UIApplication.shared.delegate as! AppDelegate
 	private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-	let coreDataAuthModel = AuthenticationItems()
+	var coreDataAuthModel = AuthenticationItems(context: (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext)
 	
 	@IBOutlet weak var loginArea: UIView!
 	@IBOutlet weak var signInButton: UIButton!
@@ -178,7 +178,7 @@ class AppLogin: UIViewController{
 		accountCreationSubscriber = accountCreationPublisher
 			.receive(on: DispatchQueue.main)
 			.map({ [weak self](username, email, password, passwordConfirmation) -> Bool in
-				if username != nil,email != nil,password != nil, passwordConfirmation != nil, username != "", email != "", password != "", passwordConfirmation != "", password == passwordConfirmation, email!.contains("@"){
+				if username != nil,email != nil,password != nil, passwordConfirmation != nil, username != "", email != "", password != "", passwordConfirmation != "", password == passwordConfirmation, email!.contains("@"), email!.contains("."){
 					self?.submitButton.alpha = 1.0
 					return true
 				}else{
@@ -191,7 +191,7 @@ class AppLogin: UIViewController{
 		signInSubscriber = signInPublisher
 			.receive(on: DispatchQueue.main)
 			.map({ [weak self](email, passwords) -> Bool in
-				if email != nil, email != "",email!.contains("@"), passwords != nil, passwords != "" {
+				if email != nil, email != "",email!.contains("@"), passwords != nil, passwords != "", email!.contains(".") {
 					self?.signInButton.alpha = 1.0
 					return true
 				}else{
@@ -217,6 +217,7 @@ class AppLogin: UIViewController{
 	
 	//MARK: - Account Creation & Signin Methods
 	
+	/// Will create account and save details to `CoreData`.
 	@objc func createNewAccount(){
 		
 		userAuth = Authentication(email: submittedEmail.lowercased(), password: passwordConfirmation, userName: userName.lowercased())
@@ -227,19 +228,20 @@ class AppLogin: UIViewController{
 				
 				}, segue: { [weak self](authorizationResult) in
 					self?.userAuth.authentication = authorizationResult.credential
-					/*
+					
 					self?.coreDataAuthModel.coreDataEmail = self?.userAuth.email
 					self?.coreDataAuthModel.coreDataPassword = self?.userAuth.password
 					self?.coreDataAuthModel.coreDataUserName = self?.userAuth.userName
 					self?.coreDataAuthModel.coreDataCredential = self?.userAuth.authentication
+					
 					do {
 					try self?.context.save()
 					}
 					catch(let saveError){
 					print(saveError.localizedDescription)
 					}
-					*/
-					self?.performSegue(withIdentifier: Keys.Segues.accessSegue, sender: nil)
+					
+					self?.performSegue(withIdentifier: Keys.Segues.accessSegue, sender: true)
 			})
 		}
 		catch(let authError){
@@ -247,6 +249,7 @@ class AppLogin: UIViewController{
 		}
 	}
 	
+	/// Will sign user in, and save data to `CoreData`.
 	@IBAction func logInButtonTapped(_ sender: Any) {
 		
 		userAuth = Authentication(email: email.lowercased(), password: password)
@@ -258,18 +261,20 @@ class AppLogin: UIViewController{
 				}, segue: { [weak self](authResult) in
 					
 					self?.userAuth.authentication = authResult.credential
-					/*
+					
 					self?.coreDataAuthModel.coreDataEmail = self?.userAuth.email
 					self?.coreDataAuthModel.coreDataPassword = self?.userAuth.password
 					self?.coreDataAuthModel.coreDataCredential = self?.userAuth.authentication
+					
 					do {
 					try self?.context.save()
 					}
 					catch(let saveError){
 					print(saveError.localizedDescription)
 					}
-					*/
-					self?.performSegue(withIdentifier: Keys.Segues.accessSegue, sender: nil)
+					
+					
+					self?.performSegue(withIdentifier: Keys.Segues.accessSegue, sender: false)
 			})
 		}catch(let error){
 			print(error.localizedDescription)
@@ -300,6 +305,17 @@ class AppLogin: UIViewController{
 	
 	/// Will be called from corresponding viewcontroller to sign users out.
 	@IBAction func unwindToLogin(_ unwindSegue: UIStoryboardSegue) {
+	}
+	
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+		if segue.identifier == Keys.Segues.accessSegue {
+			let isRegistration = sender as! Bool
+			if isRegistration {
+				resetUserInput(isRegistration: isRegistration)
+			}else{
+				resetUserInput(isRegistration: isRegistration)
+			}
+		}
 	}
 }
 

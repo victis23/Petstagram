@@ -2,7 +2,7 @@
 //  AuthenticationItems+CoreDataClass.swift
 //  
 //
-//  Created by Scott Leonard on 12/8/19.
+//  Created by Scott Leonard on 12/16/19.
 //
 //
 
