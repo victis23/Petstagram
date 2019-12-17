@@ -7,7 +7,6 @@
 //
 
 import Foundation
-import CryptoKit
 import FirebaseAuth
 
 struct Authentication {

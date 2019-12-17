@@ -9,6 +9,10 @@
 import UIKit
 
 class UserProfileViewController: UIViewController {
+	
+	let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+	let coreDataModel = AuthenticationItems(context: (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext)
+	
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -23,6 +27,18 @@ class UserProfileViewController: UIViewController {
 	}
 	
 	@objc func temporaryMethodForLoggingOut(){
+		
+		coreDataModel.coreDataEmail = nil
+		coreDataModel.coreDataPassword = nil
+		coreDataModel.coreDataCredential = nil
+		coreDataModel.coreDataUserName = nil
+		
+		do {
+			try context.save()
+		} catch (let coreDataError) {
+			print(coreDataError.localizedDescription)
+		}
+		
 		performSegue(withIdentifier: Keys.Segues.signOut, sender: nil)
 	}
 }
