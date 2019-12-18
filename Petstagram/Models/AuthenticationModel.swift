@@ -41,5 +41,6 @@ struct Authentication {
 				segue(result)
 			}
 		}
+		
 	}
 }
