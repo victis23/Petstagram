@@ -9,6 +9,7 @@
 import UIKit
 import FirebaseFirestore
 import FirebaseAuth
+import CoreData
 
 class UserFeedViewController: UIViewController {
 
@@ -35,7 +36,22 @@ class UserFeedViewController: UIViewController {
 	
 	func createUserCollection() {
 		
-		guard let userName = Auth.auth().currentUser?.displayName else {fatalError()}
+//		var userNameSet = Set<String>()
+//
+//		do {
+//			let request = NSFetchRequest<AuthenticationItems>(entityName: "AuthenticationItems")
+//			let authValues = try context.fetch(request)
+//
+//			authValues.forEach({
+//				guard let username = $0.coreDataUserName else {return}
+//				userNameSet.insert(username)
+//			})
+//
+//		}catch(let authError){
+//			print(authError.localizedDescription)
+//		}
+		
+		guard let userName = Auth.auth().currentUser?.email else {return}
 		
 		let db = Firestore.firestore()
 		db.collection(userName).document("accountInfo").setData([
@@ -45,8 +61,6 @@ class UserFeedViewController: UIViewController {
 				print(error)
 			}
 		}
-		
-		db.collection(userName).addDocument(data: ["Test":"Test"])
 	}
 
 }
