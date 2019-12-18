@@ -229,7 +229,6 @@ class AppLogin: UIViewController{
 				
 				}, segue: { [weak self](authorizationResult) in
 					
-					self?.createUserCollection()
 					print(authorizationResult)
 					
 					self?.userAuth.authentication = authorizationResult.credential
@@ -314,8 +313,14 @@ class AppLogin: UIViewController{
 	
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		if segue.identifier == Keys.Segues.accessSegue {
+			
+			let destinationViewController = segue.destination as! UITabBarController
+			let navigationController = destinationViewController.viewControllers?.first as! UINavigationController
+			let vc = navigationController.topViewController as! UserFeedViewController
+			
 			let isRegistration = sender as! Bool
 			if isRegistration {
+				vc.createUserCollection()
 				resetUserInput(isRegistration: isRegistration)
 			}else{
 				resetUserInput(isRegistration: isRegistration)
@@ -353,22 +358,7 @@ extension AppLogin {
 }
 
 
-/// Firebase File Creation Extension
-extension AppLogin {
-	
-	func createUserCollection() {
-		guard let userName = coreDataAuthModel.coreDataUserName else {return}
-		
-		let db = Firestore.firestore()
-		db.collection(userName).document("accountInfo").setData([
-			"Username" : userName
-		]) { (error) in
-			if let error = error {
-				print(error)
-			}
-		}
-	}
-}
+
 
 
 

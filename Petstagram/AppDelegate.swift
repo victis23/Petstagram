@@ -49,7 +49,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 				return
 			}
 			print("User has signed In...")
-			application.windows.first?.rootViewController?.performSegue(withIdentifier: Keys.Segues.accessSegue, sender: true)
+			application.windows.first?.rootViewController?.performSegue(withIdentifier: Keys.Segues.accessSegue, sender: false)
 		}
 		return true
 	}
