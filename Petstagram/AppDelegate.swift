@@ -46,6 +46,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		firebaseAuth.signIn(withEmail: username, password: password) { (result, error) in
 			if let error = error {
 				print(error.localizedDescription)
+				return
 			}
 			print("User has signed In...")
 			application.windows.first?.rootViewController?.performSegue(withIdentifier: Keys.Segues.accessSegue, sender: true)

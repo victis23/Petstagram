@@ -10,6 +10,7 @@ import UIKit
 import Combine
 import CoreData
 import FirebaseAuth
+import FirebaseFirestore
 
 class AppLogin: UIViewController{
 	
@@ -227,6 +228,10 @@ class AppLogin: UIViewController{
 				self?.resetUserInput(isRegistration: true)
 				
 				}, segue: { [weak self](authorizationResult) in
+					
+					self?.createUserCollection()
+					print(authorizationResult)
+					
 					self?.userAuth.authentication = authorizationResult.credential
 					
 					self?.coreDataAuthModel.coreDataEmail = self?.userAuth.email
@@ -240,7 +245,7 @@ class AppLogin: UIViewController{
 					catch(let saveError){
 					print(saveError.localizedDescription)
 					}
-					
+				
 					self?.performSegue(withIdentifier: Keys.Segues.accessSegue, sender: true)
 			})
 		}
@@ -343,6 +348,24 @@ extension AppLogin {
 			passwordConfirmation = text
 		default:
 			break
+		}
+	}
+}
+
+
+/// Firebase File Creation Extension
+extension AppLogin {
+	
+	func createUserCollection() {
+		guard let userName = coreDataAuthModel.coreDataUserName else {return}
+		
+		let db = Firestore.firestore()
+		db.collection(userName).document("accountInfo").setData([
+			"Username" : userName
+		]) { (error) in
+			if let error = error {
+				print(error)
+			}
 		}
 	}
 }
