@@ -8,6 +8,7 @@
 
 import Foundation
 import FirebaseAuth
+import FirebaseFirestore
 
 struct Authentication {
 	var email :String
@@ -16,7 +17,7 @@ struct Authentication {
 	var authentication : AuthCredential?
 	
 	func firebaseUserRegistration(isRegistration: Bool,isError: @escaping ()->(Void) ,segue : @escaping (_ result: AuthDataResult)->())throws{
-	
+		
 		let firebaseAuthentication = Auth.auth()
 		
 		switch isRegistration {
@@ -42,5 +43,18 @@ struct Authentication {
 			}
 		}
 		
+	}
+	
+	func createUserNameOnServer(){
+		
+		guard let userName = userName else {return}
+		let db = Firestore.firestore()
+		db.collection(userName).document("accountInfo").setData([
+			"Username" : userName
+		]) { (error) in
+			if let error = error {
+				print(error.localizedDescription)
+			}
+		}
 	}
 }

@@ -231,6 +231,9 @@ class AppLogin: UIViewController{
 					
 					print(authorizationResult)
 					
+					// Caller creates collection on database for new user.
+					self?.userAuth.createUserNameOnServer()
+					
 					self?.userAuth.authentication = authorizationResult.credential
 					
 					self?.coreDataAuthModel.coreDataEmail = self?.userAuth.email
@@ -320,7 +323,7 @@ class AppLogin: UIViewController{
 			
 			let isRegistration = sender as! Bool
 			if isRegistration {
-				vc.createUserCollection()
+				print(vc)
 				resetUserInput(isRegistration: isRegistration)
 			}else{
 				resetUserInput(isRegistration: isRegistration)

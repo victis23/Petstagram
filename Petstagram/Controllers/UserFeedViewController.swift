@@ -33,37 +33,4 @@ class UserFeedViewController: UIViewController {
 		self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font : UIFont(name: "Billabong", size: 35)!]
 		
 	}
-	
-	func createUserCollection() {
-		
-		var userNameSet = Set<String>()
-
-		do {
-			let request = NSFetchRequest<AuthenticationItems>(entityName: "AuthenticationItems")
-			let authValues = try context.fetch(request)
-
-			authValues.forEach({
-				guard let username = $0.coreDataUserName else {return}
-				if !userNameSet.isEmpty {
-					userNameSet.removeAll()
-				}
-				userNameSet.insert(username)
-			})
-
-		}catch(let authError){
-			print(authError.localizedDescription)
-		}
-		
-		guard let userName = userNameSet.first else {return}
-		
-		let db = Firestore.firestore()
-		db.collection(userName).document("accountInfo").setData([
-			"Username" : userName
-		]) { (error) in
-			if let error = error {
-				print(error)
-			}
-		}
-	}
-
 }
