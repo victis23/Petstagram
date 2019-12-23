@@ -39,6 +39,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 			credSet["email"] = $0.coreDataEmail
 			credSet["password"] = $0.coreDataPassword
 		})
+		
 		guard let username = credSet["email"] else {return true}
 		guard let password = credSet["password"] else {return true}
 		

@@ -15,8 +15,10 @@ import FirebaseFirestore
 class AppLogin: UIViewController{
 	
 	private let applicationDelegate = UIApplication.shared.delegate as! AppDelegate
+	
 	private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-	var coreDataAuthModel = AuthenticationItems(context: (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext)
+	
+	lazy var coreDataAuthModel = AuthenticationItems(context: (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext)
 	
 	@IBOutlet weak var loginArea: UIView!
 	@IBOutlet weak var signInButton: UIButton!
@@ -231,6 +233,7 @@ class AppLogin: UIViewController{
 					
 					print(authorizationResult)
 					
+					
 					// Caller creates collection on database for new user.
 					self?.userAuth.createUserNameOnServer()
 					
@@ -241,13 +244,8 @@ class AppLogin: UIViewController{
 					self?.coreDataAuthModel.coreDataUserName = self?.userAuth.userName
 					self?.coreDataAuthModel.coreDataCredential = self?.userAuth.authentication
 					
-					do {
-					try self?.context.save()
-					}
-					catch(let saveError){
-					print(saveError.localizedDescription)
-					}
-				
+					self?.applicationDelegate.saveContext()
+					
 					self?.performSegue(withIdentifier: Keys.Segues.accessSegue, sender: true)
 			})
 		}
@@ -273,14 +271,8 @@ class AppLogin: UIViewController{
 					self?.coreDataAuthModel.coreDataPassword = self?.userAuth.password
 					self?.coreDataAuthModel.coreDataCredential = self?.userAuth.authentication
 					
-					do {
-					try self?.context.save()
-					}
-					catch(let saveError){
-					print(saveError.localizedDescription)
-					}
-					
-					
+					self?.applicationDelegate.saveContext()
+
 					self?.performSegue(withIdentifier: Keys.Segues.accessSegue, sender: false)
 			})
 		}catch(let error){
@@ -325,6 +317,7 @@ class AppLogin: UIViewController{
 			if isRegistration {
 				print(vc)
 				resetUserInput(isRegistration: isRegistration)
+				accountCreationUIView.removeFromSuperview()
 			}else{
 				resetUserInput(isRegistration: isRegistration)
 			}

@@ -36,8 +36,6 @@ extension AppLogin {
 	}
 	
 	func animateAccountCreationView(){
-	
-		
 		
 		UIView.animate(withDuration: 0.8, delay: 0, usingSpringWithDamping: 0.4, initialSpringVelocity: 0.5, options: .curveEaseIn, animations: {
 			self.accountCreationUIView.transform = CGAffineTransform(translationX: 0, y: self.deviceSizeChecker().raisedValue)

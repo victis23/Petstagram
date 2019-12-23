@@ -10,7 +10,7 @@ import UIKit
 
 class UserProfileViewController: UIViewController {
 	
-	let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+	let appDelegate = UIApplication.shared.delegate as! AppDelegate
 	let coreDataModel = AuthenticationItems(context: (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext)
 	
 
@@ -33,11 +33,7 @@ class UserProfileViewController: UIViewController {
 		coreDataModel.coreDataCredential = nil
 		coreDataModel.coreDataUserName = nil
 		
-		do {
-			try context.save()
-		} catch (let coreDataError) {
-			print(coreDataError.localizedDescription)
-		}
+		appDelegate.saveContext()
 		
 		performSegue(withIdentifier: Keys.Segues.signOut, sender: nil)
 	}
