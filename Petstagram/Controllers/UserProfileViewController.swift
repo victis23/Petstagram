@@ -36,5 +36,6 @@ class UserProfileViewController: UIViewController {
 		appDelegate.saveContext()
 		
 		performSegue(withIdentifier: Keys.Segues.signOut, sender: nil)
+		
 	}
 }

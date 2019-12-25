@@ -123,7 +123,7 @@ class AppLogin: UIViewController{
 	@Published var submittedPassword : String!
 	@Published var passwordConfirmation : String!
 	@Published var userName : String!
-
+	
 	private var userNamePublisher : AnyPublisher<String?,Never>!
 	private var submittedEmailPublisher : AnyPublisher<String?,Never>!
 	private var submittedPasswordPublisher : AnyPublisher<String?,Never>!
@@ -225,9 +225,9 @@ class AppLogin: UIViewController{
 		
 		userAuth = Authentication(email: submittedEmail.lowercased(), password: passwordConfirmation, userName: userName.lowercased())
 		do {
-			try userAuth.firebaseUserRegistration(isRegistration: true, isError: { [weak self] in
+			try userAuth.firebaseUserRegistration(isRegistration: true, isError: { [weak self] (error) in
 				
-				self?.resetUserInput(isRegistration: true)
+				self?.loginErrorHandler(error, isRegistration: true)
 				
 				}, segue: { [weak self](authorizationResult) in
 					
@@ -259,9 +259,9 @@ class AppLogin: UIViewController{
 		
 		userAuth = Authentication(email: email.lowercased(), password: password)
 		do {
-			try userAuth.firebaseUserRegistration(isRegistration: false, isError: { [weak self] in
+			try userAuth.firebaseUserRegistration(isRegistration: false, isError: { [weak self] (error) in
 				
-				self?.resetUserInput(isRegistration: false)
+				self?.loginErrorHandler(error, isRegistration: false)
 				
 				}, segue: { [weak self](authResult) in
 					
@@ -272,7 +272,7 @@ class AppLogin: UIViewController{
 					self?.coreDataAuthModel.coreDataCredential = self?.userAuth.authentication
 					
 					self?.applicationDelegate.saveContext()
-
+					
 					self?.performSegue(withIdentifier: Keys.Segues.accessSegue, sender: false)
 			})
 		}catch(let error){
@@ -322,6 +322,16 @@ class AppLogin: UIViewController{
 				resetUserInput(isRegistration: isRegistration)
 			}
 		}
+	}
+	
+	func loginErrorHandler(_ error : Error, isRegistration: Bool) {
+		
+		let errorAlert = UIAlertController(title: "Login Error", message: "\(error.localizedDescription)", preferredStyle: .alert)
+		let acceptButton = UIAlertAction(title: "Continue", style: .default)
+		errorAlert.addAction(acceptButton)
+		present(errorAlert, animated: true, completion: { [weak self] in
+			self?.resetUserInput(isRegistration: isRegistration)
+		})
 	}
 }
 
