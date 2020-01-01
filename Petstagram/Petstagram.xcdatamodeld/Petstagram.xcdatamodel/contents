@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
 <model type="com.apple.IDECoreDataModeler.DataModel" documentVersion="1.0" lastSavedToolsVersion="15702" systemVersion="19D49f" minimumToolsVersion="Automatic" sourceLanguage="Swift" userDefinedModelVersionIdentifier="">
-    <entity name="AuthenticationItems" representedClassName=".AuthenticationItems" syncable="YES" codeGenerationType="class">
+    <entity name="AuthenticationItems" representedClassName=".AuthenticationItems" syncable="YES">
         <attribute name="coreDataCredential" optional="YES" attributeType="Transformable"/>
         <attribute name="coreDataEmail" optional="YES" attributeType="String"/>
         <attribute name="coreDataPassword" optional="YES" attributeType="String"/>

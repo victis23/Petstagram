@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="3NY-yk-EiX">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="3NY-yk-EiX">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
@@ -10,17 +10,34 @@
         <!--Image Upload View Controller-->
         <scene sceneID="O4b-mS-fvo">
             <objects>
-                <viewController id="3NY-yk-EiX" customClass="ImageUploadViewController" customModule="fakerGram" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="3NY-yk-EiX" customClass="ImageUploadViewController" customModule="Petstagram" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="ssc-2v-UH0">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="simpleGradiantBG" translatesAutoresizingMaskIntoConstraints="NO" id="WLS-H3-FOf">
+                                <rect key="frame" x="-44" y="120" width="502" height="502"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" secondItem="WLS-H3-FOf" secondAttribute="height" multiplier="1:1" id="eXc-h6-EjM"/>
+                                </constraints>
+                            </imageView>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstItem="WLS-H3-FOf" firstAttribute="top" secondItem="gOQ-Ld-WIQ" secondAttribute="top" constant="76" id="739-QS-W0x"/>
+                            <constraint firstItem="WLS-H3-FOf" firstAttribute="centerX" secondItem="ssc-2v-UH0" secondAttribute="centerX" id="7UY-oZ-jck"/>
+                            <constraint firstItem="WLS-H3-FOf" firstAttribute="centerY" secondItem="ssc-2v-UH0" secondAttribute="centerY" constant="-77" id="yPx-4k-bds"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="gOQ-Ld-WIQ"/>
                     </view>
+                    <navigationItem key="navigationItem" id="qCO-la-2NB"/>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZYR-pd-VYc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="59" y="81"/>
+            <point key="canvasLocation" x="968.11594202898561" y="80.357142857142847"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="simpleGradiantBG" width="1000" height="1000"/>
+    </resources>
 </document>

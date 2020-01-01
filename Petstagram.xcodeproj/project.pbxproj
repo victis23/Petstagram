@@ -33,6 +33,8 @@
 		7D558181239DDE2D0076AFEB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7D558180239DDE2D0076AFEB /* GoogleService-Info.plist */; };
 		7D558183239DDE810076AFEB /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 7D558182239DDE810076AFEB /* Podfile */; };
 		7D558186239DE31C0076AFEB /* AuthenticationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D558185239DE31C0076AFEB /* AuthenticationModel.swift */; };
+		7DB6BB3A23B3CF51006D4991 /* AuthenticationItems+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB6BB3823B3CF51006D4991 /* AuthenticationItems+CoreDataClass.swift */; };
+		7DB6BB3B23B3CF51006D4991 /* AuthenticationItems+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB6BB3923B3CF51006D4991 /* AuthenticationItems+CoreDataProperties.swift */; };
 		CA3BA1F47FF6371A405E2A88 /* Pods_Petstagram.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0F63C2E600878E17487E8C0 /* Pods_Petstagram.framework */; };
 /* End PBXBuildFile section */
 
@@ -86,6 +88,8 @@
 		7D558180239DDE2D0076AFEB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7D558182239DDE810076AFEB /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		7D558185239DE31C0076AFEB /* AuthenticationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationModel.swift; sourceTree = "<group>"; };
+		7DB6BB3823B3CF51006D4991 /* AuthenticationItems+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AuthenticationItems+CoreDataClass.swift"; sourceTree = "<group>"; };
+		7DB6BB3923B3CF51006D4991 /* AuthenticationItems+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AuthenticationItems+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		ADB9CC2E38F2A8EE4903487C /* Pods-Petstagram.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Petstagram.debug.xcconfig"; path = "Target Support Files/Pods-Petstagram/Pods-Petstagram.debug.xcconfig"; sourceTree = "<group>"; };
 		F0F63C2E600878E17487E8C0 /* Pods_Petstagram.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Petstagram.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -240,6 +244,8 @@
 		7D558184239DE3080076AFEB /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				7DB6BB3823B3CF51006D4991 /* AuthenticationItems+CoreDataClass.swift */,
+				7DB6BB3923B3CF51006D4991 /* AuthenticationItems+CoreDataProperties.swift */,
 				7D558185239DE31C0076AFEB /* AuthenticationModel.swift */,
 			);
 			path = Models;
@@ -443,8 +449,10 @@
 				7D4A53F3239C66ED0079A96A /* AppDelegate.swift in Sources */,
 				7D4A543F239C69F00079A96A /* UserFeedViewController.swift in Sources */,
 				7D4A53F5239C66ED0079A96A /* SceneDelegate.swift in Sources */,
+				7DB6BB3A23B3CF51006D4991 /* AuthenticationItems+CoreDataClass.swift in Sources */,
 				7D4A5449239C6AFA0079A96A /* AppLogin.swift in Sources */,
 				7D4A53FD239C66ED0079A96A /* Petstagram.xcdatamodeld in Sources */,
+				7DB6BB3B23B3CF51006D4991 /* AuthenticationItems+CoreDataProperties.swift in Sources */,
 				7D4A5444239C6A410079A96A /* Keys.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
