@@ -39,6 +39,16 @@ class ImageUploadViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		setNavigationBar()
+		
+//		let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalHeight(1), heightDimension: .fractionalWidth(1))
+//		let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(0.25))
+//		
+//		let item = NSCollectionLayoutItem(layoutSize: itemSize)
+//		item.contentInsets = NSDirectionalEdgeInsets(top: 2, leading: 2, bottom: 2, trailing: 2)
+//		let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 5)
+//		group.contentInsets = NSDirectionalEdgeInsets(top: 2, leading: 0, bottom: 2, trailing: 0)
+//		let section = NSCollectionLayoutSection(group: group)
+//		albumImageCollection.collectionViewLayout = UICollectionViewCompositionalLayout(section: section)
 	}
 	
 	override func viewDidAppear(_ animated: Bool) {
@@ -103,7 +113,8 @@ extension ImageUploadViewController: UINavigationControllerDelegate, UIImagePick
 			
 			
 			let photoOptions = PHFetchOptions()
-			let collectionRequested : PHFetchResult = PHAssetCollection.fetchAssetCollections(with: .album, subtype: .smartAlbumUserLibrary, options: photoOptions)
+			
+			let collectionRequested : PHFetchResult = PHAssetCollection.fetchAssetCollections(with: .album, subtype: .any, options: photoOptions)
 			
 			//			guard let assetCollection :PHAssetCollection = collectionRequested.firstObject  else {return}
 			
