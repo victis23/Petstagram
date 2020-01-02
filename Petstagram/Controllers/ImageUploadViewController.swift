@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Photos
 
 struct UserImages : Hashable, Identifiable {
 	var images : UIImage = UIImage()
@@ -45,6 +46,7 @@ class ImageUploadViewController: UIViewController {
 		setDataSource()
 		createSnapshot(images: albumImages)
 		selectImageWithPicker()
+		albumImageCollection.delegate = self
 	}
 	
 	func setNavigationBar(){
@@ -57,7 +59,7 @@ class ImageUploadViewController: UIViewController {
 	@objc func cameraButtonSelected(){
 		selectImageWithPicker(isCameraImage: true)
 	}
-
+	
 }
 
 extension ImageUploadViewController: UICollectionViewDelegate {
@@ -85,26 +87,59 @@ extension ImageUploadViewController: UICollectionViewDelegate {
 }
 
 extension ImageUploadViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
-
+	
 	func selectImageWithPicker(isCameraImage: Bool = false){
 		
 		let imagePickerController = UIImagePickerController()
 		imagePickerController.delegate = self
 		
-
+		
 		if UIImagePickerController.isSourceTypeAvailable(.camera) && UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
-			imagePickerController.sourceType = .photoLibrary
-			imagePickerController.allowsEditing = true
+			//			imagePickerController.sourceType = .photoLibrary
+			//			imagePickerController.allowsEditing = true
+			
+			
+			var photoAsset: PHFetchResult<PHAsset>?
+			
+			
+			let photoOptions = PHFetchOptions()
+			let collectionRequested : PHFetchResult = PHAssetCollection.fetchAssetCollections(with: .album, subtype: .smartAlbumUserLibrary, options: photoOptions)
+			
+			//			guard let assetCollection :PHAssetCollection = collectionRequested.firstObject  else {return}
+			
+			var imageArray = [UIImage]()
+			
+			collectionRequested.enumerateObjects { (collection, index, pointer) in
+				
+				
+				photoAsset = PHAsset.fetchAssets(in: collection, options: nil)
+				guard let images = photoAsset else {fatalError()}
+				
+				for i in 0..<images.count {
+					
+					PHImageManager.default().requestImage(for: images[i], targetSize: CGSize(width: 900, height: 900), contentMode: .aspectFit, options: nil) { (image, imageDictionary) in
+						guard let image = image else {return}
+						imageArray.append(image)
+					}
+				}
+				
+			}
+			
+			imageArray.forEach { image in
+				albumImages.append(UserImages(images: image))
+			}
+			
+			selectedImage.image = imageArray.first
+			selectedImage.contentMode = .scaleAspectFill
 			
 			if isCameraImage {
 				imagePickerController.sourceType = .camera
 				imagePickerController.cameraCaptureMode = .photo
 				imagePickerController.showsCameraControls = true
+				present(imagePickerController, animated: true)
 			}
-			
-			present(imagePickerController, animated: true)
 		}
-
+		
 	}
 	
 	func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
@@ -116,6 +151,10 @@ extension ImageUploadViewController: UINavigationControllerDelegate, UIImagePick
 		albumImages.append(UserImages(images: rectangleImage))
 		dismiss(animated: true, completion: {})
 		
+	}
+	
+	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+		selectedImage.image = datasource.itemIdentifier(for: indexPath)?.images
 	}
 	
 	

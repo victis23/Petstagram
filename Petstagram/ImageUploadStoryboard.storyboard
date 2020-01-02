@@ -16,7 +16,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="simpleGradiantBG" translatesAutoresizingMaskIntoConstraints="NO" id="WLS-H3-FOf">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="WLS-H3-FOf">
                                 <rect key="frame" x="-33" y="120" width="480" height="480"/>
                                 <constraints>
                                     <constraint firstAttribute="width" secondItem="WLS-H3-FOf" secondAttribute="height" multiplier="1:1" id="eXc-h6-EjM"/>
@@ -75,7 +75,4 @@
             <point key="canvasLocation" x="968.11594202898561" y="80.357142857142847"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="simpleGradiantBG" width="1000" height="1000"/>
-    </resources>
 </document>

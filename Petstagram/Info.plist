@@ -62,5 +62,7 @@
 	<string>Camera images will be used for account content creation.</string>
 	<key>NSAppleMusicUsageDescription</key>
 	<string>Album images will be used for account content creation.</string>
+	<key>NSPhotoLibraryUsageDescription</key>
+	<string>Camera images will be used for account content creation.</string>
 </dict>
 </plist>
