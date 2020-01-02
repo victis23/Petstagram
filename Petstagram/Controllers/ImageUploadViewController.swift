@@ -55,7 +55,7 @@ class ImageUploadViewController: UIViewController {
 	}
 	
 	@objc func cameraButtonSelected(){
-		
+		selectImageWithPicker(isCameraImage: true)
 	}
 
 }
@@ -86,14 +86,21 @@ extension ImageUploadViewController: UICollectionViewDelegate {
 
 extension ImageUploadViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
 
-	func selectImageWithPicker(){
+	func selectImageWithPicker(isCameraImage: Bool = false){
 		
 		let imagePickerController = UIImagePickerController()
 		imagePickerController.delegate = self
+		
 
 		if UIImagePickerController.isSourceTypeAvailable(.camera) && UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
 			imagePickerController.sourceType = .photoLibrary
 			imagePickerController.allowsEditing = true
+			
+			if isCameraImage {
+				imagePickerController.sourceType = .camera
+				imagePickerController.cameraCaptureMode = .photo
+				imagePickerController.showsCameraControls = true
+			}
 			
 			present(imagePickerController, animated: true)
 		}
