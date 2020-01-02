@@ -32,6 +32,7 @@ class ImageUploadViewController: UIViewController {
 extension ImageUploadViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
 
 	func selectImageWithPicker(){
+		
 		let imagePickerController = UIImagePickerController()
 		imagePickerController.delegate = self
 
