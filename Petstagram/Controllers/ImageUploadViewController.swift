@@ -105,35 +105,24 @@ extension ImageUploadViewController: UINavigationControllerDelegate, UIImagePick
 		
 		
 		if UIImagePickerController.isSourceTypeAvailable(.camera) && UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
-			//			imagePickerController.sourceType = .photoLibrary
-			//			imagePickerController.allowsEditing = true
-			
-			
+		
 			var photoAsset: PHFetchResult<PHAsset>?
-			
-			
 			let photoOptions = PHFetchOptions()
-			
-			let collectionRequested : PHFetchResult = PHAssetCollection.fetchAssetCollections(with: .album, subtype: .any, options: photoOptions)
-			
-			//			guard let assetCollection :PHAssetCollection = collectionRequested.firstObject  else {return}
-			
+			let collectionRequested : PHFetchResult = PHAssetCollection.fetchAssetCollections(with: .album, subtype: .smartAlbumRecentlyAdded, options: photoOptions)
 			var imageArray = [UIImage]()
 			
 			collectionRequested.enumerateObjects { (collection, index, pointer) in
 				
-				
 				photoAsset = PHAsset.fetchAssets(in: collection, options: nil)
-				guard let images = photoAsset else {fatalError()}
+				guard let imageAssets = photoAsset else {fatalError()}
 				
-				for i in 0..<images.count {
+				for i in 0..<imageAssets.count {
 					
-					PHImageManager.default().requestImage(for: images[i], targetSize: CGSize(width: 900, height: 900), contentMode: .aspectFit, options: nil) { (image, imageDictionary) in
+					PHImageManager.default().requestImage(for: imageAssets[i], targetSize: CGSize(width: 900, height: 900), contentMode: .aspectFit, options: nil) { (image, imageDictionary) in
 						guard let image = image else {return}
 						imageArray.append(image)
 					}
 				}
-				
 			}
 			
 			imageArray.forEach { image in
@@ -150,7 +139,6 @@ extension ImageUploadViewController: UINavigationControllerDelegate, UIImagePick
 				present(imagePickerController, animated: true)
 			}
 		}
-		
 	}
 	
 	func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
