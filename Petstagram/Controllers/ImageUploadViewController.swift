@@ -36,10 +36,19 @@ class ImageUploadViewController: UIViewController {
 	
 	private var datasource : UICollectionViewDiffableDataSource<Sections,UserImages>!
 	
+	var activityIndicator : UIActivityIndicatorView = {
+		let indicator = UIActivityIndicatorView()
+		indicator.hidesWhenStopped = true
+		indicator.style = .large
+		indicator.color = UIColor.label
+		indicator.translatesAutoresizingMaskIntoConstraints = true
+		return indicator
+	}()
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		setNavigationBar()
+		setIndicator()
 		
 		//		let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalHeight(1), heightDimension: .fractionalWidth(1))
 		//		let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(0.25))
@@ -71,6 +80,12 @@ class ImageUploadViewController: UIViewController {
 		selectImageWithPicker(isCameraImage: true)
 	}
 	
+	func setIndicator(){
+		activityIndicator.center = self.view.center
+		self.view.addSubview(activityIndicator)
+		activityIndicator.startAnimating()
+	}
+	
 }
 
 extension ImageUploadViewController: UICollectionViewDelegate {
@@ -100,6 +115,10 @@ extension ImageUploadViewController: UICollectionViewDelegate {
 extension ImageUploadViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
 	
 	func selectImageWithPicker(isCameraImage: Bool = false){
+	
+		defer {
+			activityIndicator.stopAnimating()
+		}
 		
 		let imagePickerController = UIImagePickerController()
 		imagePickerController.delegate = self
