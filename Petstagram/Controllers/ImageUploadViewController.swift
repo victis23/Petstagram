@@ -8,6 +8,7 @@
 
 import UIKit
 import Photos
+import PhotosUI
 
 struct UserImages : Hashable, Identifiable {
 	var images : UIImage = UIImage()
@@ -40,22 +41,22 @@ class ImageUploadViewController: UIViewController {
 		super.viewDidLoad()
 		setNavigationBar()
 		
-//		let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalHeight(1), heightDimension: .fractionalWidth(1))
-//		let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(0.25))
-//		
-//		let item = NSCollectionLayoutItem(layoutSize: itemSize)
-//		item.contentInsets = NSDirectionalEdgeInsets(top: 2, leading: 2, bottom: 2, trailing: 2)
-//		let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 5)
-//		group.contentInsets = NSDirectionalEdgeInsets(top: 2, leading: 0, bottom: 2, trailing: 0)
-//		let section = NSCollectionLayoutSection(group: group)
-//		albumImageCollection.collectionViewLayout = UICollectionViewCompositionalLayout(section: section)
+		//		let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalHeight(1), heightDimension: .fractionalWidth(1))
+		//		let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(0.25))
+		//
+		//		let item = NSCollectionLayoutItem(layoutSize: itemSize)
+		//		item.contentInsets = NSDirectionalEdgeInsets(top: 2, leading: 2, bottom: 2, trailing: 2)
+		//		let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 5)
+		//		group.contentInsets = NSDirectionalEdgeInsets(top: 2, leading: 0, bottom: 2, trailing: 0)
+		//		let section = NSCollectionLayoutSection(group: group)
+		//		albumImageCollection.collectionViewLayout = UICollectionViewCompositionalLayout(section: section)
 	}
 	
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
 		setDataSource()
 		createSnapshot(images: albumImages)
-		selectImageWithPicker()
+		self.selectImageWithPicker()
 		albumImageCollection.delegate = self
 	}
 	
@@ -105,25 +106,26 @@ extension ImageUploadViewController: UINavigationControllerDelegate, UIImagePick
 		
 		
 		if UIImagePickerController.isSourceTypeAvailable(.camera) && UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
-		
-			var photoAsset: PHFetchResult<PHAsset>?
-			let photoOptions = PHFetchOptions()
-			let collectionRequested : PHFetchResult = PHAssetCollection.fetchAssetCollections(with: .album, subtype: .smartAlbumRecentlyAdded, options: photoOptions)
+			
 			var imageArray = [UIImage]()
 			
-			collectionRequested.enumerateObjects { (collection, index, pointer) in
-				
-				photoAsset = PHAsset.fetchAssets(in: collection, options: nil)
-				guard let imageAssets = photoAsset else {fatalError()}
-				
-				for i in 0..<imageAssets.count {
+			let photoOptions = PHFetchOptions()
+			photoOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
+			
+			let allPhotos = PHAsset.fetchAssets(with: photoOptions)
+			let fetchOptions = PHImageRequestOptions()
+			fetchOptions.deliveryMode = .highQualityFormat
+			fetchOptions.isSynchronous = true
+			
+				allPhotos.enumerateObjects { (assets, index, pointer) in
 					
-					PHImageManager.default().requestImage(for: imageAssets[i], targetSize: CGSize(width: 900, height: 900), contentMode: .aspectFit, options: nil) { (image, imageDictionary) in
+					PHImageManager.default().requestImage(for: assets, targetSize: CGSize(width: 500, height: 500), contentMode: .aspectFit, options: fetchOptions) { (image, hashDictionary) in
 						guard let image = image else {return}
 						imageArray.append(image)
 					}
 				}
-			}
+			
+			
 			
 			imageArray.forEach { image in
 				albumImages.append(UserImages(images: image))
