@@ -50,15 +50,7 @@ class ImageUploadViewController: UIViewController {
 		setNavigationBar()
 		setIndicator()
 		
-		//		let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalHeight(1), heightDimension: .fractionalWidth(1))
-		//		let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(0.25))
-		//
-		//		let item = NSCollectionLayoutItem(layoutSize: itemSize)
-		//		item.contentInsets = NSDirectionalEdgeInsets(top: 2, leading: 2, bottom: 2, trailing: 2)
-		//		let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 5)
-		//		group.contentInsets = NSDirectionalEdgeInsets(top: 2, leading: 0, bottom: 2, trailing: 0)
-		//		let section = NSCollectionLayoutSection(group: group)
-		//		albumImageCollection.collectionViewLayout = UICollectionViewCompositionalLayout(section: section)
+		albumImageCollection.collectionViewLayout = setCollectionViewLayout() as UICollectionViewLayout
 	}
 	
 	override func viewDidAppear(_ animated: Bool) {
@@ -84,6 +76,23 @@ class ImageUploadViewController: UIViewController {
 		activityIndicator.center = self.view.center
 		self.view.addSubview(activityIndicator)
 		activityIndicator.startAnimating()
+	}
+	
+	func setCollectionViewLayout()->UICollectionViewCompositionalLayout{
+		
+		let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalHeight(1), heightDimension: .fractionalWidth(1))
+		let groupSize = NSCollectionLayoutSize(widthDimension: .absolute(view.frame.width), heightDimension: .fractionalHeight(0.5))
+		
+		let item = NSCollectionLayoutItem(layoutSize: itemSize)
+		item.contentInsets = NSDirectionalEdgeInsets(top: 2, leading: 2, bottom: 2, trailing: 2)
+		
+		let group = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: item, count: 4)
+		group.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
+		
+		let section = NSCollectionLayoutSection(group: group)
+		let layout = UICollectionViewCompositionalLayout(section: section)
+		
+		return layout
 	}
 	
 }
@@ -134,6 +143,7 @@ extension ImageUploadViewController: UINavigationControllerDelegate, UIImagePick
 			let allPhotos = PHAsset.fetchAssets(with: photoOptions)
 			let fetchOptions = PHImageRequestOptions()
 			fetchOptions.deliveryMode = .highQualityFormat
+			fetchOptions.resizeMode = .exact
 			fetchOptions.normalizedCropRect = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.width)
 			fetchOptions.isSynchronous = true
 			
@@ -141,7 +151,7 @@ extension ImageUploadViewController: UINavigationControllerDelegate, UIImagePick
 					
 					DispatchQueue.global(qos: .background).sync {
 						
-						PHImageManager.default().requestImage(for: assets, targetSize: CGSize(width: 500, height: 500), contentMode: .aspectFit, options: fetchOptions) { (image, hashDictionary) in
+						PHImageManager.default().requestImage(for: assets, targetSize: CGSize(width: self.view.frame.width, height: self.view.frame.height), contentMode: .aspectFit, options: fetchOptions) { (image, hashDictionary) in
 							guard let image = image else {return}
 							imageArray.append(image)
 						}
