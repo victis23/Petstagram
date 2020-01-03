@@ -35,6 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		
 		let request = NSFetchRequest<AuthenticationItems>(entityName: "AuthenticationItems")
 		guard let fetchedCollection = try? context.fetch(request) else {return true}
+		
 		fetchedCollection.forEach({
 			credSet["email"] = $0.coreDataEmail
 			credSet["password"] = $0.coreDataPassword

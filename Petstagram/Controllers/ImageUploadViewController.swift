@@ -25,6 +25,11 @@ class ImageUploadViewController: UIViewController {
 		case main
 	}
 	
+	
+	// Collection that holds Images obtained from user's image assets.
+	private lazy var imageArray = [UIImage]()
+	@IBOutlet weak var shareView: UIView!
+	@IBOutlet weak var shareButton: UIButton!
 	@IBOutlet weak var selectedImage: UIImageView!
 	@IBOutlet weak var albumImageCollection: UICollectionView!
 	
@@ -45,11 +50,13 @@ class ImageUploadViewController: UIViewController {
 		return indicator
 	}()
 	
+
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		setNavigationBar()
 		setIndicator()
-		
+		setViewAesthetics()
 		albumImageCollection.collectionViewLayout = setCollectionViewLayout() as UICollectionViewLayout
 	}
 	
@@ -60,7 +67,7 @@ class ImageUploadViewController: UIViewController {
 		self.selectImageWithPicker()
 		albumImageCollection.delegate = self
 	}
-	
+
 	func setNavigationBar(){
 		self.navigationItem.title = "Petstagram"
 		self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font : UIFont(name: "Billabong", size: 35)!]
@@ -70,6 +77,10 @@ class ImageUploadViewController: UIViewController {
 	
 	@objc func cameraButtonSelected(){
 		selectImageWithPicker(isCameraImage: true)
+	}
+	
+	func setViewAesthetics(){
+		shareButton.setTitle("", for: .normal)
 	}
 	
 	func setIndicator(){
@@ -124,9 +135,10 @@ extension ImageUploadViewController: UICollectionViewDelegate {
 extension ImageUploadViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
 	
 	func selectImageWithPicker(isCameraImage: Bool = false){
-	
+		
 		defer {
 			activityIndicator.stopAnimating()
+			self.shareButton.setTitle("Share to profile", for: .normal)
 		}
 		
 		let imagePickerController = UIImagePickerController()
@@ -135,37 +147,38 @@ extension ImageUploadViewController: UINavigationControllerDelegate, UIImagePick
 		
 		if UIImagePickerController.isSourceTypeAvailable(.camera) && UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
 			
-			var imageArray = [UIImage]()
-			
-			let photoOptions = PHFetchOptions()
-			photoOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
-			
-			let allPhotos = PHAsset.fetchAssets(with: photoOptions)
-			let fetchOptions = PHImageRequestOptions()
-			fetchOptions.deliveryMode = .highQualityFormat
-			fetchOptions.resizeMode = .exact
-			fetchOptions.normalizedCropRect = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.width)
-			fetchOptions.isSynchronous = true
-			
+			if imageArray.isEmpty {
+				
+				let photoOptions = PHFetchOptions()
+				photoOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
+				
+				let allPhotos = PHAsset.fetchAssets(with: photoOptions)
+				let fetchOptions = PHImageRequestOptions()
+				fetchOptions.deliveryMode = .highQualityFormat
+				fetchOptions.resizeMode = .exact
+				fetchOptions.normalizedCropRect = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.width)
+				fetchOptions.isSynchronous = true
+				
 				allPhotos.enumerateObjects { (assets, index, pointer) in
 					
 					DispatchQueue.global(qos: .background).sync {
 						
 						PHImageManager.default().requestImage(for: assets, targetSize: CGSize(width: self.view.frame.width, height: self.view.frame.height), contentMode: .aspectFit, options: fetchOptions) { (image, hashDictionary) in
 							guard let image = image else {return}
-							imageArray.append(image)
+							self.imageArray.append(image)
 						}
 					}
 				}
-			
-			
-			
-			imageArray.forEach { image in
-				albumImages.append(UserImages(images: image))
+				
+				
+				
+				imageArray.forEach { image in
+					albumImages.append(UserImages(images: image))
+				}
+				
+				selectedImage.image = imageArray.first
+				selectedImage.contentMode = .scaleAspectFill
 			}
-			
-			selectedImage.image = imageArray.first
-			selectedImage.contentMode = .scaleAspectFill
 			
 			if isCameraImage {
 				imagePickerController.sourceType = .camera

@@ -51,14 +51,36 @@
                                     <constraint firstAttribute="width" secondItem="WLS-H3-FOf" secondAttribute="height" multiplier="1:1" id="6Hy-yP-IIp"/>
                                 </constraints>
                             </imageView>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="S2r-eh-U3C">
+                                <rect key="frame" x="0.0" y="350" width="414" height="128"/>
+                                <subviews>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="aQn-Zz-yJd">
+                                        <rect key="frame" x="125.5" y="38" width="163" height="42"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="25"/>
+                                        <state key="normal" title="Share to Profile">
+                                            <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        </state>
+                                    </button>
+                                </subviews>
+                                <color key="backgroundColor" white="0.0" alpha="0.28542380136986306" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <constraints>
+                                    <constraint firstItem="aQn-Zz-yJd" firstAttribute="centerX" secondItem="S2r-eh-U3C" secondAttribute="centerX" id="5Ja-wJ-3VR"/>
+                                    <constraint firstItem="aQn-Zz-yJd" firstAttribute="centerY" secondItem="S2r-eh-U3C" secondAttribute="centerY" constant="-5" id="TYh-jP-hAf"/>
+                                </constraints>
+                            </view>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="WLS-H3-FOf" firstAttribute="top" secondItem="gOQ-Ld-WIQ" secondAttribute="top" constant="20" id="1fs-m2-9YK"/>
+                            <constraint firstItem="S2r-eh-U3C" firstAttribute="top" secondItem="gOQ-Ld-WIQ" secondAttribute="top" constant="306" id="53U-JD-3LQ"/>
+                            <constraint firstItem="S2r-eh-U3C" firstAttribute="leading" secondItem="gOQ-Ld-WIQ" secondAttribute="leading" id="6Op-m9-zQf"/>
                             <constraint firstItem="WLS-H3-FOf" firstAttribute="leading" secondItem="gOQ-Ld-WIQ" secondAttribute="leading" id="Pjy-jp-Tvs"/>
+                            <constraint firstItem="gOQ-Ld-WIQ" firstAttribute="trailing" secondItem="S2r-eh-U3C" secondAttribute="trailing" id="SJS-2o-7Lz"/>
                             <constraint firstItem="ukU-VQ-A4y" firstAttribute="trailing" secondItem="gOQ-Ld-WIQ" secondAttribute="trailing" constant="-10" id="WXR-aa-luK"/>
                             <constraint firstItem="WLS-H3-FOf" firstAttribute="centerX" secondItem="ukU-VQ-A4y" secondAttribute="centerX" id="bVR-H7-bFN"/>
+                            <constraint firstItem="ukU-VQ-A4y" firstAttribute="top" secondItem="S2r-eh-U3C" secondAttribute="bottom" constant="20" id="bsU-RO-y7k"/>
                             <constraint firstItem="ukU-VQ-A4y" firstAttribute="top" secondItem="WLS-H3-FOf" secondAttribute="bottom" constant="20" id="heG-Fa-gpL"/>
+                            <constraint firstItem="S2r-eh-U3C" firstAttribute="centerX" secondItem="ssc-2v-UH0" secondAttribute="centerX" id="nOZ-Yb-6ar"/>
                             <constraint firstItem="ukU-VQ-A4y" firstAttribute="bottom" secondItem="gOQ-Ld-WIQ" secondAttribute="bottom" id="rUi-SQ-Go2"/>
                             <constraint firstItem="ukU-VQ-A4y" firstAttribute="leading" secondItem="gOQ-Ld-WIQ" secondAttribute="leading" constant="10" id="sia-OP-hdH"/>
                         </constraints>
@@ -68,6 +90,8 @@
                     <connections>
                         <outlet property="albumImageCollection" destination="ukU-VQ-A4y" id="UpK-5f-BOK"/>
                         <outlet property="selectedImage" destination="WLS-H3-FOf" id="dHH-jr-F6h"/>
+                        <outlet property="shareButton" destination="aQn-Zz-yJd" id="CMJ-5f-mFc"/>
+                        <outlet property="shareView" destination="S2r-eh-U3C" id="iON-cK-hUh"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="ZYR-pd-VYc" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
