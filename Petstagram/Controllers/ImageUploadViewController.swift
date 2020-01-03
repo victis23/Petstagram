@@ -115,13 +115,17 @@ extension ImageUploadViewController: UINavigationControllerDelegate, UIImagePick
 			let allPhotos = PHAsset.fetchAssets(with: photoOptions)
 			let fetchOptions = PHImageRequestOptions()
 			fetchOptions.deliveryMode = .highQualityFormat
+			fetchOptions.normalizedCropRect = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.width)
 			fetchOptions.isSynchronous = true
 			
 				allPhotos.enumerateObjects { (assets, index, pointer) in
 					
-					PHImageManager.default().requestImage(for: assets, targetSize: CGSize(width: 500, height: 500), contentMode: .aspectFit, options: fetchOptions) { (image, hashDictionary) in
-						guard let image = image else {return}
-						imageArray.append(image)
+					DispatchQueue.global(qos: .background).sync {
+						
+						PHImageManager.default().requestImage(for: assets, targetSize: CGSize(width: 500, height: 500), contentMode: .aspectFit, options: fetchOptions) { (image, hashDictionary) in
+							guard let image = image else {return}
+							imageArray.append(image)
+						}
 					}
 				}
 			
