@@ -120,6 +120,10 @@ class ImageUploadViewController: UIViewController {
 	
 	@IBAction func shareToProfileTapped(sender: UIButton) {
 		
+		guard let imageData = selectedImage.image?.pngData() else {fatalError()}
+		
+		var userInfo = UserProfile.shared()
+		userInfo.images?.append(imageData)
 	}
 	
 }
@@ -128,7 +132,7 @@ extension ImageUploadViewController: UICollectionViewDelegate {
 	
 	func setDataSource(){
 		datasource = UICollectionViewDiffableDataSource<Sections,UserImages>(collectionView: albumImageCollection, cellProvider: { (collectionView, indexPath, images) -> UICollectionViewCell? in
-			guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? ImagesCollectionViewCell else {fatalError()}
+			guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? AlbumImagesCollectionViewCell else {fatalError()}
 			
 			cell.imageFromAlbum.image = images.images
 			cell.imageFromAlbum.contentMode = .scaleAspectFill
@@ -171,17 +175,20 @@ extension ImageUploadViewController: UINavigationControllerDelegate, UIImagePick
 				photoOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
 				
 				let allPhotos = PHAsset.fetchAssets(with: photoOptions)
+				
 				let fetchOptions = PHImageRequestOptions()
 				fetchOptions.deliveryMode = .highQualityFormat
 				fetchOptions.resizeMode = .exact
 				fetchOptions.normalizedCropRect = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.width)
 				fetchOptions.isSynchronous = true
 				
+				let imageSize : CGSize = CGSize(width: view.frame.width, height: view.frame.height)
+				
 				allPhotos.enumerateObjects { (assets, index, pointer) in
 					
 					DispatchQueue.global(qos: .background).sync {
 						
-						PHImageManager.default().requestImage(for: assets, targetSize: CGSize(width: self.view.frame.width, height: self.view.frame.height), contentMode: .aspectFit, options: fetchOptions) { (image, hashDictionary) in
+						PHImageManager.default().requestImage(for: assets, targetSize: imageSize, contentMode: .aspectFit, options: fetchOptions) { (image, hashDictionary) in
 							guard let image = image else {return}
 							self.imageArray.append(image)
 						}
