@@ -46,13 +46,29 @@ struct Authentication {
 	func createUserNameOnServer(){
 		
 		guard let userName = userName else {return}
+		guard let userID = Auth.auth().currentUser?.uid else {fatalError()}
+		
 		let db = Firestore.firestore()
-		db.collection(userName).document("accountInfo").setData([
+		
+		// Adds document that will hold information for individual users.
+		
+		db.collection(userID).document("accountInfo").setData([
 			"Username" : userName
 		]) { (error) in
 			if let error = error {
 				print(error.localizedDescription)
 			}
 		}
+		
+		// Adds new user information to document containing list of all existing users.
+		
+		db.collection("users").document("userKeys").setData([
+			userName:userID
+		]) { error in
+			if let error = error {
+				print(error.localizedDescription)
+			}
+		}
+		
 	}
 }
