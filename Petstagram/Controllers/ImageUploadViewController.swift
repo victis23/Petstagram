@@ -81,6 +81,18 @@ class ImageUploadViewController: UIViewController {
 	
 	func setViewAesthetics(){
 		shareButton.setTitle("", for: .normal)
+		selectedImage.layer.cornerRadius = 5
+		
+		let maskLayer = CAGradientLayer()
+		maskLayer.frame = shareView.bounds
+		maskLayer.shadowRadius = 4
+		let shape = shareView.bounds.insetBy(dx: 0, dy: 5)
+		maskLayer.shadowPath = CGPath(rect: shape, transform: nil)
+		maskLayer.shadowOpacity = 1
+		maskLayer.shadowOffset = CGSize.zero
+		maskLayer.shadowColor = UIColor.white.cgColor
+		shareView.layer.mask = maskLayer
+		
 	}
 	
 	func setIndicator(){
@@ -91,8 +103,8 @@ class ImageUploadViewController: UIViewController {
 	
 	func setCollectionViewLayout()->UICollectionViewCompositionalLayout{
 		
-		let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalHeight(1), heightDimension: .fractionalWidth(1))
-		let groupSize = NSCollectionLayoutSize(widthDimension: .absolute(view.frame.width), heightDimension: .fractionalHeight(0.5))
+		let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.25), heightDimension: .fractionalHeight(1))
+		let groupSize = NSCollectionLayoutSize(widthDimension: .absolute(view.frame.width - 20), heightDimension: .fractionalHeight(0.49))
 		
 		let item = NSCollectionLayoutItem(layoutSize: itemSize)
 		item.contentInsets = NSDirectionalEdgeInsets(top: 2, leading: 2, bottom: 2, trailing: 2)
@@ -116,6 +128,8 @@ extension ImageUploadViewController: UICollectionViewDelegate {
 			
 			cell.imageFromAlbum.image = images.images
 			cell.imageFromAlbum.contentMode = .scaleAspectFill
+			cell.clipsToBounds = true
+			cell.layer.cornerRadius = 3
 			
 			return cell
 		})
