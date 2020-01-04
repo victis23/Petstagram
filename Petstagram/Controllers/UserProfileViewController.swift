@@ -10,6 +10,9 @@ import UIKit
 
 class UserProfileViewController: UIViewController {
 	
+	
+	@IBOutlet weak var accountImages: UICollectionView!
+	
 	let appDelegate = UIApplication.shared.delegate as! AppDelegate
 	let coreDataModel = AuthenticationItems(context: (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext)
 	
