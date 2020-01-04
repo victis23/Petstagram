@@ -31,18 +31,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		//MARK: - Core Data Implimentation
 	
 		let context = persistentContainer.viewContext
-		var credSet : [String:String] = [:]
 		
 		let request = NSFetchRequest<AuthenticationItems>(entityName: "AuthenticationItems")
 		guard let fetchedCollection = try? context.fetch(request) else {return true}
 		
-		fetchedCollection.forEach({
-			credSet["email"] = $0.coreDataEmail
-			credSet["password"] = $0.coreDataPassword
-		})
-		
-		guard let username = credSet["email"] else {return true}
-		guard let password = credSet["password"] else {return true}
+		guard let username = fetchedCollection.last?.coreDataEmail, let password = fetchedCollection.last?.coreDataPassword else {return true}
 		
 		let firebaseAuth = Auth.auth()
 		firebaseAuth.signIn(withEmail: username, password: password) { (result, error) in
