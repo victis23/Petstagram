@@ -1,9 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15505" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wmT-Bf-7fd">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wmT-Bf-7fd">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15510"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -14,13 +15,42 @@
                     <view key="view" contentMode="scaleToFill" id="1pZ-ni-cV9">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="KCY-ab-YkI">
+                                <rect key="frame" x="0.0" y="378" width="414" height="498"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                                <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="YKH-90-lMG">
+                                    <size key="itemSize" width="50" height="50"/>
+                                    <size key="headerReferenceSize" width="0.0" height="0.0"/>
+                                    <size key="footerReferenceSize" width="0.0" height="0.0"/>
+                                    <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
+                                </collectionViewFlowLayout>
+                                <cells>
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="images" id="hQV-BA-tp8">
+                                        <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                        <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Ar5-EF-jmv">
+                                            <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                        </collectionViewCellContentView>
+                                    </collectionViewCell>
+                                </cells>
+                            </collectionView>
+                        </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <constraints>
+                            <constraint firstAttribute="bottom" secondItem="KCY-ab-YkI" secondAttribute="bottom" constant="20" symbolic="YES" id="NW5-0M-rVp"/>
+                            <constraint firstItem="KCY-ab-YkI" firstAttribute="trailing" secondItem="KUT-Ac-bBr" secondAttribute="trailing" id="XLs-fQ-i3p"/>
+                            <constraint firstItem="KCY-ab-YkI" firstAttribute="leading" secondItem="KUT-Ac-bBr" secondAttribute="leading" id="iJs-Sz-u62"/>
+                            <constraint firstItem="KCY-ab-YkI" firstAttribute="top" secondItem="KUT-Ac-bBr" secondAttribute="top" constant="334" id="tpv-ks-HXS"/>
+                        </constraints>
                         <viewLayoutGuide key="safeArea" id="KUT-Ac-bBr"/>
                     </view>
                     <navigationItem key="navigationItem" id="2ne-DK-efs">
                         <barButtonItem key="rightBarButtonItem" image="settings" id="oRT-8i-TgO"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="accountImages" destination="KCY-ab-YkI" id="zpf-3d-qjb"/>
                         <segue destination="k83-oT-zt7" kind="unwind" identifier="unwindToLogin" unwindAction="unwindToLogin:" id="u7W-qX-JM6"/>
                     </connections>
                 </viewController>
