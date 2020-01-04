@@ -212,7 +212,7 @@ class AppLogin: UIViewController{
 	func createPublisher(publisher : Published<String?>.Publisher)->AnyPublisher<String?,Never>{
 		
 		let pub = publisher
-			.debounce(for: 3, scheduler: DispatchQueue.global(qos: .background))
+			.debounce(for: 2, scheduler: DispatchQueue.global(qos: .background))
 			.removeDuplicates()
 			.eraseToAnyPublisher()
 		return pub
