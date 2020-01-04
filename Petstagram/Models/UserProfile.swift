@@ -8,7 +8,7 @@
 
 import Foundation
 
-struct UserProfile {
+class UserProfile {
 	
 	var username : String?
 	var images : [Data]?
