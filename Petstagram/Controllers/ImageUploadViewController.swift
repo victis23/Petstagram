@@ -122,7 +122,7 @@ class ImageUploadViewController: UIViewController {
 		
 		guard let imageData = selectedImage.image?.pngData() else {fatalError()}
 		
-		var userInfo = UserProfile.shared()
+		let userInfo = UserProfile.shared()
 		userInfo.images?.append(imageData)
 	}
 	
