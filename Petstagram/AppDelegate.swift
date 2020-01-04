@@ -11,6 +11,7 @@ import CoreData
 import IQKeyboardManagerSwift
 import FirebaseAuth
 import FirebaseCore
+import FirebaseFirestore
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -35,14 +36,15 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		let request = NSFetchRequest<AuthenticationItems>(entityName: "AuthenticationItems")
 		guard let fetchedCollection = try? context.fetch(request) else {return true}
 		
-		guard let username = fetchedCollection.last?.coreDataEmail, let password = fetchedCollection.last?.coreDataPassword else {return true}
+		guard let email = fetchedCollection.last?.coreDataEmail, let password = fetchedCollection.last?.coreDataPassword else {return true}
 		
 		let firebaseAuth = Auth.auth()
-		firebaseAuth.signIn(withEmail: username, password: password) { (result, error) in
+		firebaseAuth.signIn(withEmail: email, password: password) { (result, error) in
 			if let error = error {
 				print(error.localizedDescription)
 				return
 			}
+			
 			print("User has signed In...")
 			application.windows.first?.rootViewController?.performSegue(withIdentifier: Keys.Segues.accessSegue, sender: false)
 		}
