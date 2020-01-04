@@ -118,6 +118,10 @@ class ImageUploadViewController: UIViewController {
 		return layout
 	}
 	
+	@IBAction func shareToProfileTapped(sender: UIButton) {
+		
+	}
+	
 }
 
 extension ImageUploadViewController: UICollectionViewDelegate {

@@ -36,6 +36,7 @@
 		7D68E1AD23BD7E8D0084A2F0 /* ImagesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D68E1AC23BD7E8D0084A2F0 /* ImagesCollectionViewCell.swift */; };
 		7DB6BB3A23B3CF51006D4991 /* AuthenticationItems+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB6BB3823B3CF51006D4991 /* AuthenticationItems+CoreDataClass.swift */; };
 		7DB6BB3B23B3CF51006D4991 /* AuthenticationItems+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DB6BB3923B3CF51006D4991 /* AuthenticationItems+CoreDataProperties.swift */; };
+		7DCD743A23C0595600BA9D52 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCD743923C0595600BA9D52 /* UserProfile.swift */; };
 		CA3BA1F47FF6371A405E2A88 /* Pods_Petstagram.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0F63C2E600878E17487E8C0 /* Pods_Petstagram.framework */; };
 /* End PBXBuildFile section */
 
@@ -92,6 +93,7 @@
 		7D68E1AC23BD7E8D0084A2F0 /* ImagesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImagesCollectionViewCell.swift; sourceTree = "<group>"; };
 		7DB6BB3823B3CF51006D4991 /* AuthenticationItems+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AuthenticationItems+CoreDataClass.swift"; sourceTree = "<group>"; };
 		7DB6BB3923B3CF51006D4991 /* AuthenticationItems+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AuthenticationItems+CoreDataProperties.swift"; sourceTree = "<group>"; };
+		7DCD743923C0595600BA9D52 /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
 		ADB9CC2E38F2A8EE4903487C /* Pods-Petstagram.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Petstagram.debug.xcconfig"; path = "Target Support Files/Pods-Petstagram/Pods-Petstagram.debug.xcconfig"; sourceTree = "<group>"; };
 		F0F63C2E600878E17487E8C0 /* Pods_Petstagram.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Petstagram.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
@@ -250,6 +252,7 @@
 				7DB6BB3823B3CF51006D4991 /* AuthenticationItems+CoreDataClass.swift */,
 				7DB6BB3923B3CF51006D4991 /* AuthenticationItems+CoreDataProperties.swift */,
 				7D558185239DE31C0076AFEB /* AuthenticationModel.swift */,
+				7DCD743923C0595600BA9D52 /* UserProfile.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -466,6 +469,7 @@
 				7D4A53FD239C66ED0079A96A /* Petstagram.xcdatamodeld in Sources */,
 				7DB6BB3B23B3CF51006D4991 /* AuthenticationItems+CoreDataProperties.swift in Sources */,
 				7D4A5444239C6A410079A96A /* Keys.swift in Sources */,
+				7DCD743A23C0595600BA9D52 /* UserProfile.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

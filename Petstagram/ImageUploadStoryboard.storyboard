@@ -60,6 +60,9 @@
                                         <state key="normal" title="Share to Profile">
                                             <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         </state>
+                                        <connections>
+                                            <action selector="shareToProfileTappedWithSender:" destination="3NY-yk-EiX" eventType="touchUpInside" id="tIP-jG-jHg"/>
+                                        </connections>
                                     </button>
                                 </subviews>
                                 <color key="backgroundColor" white="0.0" alpha="0.28542380136986306" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
