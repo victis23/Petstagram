@@ -45,6 +45,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 				return
 			}
 			
+			let currentUser = AuthenticationItems(context: context)
+			currentUser.coreDataEmail = email
+			currentUser.coreDataPassword = password
+			self.saveContext()
+			
 			print("User has signed In...")
 			application.windows.first?.rootViewController?.performSegue(withIdentifier: Keys.Segues.accessSegue, sender: false)
 		}
