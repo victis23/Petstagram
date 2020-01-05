@@ -7,17 +7,47 @@
 //
 
 import Foundation
+import FirebaseFirestore
+import FirebaseAuth
 
 class UserProfile {
 	
 	var username : String?
 	var images : [Data]?
+	let user = Auth.auth().currentUser?.uid
+	let db = Firestore.firestore()
 	
 	static private var sharedUserProfile = UserProfile()
 	
-	private init(username: String? = "", images: [Data]? = []){
-		self.username = username
-		self.images = images
+	private init(){
+		
+	}
+	
+	func saveImageDataToCloud(){
+		guard let user = self.user else {fatalError()}
+		guard let images = self.images else {return}
+		let db = self.db
+		
+		db.collection(user).document(Keys.GoogleFireStore.accountImagesDocument).setData([
+			Keys.GoogleFireStore.images : images
+		], completion: {_ in
+			
+			print("\(images) have been uploaded to Google FireStore!")
+			
+		})
+		
+	}
+	
+	func getImagesFromCloud() {
+		
+		guard let user = self.user else {fatalError()}
+		let db = self.db
+		
+		db.collection(user).document(Keys.GoogleFireStore.accountImagesDocument).addSnapshotListener(includeMetadataChanges: true) { (snapShot, error) in
+			snapShot.flatMap({
+				self.images = $0[Keys.GoogleFireStore.images] as? [Data]
+			})
+		}
 	}
 	
 	static func shared() -> UserProfile {
