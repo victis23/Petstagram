@@ -60,7 +60,7 @@ class UserProfileViewController: UIViewController {
 		
 		self.images = []
 		
-		guard let accountImages = userData.images else {return}
+		guard let accountImages = userData.imageData else {return}
 		
 		accountImages.forEach({ imageData in
 			guard let image = UIImage(data: imageData) else {return}
