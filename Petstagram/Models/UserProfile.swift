@@ -17,6 +17,7 @@ class UserProfile {
 	var imageData : [Data]?
 	let user = Auth.auth().currentUser?.uid
 	let db = Firestore.firestore()
+	let storage = Storage.storage()
 	
 	static private var sharedUserProfile = UserProfile()
 	

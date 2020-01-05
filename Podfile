@@ -8,6 +8,7 @@ target 'Petstagram' do
 	# add the Firebase pod for user authentification
 	pod 'Firebase/Auth'
 	pod 'Firebase/Firestore'
+	pod 'Firebase/Storage'
 	
 	# https://firebase.google.com/docs/ios/setup#available-pods
 	
