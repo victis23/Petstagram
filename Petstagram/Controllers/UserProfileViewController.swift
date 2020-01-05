@@ -38,6 +38,7 @@ class UserProfileViewController: UIViewController {
         super.viewDidLoad()
 		setNavigationBar()
 		setDataSource()
+		setSnapShot()
 		setCollectionViewLayout()
     }
 	
@@ -49,11 +50,15 @@ class UserProfileViewController: UIViewController {
 	func getUserImageData(){
 		
 		self.images = []
-		let accountImages = UserProfile.shared().images
+		let userProfileInstance = UserProfile.shared()
+		userProfileInstance.getImagesFromCloud()
+		guard let accountImages = userProfileInstance.images else {return}
 		
-		accountImages?.forEach({ imageData in
-			self.images.append(UserProfileImageCollection(image: UIImage(data: imageData) ?? UIImage()))
+		accountImages.forEach({ imageData in
+			guard let image = UIImage(data: imageData) else {return}
+			self.images.append(UserProfileImageCollection(image: image))
 		})
+		
 	}
 	
 	func setCollectionViewLayout(){
@@ -94,7 +99,7 @@ class UserProfileViewController: UIViewController {
 		var snapShot = NSDiffableDataSourceSnapshot<Sections,UserProfileImageCollection>()
 		snapShot.appendSections([.main])
 		snapShot.appendItems(self.images, toSection: .main)
-		datasource.apply(snapShot, animatingDifferences: false, completion: {
+		datasource.apply(snapShot, animatingDifferences: true, completion: {
 			
 		})
 	}
