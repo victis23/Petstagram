@@ -19,21 +19,21 @@ class UserProfile {
 	
 	static private var sharedUserProfile = UserProfile()
 	
-	private init(username: String? = "", imageData : [Data]? = []){
-		self.username = username
-		self.images = imageData
+	private init(){
+		self.username = String()
+		self.images?.append(contentsOf: [Data]())
 		
 		print("New Instance \(self.username ?? "No Username") | \(self.images ?? [])")
 	}
 	
 	func saveImageDataToCloud(){
 		guard let user = self.user else {fatalError()}
-		guard let images = self.images else {return}
+		guard let images = self.images else {fatalError()}
 		let db = self.db
 		
 		db.collection(user).document(Keys.GoogleFireStore.accountImagesDocument).setData([
 			Keys.GoogleFireStore.images : images
-		], completion: {_ in
+		], merge: true, completion: {_ in
 			
 			print("\(images) have been uploaded to Google FireStore!")
 			
