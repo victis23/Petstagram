@@ -50,7 +50,8 @@ class ImageUploadViewController: UIViewController {
 		return indicator
 	}()
 	
-
+	lazy var selectedImageData : [Data] = []
+	lazy var userProfileInstance : UserProfile = UserProfile.shared()
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -122,9 +123,9 @@ class ImageUploadViewController: UIViewController {
 		
 		guard let imageData = selectedImage.image?.pngData() else {fatalError()}
 		
-		let userInfo = UserProfile.shared()
-		userInfo.images?.append(imageData)
-		userInfo.saveImageDataToCloud()
+		selectedImageData.append(imageData)
+		userProfileInstance.images = selectedImageData
+		userProfileInstance.saveImageDataToCloud()
 	}
 	
 }
