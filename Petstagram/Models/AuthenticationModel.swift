@@ -52,8 +52,8 @@ struct Authentication {
 		
 		// Adds document that will hold information for individual users.
 		
-		db.collection(userID).document("accountInfo").setData([
-			"Username" : userName
+		db.collection(userID).document(Keys.GoogleFireStore.accountInfoDocument).setData([
+			Keys.GoogleFireStore.usernameKey : userName
 		]) { (error) in
 			if let error = error {
 				print(error.localizedDescription)
@@ -62,7 +62,7 @@ struct Authentication {
 		
 		// Adds new user information to document containing list of all existing users.
 		
-		db.collection("users").document("userKeys").setData([
+		db.collection(Keys.GoogleFireStore.userCollection).document(Keys.GoogleFireStore.userKeysDocument).setData([
 			userName:userID
 		]) { error in
 			if let error = error {
