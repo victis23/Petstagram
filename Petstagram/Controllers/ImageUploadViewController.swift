@@ -124,6 +124,7 @@ class ImageUploadViewController: UIViewController {
 		
 		let userInfo = UserProfile.shared()
 		userInfo.images?.append(imageData)
+		userInfo.saveImageDataToCloud()
 	}
 	
 }
