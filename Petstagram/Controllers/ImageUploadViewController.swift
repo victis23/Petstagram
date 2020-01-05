@@ -25,6 +25,7 @@ class ImageUploadViewController: UIViewController {
 		case main
 	}
 	
+	//MARK: - Instance Properties
 	
 	// Collection that holds Images obtained from user's image assets.
 	private lazy var imageArray = [UIImage]()
@@ -53,6 +54,8 @@ class ImageUploadViewController: UIViewController {
 	lazy var selectedImageData : [Data] = []
 	lazy var userProfileInstance : UserProfile = UserProfile.shared()
 	
+	//MARK: View LifeCycle
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		setNavigationBar()
@@ -68,6 +71,8 @@ class ImageUploadViewController: UIViewController {
 		self.selectImageWithPicker()
 		albumImageCollection.delegate = self
 	}
+	
+	//MARK: Instance Methods
 
 	func setNavigationBar(){
 		self.navigationItem.title = "Petstagram"
@@ -124,12 +129,13 @@ class ImageUploadViewController: UIViewController {
 		guard let imageData = selectedImage.image?.pngData() else {fatalError()}
 		
 		selectedImageData.append(imageData)
-		userProfileInstance.images = selectedImageData
+		userProfileInstance.imageData = selectedImageData
 		userProfileInstance.saveImageDataToCloud()
 	}
 	
 }
 
+//MARK: - UICollectionView Methods
 extension ImageUploadViewController: UICollectionViewDelegate {
 	
 	func setDataSource(){
