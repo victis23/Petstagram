@@ -60,9 +60,10 @@ class UserProfileViewController: UIViewController {
 		
 		let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
 		let cell = NSCollectionLayoutItem(layoutSize: itemSize)
+		cell.contentInsets = NSDirectionalEdgeInsets(top: 1, leading: 1, bottom: 1, trailing: 1)
 		
-		let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(0.5))
-		let cellGroup = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: cell, count: 4)
+		let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(0.4))
+		let cellGroup = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: cell, count: 3)
 		
 		let section = NSCollectionLayoutSection(group: cellGroup)
 		
@@ -83,6 +84,7 @@ class UserProfileViewController: UIViewController {
 			guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "image", for: indexPath) as? UserImageCollectionViewCell else {fatalError()}
 			
 			cell.imageCell.image = ImageObject.image
+			cell.imageCell.contentMode = .scaleAspectFill
 			
 			return cell
 		})
