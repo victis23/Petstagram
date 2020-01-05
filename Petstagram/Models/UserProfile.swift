@@ -19,8 +19,11 @@ class UserProfile {
 	
 	static private var sharedUserProfile = UserProfile()
 	
-	private init(){
+	private init(username: String? = "", imageData : [Data]? = []){
+		self.username = username
+		self.images = imageData
 		
+		print("New Instance \(self.username ?? "No Username") | \(self.images ?? [])")
 	}
 	
 	func saveImageDataToCloud(){
@@ -44,6 +47,10 @@ class UserProfile {
 		let db = self.db
 		
 		db.collection(user).document(Keys.GoogleFireStore.accountImagesDocument).addSnapshotListener(includeMetadataChanges: true) { (snapShot, error) in
+			if let error = error {
+				print(error.localizedDescription)
+				return
+			}
 			snapShot.flatMap({
 				self.images = $0[Keys.GoogleFireStore.images] as? [Data]
 			})
