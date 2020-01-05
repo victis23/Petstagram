@@ -56,7 +56,7 @@ class ImageUploadViewController: UIViewController {
 		super.viewDidLoad()
 		setNavigationBar()
 		setIndicator()
-		setViewAesthetics()
+		shareView.isHidden = true
 		albumImageCollection.collectionViewLayout = setCollectionViewLayout() as UICollectionViewLayout
 	}
 	
@@ -159,6 +159,8 @@ extension ImageUploadViewController: UINavigationControllerDelegate, UIImagePick
 	func selectImageWithPicker(isCameraImage: Bool = false){
 		
 		defer {
+			shareView.isHidden = false
+			setViewAesthetics()
 			activityIndicator.stopAnimating()
 			self.shareButton.setTitle("Share to profile", for: .normal)
 		}
