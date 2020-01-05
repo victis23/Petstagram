@@ -29,6 +29,8 @@ class UserProfileViewController: UIViewController {
 	
 	var datasource : UICollectionViewDiffableDataSource<Sections,UserProfileImageCollection>!
 	
+	var userData: UserProfile!
+	
 	var images : [UserProfileImageCollection] = [] {
 		didSet {
 			setSnapShot()
@@ -38,6 +40,7 @@ class UserProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 		setNavigationBar()
+		getImageDataFromGoogleFirestore()
 		setDataSource()
 		setSnapShot()
 		setCollectionViewLayout()
@@ -45,15 +48,19 @@ class UserProfileViewController: UIViewController {
 	
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
-		getUserImageData()
+		setImageDataToView()
 	}
 	
-	func getUserImageData(){
+	func getImageDataFromGoogleFirestore(){
+		userData = UserProfile.shared()
+		userData.getImagesFromCloud()
+	}
+	
+	func setImageDataToView(){
 		
 		self.images = []
-		let userProfileInstance = UserProfile.shared()
-		userProfileInstance.getImagesFromCloud()
-		guard let accountImages = userProfileInstance.images else {return}
+		
+		guard let accountImages = userData.images else {return}
 		
 		accountImages.forEach({ imageData in
 			guard let image = UIImage(data: imageData) else {return}
