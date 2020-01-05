@@ -64,7 +64,7 @@ struct Authentication {
 		
 		db.collection(Keys.GoogleFireStore.userCollection).document(Keys.GoogleFireStore.userKeysDocument).setData([
 			userName:userID
-		]) { error in
+		], merge: true) { error in
 			if let error = error {
 				print(error.localizedDescription)
 			}
