@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import FirebaseAuth
 
 class UserProfileViewController: UIViewController {
 	
@@ -114,6 +115,12 @@ class UserProfileViewController: UIViewController {
 		coreDataModel.coreDataUserName = nil
 		
 		appDelegate.saveContext()
+		
+		do {
+			try Auth.auth().signOut()
+		}catch(let error){
+			print(error.localizedDescription)
+		}
 		
 		performSegue(withIdentifier: Keys.Segues.signOut, sender: nil)
 		
