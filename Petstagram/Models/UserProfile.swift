@@ -86,6 +86,10 @@ class UserProfile {
 			
 			var hash : Set<String> = []
 			
+			self.imageReferences.forEach({ key in
+				hash.insert(key)
+			})
+			
 			imageList.forEach { key in
 				hash.insert(key)
 			}
