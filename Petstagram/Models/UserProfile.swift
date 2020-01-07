@@ -84,9 +84,16 @@ class UserProfile {
 			guard let document = document else {fatalError()}
 			guard let imageList = document["imageKeys"] as? [String] else {fatalError()}
 			
+			var hash : Set<String> = []
+			
+			imageList.forEach { key in
+				hash.insert(key)
+			}
+				
+			
 			print("These are the keys retrieved by the data pull \(imageList)")
 			
-			imageList.forEach { name in
+			hash.forEach { name in
 				file.child(name).getData(maxSize: 9_999_999_999) { (data, error) in
 					if let error = error {
 						print(error.localizedDescription)
