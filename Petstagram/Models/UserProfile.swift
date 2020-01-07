@@ -31,7 +31,6 @@ class UserProfile {
 	func saveImageDataToCloud(){
 		guard let user = self.user else {fatalError()}
 		guard let images = self.imageData else {fatalError()}
-		let db = self.db
 		
 		db.collection(user).document(Keys.GoogleFireStore.accountImagesDocument).setData([
 			Keys.GoogleFireStore.images : images
@@ -41,6 +40,16 @@ class UserProfile {
 			
 		})
 		
+	}
+	
+	func uploadDataToFireBase(){
+		guard let user = self.user else {fatalError()}
+		guard let imageData = self.imageData else {fatalError()}
+		
+		let root = storage.reference()
+		let reference = root.child(Keys.GoogleStorage.imageDataArray)
+		
+	
 	}
 	
 	func getImagesFromCloud() {
