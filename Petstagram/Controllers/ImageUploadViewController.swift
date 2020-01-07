@@ -62,13 +62,13 @@ class ImageUploadViewController: UIViewController {
 		setIndicator()
 		shareView.isHidden = true
 		albumImageCollection.collectionViewLayout = setCollectionViewLayout() as UICollectionViewLayout
+		userProfileInstance.retrieveListOnLoad()
 	}
 	
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
 		setDataSource()
 		createSnapshot(images: albumImages)
-//		userProfileInstance.retrieveListOnLoad()
 		self.selectImageWithPicker()
 		albumImageCollection.delegate = self
 	}
