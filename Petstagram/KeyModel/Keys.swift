@@ -25,4 +25,7 @@ struct Keys {
 		static var accountImagesDocument = "ImagesDocument"
 		static var images = "images"
 	}
+	struct GoogleStorage {
+		static var imageDataArray = "ImageDataArray"
+	}
 }
