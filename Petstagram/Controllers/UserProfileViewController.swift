@@ -29,7 +29,7 @@ class UserProfileViewController: UIViewController {
 	
 	var datasource : UICollectionViewDiffableDataSource<Sections,UserProfileImageCollection>!
 	
-	var userData: UserProfile!
+	var userData: UserProfile = UserProfile.shared()
 	
 	var images : [UserProfileImageCollection] = [] {
 		didSet {
@@ -52,17 +52,17 @@ class UserProfileViewController: UIViewController {
 	}
 	
 	func getImageDataFromGoogleFirestore(){
-		userData = UserProfile.shared()
-//		userData.getImagesFromCloud()
-//		userData.imageData?.append(userData.downloadDataFromFireBase().pngData()!)
+		
 		userData.downloadDataFromFireBase()
 		
 		if let imageData = userData.imageData {
 			imageData.forEach { data in
-				self.images.append(UserProfileImageCollection(image: UIImage(data: data) ?? UIImage()))
+				if let image = UIImage(data: data){
+					self.images.append(UserProfileImageCollection(image: image))
+					
+				}
 			}
 		}
-		
 	}
 	
 	func setImageDataToView(){
