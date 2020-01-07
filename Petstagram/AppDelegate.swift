@@ -29,6 +29,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		
 		FirebaseApp.configure()
 		
+		
 		//MARK: - Core Data Implimentation
 	
 		let context = persistentContainer.viewContext
@@ -48,6 +49,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 			let currentUser = AuthenticationItems(context: context)
 			currentUser.coreDataEmail = email
 			currentUser.coreDataPassword = password
+			UserProfile.shared().retrieveListOnLoad()
 			self.saveContext()
 			
 			print("User has signed In...")
