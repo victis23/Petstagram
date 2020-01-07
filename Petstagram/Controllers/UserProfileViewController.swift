@@ -40,9 +40,9 @@ class UserProfileViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 		setNavigationBar()
-		getImageDataFromGoogleFirestore()
 		setDataSource()
 		setSnapShot()
+		getImageDataFromGoogleFirestore()
 		setCollectionViewLayout()
     }
 	
@@ -53,7 +53,16 @@ class UserProfileViewController: UIViewController {
 	
 	func getImageDataFromGoogleFirestore(){
 		userData = UserProfile.shared()
-		userData.getImagesFromCloud()
+//		userData.getImagesFromCloud()
+//		userData.imageData?.append(userData.downloadDataFromFireBase().pngData()!)
+		userData.downloadDataFromFireBase()
+		
+		if let imageData = userData.imageData {
+			imageData.forEach { data in
+				self.images.append(UserProfileImageCollection(image: UIImage(data: data) ?? UIImage()))
+			}
+		}
+		
 	}
 	
 	func setImageDataToView(){
