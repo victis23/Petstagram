@@ -30,23 +30,25 @@ class UserProfile {
 		print("New Instance \(self.username ?? "No Username") | \(self.imageData ?? [])")
 	}
 	
-//	func retrieveListOnLoad(){
-//		guard let user = self.user else {fatalError()}
-//
-//		db.collection(user).document(Keys.GoogleFireStore.accountImagesDocument).getDocument { (document, error) in
-//			if let error = error {
-//				print(error.localizedDescription)
-//				return
-//			}
-//			guard let imageKeys = document else {fatalError()}
-//
-//			if imageKeys.data() != nil {
-//				return
-//			}else{
-//				self.imageReferences.append(contentsOf: imageKeys["imageKeys"] as! [String])
-//			}
-//		}
-//	}
+	func retrieveListOnLoad(){
+		guard let user = self.user else {fatalError()}
+
+		db.collection(user).document(Keys.GoogleFireStore.accountImagesDocument).getDocument { (document, error) in
+			if let error = error {
+				print(error.localizedDescription)
+				return
+			}
+			guard let imageKeys = document else {fatalError()}
+
+			if imageKeys.data() == nil {
+				return
+			}else{
+				let keys = imageKeys["imageKeys"] as! [String]
+				print(keys)
+				self.imageReferences.append(contentsOf: keys)
+			}
+		}
+	}
 	
 	func uploadDataToFireBase(){
 		guard let user = self.user else {fatalError()}
@@ -64,6 +66,7 @@ class UserProfile {
 			let reference = root.child(user).child(imgRef)
 			reference.putData(data)
 		})
+		
 		db.collection(user).document(Keys.GoogleFireStore.accountImagesDocument).setData([
 			"imageKeys" : imageReferences
 		], merge: false, completion: { _ in})
@@ -72,7 +75,6 @@ class UserProfile {
 	func downloadDataFromFireBase() {
 		guard let user = self.user else {fatalError()}
 		let file = storage.reference().child(user)
-		var retrievedData : [Data] = []
 		
 		db.collection(user).document(Keys.GoogleFireStore.accountImagesDocument).getDocument { (document, error) in
 			if let error = error {
@@ -82,6 +84,8 @@ class UserProfile {
 			guard let document = document else {fatalError()}
 			guard let imageList = document["imageKeys"] as? [String] else {fatalError()}
 			
+			print("These are the keys retrieved by the data pull \(imageList)")
+			
 			imageList.forEach { name in
 				file.child(name).getData(maxSize: 9_999_999_999) { (data, error) in
 					if let error = error {
@@ -89,10 +93,9 @@ class UserProfile {
 						return
 					}
 					guard let data = data else {fatalError()}
-					retrievedData.append(data)
+					self.imageData?.append(data)
 				}
 			}
-			self.imageData = retrievedData
 		}
 	}
 	
