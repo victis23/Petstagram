@@ -68,6 +68,7 @@ class ImageUploadViewController: UIViewController {
 		super.viewDidAppear(animated)
 		setDataSource()
 		createSnapshot(images: albumImages)
+//		userProfileInstance.retrieveListOnLoad()
 		self.selectImageWithPicker()
 		albumImageCollection.delegate = self
 	}
@@ -130,7 +131,9 @@ class ImageUploadViewController: UIViewController {
 		
 		selectedImageData.append(imageData)
 		userProfileInstance.imageData = selectedImageData
-		userProfileInstance.saveImageDataToCloud()
+//		userProfileInstance.saveImageDataToCloud()
+		userProfileInstance.uploadDataToFireBase()
+		
 	}
 	
 }
