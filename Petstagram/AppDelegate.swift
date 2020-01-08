@@ -49,13 +49,21 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 			let currentUser = AuthenticationItems(context: context)
 			currentUser.coreDataEmail = email
 			currentUser.coreDataPassword = password
-			UserProfile.shared().retrieveListOnLoad()
+			// Calls method that creates user once logged into database.
+			self.activateUserProfile()
 			self.saveContext()
 			
 			print("User has signed In...")
 			application.windows.first?.rootViewController?.performSegue(withIdentifier: Keys.Segues.accessSegue, sender: false)
 		}
 		return true
+	}
+	
+	/// Method creates user profile object and calls the retrieve list on load and download methods.
+	func activateUserProfile(){
+		let userProfile = UserProfile.shared()
+		userProfile.retrieveListOnLoad()
+		userProfile.downloadDataFromFireBase()
 	}
 	
 	// MARK: UISceneSession Lifecycle
