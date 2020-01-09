@@ -42,7 +42,6 @@ class UserProfileViewController: UIViewController {
 		setNavigationBar()
 		setDataSource()
 		setSnapShot()
-		getImageDataFromGoogleFirestore()
 		setCollectionViewLayout()
     }
 	
