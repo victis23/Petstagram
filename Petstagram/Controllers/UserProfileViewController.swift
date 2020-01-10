@@ -15,10 +15,17 @@ class UserProfileViewController: UIViewController {
 		case main
 	}
 	
-	struct UserProfileImageCollection : Hashable, Identifiable {
+	struct UserProfileImageCollection : Hashable, Identifiable, Equatable {
 		var image : UIImage
-		var id = UUID().uuidString
+		var id :String
 		
+		func hash(into hasher : inout Hasher) {
+			hasher.combine(id)
+		}
+		
+		static func ==(lhs:UserProfileImageCollection, rhs: UserProfileImageCollection) -> Bool {
+			lhs.id == rhs.id
+		}
 	}
 	
 	
@@ -36,45 +43,36 @@ class UserProfileViewController: UIViewController {
 			setSnapShot()
 		}
 	}
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
+	
+	override func viewDidLoad() {
+		super.viewDidLoad()
 		setNavigationBar()
 		setDataSource()
 		setSnapShot()
 		setCollectionViewLayout()
-    }
+	}
 	
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
 		setImageDataToView()
 	}
 	
-	func getImageDataFromGoogleFirestore(){
-		
-		userData.downloadDataFromFireBase()
-		
-		if let imageData = userData.imageData {
-			imageData.forEach { data in
-				if let image = UIImage(data: data){
-					self.images.append(UserProfileImageCollection(image: image))
-					
-				}
-			}
-		}
-	}
-	
 	func setImageDataToView(){
-		
-		self.images = []
-		
+		var newUserObject : UserProfileImageCollection = UserProfileImageCollection(image: UIImage(), id: String())
 		guard let accountImages = userData.imageData else {return}
 		
-		accountImages.forEach({ imageData in
+		accountImages.enumerated().forEach({ index, imageData in
 			guard let image = UIImage(data: imageData) else {return}
-			self.images.append(UserProfileImageCollection(image: image))
+			let newItem = UserProfileImageCollection(image: image, id: userData.imageReferences[index])
+			newUserObject = newItem
 		})
 		
+		images.enumerated().forEach { index, item in
+			if newUserObject == item {
+				images.remove(at: index)
+			}
+		}
+		images.append(newUserObject)
 	}
 	
 	func setCollectionViewLayout(){
@@ -91,7 +89,7 @@ class UserProfileViewController: UIViewController {
 		let layout = UICollectionViewCompositionalLayout(section: section)
 		accountImages.collectionViewLayout = layout
 	}
-    
+	
 	func setNavigationBar(){
 		self.navigationItem.title = "Petstagram"
 		self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font : UIFont(name: "Billabong", size: 35)!]
