@@ -49,8 +49,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 			let currentUser = AuthenticationItems(context: context)
 			currentUser.coreDataEmail = email
 			currentUser.coreDataPassword = password
-			// Calls method that creates user once logged into database.
-			self.activateUserProfile()
+			
 			self.saveContext()
 			
 			print("User has signed In...")
@@ -58,14 +57,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		}
 		return true
 	}
-	
-	/// Method creates user profile object and calls the retrieve list on load and download methods.
-	func activateUserProfile(){
-		let userProfile = UserProfile.shared()
-		userProfile.retrieveListOnLoad()
-		userProfile.downloadDataFromFireBase()
-	}
-	
+		
 	// MARK: UISceneSession Lifecycle
 	
 	func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
