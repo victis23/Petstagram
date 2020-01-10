@@ -272,7 +272,7 @@ class AppLogin: UIViewController{
 					self?.coreDataAuthModel.coreDataCredential = self?.userAuth.authentication
 					
 					self?.applicationDelegate.saveContext()
-					self?.applicationDelegate.activateUserProfile()
+//					self?.applicationDelegate.activateUserProfile()
 					self?.performSegue(withIdentifier: Keys.Segues.accessSegue, sender: false)
 			})
 		}catch(let error){
