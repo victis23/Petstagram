@@ -44,8 +44,11 @@ class UserProfile {
 				return
 			}else{
 				let keys = imageKeys["imageKeys"] as! [String]
-				print(keys)
-				self.imageReferences.append(contentsOf: keys)
+				self.db.collection(user).document(Keys.GoogleFireStore.accountImagesDocument).delete()
+				self.db.collection(user).document(Keys.GoogleFireStore.accountImagesDocument).setData([
+					"imageKeys" : keys
+				])
+				self.imageReferences = keys
 			}
 		}
 	}
@@ -69,7 +72,9 @@ class UserProfile {
 		
 		db.collection(user).document(Keys.GoogleFireStore.accountImagesDocument).setData([
 			"imageKeys" : imageReferences
-		], merge: false, completion: { _ in})
+		], merge: true, completion: { _ in
+			self.retrieveListOnLoad()
+		})
 	}
 	
 	func downloadDataFromFireBase() {
@@ -82,7 +87,7 @@ class UserProfile {
 				return
 			}
 			guard let document = document else {fatalError()}
-			guard let imageList = document["imageKeys"] as? [String] else {fatalError()}
+			guard let imageList = document["imageKeys"] as? [String] else {return}
 			
 			var hash : Set<String> = []
 			
