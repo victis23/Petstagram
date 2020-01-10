@@ -17,8 +17,7 @@ class UserProfile {
 	var imageData : [Data]?
 	let user = Auth.auth().currentUser?.uid
 	let db = Firestore.firestore()
-	let storage = Storage.storage()
-	var imageReferences : [String] = []
+	let storage = Storage.storage().reference()
 	
 	
 	static private var sharedUserProfile = UserProfile()
@@ -30,86 +29,42 @@ class UserProfile {
 		print("New Instance \(self.username ?? "No Username") | \(self.imageData ?? [])")
 	}
 	
-	func retrieveListOnLoad(){
+	func uploadDataToFireBase(){
 		guard let user = self.user else {fatalError()}
-
-		db.collection(user).document(Keys.GoogleFireStore.accountImagesDocument).getDocument { (document, error) in
-			if let error = error {
-				print(error.localizedDescription)
-				return
-			}
-			guard let imageKeys = document else {fatalError()}
-
-			if imageKeys.data() == nil {
-				return
-			}else{
-				let keys = imageKeys["imageKeys"] as! [String]
-				self.db.collection(user).document(Keys.GoogleFireStore.accountImagesDocument).delete()
-				self.db.collection(user).document(Keys.GoogleFireStore.accountImagesDocument).setData([
-					"imageKeys" : keys
-				])
-				self.imageReferences = keys
-			}
+		guard let imageData = self.imageData else {return}
+		let filePath = storage.child(user)
+		
+		imageData.forEach { data in
+			filePath.child("\(data.hashValue)").putData(data)
 		}
 	}
 	
-	func uploadDataToFireBase(){
-		guard let user = self.user else {fatalError()}
-		guard let imageData = self.imageData else {fatalError()}
-		
-		let dataFormat = DateFormatter()
-		dataFormat.dateStyle = .long
-		
-		
-		let root = storage.reference()
-		
-		imageData.enumerated().forEach({ count , data in
-			let imgRef = "\(Keys.GoogleStorage.imageDataArray)\(dataFormat.string(from: Date()).hashValue)\(count)"
-			imageReferences.append(imgRef)
-			let reference = root.child(user).child(imgRef)
-			reference.putData(data)
-		})
-		
-		db.collection(user).document(Keys.GoogleFireStore.accountImagesDocument).setData([
-			"imageKeys" : imageReferences
-		], merge: true, completion: { _ in
-			self.retrieveListOnLoad()
-		})
-	}
+	func downloadImages(downloadedImages : @escaping (_ imageKey : [String:UIImage])->Void) {
 	
-	func downloadDataFromFireBase() {
-		guard let user = self.user else {fatalError()}
-		let file = storage.reference().child(user)
+		var imageKey : [String:UIImage] = [:]
 		
-		db.collection(user).document(Keys.GoogleFireStore.accountImagesDocument).getDocument { (document, error) in
+		guard let user = self.user else {fatalError()}
+		
+		let filePath = storage.child(user)
+		
+		filePath.listAll { (list, error) in
+			
 			if let error = error {
 				print(error.localizedDescription)
 				return
 			}
-			guard let document = document else {fatalError()}
-			guard let imageList = document["imageKeys"] as? [String] else {return}
 			
-			var hash : Set<String> = []
-			
-			self.imageReferences.forEach({ key in
-				hash.insert(key)
-			})
-			
-			imageList.forEach { key in
-				hash.insert(key)
-			}
-				
-			
-			print("These are the keys retrieved by the data pull \(imageList)")
-			
-			hash.forEach { name in
-				file.child(name).getData(maxSize: 9_999_999_999) { (data, error) in
+			list.items.forEach { item in
+				Storage.storage().reference(forURL: "\(item)").getData(maxSize: 999_999_999) { (data, error) in
+					
 					if let error = error {
 						print(error.localizedDescription)
 						return
 					}
-					guard let data = data else {fatalError()}
-					self.imageData?.append(data)
+					
+					guard let data = data, let image = UIImage(data: data) else {return}
+					imageKey["\("\(item)".split(separator: "/")[3])"] = image
+					downloadedImages(imageKey)
 				}
 			}
 		}
