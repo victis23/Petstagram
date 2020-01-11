@@ -76,7 +76,7 @@ class ImageUploadViewController: UIViewController {
 
 	func setNavigationBar(){
 		self.navigationItem.title = "Petstagram"
-		self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font : UIFont(name: "Billabong", size: 35)!]
+		self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font : UIFont(name: "Billabong", size: 34)!]
 		self.navigationController?.navigationBar.tintColor = .label
 		self.navigationItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage.init(systemName: "camera.circle"), style: .plain, target: self, action: #selector(cameraButtonSelected))]
 	}
