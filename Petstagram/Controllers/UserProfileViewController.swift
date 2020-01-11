@@ -75,7 +75,10 @@ class UserProfileViewController: UIViewController, UINavigationControllerDelegat
 		let alertController = UIAlertController(title: "Media Source", message: "Where would you like to get your profile picture from?", preferredStyle: .actionSheet)
 		
 		let cameraOption = UIAlertAction(title: "Camera", style: .default, handler: { alert in
-			
+			imageController.sourceType = .camera
+			imageController.allowsEditing = true
+			imageController.showsCameraControls = true
+			self.present(imageController, animated: true)
 		})
 		
 		let photoAlbumOption = UIAlertAction(title: "Photo Album", style: .default, handler: { alert in
