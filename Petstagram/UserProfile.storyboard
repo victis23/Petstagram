@@ -101,7 +101,7 @@
                                     </stackView>
                                 </subviews>
                             </stackView>
-                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="q6i-HV-9BR">
+                            <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultUserImage" translatesAutoresizingMaskIntoConstraints="NO" id="q6i-HV-9BR">
                                 <rect key="frame" x="20" y="69" width="110" height="110"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
                                 <constraints>
@@ -151,6 +151,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="defaultUserImage" width="200" height="200"/>
         <image name="settings" width="25" height="25"/>
     </resources>
 </document>
