@@ -8,6 +8,8 @@
 
 import UIKit
 import FirebaseAuth
+import FirebaseFirestore
+import FirebaseStorage
 import Combine
 
 class UserProfileViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
@@ -48,6 +50,7 @@ class UserProfileViewController: UIViewController, UINavigationControllerDelegat
 	
 	var images : [UserProfileImageCollection] = [] {
 		didSet {
+			postCountLabel.text = "\(images.count)"
 			setSnapShot()
 		}
 	}
@@ -57,8 +60,9 @@ class UserProfileViewController: UIViewController, UINavigationControllerDelegat
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		setNavigationBar()
 		setAesthetics()
+		getUserName()
+		setNavigationBar()
 		setDataSource()
 		setSnapShot()
 		setSubscription()
@@ -113,6 +117,24 @@ class UserProfileViewController: UIViewController, UINavigationControllerDelegat
 		userProfilePicture.layer.borderColor = UIColor.label.cgColor
 		userProfilePicture.layer.borderWidth = 2
 		userProfilePicture.layer.cornerRadius = 5
+		userNameLabel.text = ""
+		postCountLabel.text = ""
+	}
+	
+	func getUserName(){
+		
+		let db = Firestore.firestore()
+		guard let user = Auth.auth().currentUser?.uid else {fatalError()}
+		
+		db.collection(user).document(Keys.GoogleFireStore.accountInfoDocument).getDocument { (usernameDocument, error) in
+			if let error = error {
+				print(error.localizedDescription)
+			}
+			guard let usernameDocument = usernameDocument else {fatalError()}
+			guard let retrievedUserName = usernameDocument[Keys.GoogleFireStore.usernameKey] as? String else {fatalError()}
+			self.userNameLabel.text = retrievedUserName
+		}
+		userNameLabel.font = UIFont.monospacedSystemFont(ofSize: 30, weight: .heavy)
 	}
 	
 	func setSubscription(){
