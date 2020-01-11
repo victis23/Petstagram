@@ -53,6 +53,7 @@ class UserProfileViewController: UIViewController, UINavigationControllerDelegat
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		setNavigationBar()
+		setAesthetics()
 		setDataSource()
 		setSnapShot()
 		setSubscription()
@@ -80,6 +81,7 @@ class UserProfileViewController: UIViewController, UINavigationControllerDelegat
 		let photoAlbumOption = UIAlertAction(title: "Photo Album", style: .default, handler: { alert in
 			imageController.sourceType = .photoLibrary
 			imageController.allowsEditing = true
+			self.present(imageController, animated: true)
 		})
 		
 		let cancelOption = UIAlertAction(title: "Cancel", style: .cancel, handler: { alert in
@@ -97,6 +99,12 @@ class UserProfileViewController: UIViewController, UINavigationControllerDelegat
 		alertController.addAction(cancelOption)
 		
 		present(alertController, animated: true)
+	}
+	
+	func setAesthetics(){
+		userProfilePicture.layer.borderColor = UIColor.label.cgColor
+		userProfilePicture.layer.borderWidth = 5
+		userProfilePicture.layer.cornerRadius = 5
 	}
 	
 	func setSubscription(){
@@ -202,6 +210,11 @@ extension UserProfileViewController {
 		guard let selectedImage = info[.editedImage] as? UIImage else {return}
 		
 		userProfilePicture.image = selectedImage
+		userProfilePicture.contentMode = .scaleAspectFill
+		userProfilePicture.clipsToBounds = true
+		
+		
+		dismiss(animated: true)
 		
 	}
 	
