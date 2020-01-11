@@ -30,7 +30,7 @@ class UserFeedViewController: UIViewController {
 	func setupNavigation(){
 		// used navigataion item title property instead of \.view.title because I dont want titles in tab bar.
 		self.navigationItem.title = "Petstagram"
-		self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font : UIFont(name: "Billabong", size: 35)!]
+		self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font : UIFont(name: "Billabong", size: 34)!]
 		
 	}
 }
