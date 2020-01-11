@@ -10,7 +10,7 @@ import UIKit
 import FirebaseAuth
 import Combine
 
-class UserProfileViewController: UIViewController {
+class UserProfileViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
 	
 	enum Sections {
 		case main
@@ -31,6 +31,8 @@ class UserProfileViewController: UIViewController {
 	
 	
 	@IBOutlet weak var accountImages: UICollectionView!
+	@IBOutlet weak var userProfilePicture : UIImageView!
+	
 	
 	let appDelegate = UIApplication.shared.delegate as! AppDelegate
 	let coreDataModel = AuthenticationItems(context: (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext)
@@ -62,6 +64,39 @@ class UserProfileViewController: UIViewController {
 		super.viewDidAppear(animated)
 		
 		setImageDataToView()
+	}
+	
+	@IBAction func tappedProfileImage(sender : UIButton) {
+		
+		let imageController = UIImagePickerController()
+		imageController.delegate = self
+		
+		let alertController = UIAlertController(title: "Media Source", message: "Where would you like to get your profile picture from?", preferredStyle: .actionSheet)
+		
+		let cameraOption = UIAlertAction(title: "Camera", style: .default, handler: { alert in
+			
+		})
+		
+		let photoAlbumOption = UIAlertAction(title: "Photo Album", style: .default, handler: { alert in
+			imageController.sourceType = .photoLibrary
+			imageController.allowsEditing = true
+		})
+		
+		let cancelOption = UIAlertAction(title: "Cancel", style: .cancel, handler: { alert in
+			
+		})
+		
+		if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+			alertController.addAction(photoAlbumOption)
+		}
+		
+		if UIImagePickerController.isSourceTypeAvailable(.camera) {
+			alertController.addAction(cameraOption)
+		}
+		
+		alertController.addAction(cancelOption)
+		
+		present(alertController, animated: true)
 	}
 	
 	func setSubscription(){
@@ -158,4 +193,16 @@ class UserProfileViewController: UIViewController {
 		performSegue(withIdentifier: Keys.Segues.signOut, sender: nil)
 		
 	}
+}
+
+extension UserProfileViewController {
+	
+	func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+		
+		guard let selectedImage = info[.editedImage] as? UIImage else {return}
+		
+		userProfilePicture.image = selectedImage
+		
+	}
+	
 }
