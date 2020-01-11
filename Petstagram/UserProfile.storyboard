@@ -45,12 +45,6 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a6a-IV-1vD">
-                                <rect key="frame" x="20" y="110" width="110" height="110"/>
-                                <connections>
-                                    <action selector="tappedProfileImageWithSender:" destination="wmT-Bf-7fd" eventType="touchUpInside" id="WAK-Cp-3Dz"/>
-                                </connections>
-                            </button>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="28" translatesAutoresizingMaskIntoConstraints="NO" id="hIg-mh-BIR">
                                 <rect key="frame" x="135" y="110" width="264" height="69"/>
                                 <subviews>
@@ -108,18 +102,24 @@
                                 </subviews>
                             </stackView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="q6i-HV-9BR">
-                                <rect key="frame" x="20" y="110" width="110" height="110"/>
+                                <rect key="frame" x="20" y="69" width="110" height="110"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="110" id="olD-uC-5vk"/>
                                     <constraint firstAttribute="height" constant="110" id="voH-Mb-cAf"/>
                                 </constraints>
                             </imageView>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a6a-IV-1vD">
+                                <rect key="frame" x="20" y="69" width="110" height="110"/>
+                                <connections>
+                                    <action selector="tappedProfileImageWithSender:" destination="wmT-Bf-7fd" eventType="touchUpInside" id="WAK-Cp-3Dz"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
                             <constraint firstItem="q6i-HV-9BR" firstAttribute="leading" secondItem="a6a-IV-1vD" secondAttribute="leading" id="5yB-95-32T"/>
-                            <constraint firstItem="q6i-HV-9BR" firstAttribute="top" secondItem="hIg-mh-BIR" secondAttribute="top" id="ACh-Gk-Jn4"/>
+                            <constraint firstItem="q6i-HV-9BR" firstAttribute="top" secondItem="hIg-mh-BIR" secondAttribute="top" constant="-41" id="ACh-Gk-Jn4"/>
                             <constraint firstItem="q6i-HV-9BR" firstAttribute="bottom" secondItem="a6a-IV-1vD" secondAttribute="bottom" id="KWx-q0-8kg"/>
                             <constraint firstAttribute="bottom" secondItem="KCY-ab-YkI" secondAttribute="bottom" constant="20" symbolic="YES" id="NW5-0M-rVp"/>
                             <constraint firstItem="hIg-mh-BIR" firstAttribute="top" secondItem="KUT-Ac-bBr" secondAttribute="top" constant="66" id="TAe-Vb-Hni"/>
