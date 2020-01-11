@@ -32,6 +32,11 @@ class UserProfileViewController: UIViewController, UINavigationControllerDelegat
 	
 	@IBOutlet weak var accountImages: UICollectionView!
 	@IBOutlet weak var userProfilePicture : UIImageView!
+	@IBOutlet weak var userNameLabel : UILabel!
+	@IBOutlet weak var postCountLabel : UILabel!
+	@IBOutlet weak var followerCountLabel : UILabel!
+	@IBOutlet weak var followingCountLabel : UILabel!
+	@IBOutlet weak var editProfileInfoButton : UIButton!
 	
 	
 	let appDelegate = UIApplication.shared.delegate as! AppDelegate
