@@ -106,7 +106,7 @@ class UserProfileViewController: UIViewController, UINavigationControllerDelegat
 	
 	func setAesthetics(){
 		userProfilePicture.layer.borderColor = UIColor.label.cgColor
-		userProfilePicture.layer.borderWidth = 5
+		userProfilePicture.layer.borderWidth = 2
 		userProfilePicture.layer.cornerRadius = 5
 	}
 	
@@ -170,6 +170,7 @@ class UserProfileViewController: UIViewController, UINavigationControllerDelegat
 			
 			cell.imageCell.image = ImageObject.image
 			cell.imageCell.contentMode = .scaleAspectFill
+			cell.imageCell.layer.cornerRadius = 5
 			
 			return cell
 		})
