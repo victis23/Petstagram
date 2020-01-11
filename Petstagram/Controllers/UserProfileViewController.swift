@@ -18,20 +18,6 @@ class UserProfileViewController: UIViewController, UINavigationControllerDelegat
 		case main
 	}
 	
-	struct UserProfileImageCollection : Hashable, Identifiable, Equatable {
-		var image : UIImage
-		var id :String
-		
-		func hash(into hasher : inout Hasher) {
-			hasher.combine(id)
-		}
-		
-		static func ==(lhs:UserProfileImageCollection, rhs: UserProfileImageCollection) -> Bool {
-			lhs.id == rhs.id
-		}
-	}
-	
-	
 	@IBOutlet weak var accountImages: UICollectionView!
 	@IBOutlet weak var userProfilePicture : UIImageView!
 	@IBOutlet weak var userNameLabel : UILabel!
@@ -46,7 +32,10 @@ class UserProfileViewController: UIViewController, UINavigationControllerDelegat
 	
 	var datasource : UICollectionViewDiffableDataSource<Sections,UserProfileImageCollection>!
 	
+	//MARK: Singletons
 	var userData: UserProfile = UserProfile.shared()
+	var userAuth = Auth.auth()
+	let defaults = UserDefaults()
 	
 	var images : [UserProfileImageCollection] = [] {
 		didSet {
@@ -60,13 +49,23 @@ class UserProfileViewController: UIViewController, UINavigationControllerDelegat
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		setProfilePhotoFromSavedImage()
 		setAesthetics()
+		uploadProfileImageToStorage(isRetrieve: true)
 		getUserName()
 		setNavigationBar()
 		setDataSource()
 		setSnapShot()
 		setSubscription()
 		setCollectionViewLayout()
+	}
+	
+	func setProfilePhotoFromSavedImage(){
+		
+		
+		guard let data = defaults.data(forKey: Keys.ProfilePhotoKey.profilePhoto) else {return}
+		guard let profileImage = UIImage(data: data) else {return}
+		self.userProfilePicture.image = profileImage
 	}
 	
 	override func viewDidAppear(_ animated: Bool) {
@@ -124,7 +123,7 @@ class UserProfileViewController: UIViewController, UINavigationControllerDelegat
 	func getUserName(){
 		
 		let db = Firestore.firestore()
-		guard let user = Auth.auth().currentUser?.uid else {fatalError()}
+		guard let user = userAuth.currentUser?.uid else {fatalError()}
 		
 		db.collection(user).document(Keys.GoogleFireStore.accountInfoDocument).getDocument { (usernameDocument, error) in
 			if let error = error {
@@ -158,7 +157,7 @@ class UserProfileViewController: UIViewController, UINavigationControllerDelegat
 			imageIDKeys.forEach { value in
 				if self.userProfileItems.contains(UserProfileImageCollection(image: value.value, id: value.key)) {
 					self.userProfileItems.removeAll { item -> Bool in
-						item.id == value.key
+						item.id == value.key || item.id == Keys.ProfilePhotoKey.profilePhoto
 					}
 					self.userProfileItems.append(UserProfileImageCollection(image: value.value, id: value.key))
 				}else{
@@ -185,7 +184,7 @@ class UserProfileViewController: UIViewController, UINavigationControllerDelegat
 	
 	func setNavigationBar(){
 		self.navigationItem.title = "Petstagram"
-		self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font : UIFont(name: "Billabong", size: 35)!]
+		self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font : UIFont(name: "Billabong", size: 34)!]
 		self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "square.stack.3d.up"), style: .plain, target: self, action: #selector(temporaryMethodForLoggingOut))
 		self.navigationController?.navigationBar.tintColor = .label
 	}
@@ -222,6 +221,7 @@ class UserProfileViewController: UIViewController, UINavigationControllerDelegat
 		coreDataModel.coreDataUserName = nil
 		
 		appDelegate.saveContext()
+		defaults.removeObject(forKey: Keys.ProfilePhotoKey.profilePhoto)
 		
 		do {
 			try Auth.auth().signOut()
@@ -243,10 +243,33 @@ extension UserProfileViewController {
 		userProfilePicture.image = selectedImage
 		userProfilePicture.contentMode = .scaleAspectFill
 		userProfilePicture.clipsToBounds = true
-		
-		
+		self.uploadProfileImageToStorage(isRetrieve: false)
 		dismiss(animated: true)
 		
 	}
 	
+	func uploadProfileImageToStorage(isRetrieve: Bool) {
+		
+		guard let user = userAuth.currentUser?.uid else {return}
+		let storage = Storage.storage().reference().child(user).child(Keys.ProfilePhotoKey.profilePhoto)
+		
+		switch isRetrieve {
+		case false :
+			guard let image = userProfilePicture.image?.pngData() else {return}
+			defaults.set(image, forKey: Keys.ProfilePhotoKey.profilePhoto)
+			storage.putData(image)
+		default:
+			storage.getData(maxSize: 99_999_999) { (data, error) in
+				if let error = error {
+					print(error.localizedDescription)
+					return
+				}
+				if let data = data {
+					guard let image = UIImage(data: data) else {return}
+					self.defaults.set(data, forKey: Keys.ProfilePhotoKey.profilePhoto)
+					self.userProfilePicture.image = image
+				}
+			}
+		}
+	}
 }
