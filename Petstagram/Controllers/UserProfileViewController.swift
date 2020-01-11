@@ -118,11 +118,11 @@ class UserProfileViewController: UIViewController, UINavigationControllerDelegat
 	func setSubscription(){
 		dataSubscriber = $userProfileItems
 			.eraseToAnyPublisher()
-			.debounce(for: 2, scheduler: DispatchQueue.global(qos: .background))
+			.debounce(for: 2, scheduler: DispatchQueue.main)
 			.sink { profileData in
 				profileData.forEach { item in
 					print("Image Pointer \(item.image) | id \(item.id)")
-					self.images.append(UserProfileImageCollection(image: item.image, id: UUID().uuidString))
+					self.images.append(UserProfileImageCollection(image: item.image, id: item.id))
 				}
 		}
 	}
