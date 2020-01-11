@@ -13,25 +13,10 @@ import Firebase
 
 class UserProfile {
 	
-	var username : String {
-		var userName = String()
-		guard let user = self.user else {fatalError()}
-		db.collection(user).document(Keys.GoogleFireStore.accountInfoDocument).getDocument { (usernameDocument, error) in
-			if let error = error {
-				print(error.localizedDescription)
-			}
-			guard let usernameDocument = usernameDocument else {fatalError()}
-			guard let retrievedUserName = usernameDocument[Keys.GoogleFireStore.accountInfoDocument] as? String else {fatalError()}
-			userName = retrievedUserName
-		}
-		return userName
-	}
-	
 	var imageData : [Data]?
 	let user = Auth.auth().currentUser?.uid
 	let db = Firestore.firestore()
 	let storage = Storage.storage().reference()
-	
 	
 	static private var sharedUserProfile = UserProfile()
 	
@@ -50,7 +35,7 @@ class UserProfile {
 	}
 	
 	func downloadImages(downloadedImages : @escaping (_ imageKey : [String:UIImage])->Void) {
-	
+		
 		var imageKey : [String:UIImage] = [:]
 		
 		guard let user = self.user else {fatalError()}
@@ -65,7 +50,7 @@ class UserProfile {
 			}
 			
 			list.items.forEach { item in
-				Storage.storage().reference(forURL: "\(item)").getData(maxSize: 999_999_999) { (data, error) in
+				Storage.storage().reference(forURL: "\(item)").getData(maxSize: 9_999_999) { (data, error) in
 					
 					if let error = error {
 						print(error.localizedDescription)
