@@ -13,7 +13,20 @@ import Firebase
 
 class UserProfile {
 	
-	var username : String?
+	var username : String {
+		var userName = String()
+		guard let user = self.user else {fatalError()}
+		db.collection(user).document(Keys.GoogleFireStore.accountInfoDocument).getDocument { (usernameDocument, error) in
+			if let error = error {
+				print(error.localizedDescription)
+			}
+			guard let usernameDocument = usernameDocument else {fatalError()}
+			guard let retrievedUserName = usernameDocument[Keys.GoogleFireStore.accountInfoDocument] as? String else {fatalError()}
+			userName = retrievedUserName
+		}
+		return userName
+	}
+	
 	var imageData : [Data]?
 	let user = Auth.auth().currentUser?.uid
 	let db = Firestore.firestore()
@@ -23,10 +36,7 @@ class UserProfile {
 	static private var sharedUserProfile = UserProfile()
 	
 	private init(){
-		self.username = String()
 		self.imageData = []
-		
-		print("New Instance \(self.username ?? "No Username") | \(self.imageData ?? [])")
 	}
 	
 	func uploadDataToFireBase(){
