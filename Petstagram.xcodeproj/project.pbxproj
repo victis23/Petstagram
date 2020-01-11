@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7D3ED8A923CA58B200CF8EB6 /* UserProfileImageCollectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D3ED8A823CA58B200CF8EB6 /* UserProfileImageCollectionModel.swift */; };
 		7D4A53F3239C66ED0079A96A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4A53F2239C66ED0079A96A /* AppDelegate.swift */; };
 		7D4A53F5239C66ED0079A96A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4A53F4239C66ED0079A96A /* SceneDelegate.swift */; };
 		7D4A53FA239C66ED0079A96A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D4A53F8239C66ED0079A96A /* Main.storyboard */; };
@@ -60,6 +61,7 @@
 
 /* Begin PBXFileReference section */
 		30BAF6D66359D4754EAD6306 /* Pods-Petstagram.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Petstagram.release.xcconfig"; path = "Target Support Files/Pods-Petstagram/Pods-Petstagram.release.xcconfig"; sourceTree = "<group>"; };
+		7D3ED8A823CA58B200CF8EB6 /* UserProfileImageCollectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileImageCollectionModel.swift; sourceTree = "<group>"; };
 		7D4A53EF239C66ED0079A96A /* Petstagram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Petstagram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D4A53F2239C66ED0079A96A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7D4A53F4239C66ED0079A96A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -255,6 +257,7 @@
 				7DB6BB3923B3CF51006D4991 /* AuthenticationItems+CoreDataProperties.swift */,
 				7D558185239DE31C0076AFEB /* AuthenticationModel.swift */,
 				7DCD743923C0595600BA9D52 /* UserProfile.swift */,
+				7D3ED8A823CA58B200CF8EB6 /* UserProfileImageCollectionModel.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -466,6 +469,7 @@
 				7D68E1AD23BD7E8D0084A2F0 /* AlbumImagesCollectionViewCell.swift in Sources */,
 				7D4A543D239C69F00079A96A /* LikesViewController.swift in Sources */,
 				7D4A53F3239C66ED0079A96A /* AppDelegate.swift in Sources */,
+				7D3ED8A923CA58B200CF8EB6 /* UserProfileImageCollectionModel.swift in Sources */,
 				7D4A543F239C69F00079A96A /* UserFeedViewController.swift in Sources */,
 				7D4A53F5239C66ED0079A96A /* SceneDelegate.swift in Sources */,
 				7DB6BB3A23B3CF51006D4991 /* AuthenticationItems+CoreDataClass.swift in Sources */,
