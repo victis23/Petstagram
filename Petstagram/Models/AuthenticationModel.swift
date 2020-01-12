@@ -32,7 +32,7 @@ struct Authentication {
 				
 				let userDefaults = UserDefaults()
 				userDefaults.set(self.email, forKey: Keys.keyChainKeys.email)
-				
+				Authentication.saveCredsToKeyChain(using: self.email, password: self.password)
 				segue(result)
 			}
 		default:
@@ -46,7 +46,7 @@ struct Authentication {
 				
 				let userDefaults = UserDefaults()
 				userDefaults.set(self.email, forKey: Keys.keyChainKeys.email)
-				
+				Authentication.saveCredsToKeyChain(using: self.email, password: self.password)
 				segue(result)
 			}
 		}
