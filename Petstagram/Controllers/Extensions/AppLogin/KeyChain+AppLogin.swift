@@ -27,7 +27,6 @@ extension AppLogin  {
 		var status = SecItemCopyMatching(query as CFDictionary, nil)
 		
 		switch status {
-			
 		case errSecSuccess:
 			var attributeToUpdate : [String:Any] = [:]
 			attributeToUpdate[String(kSecValueData)] = encodedPassword
@@ -36,7 +35,6 @@ extension AppLogin  {
 			if status != errSecSuccess {
 				throw error(from: status)
 			}
-			
 		case errSecItemNotFound:
 			query[String(kSecValueData)] = encodedPassword
 			
@@ -44,7 +42,6 @@ extension AppLogin  {
 			if status != errSecSuccess {
 				throw error(from: status)
 			}
-			
 		default:
 			throw error(from: status)
 		}
@@ -52,6 +49,39 @@ extension AppLogin  {
 	}
 	
 	func retrievePasswordFromKeychain(for userAccount : String) throws -> String? {
+		
+		var query : [String:Any] = [:]
+		
+		let matchLimit = kSecMatchLimit as String
+		let returnAttributes = kSecReturnAttributes as String
+		let returnData = kSecReturnData as String
+		let attributedAccount = kSecAttrAccount as String
+		
+		
+		query[matchLimit] = kSecMatchLimitOne
+		query[returnAttributes] = kCFBooleanTrue
+		query[returnData] = kCFBooleanTrue
+		query[attributedAccount] = userAccount
+		
+		var queryResult : AnyObject?
+		
+		let status = withUnsafeMutablePointer(to: &queryResult) {
+			SecItemCopyMatching(query as CFDictionary, $0)
+		}
+		
+		switch status {
+		case errSecSuccess:
+			guard
+				let queriedItem = queryResult as? [String:Any],
+				let passwordData = queriedItem[String(kSecValueData)] as? Data,
+				let password = String(data: passwordData, encoding: .utf8)
+				else {throw SecureStoreError.data2StringConversionError}
+			return password
+		case errSecItemNotFound:
+			return nil
+		default:
+			throw error(from: status)
+		}
 		
 	}
 	
