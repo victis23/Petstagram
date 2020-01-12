@@ -20,7 +20,8 @@ class UserProfileViewController: UIViewController {
 	
 	private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 	
-//	lazy var coreDataAuthModel = AuthenticationItems(context: (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext)
+	lazy var imagesCoreDataModel = ProfilePhotos(context: (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext)
+	
 	
 	enum Sections {
 		case main
