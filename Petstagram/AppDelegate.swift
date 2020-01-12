@@ -29,36 +29,23 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		
 		FirebaseApp.configure()
 		
-		//MARK: - Retrieve user email
+		//MARK: - Keychain Login
+		let userDefaults = UserDefaults()
 		
-		let retrievedPassword = Authentication.retrieveCredsFromKeychain()
-		print(retrievedPassword)
-		
-		
-		//MARK: - Core Data Implimentation
-	
-		let context = persistentContainer.viewContext
-		
-		let request = NSFetchRequest<AuthenticationItems>(entityName: "AuthenticationItems")
-		guard let fetchedCollection = try? context.fetch(request) else {return true}
-		
-		guard let email = fetchedCollection.last?.coreDataEmail, let password = fetchedCollection.last?.coreDataPassword else {return true}
-		
-		let firebaseAuth = Auth.auth()
-		firebaseAuth.signIn(withEmail: email, password: password) { (result, error) in
-			if let error = error {
-				print(error.localizedDescription)
-				return
+		if let email = userDefaults.string(forKey: Keys.keyChainKeys.email) {
+			
+			let password = Authentication.retrieveCredsFromKeychain()
+			
+			let firebaseAuth = Auth.auth()
+			firebaseAuth.signIn(withEmail: email, password: password) { (result, error) in
+				if let error = error {
+					print(error.localizedDescription)
+					return
+				}
+				
+				print("User has signed In...")
+				application.windows.first?.rootViewController?.performSegue(withIdentifier: Keys.Segues.accessSegue, sender: false)
 			}
-			
-			let currentUser = AuthenticationItems(context: context)
-			currentUser.coreDataEmail = email
-			currentUser.coreDataPassword = password
-			
-			self.saveContext()
-			
-			print("User has signed In...")
-			application.windows.first?.rootViewController?.performSegue(withIdentifier: Keys.Segues.accessSegue, sender: false)
 		}
 		return true
 	}
