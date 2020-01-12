@@ -25,6 +25,8 @@ class UserProfileViewController: UIViewController, UINavigationControllerDelegat
 	@IBOutlet weak var followerCountLabel : UILabel!
 	@IBOutlet weak var followingCountLabel : UILabel!
 	@IBOutlet weak var editProfileInfoButton : UIButton!
+	@IBOutlet weak var aboutThePetLabel: UILabel!
+	@IBOutlet weak var aboutTheOwnerLabel: UILabel!
 	
 	
 	let appDelegate = UIApplication.shared.delegate as! AppDelegate
@@ -49,7 +51,7 @@ class UserProfileViewController: UIViewController, UINavigationControllerDelegat
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		setProfilePhotoFromSavedImage()
+		setValuesFromUserDefaults()
 		setAesthetics()
 		uploadProfileImageToStorage(isRetrieve: true)
 		getUserName()
@@ -60,12 +62,14 @@ class UserProfileViewController: UIViewController, UINavigationControllerDelegat
 		setCollectionViewLayout()
 	}
 	
-	func setProfilePhotoFromSavedImage(){
+	func setValuesFromUserDefaults(){
 		
-		
-		guard let data = defaults.data(forKey: Keys.ProfilePhotoKey.profilePhoto) else {return}
-		guard let profileImage = UIImage(data: data) else {return}
+		guard let profileImageData = defaults.data(forKey: Keys.userDefaultsDB.profilePhoto) else {return}
+		guard let username = defaults.object(forKey: Keys.userDefaultsDB.username) as? String else {return}
+		guard let profileImage = UIImage(data: profileImageData) else {return}
 		self.userProfilePicture.image = profileImage
+		self.userNameLabel.text = username
+		
 	}
 	
 	override func viewDidAppear(_ animated: Bool) {
@@ -73,6 +77,11 @@ class UserProfileViewController: UIViewController, UINavigationControllerDelegat
 		super.viewDidAppear(animated)
 		
 		setImageDataToView()
+	}
+	
+	
+	@IBAction func editProfileTapped(_ sender: Any) {
+		
 	}
 	
 	@IBAction func tappedProfileImage(sender : UIButton) {
@@ -118,6 +127,9 @@ class UserProfileViewController: UIViewController, UINavigationControllerDelegat
 		userProfilePicture.layer.cornerRadius = 5
 		userNameLabel.text = ""
 		postCountLabel.text = ""
+		aboutThePetLabel.text = "About \(defaults.object(forKey: Keys.userDefaultsDB.username) as! String): This is where the user tells us about their pet."
+		aboutTheOwnerLabel.text = "About Me: This is where the user tells us about themself."
+		
 	}
 	
 	func getUserName(){
@@ -132,6 +144,7 @@ class UserProfileViewController: UIViewController, UINavigationControllerDelegat
 			guard let usernameDocument = usernameDocument else {fatalError()}
 			guard let retrievedUserName = usernameDocument[Keys.GoogleFireStore.usernameKey] as? String else {fatalError()}
 			self.userNameLabel.text = retrievedUserName
+			self.defaults.set(retrievedUserName, forKey: Keys.userDefaultsDB.username)
 		}
 		userNameLabel.font = UIFont.monospacedSystemFont(ofSize: 30, weight: .heavy)
 	}
@@ -157,11 +170,15 @@ class UserProfileViewController: UIViewController, UINavigationControllerDelegat
 			imageIDKeys.forEach { value in
 				if self.userProfileItems.contains(UserProfileImageCollection(image: value.value, id: value.key)) {
 					self.userProfileItems.removeAll { item -> Bool in
-						item.id == value.key || item.id == Keys.ProfilePhotoKey.profilePhoto
+						item.id == value.key || item.id == "profilePhoto"
 					}
-					self.userProfileItems.append(UserProfileImageCollection(image: value.value, id: value.key))
+					if value.key != "profilePhoto" {
+						self.userProfileItems.append(UserProfileImageCollection(image: value.value, id: value.key))
+					}
 				}else{
-					self.userProfileItems.append(UserProfileImageCollection(image: value.value, id: value.key))
+					if value.key != "profilePhoto" {
+						self.userProfileItems.append(UserProfileImageCollection(image: value.value, id: value.key))
+					}
 				}
 			}
 		})
@@ -221,7 +238,9 @@ class UserProfileViewController: UIViewController, UINavigationControllerDelegat
 		coreDataModel.coreDataUserName = nil
 		
 		appDelegate.saveContext()
-		defaults.removeObject(forKey: Keys.ProfilePhotoKey.profilePhoto)
+		
+		defaults.removeObject(forKey: Keys.userDefaultsDB.profilePhoto)
+		defaults.removeObject(forKey: Keys.userDefaultsDB.username)
 		
 		do {
 			try Auth.auth().signOut()
@@ -251,12 +270,12 @@ extension UserProfileViewController {
 	func uploadProfileImageToStorage(isRetrieve: Bool) {
 		
 		guard let user = userAuth.currentUser?.uid else {return}
-		let storage = Storage.storage().reference().child(user).child(Keys.ProfilePhotoKey.profilePhoto)
+		let storage = Storage.storage().reference().child(user).child(Keys.userDefaultsDB.profilePhoto)
 		
 		switch isRetrieve {
 		case false :
 			guard let image = userProfilePicture.image?.pngData() else {return}
-			defaults.set(image, forKey: Keys.ProfilePhotoKey.profilePhoto)
+			defaults.set(image, forKey: Keys.userDefaultsDB.profilePhoto)
 			storage.putData(image)
 		default:
 			storage.getData(maxSize: 99_999_999) { (data, error) in
@@ -266,7 +285,7 @@ extension UserProfileViewController {
 				}
 				if let data = data {
 					guard let image = UIImage(data: data) else {return}
-					self.defaults.set(data, forKey: Keys.ProfilePhotoKey.profilePhoto)
+					self.defaults.set(data, forKey: Keys.userDefaultsDB.profilePhoto)
 					self.userProfilePicture.image = image
 				}
 			}
