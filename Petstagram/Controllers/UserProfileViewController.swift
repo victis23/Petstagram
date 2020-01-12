@@ -20,7 +20,7 @@ class UserProfileViewController: UIViewController {
 	
 	private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 	
-	lazy var coreDataAuthModel = AuthenticationItems(context: (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext)
+//	lazy var coreDataAuthModel = AuthenticationItems(context: (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext)
 	
 	enum Sections {
 		case main
@@ -39,7 +39,7 @@ class UserProfileViewController: UIViewController {
 	@IBOutlet weak var aboutTheOwnerLabel: UILabel!
 	
 	let appDelegate = UIApplication.shared.delegate as! AppDelegate
-	let coreDataModel = AuthenticationItems(context: (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext)
+//	let coreDataModel = AuthenticationItems(context: (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext)
 	
 	var datasource : UICollectionViewDiffableDataSource<Sections,UserProfileImageCollection>!
 	

@@ -15,7 +15,7 @@ class UserFeedViewController: UIViewController {
 
 	let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 	
-	var coreDataAuthModel : AuthenticationItems!
+//	var coreDataAuthModel : AuthenticationItems!
 	
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -24,7 +24,7 @@ class UserFeedViewController: UIViewController {
     }
 	
 	func setupCoreDataAuthModel(){
-		coreDataAuthModel = AuthenticationItems(context: context)
+		
 	}
 	
 	func setupNavigation(){
