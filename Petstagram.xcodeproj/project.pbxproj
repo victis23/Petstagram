@@ -34,6 +34,7 @@
 		7D50726E23CAB59900FA54CA /* ProfilePhoto+UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D50726D23CAB59900FA54CA /* ProfilePhoto+UserProfileViewController.swift */; };
 		7D50727023CAB7E400FA54CA /* KeyChain+AppLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D50726F23CAB7E400FA54CA /* KeyChain+AppLogin.swift */; };
 		7D50727223CBA28D00FA54CA /* ErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D50727123CBA28D00FA54CA /* ErrorHandler.swift */; };
+		7D50727423CBA6DD00FA54CA /* KeyChainTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D50727323CBA6DD00FA54CA /* KeyChainTest.swift */; };
 		7D55817F239D2C710076AFEB /* LoginAesthetics+AppLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D55817E239D2C710076AFEB /* LoginAesthetics+AppLogin.swift */; };
 		7D558181239DDE2D0076AFEB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7D558180239DDE2D0076AFEB /* GoogleService-Info.plist */; };
 		7D558183239DDE810076AFEB /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 7D558182239DDE810076AFEB /* Podfile */; };
@@ -97,6 +98,7 @@
 		7D50726D23CAB59900FA54CA /* ProfilePhoto+UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfilePhoto+UserProfileViewController.swift"; sourceTree = "<group>"; };
 		7D50726F23CAB7E400FA54CA /* KeyChain+AppLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeyChain+AppLogin.swift"; sourceTree = "<group>"; };
 		7D50727123CBA28D00FA54CA /* ErrorHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHandler.swift; sourceTree = "<group>"; };
+		7D50727323CBA6DD00FA54CA /* KeyChainTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChainTest.swift; sourceTree = "<group>"; };
 		7D55817E239D2C710076AFEB /* LoginAesthetics+AppLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LoginAesthetics+AppLogin.swift"; sourceTree = "<group>"; };
 		7D558180239DDE2D0076AFEB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7D558182239DDE810076AFEB /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
@@ -205,6 +207,7 @@
 			isa = PBXGroup;
 			children = (
 				7D4A540C239C66EE0079A96A /* PetstagramTests.swift */,
+				7D50727323CBA6DD00FA54CA /* KeyChainTest.swift */,
 				7D4A540E239C66EE0079A96A /* Info.plist */,
 			);
 			path = PetstagramTests;
@@ -518,6 +521,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7D4A540D239C66EE0079A96A /* PetstagramTests.swift in Sources */,
+				7D50727423CBA6DD00FA54CA /* KeyChainTest.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
