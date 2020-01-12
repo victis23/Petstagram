@@ -127,8 +127,8 @@ class UserProfileViewController: UIViewController, UINavigationControllerDelegat
 		userProfilePicture.layer.cornerRadius = 5
 		userNameLabel.text = ""
 		postCountLabel.text = ""
-		aboutThePetLabel.text = "About \(defaults.object(forKey: Keys.userDefaultsDB.username) as! String): This is where the user tells us about their pet."
-		aboutTheOwnerLabel.text = "About Me: This is where the user tells us about themself."
+		aboutThePetLabel.text = "About \(defaults.object(forKey: Keys.userDefaultsDB.username) as! String): Higgsboy has been with the family since a pup. He is now 6 years old. He enjoys long walks on the beach, and casual talks..."
+		aboutTheOwnerLabel.text = "About Me: I am a retired Army Marine. Love animals, and I dont know what I would do without Higgsboy."
 		
 	}
 	
