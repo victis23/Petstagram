@@ -29,6 +29,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		
 		FirebaseApp.configure()
 		
+		//MARK: - Retrieve user email
+		
+		let retrievedPassword = Authentication.retrieveCredsFromKeychain()
+		print(retrievedPassword)
+		
 		
 		//MARK: - Core Data Implimentation
 	
