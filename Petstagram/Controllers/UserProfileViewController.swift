@@ -9,9 +9,18 @@
 import UIKit
 import FirebaseAuth
 import FirebaseFirestore
+import CoreData
 import Combine
 
 class UserProfileViewController: UIViewController {
+	
+	// MARK: Items Needed For CoreData
+	
+	private let applicationDelegate = UIApplication.shared.delegate as! AppDelegate
+	
+	private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+	
+	lazy var coreDataAuthModel = AuthenticationItems(context: (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext)
 	
 	enum Sections {
 		case main
