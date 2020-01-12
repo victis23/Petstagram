@@ -8,9 +8,9 @@ We all love our pets, right?
 
 ### What It Does
 
-1. Allows you to upload hi-definition photos of your pets directly from your device's stored image album or camera.
+1. Allows you to upload hi-definition photos of your pets directly from your device's stored image album or camera to your profile for others to see.
 
-2. Follow like minded people.
+2. Allows you to follow & communicate with other pet lovers.
 
 ## What inspired me to create this app.
 
