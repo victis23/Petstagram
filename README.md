@@ -16,8 +16,11 @@ We all love our pets, right?
 
 > If every memeber of your family can have a social media presence why not your pet? 
 
-Everybody loves their pet. I was sitting with some friends thinking about what sample project I could come up with for my portfolio when it dawned on me that perhaps I could make an Instagram clone for people's pets. \
-I knew it would be a daunting task. 
+Everybody loves their pet. I was sitting with some friends thinking about what sample project I could come up with for my portfolio when it dawned on me that perhaps I could make an Instagram clone for people's pets.
+
+I knew that re-creating the whole Instagram app would be a daunting task but I found the challenge interesting. An so I set off on the first part of the journey; creating the UI which is a mixure of storyboard and programatic items. Once the majority of the UI was created I wrote out a plan which included which features I would start out with and began coding. 
+
+No tutorials were involved in the creation of this app, so perhaps my implimentation varies from what the Facebook Devs did in the original app; again this is just my fun take on the Instagram app but for pets. 
 
 If you have any questions feel free to reach out to me, and if you're interested in checking out any of my marketing projects you can find them at: 
 
@@ -35,5 +38,8 @@ Combine \
 NSDiffableDataSourceSnapshot \
 UICollectionViewDiffableDataSource \
 UICollectionViewCompositionalLayout \
-Core Data
+Core Data \ 
+Photos \
+PhotoUI \
+Security (Apple Keychain)
 
