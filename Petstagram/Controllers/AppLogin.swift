@@ -237,15 +237,6 @@ class AppLogin: UIViewController{
 					// Caller creates collection on database for new user.
 					self?.userAuth.createUserNameOnServer()
 					
-					self?.userAuth.authentication = authorizationResult.credential
-					
-					self?.coreDataAuthModel.coreDataEmail = self?.userAuth.email
-					self?.coreDataAuthModel.coreDataPassword = self?.userAuth.password
-					self?.coreDataAuthModel.coreDataUserName = self?.userAuth.userName
-					self?.coreDataAuthModel.coreDataCredential = self?.userAuth.authentication
-					
-					self?.applicationDelegate.saveContext()
-					
 					self?.performSegue(withIdentifier: Keys.Segues.accessSegue, sender: true)
 			})
 		}
@@ -265,14 +256,6 @@ class AppLogin: UIViewController{
 				
 				}, segue: { [weak self](authResult) in
 					
-					self?.userAuth.authentication = authResult.credential
-					
-					self?.coreDataAuthModel.coreDataEmail = self?.userAuth.email
-					self?.coreDataAuthModel.coreDataPassword = self?.userAuth.password
-					self?.coreDataAuthModel.coreDataCredential = self?.userAuth.authentication
-					
-					self?.applicationDelegate.saveContext()
-//					self?.applicationDelegate.activateUserProfile()
 					self?.performSegue(withIdentifier: Keys.Segues.accessSegue, sender: false)
 			})
 		}catch(let error){
