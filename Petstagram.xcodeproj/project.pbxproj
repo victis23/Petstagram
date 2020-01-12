@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7D3ED8A923CA58B200CF8EB6 /* UserProfileImageCollectionModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D3ED8A823CA58B200CF8EB6 /* UserProfileImageCollectionModel.swift */; };
+		7D3ED8A923CA58B200CF8EB6 /* UserProfileImageCollection.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D3ED8A823CA58B200CF8EB6 /* UserProfileImageCollection.swift */; };
 		7D4A53F3239C66ED0079A96A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4A53F2239C66ED0079A96A /* AppDelegate.swift */; };
 		7D4A53F5239C66ED0079A96A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4A53F4239C66ED0079A96A /* SceneDelegate.swift */; };
 		7D4A53FA239C66ED0079A96A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D4A53F8239C66ED0079A96A /* Main.storyboard */; };
@@ -28,11 +28,12 @@
 		7D4A5444239C6A410079A96A /* Keys.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4A5443239C6A410079A96A /* Keys.swift */; };
 		7D4A5447239C6A800079A96A /* Billabong.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 7D4A5446239C6A800079A96A /* Billabong.ttf */; };
 		7D4A5449239C6AFA0079A96A /* AppLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4A5448239C6AFA0079A96A /* AppLogin.swift */; };
-		7D4A544C239C91E90079A96A /* CreateAccountAppLoginExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4A544B239C91E90079A96A /* CreateAccountAppLoginExtension.swift */; };
+		7D4A544C239C91E90079A96A /* AccountCreation+AppLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4A544B239C91E90079A96A /* AccountCreation+AppLogin.swift */; };
 		7D4A544F239CBBEC0079A96A /* IQKeyboardManagerSwift in Frameworks */ = {isa = PBXBuildFile; productRef = 7D4A544E239CBBEC0079A96A /* IQKeyboardManagerSwift */; };
-		7D50726C23CAB3EE00FA54CA /* CollectionViewMethods.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D50726B23CAB3EE00FA54CA /* CollectionViewMethods.swift */; };
-		7D50726E23CAB59900FA54CA /* ProfilePicture.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D50726D23CAB59900FA54CA /* ProfilePicture.swift */; };
-		7D55817F239D2C710076AFEB /* setLoginAreaAppLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D55817E239D2C710076AFEB /* setLoginAreaAppLogin.swift */; };
+		7D50726C23CAB3EE00FA54CA /* CollectionView+UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D50726B23CAB3EE00FA54CA /* CollectionView+UserProfileViewController.swift */; };
+		7D50726E23CAB59900FA54CA /* ProfilePhoto+UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D50726D23CAB59900FA54CA /* ProfilePhoto+UserProfileViewController.swift */; };
+		7D50727023CAB7E400FA54CA /* KeyChain+AppLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D50726F23CAB7E400FA54CA /* KeyChain+AppLogin.swift */; };
+		7D55817F239D2C710076AFEB /* LoginAesthetics+AppLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D55817E239D2C710076AFEB /* LoginAesthetics+AppLogin.swift */; };
 		7D558181239DDE2D0076AFEB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7D558180239DDE2D0076AFEB /* GoogleService-Info.plist */; };
 		7D558183239DDE810076AFEB /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 7D558182239DDE810076AFEB /* Podfile */; };
 		7D558186239DE31C0076AFEB /* AuthenticationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D558185239DE31C0076AFEB /* AuthenticationModel.swift */; };
@@ -63,7 +64,7 @@
 
 /* Begin PBXFileReference section */
 		30BAF6D66359D4754EAD6306 /* Pods-Petstagram.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Petstagram.release.xcconfig"; path = "Target Support Files/Pods-Petstagram/Pods-Petstagram.release.xcconfig"; sourceTree = "<group>"; };
-		7D3ED8A823CA58B200CF8EB6 /* UserProfileImageCollectionModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileImageCollectionModel.swift; sourceTree = "<group>"; };
+		7D3ED8A823CA58B200CF8EB6 /* UserProfileImageCollection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfileImageCollection.swift; sourceTree = "<group>"; };
 		7D4A53EF239C66ED0079A96A /* Petstagram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Petstagram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D4A53F2239C66ED0079A96A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7D4A53F4239C66ED0079A96A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -90,10 +91,11 @@
 		7D4A5443239C6A410079A96A /* Keys.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Keys.swift; sourceTree = "<group>"; };
 		7D4A5446239C6A800079A96A /* Billabong.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = Billabong.ttf; sourceTree = "<group>"; };
 		7D4A5448239C6AFA0079A96A /* AppLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppLogin.swift; sourceTree = "<group>"; };
-		7D4A544B239C91E90079A96A /* CreateAccountAppLoginExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateAccountAppLoginExtension.swift; sourceTree = "<group>"; };
-		7D50726B23CAB3EE00FA54CA /* CollectionViewMethods.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CollectionViewMethods.swift; sourceTree = "<group>"; };
-		7D50726D23CAB59900FA54CA /* ProfilePicture.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfilePicture.swift; sourceTree = "<group>"; };
-		7D55817E239D2C710076AFEB /* setLoginAreaAppLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = setLoginAreaAppLogin.swift; sourceTree = "<group>"; };
+		7D4A544B239C91E90079A96A /* AccountCreation+AppLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AccountCreation+AppLogin.swift"; sourceTree = "<group>"; };
+		7D50726B23CAB3EE00FA54CA /* CollectionView+UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CollectionView+UserProfileViewController.swift"; sourceTree = "<group>"; };
+		7D50726D23CAB59900FA54CA /* ProfilePhoto+UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfilePhoto+UserProfileViewController.swift"; sourceTree = "<group>"; };
+		7D50726F23CAB7E400FA54CA /* KeyChain+AppLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeyChain+AppLogin.swift"; sourceTree = "<group>"; };
+		7D55817E239D2C710076AFEB /* LoginAesthetics+AppLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LoginAesthetics+AppLogin.swift"; sourceTree = "<group>"; };
 		7D558180239DDE2D0076AFEB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7D558182239DDE810076AFEB /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		7D558185239DE31C0076AFEB /* AuthenticationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationModel.swift; sourceTree = "<group>"; };
@@ -257,8 +259,9 @@
 		7D50726923CAB35000FA54CA /* AppLogin */ = {
 			isa = PBXGroup;
 			children = (
-				7D4A544B239C91E90079A96A /* CreateAccountAppLoginExtension.swift */,
-				7D55817E239D2C710076AFEB /* setLoginAreaAppLogin.swift */,
+				7D4A544B239C91E90079A96A /* AccountCreation+AppLogin.swift */,
+				7D55817E239D2C710076AFEB /* LoginAesthetics+AppLogin.swift */,
+				7D50726F23CAB7E400FA54CA /* KeyChain+AppLogin.swift */,
 			);
 			path = AppLogin;
 			sourceTree = "<group>";
@@ -266,8 +269,8 @@
 		7D50726A23CAB36400FA54CA /* UserProfileViewController */ = {
 			isa = PBXGroup;
 			children = (
-				7D50726B23CAB3EE00FA54CA /* CollectionViewMethods.swift */,
-				7D50726D23CAB59900FA54CA /* ProfilePicture.swift */,
+				7D50726B23CAB3EE00FA54CA /* CollectionView+UserProfileViewController.swift */,
+				7D50726D23CAB59900FA54CA /* ProfilePhoto+UserProfileViewController.swift */,
 			);
 			path = UserProfileViewController;
 			sourceTree = "<group>";
@@ -279,7 +282,7 @@
 				7DB6BB3923B3CF51006D4991 /* AuthenticationItems+CoreDataProperties.swift */,
 				7D558185239DE31C0076AFEB /* AuthenticationModel.swift */,
 				7DCD743923C0595600BA9D52 /* UserProfile.swift */,
-				7D3ED8A823CA58B200CF8EB6 /* UserProfileImageCollectionModel.swift */,
+				7D3ED8A823CA58B200CF8EB6 /* UserProfileImageCollection.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -481,20 +484,21 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7D4A544C239C91E90079A96A /* CreateAccountAppLoginExtension.swift in Sources */,
-				7D50726C23CAB3EE00FA54CA /* CollectionViewMethods.swift in Sources */,
+				7D4A544C239C91E90079A96A /* AccountCreation+AppLogin.swift in Sources */,
+				7D50726C23CAB3EE00FA54CA /* CollectionView+UserProfileViewController.swift in Sources */,
 				7D558186239DE31C0076AFEB /* AuthenticationModel.swift in Sources */,
-				7D55817F239D2C710076AFEB /* setLoginAreaAppLogin.swift in Sources */,
+				7D55817F239D2C710076AFEB /* LoginAesthetics+AppLogin.swift in Sources */,
 				7D896A1C23C149AF0052C8E4 /* UserImageCollectionViewCell.swift in Sources */,
 				7D4A5441239C69F00079A96A /* ImageUploadViewController.swift in Sources */,
 				7D4A543C239C69F00079A96A /* SearchControllerViewController.swift in Sources */,
 				7D4A5440239C69F00079A96A /* UserProfileViewController.swift in Sources */,
 				7D68E1AD23BD7E8D0084A2F0 /* AlbumImagesCollectionViewCell.swift in Sources */,
+				7D50727023CAB7E400FA54CA /* KeyChain+AppLogin.swift in Sources */,
 				7D4A543D239C69F00079A96A /* LikesViewController.swift in Sources */,
 				7D4A53F3239C66ED0079A96A /* AppDelegate.swift in Sources */,
-				7D3ED8A923CA58B200CF8EB6 /* UserProfileImageCollectionModel.swift in Sources */,
+				7D3ED8A923CA58B200CF8EB6 /* UserProfileImageCollection.swift in Sources */,
 				7D4A543F239C69F00079A96A /* UserFeedViewController.swift in Sources */,
-				7D50726E23CAB59900FA54CA /* ProfilePicture.swift in Sources */,
+				7D50726E23CAB59900FA54CA /* ProfilePhoto+UserProfileViewController.swift in Sources */,
 				7D4A53F5239C66ED0079A96A /* SceneDelegate.swift in Sources */,
 				7DB6BB3A23B3CF51006D4991 /* AuthenticationItems+CoreDataClass.swift in Sources */,
 				7D4A5449239C6AFA0079A96A /* AppLogin.swift in Sources */,
