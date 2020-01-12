@@ -118,15 +118,15 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="V2q-sP-WgN">
                                 <rect key="frame" x="15" y="187" width="384" height="183"/>
                                 <subviews>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O6d-SF-zSd">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O6d-SF-zSd">
                                         <rect key="frame" x="0.0" y="0.0" width="384" height="61"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
-                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Agg-rE-gQM">
+                                    <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Agg-rE-gQM">
                                         <rect key="frame" x="0.0" y="61" width="384" height="61"/>
-                                        <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                        <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
@@ -136,6 +136,9 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pCY-1R-UwP">
                                                 <rect key="frame" x="0.0" y="0.0" width="384" height="61"/>
                                                 <state key="normal" title="Edit Profile"/>
+                                                <connections>
+                                                    <action selector="editProfileTapped:" destination="wmT-Bf-7fd" eventType="touchUpInside" id="MXO-Vf-vNV"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
@@ -178,6 +181,8 @@
                         <barButtonItem key="rightBarButtonItem" image="settings" id="oRT-8i-TgO"/>
                     </navigationItem>
                     <connections>
+                        <outlet property="aboutTheOwnerLabel" destination="Agg-rE-gQM" id="lEG-X2-Zlq"/>
+                        <outlet property="aboutThePetLabel" destination="O6d-SF-zSd" id="IBH-SK-1xH"/>
                         <outlet property="accountImages" destination="KCY-ab-YkI" id="zpf-3d-qjb"/>
                         <outlet property="editProfileInfoButton" destination="pCY-1R-UwP" id="PpX-uI-WBW"/>
                         <outlet property="followerCountLabel" destination="gQu-es-HeF" id="EyQ-op-jdX"/>
