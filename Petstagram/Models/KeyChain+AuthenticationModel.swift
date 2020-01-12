@@ -34,7 +34,7 @@ extension Authentication {
 		
 		if let email = email {
 			do {
-				guard let retrievedPassword = try storage.retrievePasswordFromKeychain(for: email) else {return "Failed"}
+				guard let retrievedPassword = try storage.retrievePasswordFromKeychain(for: email) else {return "Failed To Retrieve using \(email)"}
 				password = retrievedPassword
 			}catch(let e){
 				print(e.localizedDescription)
