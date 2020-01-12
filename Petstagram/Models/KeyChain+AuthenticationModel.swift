@@ -42,4 +42,17 @@ extension Authentication {
 		}
 		return password
 	}
+	
+	static func removeCredsFromKeyChain() {
+		
+		let keychainWrapper = GenericPassword(service: "Petstagram", accessGroup: nil)
+		let storage = KeyChainWrapper(keyChainHandler: keychainWrapper)
+		
+		do {
+			try storage.removeFromKeyChain()
+		}catch(let e){
+			print(e.localizedDescription)
+		}
+	}
+	
 }
