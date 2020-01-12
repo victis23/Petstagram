@@ -17,8 +17,7 @@ We all love our pets, right?
 > If every memeber of your family can have a social media presence why not your pet? 
 
 Everybody loves their pet. I was sitting with some friends thinking about what sample project I could come up with for my portfolio when it dawned on me that perhaps I could make an Instagram clone for people's pets. \
-
-I knew it would be a daunting task. \ 
+I knew it would be a daunting task. 
 
 If you have any questions feel free to reach out to me, and if you're interested in checking out any of my marketing projects you can find them at: 
 
