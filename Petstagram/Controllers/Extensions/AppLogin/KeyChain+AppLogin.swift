@@ -121,6 +121,15 @@ struct KeyChainWrapper  {
 		
 	}
 	
+	func removeFromKeyChain() throws {
+		let query = keyChainHandler.query
+		
+		let status = SecItemDelete(query as CFDictionary)
+		guard status == errSecSuccess || status == errSecItemNotFound else {
+			throw error(from: status)
+		}
+	}
+	
 	private func error(from status : OSStatus) -> SecureStoreError {
 		
 		let message = SecCopyErrorMessageString(status, nil) as String? ?? NSLocalizedString("Unhandled Error", comment: "")
