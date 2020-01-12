@@ -11,7 +11,17 @@
 import Foundation
 import Security
 
-extension AppLogin  {
+protocol KeyChainHandler {
+	var query : [String:Any] { get }
+}
+
+struct KeyChainWrapper  {
+	
+	let keyChainHandler : KeyChainHandler
+	
+	init(keyChainHandler : KeyChainHandler) {
+		self.keyChainHandler = keyChainHandler
+	}
 	
 	/// Method that adds the account and password to icloud keychain.
 	func savePasswordToKeychain(for email: String?, password: String?) throws {
@@ -23,7 +33,7 @@ extension AppLogin  {
 		
 		guard let encodedPassword = password.data(using: .utf8) else {throw SecureStoreError.string2DataConversionError}
 		
-		var query : [String : Any ]  = [:]
+		var query = keyChainHandler.query
 		
 		query[String(kSecAttrAccount)] = account
 		
@@ -53,7 +63,7 @@ extension AppLogin  {
 	
 	func retrievePasswordFromKeychain(for userAccount : String) throws -> String? {
 		
-		var query : [String:Any] = [:]
+		var query = keyChainHandler.query
 		
 //		let matchLimit = kSecMatchLimit as String
 //		let returnAttributes = kSecReturnAttributes as String
@@ -93,26 +103,5 @@ extension AppLogin  {
 		let message = SecCopyErrorMessageString(status, nil) as String? ?? NSLocalizedString("Unhandled Error", comment: "")
 		
 		return SecureStoreError.unhandledError(message: message)
-	}
-}
-
-public enum SecureStoreError: Error {
-	case string2DataConversionError
-	case data2StringConversionError
-	case unhandledError(message: String)
-}
-
-extension SecureStoreError: LocalizedError {
-	
-	public var errorDescription: String? {
-		
-		switch self {
-		case .string2DataConversionError:
-			return NSLocalizedString("String to Data conversion error", comment: "")
-		case .data2StringConversionError:
-			return NSLocalizedString("Data to String conversion error", comment: "")
-		case .unhandledError(let message):
-			return NSLocalizedString(message, comment: "")
-		}
 	}
 }
