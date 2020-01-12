@@ -13,7 +13,7 @@ import Firebase
 
 class UserProfile {
 	
-	var imageData : [Data]?
+	var imageData : Data?
 	let user = Auth.auth().currentUser?.uid
 	let db = Firestore.firestore()
 	let storage = Storage.storage().reference()
@@ -21,17 +21,17 @@ class UserProfile {
 	static private var sharedUserProfile = UserProfile()
 	
 	private init(){
-		self.imageData = []
+		self.imageData = Data()
 	}
 	
 	func uploadDataToFireBase(){
+		
 		guard let user = self.user else {fatalError()}
 		guard let imageData = self.imageData else {return}
-		let filePath = storage.child(user)
 		
-		imageData.forEach { data in
-			filePath.child("\(data.hashValue)").putData(data)
-		}
+		let filePath = storage.child(user)
+		filePath.child("\(imageData.hashValue)").putData(imageData)
+		self.imageData = nil
 	}
 	
 	func downloadImages(downloadedImages : @escaping (_ imageKey : [String:UIImage])->Void) {
