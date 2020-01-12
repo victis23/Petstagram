@@ -51,7 +51,7 @@ class ImageUploadViewController: UIViewController {
 		return indicator
 	}()
 	
-	lazy var selectedImageData : [Data] = []
+	lazy var selectedImageData : Data = Data()
 	lazy var userProfileInstance : UserProfile = UserProfile.shared()
 	
 	//MARK: View LifeCycle
@@ -127,10 +127,9 @@ class ImageUploadViewController: UIViewController {
 	@IBAction func shareToProfileTapped(sender: UIButton) {
 		
 		guard let imageData = selectedImage.image?.pngData() else {fatalError()}
-		
-		selectedImageData.append(imageData)
-		userProfileInstance.imageData = selectedImageData
-//		userProfileInstance.saveImageDataToCloud()
+			
+		userProfileInstance.imageData = imageData
+
 		userProfileInstance.uploadDataToFireBase()
 		
 	}
@@ -221,6 +220,7 @@ extension ImageUploadViewController: UINavigationControllerDelegate, UIImagePick
 				imagePickerController.sourceType = .camera
 				imagePickerController.cameraCaptureMode = .photo
 				imagePickerController.showsCameraControls = true
+				imagePickerController.allowsEditing = true
 				present(imagePickerController, animated: true)
 			}
 		}
