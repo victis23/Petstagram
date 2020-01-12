@@ -10,7 +10,7 @@ import Foundation
 
 extension Authentication {
 	
-	func saveCredsToKeyChain(using email:String, password:String) {
+	static func saveCredsToKeyChain(using email:String, password:String) {
 		
 		let keychainWrapper = GenericPassword(service: "Petstagram", accessGroup: nil)
 		let storage = KeyChainWrapper(keyChainHandler: keychainWrapper)
