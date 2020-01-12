@@ -16,16 +16,13 @@ We all love our pets, right?
 
 > If every memeber of your family can have a social media presence why not your pet? 
 
-I never knew I wanted to become a programmer until I ran into a brick wall at work. As the person in charge of keeping track of inventory at my job I found myself both annoyed and overwhelmed at the disorganized state of affairs. The problem was that the person who actually made inventory purchases was extremely disorganized — forgetting to document purchases or simply misplacing our supplier contact information. \
-This situation pushed me to seek out a solution. Now, I know what you're thinking; I could have just downloaded an app for inventory management or persuaded my employeers to purchase one, right? \
-Well, wrong! That's what the 99% would do. I'm trying to be an exceptional person and so I set out on the task of learning to program.
+Everybody loves their pet. I was sitting with some friends thinking about what sample project I could come up with for my portfolio when it dawned on me that perhaps I could make an Instagram clone for people's pets. \
 
-This is my very first project and I am proud of what I've managed to accomplish with no prior iOS developement experience and not following any tutorials. Additionally, I was able to put my designing skills to work. All of the artwork, UI, and UX I designed myself using Adobe Illustrator & XD. 
+I knew it would be a daunting task. \ 
 
 If you have any questions feel free to reach out to me, and if you're interested in checking out any of my marketing projects you can find them at: 
 
 * [www.duhmarket.com](http://www.duhmarket.com) - *Artwork, marketing packages*
-* [www.scott-leonard.net](http://www.scott-leonard.net) - *Photography*
 
 ### IDE
 This project was designed completely in **xCode** using Swift. However, I am also planning on eventually venturing into other environments such as **Flutter**. 
