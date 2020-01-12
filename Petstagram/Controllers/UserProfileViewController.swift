@@ -126,8 +126,9 @@ class UserProfileViewController: UIViewController {
 			.eraseToAnyPublisher()
 			.debounce(for: 2, scheduler: DispatchQueue.main)
 			.sink { profileData in
+				
 				profileData.forEach { item in
-					print("Image Pointer \(item.image) | id \(item.id)")
+					
 					self.images.append(UserProfileImageCollection(image: item.image, id: item.id))
 				}
 		}
