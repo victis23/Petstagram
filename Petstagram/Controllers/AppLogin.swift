@@ -8,17 +8,10 @@
 
 import UIKit
 import Combine
-import CoreData
 import FirebaseAuth
 import FirebaseFirestore
 
 class AppLogin: UIViewController{
-	
-	private let applicationDelegate = UIApplication.shared.delegate as! AppDelegate
-	
-	private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-	
-	lazy var coreDataAuthModel = AuthenticationItems(context: (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext)
 	
 	@IBOutlet weak var loginArea: UIView!
 	@IBOutlet weak var signInButton: UIButton!
