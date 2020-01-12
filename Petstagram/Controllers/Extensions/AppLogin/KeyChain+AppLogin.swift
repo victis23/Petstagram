@@ -14,9 +14,12 @@ import Security
 extension AppLogin  {
 	
 	/// Method that adds the account and password to icloud keychain.
-	func savePasswordToKeychain(for email: String, password: String) throws {
+	func savePasswordToKeychain(for email: String?, password: String?) throws {
 		
-		let account = email
+		guard
+			let account = email,
+			let password = password
+			else {return}
 		
 		guard let encodedPassword = password.data(using: .utf8) else {throw SecureStoreError.string2DataConversionError}
 		
