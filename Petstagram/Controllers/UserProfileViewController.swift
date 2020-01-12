@@ -9,14 +9,15 @@
 import UIKit
 import FirebaseAuth
 import FirebaseFirestore
-import FirebaseStorage
 import Combine
 
-class UserProfileViewController: UIViewController, UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+class UserProfileViewController: UIViewController {
 	
 	enum Sections {
 		case main
 	}
+	
+	//MARK: IBOutlets
 	
 	@IBOutlet weak var accountImages: UICollectionView!
 	@IBOutlet weak var userProfilePicture : UIImageView!
@@ -27,7 +28,6 @@ class UserProfileViewController: UIViewController, UINavigationControllerDelegat
 	@IBOutlet weak var editProfileInfoButton : UIButton!
 	@IBOutlet weak var aboutThePetLabel: UILabel!
 	@IBOutlet weak var aboutTheOwnerLabel: UILabel!
-	
 	
 	let appDelegate = UIApplication.shared.delegate as! AppDelegate
 	let coreDataModel = AuthenticationItems(context: (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext)
@@ -49,6 +49,8 @@ class UserProfileViewController: UIViewController, UINavigationControllerDelegat
 	@Published var userProfileItems : [UserProfileImageCollection] = []
 	var dataSubscriber : AnyCancellable!
 	
+	//MARK: - App LifeCycle
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		setValuesFromUserDefaults()
@@ -62,16 +64,6 @@ class UserProfileViewController: UIViewController, UINavigationControllerDelegat
 		setCollectionViewLayout()
 	}
 	
-	func setValuesFromUserDefaults(){
-		
-		guard let profileImageData = defaults.data(forKey: Keys.userDefaultsDB.profilePhoto) else {return}
-		guard let username = defaults.object(forKey: Keys.userDefaultsDB.username) as? String else {return}
-		guard let profileImage = UIImage(data: profileImageData) else {return}
-		self.userProfilePicture.image = profileImage
-		self.userNameLabel.text = username
-		
-	}
-	
 	override func viewDidAppear(_ animated: Bool) {
 		
 		super.viewDidAppear(animated)
@@ -80,45 +72,13 @@ class UserProfileViewController: UIViewController, UINavigationControllerDelegat
 	}
 	
 	
-	@IBAction func editProfileTapped(_ sender: Any) {
-		
-	}
+	//MARK: View Aesthetics
 	
-	@IBAction func tappedProfileImage(sender : UIButton) {
-		
-		let imageController = UIImagePickerController()
-		imageController.delegate = self
-		
-		let alertController = UIAlertController(title: "Media Source", message: "Where would you like to get your profile picture from?", preferredStyle: .actionSheet)
-		
-		let cameraOption = UIAlertAction(title: "Camera", style: .default, handler: { alert in
-			imageController.sourceType = .camera
-			imageController.allowsEditing = true
-			imageController.showsCameraControls = true
-			self.present(imageController, animated: true)
-		})
-		
-		let photoAlbumOption = UIAlertAction(title: "Photo Album", style: .default, handler: { alert in
-			imageController.sourceType = .photoLibrary
-			imageController.allowsEditing = true
-			self.present(imageController, animated: true)
-		})
-		
-		let cancelOption = UIAlertAction(title: "Cancel", style: .cancel, handler: { alert in
-			
-		})
-		
-		if UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
-			alertController.addAction(photoAlbumOption)
-		}
-		
-		if UIImagePickerController.isSourceTypeAvailable(.camera) {
-			alertController.addAction(cameraOption)
-		}
-		
-		alertController.addAction(cancelOption)
-		
-		present(alertController, animated: true)
+	func setNavigationBar(){
+		self.navigationItem.title = "Petstagram"
+		self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font : UIFont(name: "Billabong", size: 34)!]
+		self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "square.stack.3d.up"), style: .plain, target: self, action: #selector(temporaryMethodForLoggingOut))
+		self.navigationController?.navigationBar.tintColor = .label
 	}
 	
 	func setAesthetics(){
@@ -129,6 +89,18 @@ class UserProfileViewController: UIViewController, UINavigationControllerDelegat
 		postCountLabel.text = ""
 		aboutThePetLabel.text = "About \(defaults.object(forKey: Keys.userDefaultsDB.username) as! String): Higgsboy has been with the family since a pup. He is now 6 years old. He enjoys long walks on the beach, and casual talks..."
 		aboutTheOwnerLabel.text = "About Me: I am a retired Army Marine. Love animals, and I dont know what I would do without Higgsboy."
+		
+	}
+	
+	// MARK: Data Retrieval Methods
+	
+	func setValuesFromUserDefaults(){
+		
+		guard let profileImageData = defaults.data(forKey: Keys.userDefaultsDB.profilePhoto) else {return}
+		guard let username = defaults.object(forKey: Keys.userDefaultsDB.username) as? String else {return}
+		guard let profileImage = UIImage(data: profileImageData) else {return}
+		self.userProfilePicture.image = profileImage
+		self.userNameLabel.text = username
 		
 	}
 	
@@ -184,51 +156,13 @@ class UserProfileViewController: UIViewController, UINavigationControllerDelegat
 		})
 	}
 	
-	func setCollectionViewLayout(){
+	//MARK: IBActions
+	
+	@IBAction func editProfileTapped(_ sender: Any) {
 		
-		let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
-		let cell = NSCollectionLayoutItem(layoutSize: itemSize)
-		cell.contentInsets = NSDirectionalEdgeInsets(top: 1, leading: 1, bottom: 1, trailing: 1)
-		
-		let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(0.4))
-		let cellGroup = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: cell, count: 3)
-		
-		let section = NSCollectionLayoutSection(group: cellGroup)
-		
-		let layout = UICollectionViewCompositionalLayout(section: section)
-		accountImages.collectionViewLayout = layout
 	}
 	
-	func setNavigationBar(){
-		self.navigationItem.title = "Petstagram"
-		self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font : UIFont(name: "Billabong", size: 34)!]
-		self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "square.stack.3d.up"), style: .plain, target: self, action: #selector(temporaryMethodForLoggingOut))
-		self.navigationController?.navigationBar.tintColor = .label
-	}
-	
-	func setDataSource(){
-		datasource = UICollectionViewDiffableDataSource<Sections,UserProfileImageCollection>(collectionView: accountImages, cellProvider: { (collectionView, indexPath, ImageObject) -> UICollectionViewCell? in
-			
-			guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "image", for: indexPath) as? UserImageCollectionViewCell else {fatalError()}
-			
-			cell.imageCell.image = ImageObject.image
-			cell.imageCell.contentMode = .scaleAspectFill
-			cell.imageCell.layer.cornerRadius = 5
-			
-			return cell
-		})
-	}
-	
-	func setSnapShot(){
-		var snapShot = NSDiffableDataSourceSnapshot<Sections,UserProfileImageCollection>()
-		snapShot.appendSections([.main])
-		snapShot.appendItems(self.images, toSection: .main)
-		datasource.apply(snapShot, animatingDifferences: true, completion: {
-			
-		})
-	}
-	
-	
+	//MARK: Navigation
 	
 	@objc func temporaryMethodForLoggingOut(){
 		
@@ -250,45 +184,5 @@ class UserProfileViewController: UIViewController, UINavigationControllerDelegat
 		
 		performSegue(withIdentifier: Keys.Segues.signOut, sender: nil)
 		
-	}
-}
-
-extension UserProfileViewController {
-	
-	func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
-		
-		guard let selectedImage = info[.editedImage] as? UIImage else {return}
-		
-		userProfilePicture.image = selectedImage
-		userProfilePicture.contentMode = .scaleAspectFill
-		userProfilePicture.clipsToBounds = true
-		self.uploadProfileImageToStorage(isRetrieve: false)
-		dismiss(animated: true)
-		
-	}
-	
-	func uploadProfileImageToStorage(isRetrieve: Bool) {
-		
-		guard let user = userAuth.currentUser?.uid else {return}
-		let storage = Storage.storage().reference().child(user).child(Keys.userDefaultsDB.profilePhoto)
-		
-		switch isRetrieve {
-		case false :
-			guard let image = userProfilePicture.image?.pngData() else {return}
-			defaults.set(image, forKey: Keys.userDefaultsDB.profilePhoto)
-			storage.putData(image)
-		default:
-			storage.getData(maxSize: 99_999_999) { (data, error) in
-				if let error = error {
-					print(error.localizedDescription)
-					return
-				}
-				if let data = data {
-					guard let image = UIImage(data: data) else {return}
-					self.defaults.set(data, forKey: Keys.userDefaultsDB.profilePhoto)
-					self.userProfilePicture.image = image
-				}
-			}
-		}
 	}
 }
