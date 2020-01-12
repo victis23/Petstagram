@@ -15,6 +15,29 @@ protocol KeyChainHandler {
 	var query : [String:Any] { get }
 }
 
+struct GenericPassword : KeyChainHandler {
+	
+	let service : String
+	let accessGroup : String?
+	
+	var query: [String : Any] {
+		
+		var query : [String : Any] = [:]
+		query[String(kSecClass)] = kSecClassGenericPassword
+		query[String(kSecAttrService)] = service
+		
+		if let accessGroup = accessGroup {
+			query[String(kSecAttrAccessGroup)] = accessGroup
+		}
+		return query
+	}
+	
+	init(service : String, accessGroup : String? = nil) {
+		self.service = service
+		self.accessGroup = accessGroup
+	}
+}
+
 struct KeyChainWrapper  {
 	
 	let keyChainHandler : KeyChainHandler
