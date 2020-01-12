@@ -50,16 +50,26 @@ class UserProfile {
 			}
 			
 			list.items.forEach { item in
-				Storage.storage().reference(forURL: "\(item)").getData(maxSize: 9_999_999) { (data, error) in
-					
+				Storage.storage().reference(forURL: "\(item)").getMetadata { (metaData, Error) in
 					if let error = error {
 						print(error.localizedDescription)
 						return
 					}
-					
-					guard let data = data, let image = UIImage(data: data) else {return}
-					imageKey["\("\(item)".split(separator: "/")[3])"] = image
-					downloadedImages(imageKey)
+					if let metaData = metaData {
+						
+						Storage.storage().reference(forURL: "\(item)").getData(maxSize: 9_999_999) { (data, error) in
+							
+							if let error = error {
+								print(error.localizedDescription)
+								return
+							}
+							
+							guard let data = data, let image = UIImage(data: data) else {return}
+							imageKey["\("\(item)".split(separator: "/")[3])"] = image
+							print("\(metaData.name ?? "No Name") | \("\(item)".split(separator: "/")[3])")
+							downloadedImages(imageKey)
+						}
+					}
 				}
 			}
 		}
