@@ -167,22 +167,22 @@ class UserProfileViewController: UIViewController {
 	
 	@objc func temporaryMethodForLoggingOut(){
 		
-		coreDataModel.coreDataEmail = nil
-		coreDataModel.coreDataPassword = nil
-		coreDataModel.coreDataCredential = nil
-		coreDataModel.coreDataUserName = nil
-		
-		appDelegate.saveContext()
-		
+		// Removes saved items from Userdefaults().
 		defaults.removeObject(forKey: Keys.userDefaultsDB.profilePhoto)
 		defaults.removeObject(forKey: Keys.userDefaultsDB.username)
+		defaults.removeObject(forKey: Keys.keyChainKeys.email)
 		
+		// Removes all items from keychain.
+		Authentication.removeCredsFromKeyChain()
+		
+		// Signs user out of Google FireStore Service.
 		do {
 			try Auth.auth().signOut()
 		}catch(let error){
 			print(error.localizedDescription)
 		}
 		
+		// Returns user to login screen.
 		performSegue(withIdentifier: Keys.Segues.signOut, sender: nil)
 		
 	}
