@@ -28,6 +28,11 @@ struct Authentication {
 					return
 				}
 				guard let result = result else {return}
+				print("These were the items used Email - \(self.email) | Password - \(self.password)")
+				
+				let userDefaults = UserDefaults()
+				userDefaults.set(self.email, forKey: Keys.keyChainKeys.email)
+				
 				segue(result)
 			}
 		default:
@@ -37,6 +42,11 @@ struct Authentication {
 					return
 				}
 				guard let result = result else {return}
+				print("These were the items used Email - \(self.email) | Password - \(self.password)")
+				
+				let userDefaults = UserDefaults()
+				userDefaults.set(self.email, forKey: Keys.keyChainKeys.email)
+				
 				segue(result)
 			}
 		}
