@@ -33,4 +33,9 @@ struct Keys {
 		static var profilePhoto = "profilePhoto"
 		static var username = "userName"
 	}
+	
+	struct keyChainKeys {
+		static var email = "email"
+		static var password = "password"
+	}
 }
