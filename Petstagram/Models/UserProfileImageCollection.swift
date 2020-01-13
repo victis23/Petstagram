@@ -7,10 +7,12 @@
 //
 
 import UIKit
+import FirebaseStorage
 
 struct UserProfileImageCollection : Hashable, Identifiable, Equatable {
 	var image : UIImage
 	var timeStamp : Date
+	var metaData : StorageMetadata
 	var id :String
 	
 	func hash(into hasher : inout Hasher) {
