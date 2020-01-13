@@ -189,9 +189,10 @@ class UserProfileViewController: UIViewController {
 	
 	func sortPhotos(){
 		
-//		userProfileItems.sort { (value1, value2) -> Bool in
-//			value1.timeStamp < value2.timeStamp
-//		}
+		userProfileItems.sort { (value1, value2) -> Bool in
+			value1.timeStamp < value2.timeStamp
+		}
+		
 		userProfileItems.forEach { item in
 			print("Item: \(item.id) | \(item.metaData.name ?? "No Value") | \(item.metaData.timeCreated!) | timestamp: \(item.timeStamp)")
 		}
