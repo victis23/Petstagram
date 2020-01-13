@@ -53,8 +53,8 @@ class UserProfileViewController: UIViewController {
 	var images : [UserProfileImageCollection] = [] {
 		didSet {
 			postCountLabel.text = "\(images.count)"
-			saveItemsToCoreData()
 			setSnapShot()
+			saveItemsToCoreData()
 		}
 	}
 	
@@ -201,12 +201,16 @@ class UserProfileViewController: UIViewController {
 	
 	func saveItemsToCoreData(){
 		
-		images.forEach { item in
-			
-			imagesCoreDataModel.name = item.id
-			imagesCoreDataModel.photoData = item.image
-			imagesCoreDataModel.timeStamp = item.timeStamp
-		}
+		var savedUserImageObjects : [String] = []
+		
+		let limit = images.count > 9 ? 9 : images.count
+		
+			for i in 0..<limit {
+				savedUserImageObjects.append(images[i].id)
+			}
+		
+		
+		imagesCoreDataModel.photoData = savedUserImageObjects as NSObject
 		appDelegate.saveContext()
 	}
 	
@@ -225,10 +229,14 @@ class UserProfileViewController: UIViewController {
 		}
 		
 		userProfileCoreDataCollection.forEach { item in
-			print(item.name ?? "No data was retrieved from fetchDataFromCoreData() method!")
+			if let userObject = item.photoData as? [String] {
+				
+				userObject.forEach { item in
+					print(item)
+				}
+			}
 		}
 		
-		print(userProfileCoreDataCollection)
 		
 		// Remove items from coreData once they are retrieved.
 		removeItemsFromCoreData()
