@@ -132,16 +132,17 @@ class UserProfileViewController: UIViewController {
 		userNameLabel.font = UIFont.monospacedSystemFont(ofSize: 30, weight: .heavy)
 	}
 	
+	/// This method waits until all images are loaded into memory before adding them to the userprofile collection.
+	/// - Important: If the delay (debounce) is less than 2 seconds the app will crash because the data is collected in iterative loop **identifiers will not be unique!**
 	func setSubscription(){
 		dataSubscriber = $userProfileItems
 			.eraseToAnyPublisher()
-			.debounce(for: 2, scheduler: DispatchQueue.main)
+			.debounce(for: 1, scheduler: DispatchQueue.main)
 			.sink { profileData in
 				
 				profileData.forEach { item in
 					
 					self.images.append(UserProfileImageCollection(image: item.image, timeStamp: item.timeStamp, metaData: item.metaData, id: item.id))
-					
 				}
 		}
 	}
@@ -165,22 +166,24 @@ class UserProfileViewController: UIViewController {
 						guard
 							let data = data,
 							let image = UIImage(data: data)
-						else {return}
+							else {return}
 						
 						if self.userProfileItems.contains(UserProfileImageCollection(image: image, timeStamp: date, metaData: mData, id: fileName)) {
+							
 							self.userProfileItems.removeAll { item -> Bool in
 								item.id == fileName || item.id == "profilePhoto"
 							}
-							
 							if fileName != "profilePhoto" {
 								self.userProfileItems.append(UserProfileImageCollection(image: image, timeStamp: date, metaData: mData, id: fileName))
 							}
 						}else{
+							
 							if fileName != "profilePhoto" {
 								self.userProfileItems.append(UserProfileImageCollection(image: image, timeStamp: date, metaData: mData, id: fileName))
 							}
 						}
 						self.sortPhotos()
+						self.saveItemsToCoreData()
 					}
 				}
 			}
@@ -189,13 +192,14 @@ class UserProfileViewController: UIViewController {
 	
 	func sortPhotos(){
 		
+		// Sort from newest to oldest
 		userProfileItems.sort { (value1, value2) -> Bool in
-			value1.timeStamp < value2.timeStamp
+			value1.timeStamp > value2.timeStamp
 		}
+	}
+	
+	func saveItemsToCoreData(){
 		
-		userProfileItems.forEach { item in
-			print("Item: \(item.id) | \(item.metaData.name ?? "No Value") | \(item.metaData.timeCreated!) | timestamp: \(item.timeStamp)")
-		}
 	}
 	
 	
