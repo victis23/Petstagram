@@ -9,6 +9,7 @@
 import UIKit
 import FirebaseAuth
 import FirebaseFirestore
+import FirebaseStorage
 import CoreData
 import Combine
 
@@ -40,7 +41,7 @@ class UserProfileViewController: UIViewController {
 	@IBOutlet weak var aboutTheOwnerLabel: UILabel!
 	
 	let appDelegate = UIApplication.shared.delegate as! AppDelegate
-//	let coreDataModel = AuthenticationItems(context: (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext)
+	//	let coreDataModel = AuthenticationItems(context: (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext)
 	
 	var datasource : UICollectionViewDiffableDataSource<Sections,UserProfileImageCollection>!
 	
@@ -139,7 +140,8 @@ class UserProfileViewController: UIViewController {
 				
 				profileData.forEach { item in
 					
-					self.images.append(UserProfileImageCollection(image: item.image, id: item.id))
+					self.images.append(UserProfileImageCollection(image: item.image, timeStamp: item.timeStamp, metaData: item.metaData, id: item.id))
+					
 				}
 		}
 	}
@@ -148,24 +150,53 @@ class UserProfileViewController: UIViewController {
 		
 		self.images = []
 		
-		userData.downloadImages(downloadedImages: { imageIDKeys, metaData   in
+		if let user = userAuth.currentUser?.uid {
 			
-			imageIDKeys.forEach { value in
-				if self.userProfileItems.contains(UserProfileImageCollection(image: value.value, id: value.key)) {
-					self.userProfileItems.removeAll { item -> Bool in
-						item.id == value.key || item.id == "profilePhoto"
-					}
-					if value.key != "profilePhoto" {
-						self.userProfileItems.append(UserProfileImageCollection(image: value.value, id: value.key))
-					}
-				}else{
-					if value.key != "profilePhoto" {
-						self.userProfileItems.append(UserProfileImageCollection(image: value.value, id: value.key))
+			userData.downloadImages { (metaData) in
+				metaData.forEach { mData in
+					guard let fileName = mData.name else {return}
+					guard let date = mData.timeCreated else {return}
+					Storage.storage().reference().child(user).child(fileName).getData(maxSize: 99_999_999) { (data, error) in
+						
+						if let error = error {
+							print(error.localizedDescription)
+						}
+						
+						guard
+							let data = data,
+							let image = UIImage(data: data)
+						else {return}
+						
+						if self.userProfileItems.contains(UserProfileImageCollection(image: image, timeStamp: date, metaData: mData, id: fileName)) {
+							self.userProfileItems.removeAll { item -> Bool in
+								item.id == fileName || item.id == "profilePhoto"
+							}
+							
+							if fileName != "profilePhoto" {
+								self.userProfileItems.append(UserProfileImageCollection(image: image, timeStamp: date, metaData: mData, id: fileName))
+							}
+						}else{
+							if fileName != "profilePhoto" {
+								self.userProfileItems.append(UserProfileImageCollection(image: image, timeStamp: date, metaData: mData, id: fileName))
+							}
+						}
+						self.sortPhotos()
 					}
 				}
 			}
-		})
+		}
 	}
+	
+	func sortPhotos(){
+		
+//		userProfileItems.sort { (value1, value2) -> Bool in
+//			value1.timeStamp < value2.timeStamp
+//		}
+		userProfileItems.forEach { item in
+			print("Item: \(item.id) | \(item.metaData.name ?? "No Value") | \(item.metaData.timeCreated!) | timestamp: \(item.timeStamp)")
+		}
+	}
+	
 	
 	//MARK: IBActions
 	
