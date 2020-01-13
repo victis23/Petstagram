@@ -53,6 +53,7 @@ class UserProfileViewController: UIViewController {
 	var images : [UserProfileImageCollection] = [] {
 		didSet {
 			postCountLabel.text = "\(images.count)"
+			saveItemsToCoreData()
 			setSnapShot()
 		}
 	}
@@ -64,6 +65,7 @@ class UserProfileViewController: UIViewController {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		fetchDataFromCoreData()
 		setValuesFromUserDefaults()
 		setAesthetics()
 		uploadProfileImageToStorage(isRetrieve: true)
@@ -204,6 +206,37 @@ class UserProfileViewController: UIViewController {
 			imagesCoreDataModel.name = item.id
 			imagesCoreDataModel.photoData = item.image
 			imagesCoreDataModel.timeStamp = item.timeStamp
+		}
+		appDelegate.saveContext()
+	}
+	
+	func fetchDataFromCoreData(){
+		
+		var userProfileCoreDataCollection : [ProfilePhotos] = []
+		
+		let request = NSFetchRequest<ProfilePhotos>(entityName: "ProfilePhotos")
+		let deleteRequest = NSBatchDeleteRequest(fetchRequest: NSFetchRequest<NSFetchRequestResult>(entityName: "ProfilePhotos"))
+		
+		do {
+			let object = try context.fetch(request)
+			userProfileCoreDataCollection.append(contentsOf: object)
+		}catch(let e){
+			print(e.localizedDescription)
+		}
+		
+		userProfileCoreDataCollection.forEach { item in
+			print(item.name ?? "No data was retrieved from fetchDataFromCoreData() method!")
+		}
+		
+		print(userProfileCoreDataCollection)
+		
+		// Remove items from coreData once they are retrieved.
+		
+		do{
+			try context.execute(deleteRequest)
+			appDelegate.saveContext()
+		}catch(let e){
+			print(e.localizedDescription)
 		}
 	}
 	
