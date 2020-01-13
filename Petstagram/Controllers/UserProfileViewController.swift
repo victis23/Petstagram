@@ -215,7 +215,7 @@ class UserProfileViewController: UIViewController {
 		var userProfileCoreDataCollection : [ProfilePhotos] = []
 		
 		let request = NSFetchRequest<ProfilePhotos>(entityName: "ProfilePhotos")
-		let deleteRequest = NSBatchDeleteRequest(fetchRequest: NSFetchRequest<NSFetchRequestResult>(entityName: "ProfilePhotos"))
+		
 		
 		do {
 			let object = try context.fetch(request)
@@ -231,6 +231,13 @@ class UserProfileViewController: UIViewController {
 		print(userProfileCoreDataCollection)
 		
 		// Remove items from coreData once they are retrieved.
+		removeItemsFromCoreData()
+		
+	}
+	
+	func removeItemsFromCoreData(){
+		
+		let deleteRequest = NSBatchDeleteRequest(fetchRequest: NSFetchRequest<NSFetchRequestResult>(entityName: "ProfilePhotos"))
 		
 		do{
 			try context.execute(deleteRequest)
