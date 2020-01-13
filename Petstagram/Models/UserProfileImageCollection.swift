@@ -10,6 +10,7 @@ import UIKit
 
 struct UserProfileImageCollection : Hashable, Identifiable, Equatable {
 	var image : UIImage
+	var timeStamp : Date
 	var id :String
 	
 	func hash(into hasher : inout Hasher) {
