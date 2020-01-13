@@ -34,9 +34,8 @@ class UserProfile {
 		self.imageData = nil
 	}
 	
-	func downloadImages(downloadedImages : @escaping (_ imageKey : [String:UIImage], _ metaData : [StorageMetadata])->Void) {
+	func downloadImages(downloadedImages : @escaping (_ metaData : [StorageMetadata])->Void) {
 		
-		var imageKey : [String:UIImage] = [:]
 		var metaDataKeys : [StorageMetadata] = []
 		
 		guard let user = self.user else {fatalError()}
@@ -58,19 +57,8 @@ class UserProfile {
 					}
 					if let metaData = metaData {
 						
-						Storage.storage().reference(forURL: "\(item)").getData(maxSize: 9_999_999) { (data, error) in
-							
-							if let error = error {
-								print(error.localizedDescription)
-								return
-							}
-							
-							guard let data = data, let image = UIImage(data: data) else {return}
-							imageKey["\("\(item)".split(separator: "/")[3])"] = image
 							metaDataKeys.append(metaData)
-							
-							downloadedImages(imageKey, metaDataKeys)
-						}
+							downloadedImages(metaDataKeys)
 					}
 				}
 			}
