@@ -133,7 +133,7 @@ class UserProfileViewController: UIViewController {
 	}
 	
 	/// This method waits until all images are loaded into memory before adding them to the userprofile collection.
-	/// - Important: If the delay (debounce) is less than 2 seconds the app will crash because the data is collected in iterative loop **identifiers will not be unique!**
+	/// - Important: If the delay (debounce) is less than 1 seconds the app will crash because the data is collected in iterative loop **identifiers will not be unique!**
 	func setSubscription(){
 		dataSubscriber = $userProfileItems
 			.eraseToAnyPublisher()
@@ -183,7 +183,6 @@ class UserProfileViewController: UIViewController {
 							}
 						}
 						self.sortPhotos()
-						self.saveItemsToCoreData()
 					}
 				}
 			}
@@ -200,6 +199,12 @@ class UserProfileViewController: UIViewController {
 	
 	func saveItemsToCoreData(){
 		
+		images.forEach { item in
+			
+			imagesCoreDataModel.name = item.id
+			imagesCoreDataModel.photoData = item.image
+			imagesCoreDataModel.timeStamp = item.timeStamp
+		}
 	}
 	
 	
