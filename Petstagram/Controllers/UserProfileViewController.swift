@@ -21,9 +21,6 @@ class UserProfileViewController: UIViewController {
 	
 	private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 	
-	lazy var imagesCoreDataModel = ProfilePhotos(context: (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext)
-	
-	
 	enum Sections {
 		case main
 	}
@@ -201,16 +198,18 @@ class UserProfileViewController: UIViewController {
 	
 	func saveItemsToCoreData(){
 		
-		var savedUserImageObjects : [String] = []
 		
 		let limit = images.count > 9 ? 9 : images.count
 		
+
 			for i in 0..<limit {
-				savedUserImageObjects.append(images[i].id)
+				let imageCoreDataModel = ProfilePhotos(context: context)
+				imageCoreDataModel.photoName = images[i].id
+				imageCoreDataModel.date = images[i].timeStamp
+				imageCoreDataModel.photo = images[i].image.pngData()
+
 			}
 		
-		
-		imagesCoreDataModel.photoData = savedUserImageObjects as NSObject
 		appDelegate.saveContext()
 	}
 	
@@ -229,14 +228,8 @@ class UserProfileViewController: UIViewController {
 		}
 		
 		userProfileCoreDataCollection.forEach { item in
-			if let userObject = item.photoData as? [String] {
-				
-				userObject.forEach { item in
-					print(item)
-				}
-			}
+			print("Name: \(item.photoName ?? "No photo name!") | \(item.date!)")
 		}
-		
 		
 		// Remove items from coreData once they are retrieved.
 		removeItemsFromCoreData()
