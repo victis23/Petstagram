@@ -148,7 +148,7 @@ class UserProfileViewController: UIViewController {
 		
 		self.images = []
 		
-		userData.downloadImages(downloadedImages: { imageIDKeys  in
+		userData.downloadImages(downloadedImages: { imageIDKeys, metaData   in
 			
 			imageIDKeys.forEach { value in
 				if self.userProfileItems.contains(UserProfileImageCollection(image: value.value, id: value.key)) {

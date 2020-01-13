@@ -34,9 +34,10 @@ class UserProfile {
 		self.imageData = nil
 	}
 	
-	func downloadImages(downloadedImages : @escaping (_ imageKey : [String:UIImage])->Void) {
+	func downloadImages(downloadedImages : @escaping (_ imageKey : [String:UIImage], _ metaData : [StorageMetadata])->Void) {
 		
 		var imageKey : [String:UIImage] = [:]
+		var metaDataKeys : [StorageMetadata] = []
 		
 		guard let user = self.user else {fatalError()}
 		
@@ -66,8 +67,10 @@ class UserProfile {
 							
 							guard let data = data, let image = UIImage(data: data) else {return}
 							imageKey["\("\(item)".split(separator: "/")[3])"] = image
-							print("\(metaData.name ?? "No Name") | \("\(item)".split(separator: "/")[3])")
-							downloadedImages(imageKey)
+							metaDataKeys.append(metaData)
+							
+							print("\(metaData) | \("\(item)".split(separator: "/")[3])")
+							downloadedImages(imageKey, metaDataKeys)
 						}
 					}
 				}
