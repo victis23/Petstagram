@@ -69,7 +69,6 @@ class UserProfile {
 							imageKey["\("\(item)".split(separator: "/")[3])"] = image
 							metaDataKeys.append(metaData)
 							
-							print("\(metaData) | \("\(item)".split(separator: "/")[3])")
 							downloadedImages(imageKey, metaDataKeys)
 						}
 					}
