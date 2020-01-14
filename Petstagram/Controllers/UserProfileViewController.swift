@@ -77,7 +77,7 @@ class UserProfileViewController: UIViewController {
 	override func viewDidAppear(_ animated: Bool) {
 		
 		super.viewDidAppear(animated)
-		fetchDataFromCoreData()
+//		fetchDataFromCoreData()
 		setImageDataToView()
 	}
 	
@@ -228,8 +228,18 @@ class UserProfileViewController: UIViewController {
 			print(e.localizedDescription)
 		}
 		
+		let value = userProfileCoreDataCollection.map { item -> [AccountImages]? in
+			
+			guard let imageData = item.photo, let image = UIImage(data: imageData), let name = item.photoName, let date = item.date else  {return nil}
+				
+			return	[AccountImages(image: image, timeStamp: date, metaData: nil, id: name)]
+				
+		}
+		
+		print(value)
+		
 		userProfileCoreDataCollection.forEach { item in
-			print("Name: \(item.photoName ?? "No photo name!") | \(item.date!)")
+//			print("Name: \(item.photoName ?? "No photo name!") | \(item.date!)")
 		}
 		
 		// Remove items from coreData once they are retrieved.
