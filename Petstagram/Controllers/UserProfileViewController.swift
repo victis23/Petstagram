@@ -40,14 +40,14 @@ class UserProfileViewController: UIViewController {
 	let appDelegate = UIApplication.shared.delegate as! AppDelegate
 	//	let coreDataModel = AuthenticationItems(context: (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext)
 	
-	var datasource : UICollectionViewDiffableDataSource<Sections,UserProfileImageCollection>!
+	var datasource : UICollectionViewDiffableDataSource<Sections,AccountImages>!
 	
 	//MARK: Singletons
 	var userData: UserProfile = UserProfile.shared()
 	var userAuth = Auth.auth()
 	let defaults = UserDefaults()
 	
-	var images : [UserProfileImageCollection] = [] {
+	var images : [AccountImages] = [] {
 		didSet {
 			postCountLabel.text = "\(images.count)"
 			setSnapShot()
@@ -55,7 +55,7 @@ class UserProfileViewController: UIViewController {
 		}
 	}
 	
-	@Published var userProfileItems : [UserProfileImageCollection] = []
+	@Published var userProfileItems : [AccountImages] = []
 	var dataSubscriber : AnyCancellable!
 	
 	//MARK: - App LifeCycle
@@ -141,7 +141,7 @@ class UserProfileViewController: UIViewController {
 				
 				profileData.forEach { item in
 					
-					self.images.append(UserProfileImageCollection(image: item.image, timeStamp: item.timeStamp, metaData: item.metaData, id: item.id))
+					self.images.append(AccountImages(image: item.image, timeStamp: item.timeStamp, metaData: item.metaData, id: item.id))
 				}
 		}
 	}
@@ -167,18 +167,18 @@ class UserProfileViewController: UIViewController {
 							let image = UIImage(data: data)
 							else {return}
 						
-						if self.userProfileItems.contains(UserProfileImageCollection(image: image, timeStamp: date, metaData: mData, id: fileName)) {
+						if self.userProfileItems.contains(AccountImages(image: image, timeStamp: date, metaData: mData, id: fileName)) {
 							
 							self.userProfileItems.removeAll { item -> Bool in
 								item.id == fileName || item.id == "profilePhoto"
 							}
 							if fileName != "profilePhoto" {
-								self.userProfileItems.append(UserProfileImageCollection(image: image, timeStamp: date, metaData: mData, id: fileName))
+								self.userProfileItems.append(AccountImages(image: image, timeStamp: date, metaData: mData, id: fileName))
 							}
 						}else{
 							
 							if fileName != "profilePhoto" {
-								self.userProfileItems.append(UserProfileImageCollection(image: image, timeStamp: date, metaData: mData, id: fileName))
+								self.userProfileItems.append(AccountImages(image: image, timeStamp: date, metaData: mData, id: fileName))
 							}
 						}
 						self.sortPhotos()

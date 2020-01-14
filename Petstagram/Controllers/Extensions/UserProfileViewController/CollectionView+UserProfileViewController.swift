@@ -27,7 +27,7 @@ extension UserProfileViewController {
 	}
 	
 	func setDataSource(){
-		datasource = UICollectionViewDiffableDataSource<Sections,UserProfileImageCollection>(collectionView: accountImages, cellProvider: { (collectionView, indexPath, ImageObject) -> UICollectionViewCell? in
+		datasource = UICollectionViewDiffableDataSource<Sections,AccountImages>(collectionView: accountImages, cellProvider: { (collectionView, indexPath, ImageObject) -> UICollectionViewCell? in
 			
 			guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "image", for: indexPath) as? UserImageCollectionViewCell else {fatalError()}
 			
@@ -40,7 +40,7 @@ extension UserProfileViewController {
 	}
 	
 	func setSnapShot(){
-		var snapShot = NSDiffableDataSourceSnapshot<Sections,UserProfileImageCollection>()
+		var snapShot = NSDiffableDataSourceSnapshot<Sections,AccountImages>()
 		snapShot.appendSections([.main])
 		snapShot.appendItems(self.images, toSection: .main)
 		datasource.apply(snapShot, animatingDifferences: true, completion: {

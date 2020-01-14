@@ -9,7 +9,7 @@
 import UIKit
 import FirebaseStorage
 
-struct UserProfileImageCollection : Hashable, Identifiable, Equatable {
+struct AccountImages : Hashable, Identifiable, Equatable {
 	var image : UIImage
 	var timeStamp : Date
 	var metaData : StorageMetadata?
@@ -19,7 +19,7 @@ struct UserProfileImageCollection : Hashable, Identifiable, Equatable {
 		hasher.combine(id)
 	}
 	
-	static func ==(lhs:UserProfileImageCollection, rhs: UserProfileImageCollection) -> Bool {
+	static func ==(lhs:AccountImages, rhs: AccountImages) -> Bool {
 		lhs.id == rhs.id
 	}
 }
