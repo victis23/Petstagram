@@ -138,6 +138,8 @@ class UserProfileViewController: UIViewController {
 			.debounce(for: 1, scheduler: DispatchQueue.main)
 			.sink { profileData in
 				
+				self.images = []
+				
 				profileData.forEach { item in
 					
 					self.images.append(AccountImages(image: item.image, timeStamp: item.timeStamp, metaData: item.metaData, id: item.id))
@@ -146,8 +148,6 @@ class UserProfileViewController: UIViewController {
 	}
 	
 	func setImageDataToView(){
-		
-		self.images = []
 		
 		if let user = userAuth.currentUser?.uid {
 			
@@ -235,8 +235,11 @@ class UserProfileViewController: UIViewController {
 				
 		}
 		
-		print(value)
 		images.append(contentsOf: value)
+		
+		images.sort { value1, value2 in
+			value1.timeStamp > value2.timeStamp
+		}
 		
 		userProfileCoreDataCollection.forEach { item in
 //			print("Name: \(item.photoName ?? "No photo name!") | \(item.date!)")
