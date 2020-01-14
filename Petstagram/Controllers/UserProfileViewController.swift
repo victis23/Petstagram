@@ -198,6 +198,7 @@ class UserProfileViewController: UIViewController {
 	
 	func saveItemsToCoreData(){
 		
+		removeItemsFromCoreData()
 		
 		let limit = images.count > 9 ? 9 : images.count
 		
