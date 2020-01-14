@@ -62,14 +62,14 @@ class UserProfileViewController: UIViewController {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
-		fetchDataFromCoreData()
+		setDataSource()
+		setSnapShot()
 		setValuesFromUserDefaults()
 		setAesthetics()
 		uploadProfileImageToStorage(isRetrieve: true)
 		getUserName()
 		setNavigationBar()
-		setDataSource()
-		setSnapShot()
+		fetchDataFromCoreData()
 		setSubscription()
 		setCollectionViewLayout()
 	}
@@ -227,15 +227,16 @@ class UserProfileViewController: UIViewController {
 			print(e.localizedDescription)
 		}
 		
-		let value = userProfileCoreDataCollection.map { item -> [AccountImages]? in
+		let value = userProfileCoreDataCollection.map { item -> AccountImages in
 			
-			guard let imageData = item.photo, let image = UIImage(data: imageData), let name = item.photoName, let date = item.date else  {return nil}
+			guard let imageData = item.photo, let image = UIImage(data: imageData), let name = item.photoName, let date = item.date else  {fatalError()}
 				
-			return	[AccountImages(image: image, timeStamp: date, metaData: nil, id: name)]
+			return	AccountImages(image: image, timeStamp: date, metaData: nil, id: name)
 				
 		}
 		
 		print(value)
+		images.append(contentsOf: value)
 		
 		userProfileCoreDataCollection.forEach { item in
 //			print("Name: \(item.photoName ?? "No photo name!") | \(item.date!)")
