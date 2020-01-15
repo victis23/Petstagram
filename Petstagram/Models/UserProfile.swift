@@ -57,8 +57,8 @@ class UserProfile {
 					}
 					if let metaData = metaData {
 						
-							metaDataKeys.append(metaData)
-							downloadedImages(metaDataKeys)
+						metaDataKeys.append(metaData)
+						downloadedImages(metaDataKeys)
 					}
 				}
 			}

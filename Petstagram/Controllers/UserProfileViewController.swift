@@ -40,7 +40,7 @@ class UserProfileViewController: UIViewController {
 	private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 	
 	// Source of truth for our collection view
-	private var datasource : UICollectionViewDiffableDataSource<Sections,AccountImages>!
+	var datasource : UICollectionViewDiffableDataSource<Sections,AccountImages>!
 	
 	//MARK: Singletons
 	var userData: UserProfile = UserProfile.shared()

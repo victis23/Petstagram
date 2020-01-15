@@ -16,7 +16,7 @@ extension Authentication {
 		let storage = KeyChainWrapper(keyChainHandler: keychainWrapper)
 		
 		do{
-		try storage.savePasswordToKeychain(for: email, password: password)
+			try storage.savePasswordToKeychain(for: email, password: password)
 		}catch(let e){
 			print(e.localizedDescription)
 		}

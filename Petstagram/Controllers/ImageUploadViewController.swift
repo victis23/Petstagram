@@ -33,7 +33,7 @@ class ImageUploadViewController: UIViewController {
 		}
 	}
 	
-	private var datasource : UICollectionViewDiffableDataSource<Sections,ImageAlbum>!
+	var datasource : UICollectionViewDiffableDataSource<Sections,ImageAlbum>!
 	
 	var activityIndicator : UIActivityIndicatorView = {
 		let indicator = UIActivityIndicatorView()
@@ -66,7 +66,7 @@ class ImageUploadViewController: UIViewController {
 	}
 	
 	//MARK: Instance Methods
-
+	
 	func setNavigationBar(){
 		self.navigationItem.title = "Petstagram"
 		self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font : UIFont(name: "Billabong", size: 34)!]
@@ -120,9 +120,9 @@ class ImageUploadViewController: UIViewController {
 	@IBAction func shareToProfileTapped(sender: UIButton) {
 		
 		guard let imageData = selectedImage.image?.pngData() else {fatalError()}
-			
+		
 		userProfileInstance.imageData = imageData
-
+		
 		userProfileInstance.uploadDataToFireBase()
 		
 	}

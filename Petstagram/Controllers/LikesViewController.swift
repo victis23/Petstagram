@@ -9,18 +9,18 @@
 import UIKit
 
 class LikesViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-setNavigationBar()
-        // Do any additional setup after loading the view.
-    }
-    
-
+	
+	override func viewDidLoad() {
+		super.viewDidLoad()
+		setNavigationBar()
+		// Do any additional setup after loading the view.
+	}
+	
+	
 	func setNavigationBar(){
 		self.navigationItem.title = "Petstagram"
 		self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font : UIFont(name: "Billabong", size: 34)!]
 		self.navigationController?.navigationBar.tintColor = .label
 	}
-
+	
 }
