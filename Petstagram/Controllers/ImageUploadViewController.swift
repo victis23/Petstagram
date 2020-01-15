@@ -22,6 +22,7 @@ class ImageUploadViewController: UIViewController {
 	
 	// Collection that holds Images obtained from user's image assets.
 	private lazy var imageArray = [UIImage]()
+	
 	@IBOutlet weak var shareView: UIView!
 	@IBOutlet weak var shareButton: UIButton!
 	@IBOutlet weak var selectedImage: UIImageView!
@@ -35,6 +36,7 @@ class ImageUploadViewController: UIViewController {
 	
 	var datasource : UICollectionViewDiffableDataSource<Sections,ImageAlbum>!
 	
+	// Indicator that shows user that images are being retrieved.
 	var activityIndicator : UIActivityIndicatorView = {
 		let indicator = UIActivityIndicatorView()
 		indicator.hidesWhenStopped = true
@@ -74,10 +76,12 @@ class ImageUploadViewController: UIViewController {
 		self.navigationItem.rightBarButtonItems = [UIBarButtonItem(image: UIImage.init(systemName: "camera.circle"), style: .plain, target: self, action: #selector(cameraButtonSelected))]
 	}
 	
+	/// Presents Camera Interface to user.
 	@objc func cameraButtonSelected(){
 		selectImageWithPicker(isCameraImage: true)
 	}
 	
+	/// Sets the visible appearance of views presented to user.
 	func setViewAesthetics(){
 		shareButton.setTitle("", for: .normal)
 		selectedImage.layer.cornerRadius = 5
@@ -94,12 +98,15 @@ class ImageUploadViewController: UIViewController {
 		
 	}
 	
+	/// Places the indicatorView in the center of the main view and activates it.
 	func setIndicator(){
 		activityIndicator.center = self.view.center
 		self.view.addSubview(activityIndicator)
 		activityIndicator.startAnimating()
 	}
 	
+	/// Set appearance and distribution of cells in the collection view.
+	/// - IMPORTANT: 4 Cells in each horizontal group | Only two groups are visible in collectionView.
 	func setCollectionViewLayout()->UICollectionViewCompositionalLayout{
 		
 		let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.25), heightDimension: .fractionalHeight(1))
@@ -117,6 +124,7 @@ class ImageUploadViewController: UIViewController {
 		return layout
 	}
 	
+	/// Captures selected image; converts it into data; and uploads it to firebase.
 	@IBAction func shareToProfileTapped(sender: UIButton) {
 		
 		guard let imageData = selectedImage.image?.pngData() else {fatalError()}
@@ -130,31 +138,7 @@ class ImageUploadViewController: UIViewController {
 }
 
 //MARK: - UICollectionView Methods
-extension ImageUploadViewController: UICollectionViewDelegate {
-	
-	func setDataSource(){
-		datasource = UICollectionViewDiffableDataSource<Sections,ImageAlbum>(collectionView: albumImageCollection, cellProvider: { (collectionView, indexPath, images) -> UICollectionViewCell? in
-			guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? AlbumImagesCollectionViewCell else {fatalError()}
-			
-			cell.imageFromAlbum.image = images.images
-			cell.imageFromAlbum.contentMode = .scaleAspectFill
-			cell.clipsToBounds = true
-			cell.layer.cornerRadius = 3
-			
-			return cell
-		})
-	}
-	
-	func createSnapshot(images : [ImageAlbum]){
-		var snapshot = NSDiffableDataSourceSnapshot<Sections,ImageAlbum>()
-		snapshot.appendSections([.main])
-		snapshot.appendItems(images, toSection: .main)
-		
-		datasource.apply(snapshot, animatingDifferences: true, completion: {
-			
-		})
-	}
-}
+
 
 extension ImageUploadViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
 	
