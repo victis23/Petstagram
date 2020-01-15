@@ -16,7 +16,7 @@ import Combine
 /// Class which controls data displayed on the user's home profile tab.
 class UserProfileViewController: UIViewController {
 	
-
+	
 	// Sections Enum that will be used in the collectionView's DataSource.
 	enum Sections {
 		case main
@@ -56,6 +56,8 @@ class UserProfileViewController: UIViewController {
 		}
 	}
 	
+	//MARK: Combine Subscribers & Publishers
+	
 	@Published var userProfileItems : [AccountImages] = []
 	var dataSubscriber : AnyCancellable!
 	
@@ -85,6 +87,7 @@ class UserProfileViewController: UIViewController {
 	
 	//MARK: View Aesthetics
 	
+	/// Sets the default appearance of the navigationbar along with bar button functionality.
 	func setNavigationBar(){
 		self.navigationItem.title = "Petstagram"
 		self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font : UIFont(name: "Billabong", size: 34)!]
@@ -92,6 +95,7 @@ class UserProfileViewController: UIViewController {
 		self.navigationController?.navigationBar.tintColor = .label
 	}
 	
+	///Sets the appearance of userfacing views.
 	func setAesthetics(){
 		userProfilePicture.layer.borderColor = UIColor.label.cgColor
 		userProfilePicture.layer.borderWidth = 2
@@ -105,16 +109,20 @@ class UserProfileViewController: UIViewController {
 	
 	// MARK: Data Retrieval Methods
 	
+	/// Retrieves defaults for the user's profile such as the profile photograph and the account username.
 	func setValuesFromUserDefaults(){
 		
 		guard let profileImageData = defaults.data(forKey: Keys.userDefaultsDB.profilePhoto) else {return}
 		guard let username = defaults.object(forKey: Keys.userDefaultsDB.username) as? String else {return}
 		guard let profileImage = UIImage(data: profileImageData) else {return}
-		self.userProfilePicture.image = profileImage
-		self.userNameLabel.text = username
 		
+		self.userProfilePicture.image = profileImage
+		
+		self.userNameLabel.text = username
 	}
 	
+	///Retrieves username from firestore database. Refreshes currently displayed username upon `ViewDidLoad()`.
+	/// - NOTE: This is also the method that writes the username to the UserDefaults.
 	func getUserName(){
 		
 		let db = Firestore.firestore()
@@ -146,10 +154,11 @@ class UserProfileViewController: UIViewController {
 					
 					self.images.append(AccountImages(image: item.image, timeStamp: item.timeStamp, metaData: item.metaData, id: item.id))
 				}
-//				self.returnToFirstItemInCollection()
+				//				self.returnToFirstItemInCollection()
 		}
 	}
 	
+	/// Downloads imageData from storage bucket and creates an `AccountImages` object which is sorted and apprended to the collection of images property `images`.
 	func setImageDataToView(){
 		
 		if let user = userAuth.currentUser?.uid {
@@ -169,20 +178,24 @@ class UserProfileViewController: UIViewController {
 							let image = UIImage(data: data)
 							else {return}
 						
+						//Removes duplicates retrieved from storage before appending to our array of AccountImages.
 						if self.userProfileItems.contains(AccountImages(image: image, timeStamp: date, metaData: mData, id: fileName)) {
 							
+							//Call removes all objects that match the existing name or match the profile photograph.
 							self.userProfileItems.removeAll { item -> Bool in
 								item.id == fileName || item.id == "profilePhoto"
 							}
+							//If the new file is not the profile photo we append it to the collection.
 							if fileName != "profilePhoto" {
 								self.userProfileItems.append(AccountImages(image: image, timeStamp: date, metaData: mData, id: fileName))
 							}
 						}else{
-							
+							// If the object does not exist in the data collection we append it.
 							if fileName != "profilePhoto" {
 								self.userProfileItems.append(AccountImages(image: image, timeStamp: date, metaData: mData, id: fileName))
 							}
 						}
+						// Sort the objects by timestamp.
 						self.sortPhotos()
 					}
 				}
@@ -190,6 +203,7 @@ class UserProfileViewController: UIViewController {
 		}
 	}
 	
+	/// Sorts the objects in the collection by their metadata timestamp.
 	func sortPhotos(){
 		
 		// Sort from newest to oldest
@@ -198,24 +212,29 @@ class UserProfileViewController: UIViewController {
 		}
 	}
 	
+	/// Saves the last 9 `AccountImage` Objects to coreData for fast loading upon `viewDidLoad`.
 	func saveItemsToCoreData(){
 		
+		// Erases all objects from our persistent data container.
 		removeItemsFromCoreData()
 		
+		// If count is less than 9 display objects corresponding to current count; otherwise only show the last 9 items in the array.
 		let limit = images.count > 9 ? 9 : images.count
 		
-
-			for i in 0..<limit {
-				let imageCoreDataModel = ProfilePhotos(context: context)
-				imageCoreDataModel.photoName = images[i].id
-				imageCoreDataModel.date = images[i].timeStamp
-				imageCoreDataModel.photo = images[i].image.pngData()
-
-			}
+		//Based on the set limit add corresponding elements to coredata.
+		for i in 0..<limit {
+			let imageCoreDataModel = ProfilePhotos(context: context)
+			imageCoreDataModel.photoName = images[i].id
+			imageCoreDataModel.date = images[i].timeStamp
+			imageCoreDataModel.photo = images[i].image.pngData()
+			
+		}
 		
 		appDelegate.saveContext()
 	}
 	
+	/// Fetches saved items from coredata.
+	/// - NOTE: This method is called upon `viewDidLoad`.
 	func fetchDataFromCoreData(){
 		
 		var userProfileCoreDataCollection : [ProfilePhotos] = []
@@ -230,34 +249,36 @@ class UserProfileViewController: UIViewController {
 			print(e.localizedDescription)
 		}
 		
+		// Map each element in the data collection retrieved into a new AccountImages Object with a nil metaData property.
 		let value = userProfileCoreDataCollection.map { item -> AccountImages in
 			
 			guard let imageData = item.photo, let image = UIImage(data: imageData), let name = item.photoName, let date = item.date else  {fatalError()}
-				
+			
 			return	AccountImages(image: image, timeStamp: date, metaData: nil, id: name)
-				
+			
 		}
 		
 		images.append(contentsOf: value)
 		
+		// Sort from latest item to oldest.
 		images.sort { value1, value2 in
 			value1.timeStamp > value2.timeStamp
 		}
 		
-		
-		
 		// Remove items from coreData once they are retrieved.
 		removeItemsFromCoreData()
-		
 	}
 	
+	/// Scrolls collectionView back to the first item in the collection.
 	func returnToFirstItemInCollection(){
 		
 		if let indexPath = datasource.indexPath(for: images[0]) {
+			
 			accountImages.scrollToItem(at: indexPath, at: .top, animated: false)
 		}
 	}
 	
+	/// Remove items stored in our persistant container.
 	func removeItemsFromCoreData(){
 		
 		let deleteRequest = NSBatchDeleteRequest(fetchRequest: NSFetchRequest<NSFetchRequestResult>(entityName: "ProfilePhotos"))
@@ -279,6 +300,7 @@ class UserProfileViewController: UIViewController {
 	
 	//MARK: Navigation
 	
+	/// Temporary Method that will be migrated somewhere else eventually.
 	@objc func temporaryMethodForLoggingOut(){
 		
 		// Removes saved items from Userdefaults().
@@ -295,6 +317,9 @@ class UserProfileViewController: UIViewController {
 		}catch(let error){
 			print(error.localizedDescription)
 		}
+		
+		// Erase data stored in coreData.
+		removeItemsFromCoreData()
 		
 		// Returns user to login screen.
 		performSegue(withIdentifier: Keys.Segues.signOut, sender: nil)
