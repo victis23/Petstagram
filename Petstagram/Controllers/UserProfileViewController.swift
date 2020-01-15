@@ -18,7 +18,7 @@ class UserProfileViewController: UIViewController {
 	
 	
 	// Sections Enum that will be used in the collectionView's DataSource.
-	enum Sections {
+	private enum Sections {
 		case main
 	}
 	
