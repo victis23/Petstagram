@@ -250,7 +250,10 @@ class UserProfileViewController: UIViewController {
 	}
 	
 	func returnToFirstItemInCollection(){
-		accountImages.scrollToItem(at: IndexPath(row: 0, section: 1), at: .top, animated: false)
+		if let indexPath = datasource.indexPath(for: images[0]) {
+			accountImages.scrollToItem(at: indexPath, at: .top, animated: false)
+		}
+		
 	}
 	
 	func removeItemsFromCoreData(){
