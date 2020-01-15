@@ -78,6 +78,7 @@ class UserProfileViewController: UIViewController {
 		
 		super.viewDidAppear(animated)
 		setImageDataToView()
+		returnToFirstItemInCollection()
 	}
 	
 	
@@ -241,13 +242,15 @@ class UserProfileViewController: UIViewController {
 			value1.timeStamp > value2.timeStamp
 		}
 		
-		userProfileCoreDataCollection.forEach { item in
-//			print("Name: \(item.photoName ?? "No photo name!") | \(item.date!)")
-		}
+		
 		
 		// Remove items from coreData once they are retrieved.
 		removeItemsFromCoreData()
 		
+	}
+	
+	func returnToFirstItemInCollection(){
+		accountImages.scrollToItem(at: IndexPath(row: 0, section: 1), at: .top, animated: false)
 	}
 	
 	func removeItemsFromCoreData(){
