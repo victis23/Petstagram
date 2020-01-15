@@ -268,7 +268,7 @@ class AppLogin: UIViewController{
 			submitButton.isEnabled = false
 			submitButton.alpha = 0.2
 			userNameTextField.becomeFirstResponder()
-		default:
+		case false:
 			emailAddressTextField.text = nil
 			passwordTextField.text = nil
 			signInButton.isEnabled = false
