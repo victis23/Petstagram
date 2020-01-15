@@ -13,14 +13,11 @@ import FirebaseStorage
 import CoreData
 import Combine
 
+/// Class which controls data displayed on the user's home profile tab.
 class UserProfileViewController: UIViewController {
 	
-	// MARK: Items Needed For CoreData
-	
-	private let applicationDelegate = UIApplication.shared.delegate as! AppDelegate
-	
-	private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-	
+
+	// Sections Enum that will be used in the collectionView's DataSource.
 	enum Sections {
 		case main
 	}
@@ -37,9 +34,12 @@ class UserProfileViewController: UIViewController {
 	@IBOutlet weak var aboutThePetLabel: UILabel!
 	@IBOutlet weak var aboutTheOwnerLabel: UILabel!
 	
-	let appDelegate = UIApplication.shared.delegate as! AppDelegate
-	//	let coreDataModel = AuthenticationItems(context: (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext)
 	
+	//MARK: CoreData Requiered Properties
+	let appDelegate = UIApplication.shared.delegate as! AppDelegate
+	private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+	
+	// Source of truth for our collection view
 	var datasource : UICollectionViewDiffableDataSource<Sections,AccountImages>!
 	
 	//MARK: Singletons
@@ -47,6 +47,7 @@ class UserProfileViewController: UIViewController {
 	var userAuth = Auth.auth()
 	let defaults = UserDefaults()
 	
+	//Main collection type property for our data.
 	var images : [AccountImages] = [] {
 		didSet {
 			postCountLabel.text = "\(images.count)"
@@ -145,7 +146,7 @@ class UserProfileViewController: UIViewController {
 					
 					self.images.append(AccountImages(image: item.image, timeStamp: item.timeStamp, metaData: item.metaData, id: item.id))
 				}
-				self.returnToFirstItemInCollection()
+//				self.returnToFirstItemInCollection()
 		}
 	}
 	
