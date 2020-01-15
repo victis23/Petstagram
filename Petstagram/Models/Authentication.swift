@@ -33,7 +33,7 @@ struct Authentication {
 				Authentication.saveCredsToKeyChain(using: self.email, password: self.password)
 				segue(result)
 			}
-		default:
+		case false:
 			firebaseAuthentication.signIn(withEmail: email, password: password) { (result, error) in
 				if let error = error {
 					isError(error)
