@@ -72,7 +72,7 @@ extension UserProfileViewController : UINavigationControllerDelegate, UIImagePic
 			guard let image = userProfilePicture.image?.pngData() else {return}
 			defaults.set(image, forKey: Keys.userDefaultsDB.profilePhoto)
 			storage.putData(image)
-		default:
+		case true :
 			storage.getData(maxSize: 99_999_999) { (data, error) in
 				if let error = error {
 					print(error.localizedDescription)
