@@ -10,14 +10,7 @@ import UIKit
 import Photos
 import PhotosUI
 
-struct UserImages : Hashable, Identifiable {
-	var images : UIImage = UIImage()
-	var id = UUID().uuidString
-	
-	func hash(into hasher :inout Hasher){
-		hasher.combine(id)
-	}
-}
+
 
 class ImageUploadViewController: UIViewController {
 	
@@ -34,13 +27,13 @@ class ImageUploadViewController: UIViewController {
 	@IBOutlet weak var selectedImage: UIImageView!
 	@IBOutlet weak var albumImageCollection: UICollectionView!
 	
-	private var albumImages : [UserImages] = [] {
+	private var albumImages : [ImageAlbum] = [] {
 		didSet {
 			createSnapshot(images: albumImages)
 		}
 	}
 	
-	private var datasource : UICollectionViewDiffableDataSource<Sections,UserImages>!
+	private var datasource : UICollectionViewDiffableDataSource<Sections,ImageAlbum>!
 	
 	var activityIndicator : UIActivityIndicatorView = {
 		let indicator = UIActivityIndicatorView()
@@ -140,7 +133,7 @@ class ImageUploadViewController: UIViewController {
 extension ImageUploadViewController: UICollectionViewDelegate {
 	
 	func setDataSource(){
-		datasource = UICollectionViewDiffableDataSource<Sections,UserImages>(collectionView: albumImageCollection, cellProvider: { (collectionView, indexPath, images) -> UICollectionViewCell? in
+		datasource = UICollectionViewDiffableDataSource<Sections,ImageAlbum>(collectionView: albumImageCollection, cellProvider: { (collectionView, indexPath, images) -> UICollectionViewCell? in
 			guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? AlbumImagesCollectionViewCell else {fatalError()}
 			
 			cell.imageFromAlbum.image = images.images
@@ -152,8 +145,8 @@ extension ImageUploadViewController: UICollectionViewDelegate {
 		})
 	}
 	
-	func createSnapshot(images : [UserImages]){
-		var snapshot = NSDiffableDataSourceSnapshot<Sections,UserImages>()
+	func createSnapshot(images : [ImageAlbum]){
+		var snapshot = NSDiffableDataSourceSnapshot<Sections,ImageAlbum>()
 		snapshot.appendSections([.main])
 		snapshot.appendItems(images, toSection: .main)
 		
@@ -209,7 +202,7 @@ extension ImageUploadViewController: UINavigationControllerDelegate, UIImagePick
 				
 				
 				imageArray.forEach { image in
-					albumImages.append(UserImages(images: image))
+					albumImages.append(ImageAlbum(images: image))
 				}
 				
 				selectedImage.image = imageArray.first
@@ -232,7 +225,7 @@ extension ImageUploadViewController: UINavigationControllerDelegate, UIImagePick
 		
 		selectedImage.image = rectangleImage
 		selectedImage.contentMode = .scaleAspectFill
-		albumImages.append(UserImages(images: rectangleImage))
+		albumImages.append(ImageAlbum(images: rectangleImage))
 		dismiss(animated: true, completion: {})
 		
 	}
