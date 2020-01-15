@@ -14,19 +14,12 @@ import CoreData
 class UserFeedViewController: UIViewController {
 
 	let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
-	
-//	var coreDataAuthModel : AuthenticationItems!
-	
+
     override func viewDidLoad() {
         super.viewDidLoad()
-		setupCoreDataAuthModel()
 		setupNavigation()
     }
-	
-	func setupCoreDataAuthModel(){
-		
-	}
-	
+
 	func setupNavigation(){
 		// used navigataion item title property instead of \.view.title because I dont want titles in tab bar.
 		self.navigationItem.title = "Petstagram"
