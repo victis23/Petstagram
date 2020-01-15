@@ -145,6 +145,7 @@ class UserProfileViewController: UIViewController {
 					
 					self.images.append(AccountImages(image: item.image, timeStamp: item.timeStamp, metaData: item.metaData, id: item.id))
 				}
+				self.returnToFirstItemInCollection()
 		}
 	}
 	
@@ -250,10 +251,10 @@ class UserProfileViewController: UIViewController {
 	}
 	
 	func returnToFirstItemInCollection(){
+		
 		if let indexPath = datasource.indexPath(for: images[0]) {
 			accountImages.scrollToItem(at: indexPath, at: .top, animated: false)
 		}
-		
 	}
 	
 	func removeItemsFromCoreData(){
