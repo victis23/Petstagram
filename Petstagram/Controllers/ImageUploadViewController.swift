@@ -14,7 +14,7 @@ import PhotosUI
 
 class ImageUploadViewController: UIViewController {
 	
-	enum Sections {
+	private enum Sections {
 		case main
 	}
 	
