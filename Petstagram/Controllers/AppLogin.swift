@@ -11,6 +11,7 @@ import Combine
 import FirebaseAuth
 import FirebaseFirestore
 
+/// Controls account creation and login.
 class AppLogin: UIViewController{
 	
 	@IBOutlet weak var loginArea: UIView!
