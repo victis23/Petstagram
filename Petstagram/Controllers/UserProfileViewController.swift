@@ -18,7 +18,7 @@ class UserProfileViewController: UIViewController {
 	
 	
 	// Sections Enum that will be used in the collectionView's DataSource.
-	private enum Sections {
+	enum Sections {
 		case main
 	}
 	
@@ -40,7 +40,7 @@ class UserProfileViewController: UIViewController {
 	private let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
 	
 	// Source of truth for our collection view
-	var datasource : UICollectionViewDiffableDataSource<Sections,AccountImages>!
+	private var datasource : UICollectionViewDiffableDataSource<Sections,AccountImages>!
 	
 	//MARK: Singletons
 	var userData: UserProfile = UserProfile.shared()

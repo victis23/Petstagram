@@ -14,7 +14,7 @@ import PhotosUI
 /// Accesses user image albums and presents them in a collectionView.
 class ImageUploadViewController: UIViewController {
 	
-	private enum Sections {
+	enum Sections {
 		case main
 	}
 	
