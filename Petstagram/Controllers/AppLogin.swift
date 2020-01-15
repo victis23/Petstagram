@@ -259,6 +259,7 @@ class AppLogin: UIViewController{
 	
 	/// Based on whether the current data is being originated from the login screen or not this method will reset the correct fields.
 	func resetUserInput(isRegistration:Bool){
+		
 		switch isRegistration {
 		case true:
 			userNameTextField.text = nil
