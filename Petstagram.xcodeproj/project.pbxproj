@@ -39,7 +39,7 @@
 		7D55817F239D2C710076AFEB /* LoginAesthetics+AppLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D55817E239D2C710076AFEB /* LoginAesthetics+AppLogin.swift */; };
 		7D558181239DDE2D0076AFEB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7D558180239DDE2D0076AFEB /* GoogleService-Info.plist */; };
 		7D558183239DDE810076AFEB /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 7D558182239DDE810076AFEB /* Podfile */; };
-		7D558186239DE31C0076AFEB /* AuthenticationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D558185239DE31C0076AFEB /* AuthenticationModel.swift */; };
+		7D558186239DE31C0076AFEB /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D558185239DE31C0076AFEB /* Authentication.swift */; };
 		7D68E1AD23BD7E8D0084A2F0 /* AlbumImagesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D68E1AC23BD7E8D0084A2F0 /* AlbumImagesCollectionViewCell.swift */; };
 		7D72C79823CEC180003361B8 /* ImageAlbum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D72C79723CEC180003361B8 /* ImageAlbum.swift */; };
 		7D72C79B23CECE96003361B8 /* CollectionViewExtension+ImageUploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D72C79A23CECE96003361B8 /* CollectionViewExtension+ImageUploadViewController.swift */; };
@@ -105,7 +105,7 @@
 		7D55817E239D2C710076AFEB /* LoginAesthetics+AppLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LoginAesthetics+AppLogin.swift"; sourceTree = "<group>"; };
 		7D558180239DDE2D0076AFEB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7D558182239DDE810076AFEB /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
-		7D558185239DE31C0076AFEB /* AuthenticationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthenticationModel.swift; sourceTree = "<group>"; };
+		7D558185239DE31C0076AFEB /* Authentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
 		7D68E1AC23BD7E8D0084A2F0 /* AlbumImagesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumImagesCollectionViewCell.swift; sourceTree = "<group>"; };
 		7D72C79723CEC180003361B8 /* ImageAlbum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageAlbum.swift; sourceTree = "<group>"; };
 		7D72C79A23CECE96003361B8 /* CollectionViewExtension+ImageUploadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CollectionViewExtension+ImageUploadViewController.swift"; sourceTree = "<group>"; };
@@ -288,7 +288,7 @@
 		7D558184239DE3080076AFEB /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				7D558185239DE31C0076AFEB /* AuthenticationModel.swift */,
+				7D558185239DE31C0076AFEB /* Authentication.swift */,
 				7D50727523CBB89100FA54CA /* KeyChain+AuthenticationModel.swift */,
 				7DCD743923C0595600BA9D52 /* UserProfile.swift */,
 				7D3ED8A823CA58B200CF8EB6 /* AccountImages.swift */,
@@ -507,7 +507,7 @@
 				7D4A544C239C91E90079A96A /* AccountCreation+AppLogin.swift in Sources */,
 				7D50727623CBB89100FA54CA /* KeyChain+AuthenticationModel.swift in Sources */,
 				7D50726C23CAB3EE00FA54CA /* CollectionView+UserProfileViewController.swift in Sources */,
-				7D558186239DE31C0076AFEB /* AuthenticationModel.swift in Sources */,
+				7D558186239DE31C0076AFEB /* Authentication.swift in Sources */,
 				7D55817F239D2C710076AFEB /* LoginAesthetics+AppLogin.swift in Sources */,
 				7D896A1C23C149AF0052C8E4 /* UserImageCollectionViewCell.swift in Sources */,
 				7D72C79D23CECF2C003361B8 /* ImageSelectorExtension+ImageUploadViewController.swift in Sources */,
