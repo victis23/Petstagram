@@ -9,14 +9,26 @@
 import Foundation
 
 extension Optional where Wrapped == String {
-	var isValidEmail : Bool {
-		let wrappedEmail = Wrapped()
-		return wrappedEmail.contains("@") && wrappedEmail.contains(".") && !wrappedEmail.isEmpty
+
+	var wrappedValue: String {
+		get {
+			return self ?? " "
+		}
 	}
-	
+
+	var isValidUserName : Bool {
+		return !wrappedValue.isEmpty && wrappedValue.count > 3
+	}
+
+	var isValidEmail : Bool {
+		print(wrappedValue)
+		return wrappedValue.contains("@") && wrappedValue.contains(".") && !wrappedValue.isEmpty && wrappedValue != " "
+	}
+
+
 	var isValidPassword : Bool {
-		let wrappedPassword = Wrapped()
-		return (!wrappedPassword.isEmpty) && wrappedPassword != " "
+		print(wrappedValue)
+		return (!wrappedValue.isEmpty && wrappedValue != " ")
 	}
 }
 
