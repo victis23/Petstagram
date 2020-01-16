@@ -36,6 +36,5 @@ struct Keys {
 	
 	struct keyChainKeys {
 		static var email = "email"
-		static var password = "password"
 	}
 }
