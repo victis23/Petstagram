@@ -30,6 +30,10 @@ extension Optional where Wrapped == String {
 		print(wrappedValue)
 		return (!wrappedValue.isEmpty && wrappedValue != " ")
 	}
+	
+	func stringsMatch(_ firstValue : String, _ secondValue : String) -> Bool {
+		return firstValue == secondValue
+	}
 }
 
 extension String {
