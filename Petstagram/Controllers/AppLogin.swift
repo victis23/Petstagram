@@ -175,7 +175,7 @@ class AppLogin: UIViewController{
 		accountCreationSubscriber = accountCreationPublisher
 			.receive(on: DispatchQueue.main)
 			.map({ [weak self](username, email, password, passwordConfirmation) -> Bool in
-				if username.isValidUserName,email != nil,password != nil, passwordConfirmation != nil, username != "", email != "", password != "", passwordConfirmation != "", password == passwordConfirmation, email!.contains("@"), email!.contains("."){
+				if username.isValidUserName, email.isValidEmail ,password.isValidPassword,passwordConfirmation.isValidPassword, password.stringsMatch(compare: passwordConfirmation) {
 					self?.submitButton.alpha = 1.0
 					return true
 				}else{

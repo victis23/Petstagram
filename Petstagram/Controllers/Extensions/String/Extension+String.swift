@@ -22,7 +22,7 @@ extension Optional where Wrapped == String {
 
 	var isValidEmail : Bool {
 		print(wrappedValue)
-		return wrappedValue.contains("@") && wrappedValue.contains(".") && !wrappedValue.isEmpty && wrappedValue != " "
+		return wrappedValue.contains("@") && wrappedValue.contains(".")
 	}
 
 
@@ -31,12 +31,14 @@ extension Optional where Wrapped == String {
 		return (!wrappedValue.isEmpty && wrappedValue != " ")
 	}
 	
-	func stringsMatch(_ firstValue : String, _ secondValue : String) -> Bool {
-		return firstValue == secondValue
+	func stringsMatch(compare secondValue : String?) -> Bool {
+		guard let secondValue = secondValue else {return false}
+		return wrappedValue == secondValue
 	}
 }
 
 extension String {
+	
 	var isValidEmailAddress : Bool {
 		self.contains("@") && self.contains(".") && !self.isEmpty
 	}
