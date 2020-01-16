@@ -175,6 +175,7 @@ class AppLogin: UIViewController{
 		accountCreationSubscriber = accountCreationPublisher
 			.receive(on: DispatchQueue.main)
 			.map({ [weak self](username, email, password, passwordConfirmation) -> Bool in
+				
 				if username.isValidUserName, email.isValidEmail ,password.isValidPassword,passwordConfirmation.isValidPassword, password.stringsMatch(compare: passwordConfirmation) {
 					self?.submitButton.alpha = 1.0
 					return true
@@ -187,18 +188,15 @@ class AppLogin: UIViewController{
 		
 		signInSubscriber = signInPublisher
 			.receive(on: DispatchQueue.main)
-			.map({ [weak self](email, passwords) -> Bool in
-				if let email = email, let password = passwords {
-					if email.isValidEmailAddress && password.isValidPasswordAddress {
+			.map({ [weak self](email, password) -> Bool in
+				
+					if email.isValidEmail && password.isValidPassword {
 						self?.signInButton.alpha = 1.0
 						return true
 					}else{
 						self?.signInButton.alpha = 0.2
 						return false
 					}
-				}else{
-					return false
-				}
 			})
 			.assign(to: \UIButton.isEnabled, on: signInButton)
 	}
