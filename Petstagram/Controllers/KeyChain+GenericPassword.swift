@@ -88,16 +88,20 @@ struct KeyChainWrapper  {
 		
 		var query = keyChainHandler.query
 		
-		//		let matchLimit = kSecMatchLimit as String
-		//		let returnAttributes = kSecReturnAttributes as String
-		//		let returnData = kSecReturnData as String
-		//		let attributedAccount = kSecAttrAccount as String
+		let matchLimit = kSecMatchLimit as String
+		let returnAttributes = kSecReturnAttributes as String
+		let returnData = kSecReturnData as String
+		let attributedAccount = kSecAttrAccount as String
 		
+		query[matchLimit] = kSecMatchLimitOne
+		query[returnAttributes] = kCFBooleanTrue
+		query[returnData] = kCFBooleanTrue
+		query[attributedAccount] = userAccount
 		
-		query[String(kSecMatchLimit)] = kSecMatchLimitOne
-		query[String(kSecReturnAttributes)] = kCFBooleanTrue
-		query[String(kSecReturnData)] = kCFBooleanTrue
-		query[String(kSecAttrAccount)] = userAccount
+		//		query[String(kSecMatchLimit)] = kSecMatchLimitOne
+		//		query[String(kSecReturnAttributes)] = kCFBooleanTrue
+		//		query[String(kSecReturnData)] = kCFBooleanTrue
+		//		query[String(kSecAttrAccount)] = userAccount
 		
 		var queryResult : AnyObject?
 		
