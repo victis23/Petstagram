@@ -81,10 +81,7 @@ class UserProfileViewController: UIViewController {
 		
 		super.viewDidAppear(animated)
 		setImageDataToView()
-		
-		if !images.isEmpty {
-			returnToFirstItemInCollection()
-		}
+		returnToFirstItemInCollection()
 	}
 	
 	
