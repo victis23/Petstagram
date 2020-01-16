@@ -36,6 +36,7 @@
 		7D50727223CBA28D00FA54CA /* ErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D50727123CBA28D00FA54CA /* ErrorHandler.swift */; };
 		7D50727423CBA6DD00FA54CA /* KeyChainTest.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D50727323CBA6DD00FA54CA /* KeyChainTest.swift */; };
 		7D50727623CBB89100FA54CA /* KeyChain+AuthenticationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D50727523CBB89100FA54CA /* KeyChain+AuthenticationModel.swift */; };
+		7D5512CF23D0EB32000C894D /* Extension+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D5512CE23D0EB32000C894D /* Extension+String.swift */; };
 		7D55817F239D2C710076AFEB /* LoginAesthetics+AppLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D55817E239D2C710076AFEB /* LoginAesthetics+AppLogin.swift */; };
 		7D558181239DDE2D0076AFEB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7D558180239DDE2D0076AFEB /* GoogleService-Info.plist */; };
 		7D558183239DDE810076AFEB /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 7D558182239DDE810076AFEB /* Podfile */; };
@@ -102,6 +103,7 @@
 		7D50727123CBA28D00FA54CA /* ErrorHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHandler.swift; sourceTree = "<group>"; };
 		7D50727323CBA6DD00FA54CA /* KeyChainTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChainTest.swift; sourceTree = "<group>"; };
 		7D50727523CBB89100FA54CA /* KeyChain+AuthenticationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeyChain+AuthenticationModel.swift"; sourceTree = "<group>"; };
+		7D5512CE23D0EB32000C894D /* Extension+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+String.swift"; sourceTree = "<group>"; };
 		7D55817E239D2C710076AFEB /* LoginAesthetics+AppLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LoginAesthetics+AppLogin.swift"; sourceTree = "<group>"; };
 		7D558180239DDE2D0076AFEB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7D558182239DDE810076AFEB /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
@@ -260,6 +262,7 @@
 		7D4A544A239C91B00079A96A /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				7D5512CD23D0EB10000C894D /* String */,
 				7D72C79923CECE63003361B8 /* ImageUploadViewController */,
 				7D50726A23CAB36400FA54CA /* UserProfileViewController */,
 				7D50726923CAB35000FA54CA /* AppLogin */,
@@ -283,6 +286,14 @@
 				7D50726D23CAB59900FA54CA /* ProfilePhoto+UserProfileViewController.swift */,
 			);
 			path = UserProfileViewController;
+			sourceTree = "<group>";
+		};
+		7D5512CD23D0EB10000C894D /* String */ = {
+			isa = PBXGroup;
+			children = (
+				7D5512CE23D0EB32000C894D /* Extension+String.swift */,
+			);
+			path = String;
 			sourceTree = "<group>";
 		};
 		7D558184239DE3080076AFEB /* Models */ = {
@@ -504,6 +515,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7D5512CF23D0EB32000C894D /* Extension+String.swift in Sources */,
 				7D4A544C239C91E90079A96A /* AccountCreation+AppLogin.swift in Sources */,
 				7D50727623CBB89100FA54CA /* KeyChain+AuthenticationModel.swift in Sources */,
 				7D50726C23CAB3EE00FA54CA /* CollectionView+UserProfileViewController.swift in Sources */,
