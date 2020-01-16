@@ -27,6 +27,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		keyboardManger.shouldResignOnTouchOutside = true
 		keyboardManger.keyboardDistanceFromTextField = 100
 		
+		//MARK: - FireBase Configure
 		FirebaseApp.configure()
 		
 		//MARK: - Keychain Login
