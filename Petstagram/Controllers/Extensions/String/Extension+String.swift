@@ -37,12 +37,3 @@ extension Optional where Wrapped == String {
 	}
 }
 
-extension String {
-	
-	var isValidEmailAddress : Bool {
-		self.contains("@") && self.contains(".") && !self.isEmpty
-	}
-	var isValidPasswordAddress : Bool {
-		return (!self.isEmpty) && self != " "
-	}
-}
