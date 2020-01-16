@@ -188,11 +188,15 @@ class AppLogin: UIViewController{
 		signInSubscriber = signInPublisher
 			.receive(on: DispatchQueue.main)
 			.map({ [weak self](email, passwords) -> Bool in
-				if email != nil, email != "",email!.contains("@"), passwords != nil, passwords != "", email!.contains(".") {
-					self?.signInButton.alpha = 1.0
-					return true
+				if let email = email, let password = passwords {
+					if email.isValidEmailAddress && password.isValidPasswordAddress {
+						self?.signInButton.alpha = 1.0
+						return true
+					}else{
+						self?.signInButton.alpha = 0.2
+						return false
+					}
 				}else{
-					self?.signInButton.alpha = 0.2
 					return false
 				}
 			})
