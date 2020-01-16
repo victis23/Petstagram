@@ -244,6 +244,9 @@ class UserProfileViewController: UIViewController {
 		
 		let request = NSFetchRequest<ProfilePhotos>(entityName: "ProfilePhotos")
 		
+		// Sort from latest item to oldest.
+		let sort = NSSortDescriptor(key: "date", ascending: false)
+		request.sortDescriptors = [sort]
 		
 		do {
 			let object = try context.fetch(request)
@@ -262,11 +265,6 @@ class UserProfileViewController: UIViewController {
 		}
 		
 		images.append(contentsOf: value)
-		
-		// Sort from latest item to oldest.
-		images.sort { value1, value2 in
-			value1.timeStamp > value2.timeStamp
-		}
 		
 		// Remove items from coreData once they are retrieved.
 		removeItemsFromCoreData()
