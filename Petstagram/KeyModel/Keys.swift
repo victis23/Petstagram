@@ -12,6 +12,7 @@ struct Keys {
 	struct Segues {
 		static var accessSegue = "accessSegue"
 		static var signOut = "unwindToLogin"
+		static var imageViewer = "imageViewer"
 	}
 	struct ErrorKeys {
 		static var loginFailed = "loginError"
