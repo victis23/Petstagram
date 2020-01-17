@@ -11,6 +11,7 @@ import FirebaseFirestore
 import FirebaseAuth
 import Firebase
 
+/// Singleton object that handles uploading and downloading images from storage.
 class UserProfile {
 	
 	var imageData : Data?
@@ -20,10 +21,13 @@ class UserProfile {
 	
 	static private var sharedUserProfile = UserProfile()
 	
+	// Creates empty data object and sets it to imageData.
 	private init(){
 		self.imageData = Data()
 	}
 	
+	/// Uploads data storaged in `imageData` to Firebase Storage inside folder under userID.
+	/// - Note: `imageData` is set to nil after each write.
 	func uploadDataToFireBase(){
 		
 		guard let user = self.user else {fatalError()}
@@ -34,12 +38,15 @@ class UserProfile {
 		self.imageData = nil
 	}
 	
+	/// Downloads **Metadata** for each item contained within Google Firebase Storage.
+	/// - Parameter downloadedImages: Captures returned metadata array.
 	func downloadImages(downloadedImages : @escaping (_ metaData : [StorageMetadata])->Void) {
 		
 		var metaDataKeys : [StorageMetadata] = []
 		
 		guard let user = self.user else {fatalError()}
 		
+		// Variable holds path to user's storage bucket.
 		let filePath = storage.child(user)
 		
 		filePath.listAll { (list, error) in
@@ -49,6 +56,7 @@ class UserProfile {
 				return
 			}
 			
+			// For each item in the bucket method downloads its metadata and appends it to the metaDataKeys array.
 			list.items.forEach { item in
 				Storage.storage().reference(forURL: "\(item)").getMetadata { (metaData, Error) in
 					if let error = error {
@@ -58,6 +66,8 @@ class UserProfile {
 					if let metaData = metaData {
 						
 						metaDataKeys.append(metaData)
+						
+						// Capture the collection type containing the metadata keys.
 						downloadedImages(metaDataKeys)
 					}
 				}
@@ -65,7 +75,7 @@ class UserProfile {
 		}
 	}
 	
-	
+	/// Creates instance of `UserProfile`
 	static func shared() -> UserProfile {
 		return sharedUserProfile
 	}
