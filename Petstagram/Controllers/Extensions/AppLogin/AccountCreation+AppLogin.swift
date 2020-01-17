@@ -9,8 +9,11 @@
 import UIKit
 import Combine
 
+/// Extension of AppLogin that contains methods that handle creation of new accounts.
 extension AppLogin {
 	
+	///Creates view that contains views needed for creating a new user account.
+	/// - Important: `dragGesture` enables dragging of entire view.
 	func createViewForAccountCreation(){
 		
 		let dragGesture : UIPanGestureRecognizer = {
@@ -22,9 +25,11 @@ extension AppLogin {
 		addConstraintsToAccountCreationView()
 		animateAccountCreationView()
 		addSubViewsToAccountCreationView()
+		// Adds our gesture object to the view.
 		accountCreationUIView.addGestureRecognizer(dragGesture)
 	}
 	
+	/// Adds needed constraints to view.
 	func addConstraintsToAccountCreationView(){
 		
 		NSLayoutConstraint.activate([
@@ -35,6 +40,7 @@ extension AppLogin {
 		])
 	}
 	
+	/// Controls animation that brings view onto screen when user clicks button `create an account` which triggers  `userRequestsNewAccountCreationButtonTapped(sender:)`
 	func animateAccountCreationView(){
 		
 		UIView.animate(withDuration: 0.8, delay: 0, usingSpringWithDamping: 0.4, initialSpringVelocity: 0.5, options: .curveEaseIn, animations: {
@@ -42,6 +48,11 @@ extension AppLogin {
 		}, completion: nil)
 	}
 	
+	
+	/// Limits the height to which the account creation view can rise on the screen.
+	/// - Returns: A Tuple Containing
+	/// 	- `raisedValue`: The value to which the view has moved
+	/// 	- `dragLimit`: The maximum height the view can rise.
 	func deviceSizeChecker() -> (raisedValue:CGFloat,dragLimit:CGFloat){
 		var raisedValue = CGFloat()
 		var limitPercentage = CGFloat()
@@ -58,17 +69,21 @@ extension AppLogin {
 		return (raisedValue,limitPercentage)
 	}
 	
+	/// Handles user interaction with view.
+	/// - Note: This method uses the Tuple value set in `deviceSizeChecker()` to determine where to stop the view.
 	@objc func handleGesture(panGesture : UIPanGestureRecognizer){
 		
 		let translation = panGesture.translation(in: self.view)
 		guard let viewToDrag = panGesture.view else {return}
-		//		guard let originalCenter = panGesture.view?.center.y else {fatalError()}
+		
 		let originalCenter :CGFloat = view.frame.height * deviceSizeChecker().dragLimit
 		
+		// Happens while user is interacting with view.
 		if panGesture.state == .changed {
 			
 			viewToDrag.center = CGPoint(x: viewToDrag.center.x, y: viewToDrag.center.y + translation.y)
 			
+			// If view is pushed above limit (negative value because we're moving upwards from center) established by original center it's returned to its initial position (not moved) thus view is unable to cross this barrier.
 			if viewToDrag.center.y > originalCenter {
 				panGesture.setTranslation(CGPoint(x: 0, y: 0), in: viewToDrag)
 			}else{
@@ -77,6 +92,7 @@ extension AppLogin {
 			
 		}
 		
+		// Happens when user stops interacting with view. This method control flow statement controls when the view is returned to original position and dismissed from screen.
 		if panGesture.state == .ended {
 			if viewToDrag.center.y > originalCenter + 50 {
 				UIView.animate(withDuration: 0.5, animations: {
@@ -88,6 +104,8 @@ extension AppLogin {
 		}
 	}
 	
+	/// Adds visible indicators to view such as a box that indicates to user that view can be dragged. Adds textfield to a stack vertical stack view.
+	/// - Note: `verticalStack` - Holds UI elements.
 	func addSubViewsToAccountCreationView(){
 		
 		let verticalStack : UIStackView = {
@@ -98,6 +116,8 @@ extension AppLogin {
 			stack.alignment = .center
 			return stack
 		}()
+		
+		// Just a rounded-corner rectangle to show users view can be dragged.
 		let dragIndicator : UIView = {
 			let view = UIView()
 			view.backgroundColor = .systemGray
@@ -109,6 +129,8 @@ extension AppLogin {
 		
 		accountCreationUIView.addSubview(dragIndicator)
 		accountCreationUIView.addSubview(verticalStack)
+	
+		//Array of UIView Elements being added into a vertical stack.
 		[userNameTextField,createEmailTextField,createPasswordTextField,passwordConfirmationTextField,submitButton].forEach {
 			
 			verticalStack.addArrangedSubview($0)
