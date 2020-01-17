@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// Extension that contains methods that uiCollectionView on `UserProfileViewController`.
 extension UserProfileViewController : UICollectionViewDelegate {
 	
 	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
@@ -18,12 +19,14 @@ extension UserProfileViewController : UICollectionViewDelegate {
 	}
 	
 	/// Method tasked with determining the layout of the collection when view loads.
+	/// - Note: Current layout consists of 2 rows & 3 columns.
 	func setCollectionViewLayout(){
 		
 		let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
 		let cell = NSCollectionLayoutItem(layoutSize: itemSize)
 		cell.contentInsets = NSDirectionalEdgeInsets(top: 1, leading: 1, bottom: 1, trailing: 1)
 		
+		// Group height is 40% the height of the UICollectionView Frame.
 		let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(0.4))
 		let cellGroup = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: cell, count: 3)
 		
@@ -33,6 +36,7 @@ extension UserProfileViewController : UICollectionViewDelegate {
 		accountImages.collectionViewLayout = layout
 	}
 	
+	/// Generates reusable cells that will be displayed to the user.
 	func setDataSource(){
 		datasource = UICollectionViewDiffableDataSource<Sections,AccountImages>(collectionView: accountImages, cellProvider: { (collectionView, indexPath, ImageObject) -> UICollectionViewCell? in
 			
@@ -46,6 +50,8 @@ extension UserProfileViewController : UICollectionViewDelegate {
 		})
 	}
 	
+	/// Uses source of truth to apply changes to `UICollectionView`.
+	/// - Note: Upon completion calls method that scrolls collection view to first encapsuled element. 
 	func setSnapShot(){
 		var snapShot = NSDiffableDataSourceSnapshot<Sections,AccountImages>()
 		snapShot.appendSections([.main])
