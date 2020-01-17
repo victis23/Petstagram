@@ -73,7 +73,7 @@ class UserProfileViewController: UIViewController {
 		getUserName()
 		setNavigationBar()
 		fetchDataFromCoreData()
-		postCountLabel.text = "\(defaults.integer(forKey: Keys.userDefaultsDB.imageCount))"
+		setImageCount()
 		setSubscription()
 		setCollectionViewLayout()
 	}
@@ -94,6 +94,13 @@ class UserProfileViewController: UIViewController {
 		self.navigationItem.rightBarButtonItem = UIBarButtonItem(image: UIImage(systemName: "square.stack.3d.up"), style: .plain, target: self, action: #selector(temporaryMethodForLoggingOut))
 		self.navigationController?.navigationBar.tintColor = .label
 	}
+	
+	func setImageCount(){
+		
+		postCountLabel.text = "\(defaults.integer(forKey: Keys.userDefaultsDB.imageCount))"
+	}
+	
+	
 	
 	///Sets the appearance of userfacing views.
 	func setAesthetics(){
