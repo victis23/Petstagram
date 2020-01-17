@@ -14,11 +14,15 @@ import FirebaseFirestore
 /// Controls account creation and login.
 class AppLogin: UIViewController{
 	
+	//MARK: IBOutlets
+	
 	@IBOutlet weak var loginArea: UIView!
 	@IBOutlet weak var signInButton: UIButton!
 	@IBOutlet weak var emailAddressTextField: UITextField!
 	@IBOutlet weak var passwordTextField: UITextField!
 	@IBOutlet weak var logo: UILabel!
+	
+	//MARK: Programatic Views
 	
 	let accountCreationUIView : UIView = {
 		let uiView = UIView()
