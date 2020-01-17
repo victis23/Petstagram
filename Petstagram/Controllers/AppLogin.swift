@@ -37,6 +37,8 @@ class AppLogin: UIViewController{
 		textfield.layer.borderColor = UIColor.tertiaryLabel.cgColor
 		textfield.layer.borderWidth = 0.5
 		textfield.layer.cornerRadius = 5
+		
+		//Adds 10pt spacing between frame and where input begins.
 		textfield.layer.sublayerTransform = CATransform3DMakeTranslation(10, 0, 10)
 		textfield.translatesAutoresizingMaskIntoConstraints = false
 		textfield.attributedPlaceholder = NSAttributedString(string: "Email", attributes: [
