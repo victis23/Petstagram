@@ -45,6 +45,7 @@ extension UserProfileViewController {
 		snapShot.appendItems(self.images, toSection: .main)
 		datasource.apply(snapShot, animatingDifferences: true, completion: {
 			
+			self.returnToFirstItemInCollection()
 		})
 	}
 	
