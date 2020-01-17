@@ -8,12 +8,14 @@
 
 import Foundation
 
+/// Handles errors that may present themselves while reading and writing values to user keychain.
 public enum SecureStoreError: Error {
 	case string2DataConversionError
 	case data2StringConversionError
 	case unhandledError(message: String)
 }
 
+/// Adds variable that replaces the default error descriptions for error cases. 
 extension SecureStoreError: LocalizedError {
 	
 	public var errorDescription: String? {
