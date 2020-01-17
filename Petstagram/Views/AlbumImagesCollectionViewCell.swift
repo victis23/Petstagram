@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// Cell held by `ImageUploadViewController`'s collectionView.
 class AlbumImagesCollectionViewCell: UICollectionViewCell {
     
 	@IBOutlet weak var imageFromAlbum: UIImageView!

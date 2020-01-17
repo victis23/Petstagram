@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// Cell in collection view held by `UserProfileViewController`.
 class UserImageCollectionViewCell : UICollectionViewCell {
 	
 	@IBOutlet weak var imageCell : UIImageView!
