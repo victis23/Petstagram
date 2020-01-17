@@ -8,6 +8,7 @@
 
 import UIKit
 
+/// Contains object that will be used in datasource snapshot on `ImageUploadViewController`.
 struct ImageAlbum : Hashable, Identifiable {
 	var images : UIImage = UIImage()
 	var id = UUID().uuidString
