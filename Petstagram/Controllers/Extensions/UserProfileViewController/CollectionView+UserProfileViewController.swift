@@ -11,7 +11,8 @@ import UIKit
 extension UserProfileViewController : UICollectionViewDelegate {
 	
 	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-		<#code#>
+		guard let item = datasource.itemIdentifier(for: indexPath) else {return}
+		print(item.id)
 	}
 	
 	/// Method tasked with determining the layout of the collection when view loads.
