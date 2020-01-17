@@ -53,6 +53,7 @@ class UserProfileViewController: UIViewController {
 			postCountLabel.text = "\(images.count)"
 			setSnapShot()
 			saveItemsToCoreData()
+			returnToFirstItemInCollection()
 		}
 	}
 	
@@ -81,7 +82,6 @@ class UserProfileViewController: UIViewController {
 		
 		super.viewDidAppear(animated)
 		setImageDataToView()
-		returnToFirstItemInCollection()
 	}
 	
 	
@@ -269,6 +269,8 @@ class UserProfileViewController: UIViewController {
 	
 	/// Scrolls collectionView back to the first item in the collection.
 	func returnToFirstItemInCollection(){
+		
+		guard !images.isEmpty else {return}
 		
 		if let indexPath = datasource.indexPath(for: images[0]) {
 			
