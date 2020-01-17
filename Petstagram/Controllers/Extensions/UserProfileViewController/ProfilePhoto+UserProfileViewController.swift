@@ -9,10 +9,12 @@
 import UIKit
 import FirebaseStorage
 
-
+/// Extension that handles image picking from user album.
 extension UserProfileViewController : UINavigationControllerDelegate, UIImagePickerControllerDelegate {
 	
-	
+	/// Presents alert controller that provides two options to users.
+	/// - Camera : Allows user to utilize device camera to create profile photo.
+	/// - Photo Album : Presents Album list for user to select image for profile photo.
 	@IBAction func tappedProfileImage(sender : UIButton) {
 		
 		let imageController = UIImagePickerController()
@@ -50,6 +52,7 @@ extension UserProfileViewController : UINavigationControllerDelegate, UIImagePic
 		present(alertController, animated: true)
 	}
 	
+	/// Sets image selected by user to ImageView that displays the profile image.
 	func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
 		
 		guard let selectedImage = info[.editedImage] as? UIImage else {return}
@@ -57,11 +60,21 @@ extension UserProfileViewController : UINavigationControllerDelegate, UIImagePic
 		userProfilePicture.image = selectedImage
 		userProfilePicture.contentMode = .scaleAspectFill
 		userProfilePicture.clipsToBounds = true
+		
+		// Call to method that uploads images to Google Firebase Storage.
 		self.uploadProfileImageToStorage(isRetrieve: false)
+		
+		// Dismiss the image selector.
 		dismiss(animated: true)
 		
 	}
 	
+	/// Manages upload & download of image data from Google FireStore Storage.
+	/// - Important: `isRetrieve`
+	/// 	- false: writes
+	/// 	- true : reads
+	/// 	- both: set profile image value in `UserDefaults` (double write)
+	/// - Note: 12.5 mb Limit on image downloads.
 	func uploadProfileImageToStorage(isRetrieve: Bool) {
 		
 		guard let user = userAuth.currentUser?.uid else {return}
