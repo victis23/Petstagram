@@ -154,7 +154,6 @@ class UserProfileViewController: UIViewController {
 					
 					self.images.append(AccountImages(image: item.image, timeStamp: item.timeStamp, metaData: item.metaData, id: item.id))
 				}
-				//				self.returnToFirstItemInCollection()
 		}
 	}
 	
