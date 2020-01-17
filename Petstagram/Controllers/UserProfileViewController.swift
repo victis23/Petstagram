@@ -53,7 +53,6 @@ class UserProfileViewController: UIViewController {
 			postCountLabel.text = "\(images.count)"
 			setSnapShot()
 			saveItemsToCoreData()
-			returnToFirstItemInCollection()
 		}
 	}
 	
@@ -74,6 +73,7 @@ class UserProfileViewController: UIViewController {
 		getUserName()
 		setNavigationBar()
 		fetchDataFromCoreData()
+		postCountLabel.text = "\(defaults.integer(forKey: Keys.userDefaultsDB.imageCount))"
 		setSubscription()
 		setCollectionViewLayout()
 	}
@@ -154,6 +154,7 @@ class UserProfileViewController: UIViewController {
 					
 					self.images.append(AccountImages(image: item.image, timeStamp: item.timeStamp, metaData: item.metaData, id: item.id))
 				}
+				self.defaults.set(self.images.count, forKey: Keys.userDefaultsDB.imageCount)
 		}
 	}
 	

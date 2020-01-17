@@ -32,6 +32,7 @@ struct Keys {
 	struct userDefaultsDB {
 		static var profilePhoto = "profilePhoto"
 		static var username = "userName"
+		static var imageCount = "imageCount"
 	}
 	
 	struct keyChainKeys {
