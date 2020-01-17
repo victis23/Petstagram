@@ -148,11 +148,18 @@ class UserProfileViewController: UIViewController {
 			.debounce(for: 1, scheduler: DispatchQueue.main)
 			.sink { profileData in
 				
-				self.images = []
-				
 				profileData.forEach { item in
 					
-					self.images.append(AccountImages(image: item.image, timeStamp: item.timeStamp, metaData: item.metaData, id: item.id))
+					// Checks if object with given id property exists in data collection.
+					let contains = self.images.contains { element in
+						element.id == item.id
+					}
+					
+					// If result of object check comes back false, append new object with values.
+					if !contains {
+						self.images.append(AccountImages(image: item.image, timeStamp: item.timeStamp, metaData: item.metaData, id: item.id))
+					}
+					
 				}
 				self.defaults.set(self.images.count, forKey: Keys.userDefaultsDB.imageCount)
 		}
