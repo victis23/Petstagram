@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15702" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wmT-Bf-7fd">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="15705" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wmT-Bf-7fd">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
-        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15704"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="15706"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
         <capability name="collection view cell content view" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
@@ -11,7 +11,7 @@
         <!--User Profile View Controller-->
         <scene sceneID="QNy-TY-hGQ">
             <objects>
-                <viewController id="wmT-Bf-7fd" customClass="UserProfileViewController" customModule="Petstagram" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController modalPresentationStyle="overFullScreen" id="wmT-Bf-7fd" customClass="UserProfileViewController" customModule="Petstagram" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1pZ-ni-cV9">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -191,12 +191,28 @@
                         <outlet property="userNameLabel" destination="UGB-3o-qn2" id="bFi-8S-OC5"/>
                         <outlet property="userProfilePicture" destination="q6i-HV-9BR" id="VNs-8f-NFI"/>
                         <segue destination="k83-oT-zt7" kind="unwind" identifier="unwindToLogin" unwindAction="unwindToLogin:" id="u7W-qX-JM6"/>
+                        <segue destination="RDz-Sh-qWC" kind="presentation" identifier="imageViewer" modalPresentationStyle="overFullScreen" id="Ejt-bu-J7w"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YKw-R3-n0L" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
                 <exit id="k83-oT-zt7" userLabel="Exit" sceneMemberID="exit"/>
             </objects>
             <point key="canvasLocation" x="1144.9275362318842" y="156.69642857142856"/>
+        </scene>
+        <!--View Controller-->
+        <scene sceneID="Qgx-l2-8yG">
+            <objects>
+                <viewController id="RDz-Sh-qWC" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="FtC-xS-Icc">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                        <viewLayoutGuide key="safeArea" id="eFO-Cy-EsT"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="dX5-zl-iJK" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2010" y="157"/>
         </scene>
     </scenes>
     <resources>
