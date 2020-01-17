@@ -8,7 +8,11 @@
 
 import UIKit
 
-extension UserProfileViewController {
+extension UserProfileViewController : UICollectionViewDelegate {
+	
+	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+		<#code#>
+	}
 	
 	/// Method tasked with determining the layout of the collection when view loads.
 	func setCollectionViewLayout(){
