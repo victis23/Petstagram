@@ -66,6 +66,7 @@ class UserProfileViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		setDataSource()
+		accountImages.delegate = self
 		setSnapShot()
 		setValuesFromUserDefaults()
 		setAesthetics()
