@@ -50,7 +50,23 @@ class AccountImageListTableViewController: UITableViewController {
         super.viewDidLoad()
 		createDataSource()
 		createSnapshot(accountImages: profileImages)
+		determineTableViewPosition()
     }
+	
+	/// Determines where the tableview should focus based off of the image that triggered the segue.
+	func determineTableViewPosition(){
+		
+		guard let imagePointer = imagePointer else {return}
+		
+		guard let item = profileImages.first(where: { (item) -> Bool in
+			item.id == imagePointer
+		}) else {return}
+		
+		if let indexPath = datasource.indexPath(for: item) {
+			
+			tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+		}
+	}
 	
 	/// Utilizes snapshot data to display visual representation to user in a tableview.
 	func createDataSource(){
