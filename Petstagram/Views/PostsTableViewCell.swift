@@ -9,6 +9,6 @@
 import UIKit
 
 /// Cell in tableview controlled by AccountImageListTableViewController.
-class SelectedImageTableViewCell : UITableViewCell {
+class Posts : UITableViewCell {
 	
 }
