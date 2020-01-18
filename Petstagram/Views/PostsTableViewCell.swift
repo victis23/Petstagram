@@ -9,7 +9,7 @@
 import UIKit
 
 /// Cell in tableview controlled by AccountImageListTableViewController.
-class Posts : UITableViewCell {
+class PostsTableViewCell : UITableViewCell {
 	
 	@IBOutlet weak var profilePhoto: UIImageView!
 	@IBOutlet weak var profileImageView: UIImageView!

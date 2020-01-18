@@ -40,6 +40,8 @@ class PostsTableViewController: UITableViewController {
 	
 	// Stored Property that gets its initial value during segue.
 	var profileImages : [AccountImages] = []
+
+	// Indicates which image triggered segue if isUserFeed == true.
 	var imagePointer : String?
 	
 	// source of truth instance.
@@ -48,10 +50,15 @@ class PostsTableViewController: UITableViewController {
     override func viewDidLoad() {
 		
         super.viewDidLoad()
+		setNavigationControls()
 		createDataSource()
 		createSnapshot(accountImages: profileImages)
 		determineTableViewPosition()
     }
+	
+	func setNavigationControls(){
+		navigationController?.navigationItem.backBarButtonItem?.title = " "
+	}
 	
 	/// Determines where the tableview should focus based off of the image that triggered the segue.
 	func determineTableViewPosition(){
@@ -72,7 +79,9 @@ class PostsTableViewController: UITableViewController {
 	func createDataSource(){
 		datasource = UITableViewDiffableDataSource<Sections,AccountImages>(tableView: tableView, cellProvider: { (tableView, indexPath, accountImages) -> UITableViewCell? in
 			
-			let imageCell = tableView.dequeueReusableCell(withIdentifier: "image", for: indexPath)
+			let imageCell = tableView.dequeueReusableCell(withIdentifier: "image", for: indexPath) as? PostsTableViewCell
+			
+			
 			
 			return imageCell
 			
@@ -90,6 +99,6 @@ class PostsTableViewController: UITableViewController {
 	}
 	
 	override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-		return 414
+		return 494
 	}
 }
