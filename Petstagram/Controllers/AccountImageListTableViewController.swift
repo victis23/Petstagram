@@ -23,7 +23,10 @@ class AccountImageListTableViewController: UITableViewController {
 	private var datasource : UITableViewDiffableDataSource<Sections,AccountImages>!
 
     override func viewDidLoad() {
+		
         super.viewDidLoad()
+		createDataSource()
+		createSnapshot(accountImages: profileImages)
     }
 	
 	/// Utilizes snapshot data to display visual representation to user in a tableview.
@@ -43,5 +46,11 @@ class AccountImageListTableViewController: UITableViewController {
 		var snapshot = NSDiffableDataSourceSnapshot<Sections,AccountImages>()
 		snapshot.appendSections([.images,.comments])
 		snapshot.appendItems(accountImages, toSection: .images)
+		
+		datasource.apply(snapshot, animatingDifferences: true, completion: {})
+	}
+	
+	override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+		return 414
 	}
 }
