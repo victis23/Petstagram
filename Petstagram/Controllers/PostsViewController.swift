@@ -44,6 +44,9 @@ class PostsTableViewController: UITableViewController {
 	// Indicates which image triggered segue if isUserFeed == true.
 	var imagePointer : String?
 	
+	// Image displayed in profile image icon.
+	var profileImage : UIImage?
+	
 	// source of truth instance.
 	private var datasource : UITableViewDiffableDataSource<Sections,AccountImages>!
 
@@ -82,6 +85,10 @@ class PostsTableViewController: UITableViewController {
 			guard let imageCell = tableView.dequeueReusableCell(withIdentifier: "image", for: indexPath) as? PostsTableViewCell else {return UITableViewCell()}
 			
 			imageCell.profileImageView.image = accountImages.image
+			imageCell.profileImageView.contentMode = .scaleAspectFill
+			imageCell.profilePhoto.image = self.profileImage
+			imageCell.profilePhoto.contentMode = .scaleAspectFill
+			imageCell.profilePhoto.layer.cornerRadius = imageCell.frame.height / 2
 			
 			return imageCell
 			
@@ -92,7 +99,7 @@ class PostsTableViewController: UITableViewController {
 	func createSnapshot(accountImages : [AccountImages]){
 		
 		var snapshot = NSDiffableDataSourceSnapshot<Sections,AccountImages>()
-		snapshot.appendSections([.images,.comments])
+		snapshot.appendSections([.images])
 		snapshot.appendItems(accountImages, toSection: .images)
 		
 		datasource.apply(snapshot, animatingDifferences: true, completion: {})

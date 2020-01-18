@@ -217,9 +217,12 @@
                                     <subviews>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="sMY-As-HBf">
                                             <rect key="frame" x="0.0" y="81" width="414" height="413"/>
+                                            <constraints>
+                                                <constraint firstAttribute="width" secondItem="sMY-As-HBf" secondAttribute="height" multiplier="414:413" id="Jfb-Nb-kd4"/>
+                                            </constraints>
                                         </imageView>
                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="F0v-Mx-txv">
-                                            <rect key="frame" x="10" y="5" width="71" height="71"/>
+                                            <rect key="frame" x="5" y="5" width="71" height="71"/>
                                             <constraints>
                                                 <constraint firstAttribute="width" secondItem="F0v-Mx-txv" secondAttribute="height" multiplier="1:1" id="afT-Xw-RIr"/>
                                             </constraints>
@@ -227,10 +230,9 @@
                                     </subviews>
                                     <constraints>
                                         <constraint firstAttribute="bottom" secondItem="sMY-As-HBf" secondAttribute="bottom" id="2b1-Zi-UmV"/>
-                                        <constraint firstAttribute="trailing" secondItem="F0v-Mx-txv" secondAttribute="trailing" constant="333" id="3qa-nW-Hpv"/>
                                         <constraint firstAttribute="trailing" secondItem="sMY-As-HBf" secondAttribute="trailing" id="Kop-GF-fq7"/>
                                         <constraint firstItem="sMY-As-HBf" firstAttribute="top" secondItem="F0v-Mx-txv" secondAttribute="bottom" constant="5" id="YU5-ag-2a8"/>
-                                        <constraint firstItem="F0v-Mx-txv" firstAttribute="leading" secondItem="7eV-Vx-j6P" secondAttribute="leading" constant="10" id="gbz-1d-wii"/>
+                                        <constraint firstItem="F0v-Mx-txv" firstAttribute="leading" secondItem="7eV-Vx-j6P" secondAttribute="leading" constant="5" id="gbz-1d-wii"/>
                                         <constraint firstItem="F0v-Mx-txv" firstAttribute="top" secondItem="7eV-Vx-j6P" secondAttribute="top" constant="5" id="wZk-mx-5U8"/>
                                         <constraint firstItem="sMY-As-HBf" firstAttribute="leading" secondItem="7eV-Vx-j6P" secondAttribute="leading" id="x18-AU-CCG"/>
                                     </constraints>

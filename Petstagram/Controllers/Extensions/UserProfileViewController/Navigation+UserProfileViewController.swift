@@ -21,6 +21,7 @@ extension UserProfileViewController {
 			
 			destinationController.profileImages = images
 			destinationController.imagePointer = selectedObject
+			destinationController.profileImage = self.userProfilePicture.image
 		}
 	}
 }
