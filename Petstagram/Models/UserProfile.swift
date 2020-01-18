@@ -15,6 +15,7 @@ import Firebase
 class UserProfile {
 	
 	var imageData : Data?
+	var userImages : [UIImage]?
 	let user = Auth.auth().currentUser?.uid
 	let db = Firestore.firestore()
 	let storage = Storage.storage().reference()
