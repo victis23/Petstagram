@@ -15,6 +15,9 @@ extension UserProfileViewController {
 		
 		if segue .identifier == Keys.Segues.imageViewer {
 			
+			//Changes text that will be displayed on the back button.
+			navigationItem.backBarButtonItem = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
+			
 			guard let selectedObject = sender as? String else {return}
 			
 			guard let destinationController = segue.destination as? PostsTableViewController else {return}

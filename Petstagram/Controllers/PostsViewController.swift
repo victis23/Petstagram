@@ -53,14 +53,19 @@ class PostsTableViewController: UITableViewController {
     override func viewDidLoad() {
 		
         super.viewDidLoad()
-		setNavigationControls()
 		createDataSource()
 		createSnapshot(accountImages: profileImages)
-		determineTableViewPosition()
     }
 	
-	func setNavigationControls(){
-		navigationController?.navigationItem.backBarButtonItem?.title = " "
+	override func viewWillLayoutSubviews() {
+		super .viewWillLayoutSubviews()
+		
+		
+	}
+	
+	override func viewDidAppear(_ animated: Bool) {
+		super.viewDidAppear(animated)
+		determineTableViewPosition()
 	}
 	
 	/// Determines where the tableview should focus based off of the image that triggered the segue.
