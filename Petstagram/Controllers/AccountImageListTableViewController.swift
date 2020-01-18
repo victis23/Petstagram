@@ -15,9 +15,32 @@ class AccountImageListTableViewController: UITableViewController {
 		case images
 		case comments
 	}
+	/*
+	/// Manages user comments for images.
+	struct Comments : Hashable, Equatable {
+		var comment : [String]?
+		var accountImage : AccountImages
+		var id : String {
+			return accountImage.id
+		}
+		
+		init(accountImage : AccountImages) {
+			self.accountImage = accountImage
+		}
+		
+		func hash(into hasher : inout Hasher){
+			hasher.combine(id)
+		}
+		
+		static func == (lhs: Comments, rhs: Comments)->Bool{
+			lhs.id == rhs.id
+		}
+	}
+	*/
 	
 	// Stored Property that gets its initial value during segue.
 	var profileImages : [AccountImages] = []
+	var imagePointer : String?
 	
 	// source of truth instance.
 	private var datasource : UITableViewDiffableDataSource<Sections,AccountImages>!
