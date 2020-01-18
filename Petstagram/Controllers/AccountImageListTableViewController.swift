@@ -10,7 +10,8 @@ import UIKit
 
 class AccountImageListTableViewController: UITableViewController {
 	
-	enum sections {
+	/// Enum that determines sections in source of truth
+	private enum Sections {
 		case images
 		case comments
 	}
