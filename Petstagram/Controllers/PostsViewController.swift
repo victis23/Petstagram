@@ -88,7 +88,10 @@ class PostsTableViewController: UITableViewController {
 			imageCell.profileImageView.contentMode = .scaleAspectFill
 			imageCell.profilePhoto.image = self.profileImage
 			imageCell.profilePhoto.contentMode = .scaleAspectFill
-			imageCell.profilePhoto.layer.cornerRadius = imageCell.frame.height / 2
+			
+			let widthOfProfilePhoto = imageCell.profilePhoto.frame.width
+			
+			imageCell.profilePhoto.layer.cornerRadius = widthOfProfilePhoto / 2
 			
 			return imageCell
 			
@@ -106,6 +109,6 @@ class PostsTableViewController: UITableViewController {
 	}
 	
 	override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-		return 494
+		return 450
 	}
 }
