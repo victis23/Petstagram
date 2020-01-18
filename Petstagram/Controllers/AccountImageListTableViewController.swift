@@ -25,4 +25,23 @@ class AccountImageListTableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
     }
+	
+	/// Utilizes snapshot data to display visual representation to user in a tableview.
+	func createDataSource(){
+		datasource = UITableViewDiffableDataSource<Sections,AccountImages>(tableView: tableView, cellProvider: { (tableView, indexPath, accountImages) -> UITableViewCell? in
+			
+			let imageCell = tableView.dequeueReusableCell(withIdentifier: "image", for: indexPath)
+			
+			return imageCell
+			
+		})
+	}
+	
+	/// Source of truth for tableview.
+	func createSnapshot(accountImages : [AccountImages]){
+		
+		var snapshot = NSDiffableDataSourceSnapshot<Sections,AccountImages>()
+		snapshot.appendSections([.images,.comments])
+		snapshot.appendItems(accountImages, toSection: .images)
+	}
 }
