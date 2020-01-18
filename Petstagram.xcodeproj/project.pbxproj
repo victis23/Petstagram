@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		7D3ED8A923CA58B200CF8EB6 /* AccountImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D3ED8A823CA58B200CF8EB6 /* AccountImages.swift */; };
 		7D48913723D3A83B0037CDBA /* AccountImageListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D48913623D3A83B0037CDBA /* AccountImageListTableViewController.swift */; };
+		7D48913923D3B64E0037CDBA /* Navigation+UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D48913823D3B64E0037CDBA /* Navigation+UserProfileViewController.swift */; };
 		7D4A53F3239C66ED0079A96A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4A53F2239C66ED0079A96A /* AppDelegate.swift */; };
 		7D4A53F5239C66ED0079A96A /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4A53F4239C66ED0079A96A /* SceneDelegate.swift */; };
 		7D4A53FA239C66ED0079A96A /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 7D4A53F8239C66ED0079A96A /* Main.storyboard */; };
@@ -72,6 +73,7 @@
 		30BAF6D66359D4754EAD6306 /* Pods-Petstagram.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Petstagram.release.xcconfig"; path = "Target Support Files/Pods-Petstagram/Pods-Petstagram.release.xcconfig"; sourceTree = "<group>"; };
 		7D3ED8A823CA58B200CF8EB6 /* AccountImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountImages.swift; sourceTree = "<group>"; };
 		7D48913623D3A83B0037CDBA /* AccountImageListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountImageListTableViewController.swift; sourceTree = "<group>"; };
+		7D48913823D3B64E0037CDBA /* Navigation+UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Navigation+UserProfileViewController.swift"; sourceTree = "<group>"; };
 		7D4A53EF239C66ED0079A96A /* Petstagram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Petstagram.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D4A53F2239C66ED0079A96A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		7D4A53F4239C66ED0079A96A /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -287,6 +289,7 @@
 			children = (
 				7D50726B23CAB3EE00FA54CA /* CollectionView+UserProfileViewController.swift */,
 				7D50726D23CAB59900FA54CA /* ProfilePhoto+UserProfileViewController.swift */,
+				7D48913823D3B64E0037CDBA /* Navigation+UserProfileViewController.swift */,
 			);
 			path = UserProfileViewController;
 			sourceTree = "<group>";
@@ -525,6 +528,7 @@
 				7D558186239DE31C0076AFEB /* Authentication.swift in Sources */,
 				7D55817F239D2C710076AFEB /* LoginAesthetics+AppLogin.swift in Sources */,
 				7D896A1C23C149AF0052C8E4 /* UserImageCollectionViewCell.swift in Sources */,
+				7D48913923D3B64E0037CDBA /* Navigation+UserProfileViewController.swift in Sources */,
 				7D72C79D23CECF2C003361B8 /* ImageSelectorExtension+ImageUploadViewController.swift in Sources */,
 				7D4A5441239C69F00079A96A /* ImageUploadViewController.swift in Sources */,
 				7D72C79823CEC180003361B8 /* ImageAlbum.swift in Sources */,
