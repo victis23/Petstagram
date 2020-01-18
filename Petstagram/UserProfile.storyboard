@@ -235,6 +235,10 @@
                                         <constraint firstItem="sMY-As-HBf" firstAttribute="leading" secondItem="7eV-Vx-j6P" secondAttribute="leading" id="x18-AU-CCG"/>
                                     </constraints>
                                 </tableViewCellContentView>
+                                <connections>
+                                    <outlet property="profileImageView" destination="sMY-As-HBf" id="rfd-qq-fp6"/>
+                                    <outlet property="profilePhoto" destination="F0v-Mx-txv" id="gXo-t4-C36"/>
+                                </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="comment" id="Jia-Qb-EqJ" userLabel="comments">
                                 <rect key="frame" x="0.0" y="522" width="414" height="43.5"/>
