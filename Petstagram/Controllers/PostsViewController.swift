@@ -8,7 +8,7 @@
 
 import UIKit
 
-class AccountImageListTableViewController: UITableViewController {
+class PostsTableViewController: UITableViewController {
 	
 	/// Enum that determines sections in source of truth
 	private enum Sections {

@@ -17,7 +17,7 @@ extension UserProfileViewController {
 			
 			guard let selectedObject = sender as? String else {return}
 			
-			guard let destinationController = segue.destination as? AccountImageListTableViewController else {return}
+			guard let destinationController = segue.destination as? PostsTableViewController else {return}
 			
 			destinationController.profileImages = images
 			destinationController.imagePointer = selectedObject
