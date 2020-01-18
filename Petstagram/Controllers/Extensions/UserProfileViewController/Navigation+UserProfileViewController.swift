@@ -15,9 +15,12 @@ extension UserProfileViewController {
 		
 		if segue .identifier == Keys.Segues.imageViewer {
 			
+			guard let selectedObject = sender as? String else {return}
+			
 			guard let destinationController = segue.destination as? AccountImageListTableViewController else {return}
 			
 			destinationController.profileImages = images
+			destinationController.imagePointer = selectedObject
 		}
 	}
 }
