@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		7D3ED8A923CA58B200CF8EB6 /* AccountImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D3ED8A823CA58B200CF8EB6 /* AccountImages.swift */; };
-		7D48913723D3A83B0037CDBA /* AccountImageListTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D48913623D3A83B0037CDBA /* AccountImageListTableViewController.swift */; };
+		7D48913723D3A83B0037CDBA /* PostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D48913623D3A83B0037CDBA /* PostsViewController.swift */; };
 		7D48913923D3B64E0037CDBA /* Navigation+UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D48913823D3B64E0037CDBA /* Navigation+UserProfileViewController.swift */; };
 		7D48913B23D3BEB50037CDBA /* PostsTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D48913A23D3BEB50037CDBA /* PostsTableViewCell.swift */; };
 		7D4A53F3239C66ED0079A96A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D4A53F2239C66ED0079A96A /* AppDelegate.swift */; };
@@ -73,7 +73,7 @@
 /* Begin PBXFileReference section */
 		30BAF6D66359D4754EAD6306 /* Pods-Petstagram.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Petstagram.release.xcconfig"; path = "Target Support Files/Pods-Petstagram/Pods-Petstagram.release.xcconfig"; sourceTree = "<group>"; };
 		7D3ED8A823CA58B200CF8EB6 /* AccountImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountImages.swift; sourceTree = "<group>"; };
-		7D48913623D3A83B0037CDBA /* AccountImageListTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountImageListTableViewController.swift; sourceTree = "<group>"; };
+		7D48913623D3A83B0037CDBA /* PostsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsViewController.swift; sourceTree = "<group>"; };
 		7D48913823D3B64E0037CDBA /* Navigation+UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Navigation+UserProfileViewController.swift"; sourceTree = "<group>"; };
 		7D48913A23D3BEB50037CDBA /* PostsTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsTableViewCell.swift; sourceTree = "<group>"; };
 		7D4A53EF239C66ED0079A96A /* Petstagram.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Petstagram.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -244,7 +244,7 @@
 				7D4A5439239C69F00079A96A /* UserFeedViewController.swift */,
 				7D4A543A239C69F00079A96A /* UserProfileViewController.swift */,
 				7D4A5448239C6AFA0079A96A /* AppLogin.swift */,
-				7D48913623D3A83B0037CDBA /* AccountImageListTableViewController.swift */,
+				7D48913623D3A83B0037CDBA /* PostsViewController.swift */,
 				7D4A544A239C91B00079A96A /* Extensions */,
 			);
 			path = Controllers;
@@ -549,7 +549,7 @@
 				7D4A53F5239C66ED0079A96A /* SceneDelegate.swift in Sources */,
 				7D4A5449239C6AFA0079A96A /* AppLogin.swift in Sources */,
 				7D4A53FD239C66ED0079A96A /* Petstagram.xcdatamodeld in Sources */,
-				7D48913723D3A83B0037CDBA /* AccountImageListTableViewController.swift in Sources */,
+				7D48913723D3A83B0037CDBA /* PostsViewController.swift in Sources */,
 				7D4A5444239C6A410079A96A /* Keys.swift in Sources */,
 				7D48913B23D3BEB50037CDBA /* PostsTableViewCell.swift in Sources */,
 				7DCD743A23C0595600BA9D52 /* UserProfile.swift in Sources */,
