@@ -18,6 +18,9 @@ class AccountImageListTableViewController: UITableViewController {
 	
 	// Stored Property that gets its initial value during segue.
 	var profileImages : [AccountImages] = []
+	
+	// source of truth instance.
+	private var datasource : UITableViewDiffableDataSource<Sections,AccountImages>!
 
     override func viewDidLoad() {
         super.viewDidLoad()
