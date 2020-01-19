@@ -13,5 +13,6 @@ class PostsTableViewCell : UITableViewCell {
 	
 	@IBOutlet weak var profilePhoto: UIImageView!
 	@IBOutlet weak var profileImageView: UIImageView!
+	@IBOutlet weak var username: UILabel!
 	
 }

@@ -227,10 +227,18 @@
                                                 <constraint firstAttribute="width" secondItem="F0v-Mx-txv" secondAttribute="height" multiplier="1:1" id="afT-Xw-RIr"/>
                                             </constraints>
                                         </imageView>
+                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="t8f-0T-qIM">
+                                            <rect key="frame" x="94" y="11" width="42" height="21"/>
+                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                            <nil key="textColor"/>
+                                            <nil key="highlightedColor"/>
+                                        </label>
                                     </subviews>
                                     <constraints>
                                         <constraint firstAttribute="bottom" secondItem="sMY-As-HBf" secondAttribute="bottom" id="2b1-Zi-UmV"/>
                                         <constraint firstAttribute="trailing" secondItem="sMY-As-HBf" secondAttribute="trailing" id="Kop-GF-fq7"/>
+                                        <constraint firstItem="t8f-0T-qIM" firstAttribute="top" secondItem="7eV-Vx-j6P" secondAttribute="topMargin" id="T4o-hm-Yp1"/>
+                                        <constraint firstItem="t8f-0T-qIM" firstAttribute="leading" secondItem="F0v-Mx-txv" secondAttribute="trailing" constant="18" id="Uvm-y0-is8"/>
                                         <constraint firstItem="sMY-As-HBf" firstAttribute="top" secondItem="F0v-Mx-txv" secondAttribute="bottom" constant="5" id="YU5-ag-2a8"/>
                                         <constraint firstItem="F0v-Mx-txv" firstAttribute="leading" secondItem="7eV-Vx-j6P" secondAttribute="leading" constant="5" id="gbz-1d-wii"/>
                                         <constraint firstItem="F0v-Mx-txv" firstAttribute="top" secondItem="7eV-Vx-j6P" secondAttribute="top" constant="5" id="wZk-mx-5U8"/>
@@ -240,6 +248,7 @@
                                 <connections>
                                     <outlet property="profileImageView" destination="sMY-As-HBf" id="rfd-qq-fp6"/>
                                     <outlet property="profilePhoto" destination="F0v-Mx-txv" id="gXo-t4-C36"/>
+                                    <outlet property="username" destination="t8f-0T-qIM" id="1uN-a9-w03"/>
                                 </connections>
                             </tableViewCell>
                             <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="comment" id="Jia-Qb-EqJ" userLabel="comments">
