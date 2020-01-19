@@ -47,6 +47,9 @@ class PostsTableViewController: UITableViewController {
 	// Image displayed in profile image icon.
 	var profileImage : UIImage?
 	
+	// Stored property that holds username for signed in account.
+	var userName: String?
+	
 	// source of truth instance.
 	private var datasource : UITableViewDiffableDataSource<Sections,AccountImages>!
 	
