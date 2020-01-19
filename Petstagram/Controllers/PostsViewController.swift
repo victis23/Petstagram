@@ -92,9 +92,15 @@ class PostsTableViewController: UITableViewController {
 			imageCell.profilePhoto.image = self.profileImage
 			imageCell.profilePhoto.contentMode = .scaleAspectFill
 			
+			imageCell.username.text = self.userName?.capitalized
+			imageCell.username.font = .systemFont(ofSize: 25, weight: .heavy)
+			imageCell.username.textColor = .label
+			
 			let widthOfProfilePhoto = imageCell.profilePhoto.frame.width
 			
 			imageCell.profilePhoto.layer.cornerRadius = widthOfProfilePhoto / 2
+			imageCell.profilePhoto.layer.borderColor = UIColor.label.cgColor
+			imageCell.profilePhoto.layer.borderWidth = 2
 			
 			return imageCell
 			
