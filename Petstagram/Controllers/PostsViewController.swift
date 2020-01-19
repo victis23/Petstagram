@@ -56,6 +56,7 @@ class PostsTableViewController: UITableViewController {
 	override func viewDidLoad() {
 		
 		super.viewDidLoad()
+		setNavigationBar()
 		createDataSource()
 		self.createSnapshot(accountImages: self.profileImages)
 		
@@ -64,6 +65,17 @@ class PostsTableViewController: UITableViewController {
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
 		determineTableViewPosition()
+	}
+	
+	func setNavigationBar(){
+		self.navigationItem.title = "Petstagram"
+		
+		if let font = UIFont(name: "Billabong", size: 34) {
+			
+			self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font : font]
+		}
+		
+		self.navigationController?.navigationBar.tintColor = .label
 	}
 	
 	/// Determines where the tableview should focus based off of the image that triggered the segue.
@@ -102,6 +114,9 @@ class PostsTableViewController: UITableViewController {
 			imageCell.profilePhoto.layer.borderColor = UIColor.label.cgColor
 			imageCell.profilePhoto.layer.borderWidth = 2
 			
+			imageCell.profilePhoto.clipsToBounds = true
+			imageCell.profileImageView.clipsToBounds = true
+			
 			return imageCell
 			
 		})
@@ -118,6 +133,7 @@ class PostsTableViewController: UITableViewController {
 	}
 	
 	override func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+		
 		return 450
 	}
 }
