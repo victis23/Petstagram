@@ -105,6 +105,8 @@ class UserProfileViewController: UIViewController {
 	
 	///Sets the appearance of userfacing views.
 	func setAesthetics(){
+		
+		editProfileInfoButton.layer.cornerRadius = 5
 		userProfilePicture.layer.borderColor = UIColor.label.cgColor
 		userProfilePicture.layer.borderWidth = 2
 		userProfilePicture.layer.cornerRadius = 5
