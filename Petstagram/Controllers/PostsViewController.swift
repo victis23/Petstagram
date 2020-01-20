@@ -100,22 +100,26 @@ class PostsTableViewController: UITableViewController {
 			guard let imageCell = tableView.dequeueReusableCell(withIdentifier: "image", for: indexPath) as? PostsTableViewCell else {return UITableViewCell()}
 			
 			imageCell.profileImageView.image = accountImages.image
+			imageCell.profileImageView.clipsToBounds = true
 			imageCell.profileImageView.contentMode = .scaleAspectFill
+			
+			
+			let widthOfProfilePhoto = imageCell.profilePhoto.frame.width
 			imageCell.profilePhoto.image = self.profileImage
+			imageCell.profilePhoto.clipsToBounds = true
 			imageCell.profilePhoto.contentMode = .scaleAspectFill
+			imageCell.profilePhoto.layer.cornerRadius = widthOfProfilePhoto / 2
+			imageCell.profilePhoto.layer.borderColor = UIColor.label.cgColor
+			imageCell.profilePhoto.layer.borderWidth = 2
 			
 			imageCell.username.text = self.userName?.capitalized
 			imageCell.username.font = .systemFont(ofSize: 25, weight: .heavy)
 			imageCell.username.textColor = .label
 			
-			let widthOfProfilePhoto = imageCell.profilePhoto.frame.width
-			
-			imageCell.profilePhoto.layer.cornerRadius = widthOfProfilePhoto / 2
-			imageCell.profilePhoto.layer.borderColor = UIColor.label.cgColor
-			imageCell.profilePhoto.layer.borderWidth = 2
-			
-			imageCell.profilePhoto.clipsToBounds = true
-			imageCell.profileImageView.clipsToBounds = true
+			let dateFormatter = DateFormatter()
+			dateFormatter.dateStyle = .short
+			let postdate = dateFormatter.string(from: accountImages.timeStamp)
+			imageCell.postDate.text = "Posted: \(postdate)"
 			
 			return imageCell
 			
