@@ -129,6 +129,7 @@ class PostsTableViewController: UITableViewController {
 	}
 	
 	/// Compares two dates and returns a string that will be displayed in tableview showing time which has passed since image was uploaded to FireStore.
+	/// - Note: `difference` is a stored property which is of type Int and is actually the time in seconds since the post was uploaded.
 	func setTextforPostTime(using postDate: Date, currentData: Date)->String{
 		
 		let dataComponent = Calendar.current.dateComponents([.second], from: postDate, to: currentData)
