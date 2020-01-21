@@ -67,6 +67,7 @@ class PostsTableViewController: UITableViewController {
 		determineTableViewPosition()
 	}
 	
+	/// Sets attributes for navigation bar.
 	func setNavigationBar(){
 		self.navigationItem.title = "Petstagram"
 		
@@ -116,12 +117,14 @@ class PostsTableViewController: UITableViewController {
 			imageCell.username.font = .systemFont(ofSize: 25, weight: .heavy)
 			imageCell.username.textColor = .label
 			
+			// Calender Instance that compares post date to current date.
 			let postDate = accountImages.timeStamp
 			let today = Date()
 			let components = Calendar.current.dateComponents([.second], from: postDate, to: today)
 			
 			guard let difference = components.second else {return imageCell}
 			
+			// Determines what text to show in label for time since posted.
 			switch difference {
 			case 0..<61:
 				imageCell.postDate.text = "Posted: \(difference) seconds ago."
