@@ -7,7 +7,7 @@
 //
 
 import XCTest
-@testable import Petstagram
+
 
 class PetstagramTests: XCTestCase {
 
