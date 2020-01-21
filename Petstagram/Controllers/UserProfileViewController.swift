@@ -168,6 +168,7 @@ class UserProfileViewController: UIViewController {
 					// If result of object check comes back false, append new object with values.
 					if !contains {
 						self.images.append(AccountImages(image: item.image, timeStamp: item.timeStamp, metaData: item.metaData, id: item.id))
+						self.sort()
 					}
 					
 				}
@@ -212,8 +213,6 @@ class UserProfileViewController: UIViewController {
 								self.userProfileItems.append(AccountImages(image: image, timeStamp: date, metaData: mData, id: fileName))
 							}
 						}
-						// Sort the objects by timestamp.
-						self.sortPhotos()
 					}
 				}
 			}
@@ -221,10 +220,9 @@ class UserProfileViewController: UIViewController {
 	}
 	
 	/// Sorts the objects in the collection by their metadata timestamp.
-	func sortPhotos(){
-		
-		// Sort from newest to oldest
-		userProfileItems.sort { (value1, value2) -> Bool in
+
+	func sort(){
+		images.sort { value1, value2 -> Bool in
 			value1.timeStamp > value2.timeStamp
 		}
 	}
