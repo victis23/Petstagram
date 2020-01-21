@@ -21,14 +21,18 @@ extension TimeFrames {
 	var message:String {
 		
 		switch self {
+		
 		case .seconds(time: let time, unit: let unit):
 			return "Posted: \(time) \(unit) ago."
+		
 		case.minutes(time: var time, unit: let unit):
 			time = time / 60
 			return "Posted: \(time) \(unit) ago."
+		
 		case .hours(time: var time, unit: let unit):
 			time = time / (60*60)
 			return "Posted: \(time) \(unit) ago."
+		
 		case .days(time: var time, unit: let unit):
 			time = time / (60*60*24)
 			return "Posted: \(time) \(unit) ago."
