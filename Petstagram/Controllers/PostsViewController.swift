@@ -120,29 +120,35 @@ class PostsTableViewController: UITableViewController {
 			// Calender Instance that compares post date to current date.
 			let postDate = accountImages.timeStamp
 			let today = Date()
-			let components = Calendar.current.dateComponents([.second], from: postDate, to: today)
 			
-			guard let difference = components.second else {return imageCell}
-			
-			// Determines what text to show in label for time since posted.
-			switch difference {
-			case 0..<61:
-				imageCell.postDate.text = "Posted: \(difference) seconds ago."
-			case 61..<3600:
-				let minutes = difference / 60
-				imageCell.postDate.text = "Posted: \(minutes) minutes ago."
-			case 3600..<86_400:
-				let hours = (difference / 60) / 60
-				imageCell.postDate.text = "Posted: \(hours) hours ago."
-			case 86_400...:
-				let days = ((difference / 60) / 60) / 24
-				imageCell.postDate.text = "Posted: \(days) days ago."
-			default:
-				break
-			}
-			
+			// Returns a string that show how much time has occured since post was made.
+			imageCell.postDate.text = self.setTextforPostTime(using: postDate, currentData: today)
+		
 			return imageCell
 		})
+	}
+	
+	/// Compares two dates and returns a string that will be displayed in tableview showing time which has passed since image was uploaded to FireStore.
+	func setTextforPostTime(using postDate: Date, currentData: Date)->String{
+		
+		let dataComponent = Calendar.current.dateComponents([.second], from: postDate, to: currentData)
+		var timeFrame : TimeFrames?
+		
+		if let difference = dataComponent.second {
+			switch difference {
+			case 0..<61:
+				timeFrame = .seconds(time: difference)
+			case 0..<3_600:
+				timeFrame = .minutes(time: difference)
+			case 3_600..<86_400:
+				timeFrame = .hours(time: difference)
+			case 86_400...:
+				timeFrame = .days(time: difference)
+			default:
+				return ""
+			}
+		}
+		return timeFrame?.message ?? ""
 	}
 	
 	/// Source of truth for tableview.
