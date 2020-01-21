@@ -9,6 +9,7 @@
 import Foundation
 
 /// Enum that controls which string user sees in PostViewController's tableview for time since post was made.
+/// - Note: Associated Value will be used in the message property to create an interpolated string.
 enum TimeFrames {
 	case seconds(time:Int, unit : String = "seconds")
 	case minutes(time:Int, unit : String = "minutes")
