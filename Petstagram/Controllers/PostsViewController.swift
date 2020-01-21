@@ -116,13 +116,29 @@ class PostsTableViewController: UITableViewController {
 			imageCell.username.font = .systemFont(ofSize: 25, weight: .heavy)
 			imageCell.username.textColor = .label
 			
-			let dateFormatter = DateFormatter()
-			dateFormatter.dateStyle = .short
-			let postdate = dateFormatter.string(from: accountImages.timeStamp)
-			imageCell.postDate.text = "Posted: \(postdate)"
+			let postDate = accountImages.timeStamp
+			let today = Date()
+			let components = Calendar.current.dateComponents([.second], from: postDate, to: today)
+			
+			guard let difference = components.second else {return imageCell}
+			
+			switch difference {
+			case 0..<61:
+				imageCell.postDate.text = "Posted: \(difference) seconds ago."
+			case 61..<3600:
+				let minutes = difference / 60
+				imageCell.postDate.text = "Posted: \(minutes) minutes ago."
+			case 3600..<86_400:
+				let hours = (difference / 60) / 60
+				imageCell.postDate.text = "Posted: \(hours) hours ago."
+			case 86_400...:
+				let days = ((difference / 60) / 60) / 24
+				imageCell.postDate.text = "Posted: \(days) days ago."
+			default:
+				break
+			}
 			
 			return imageCell
-			
 		})
 	}
 	
