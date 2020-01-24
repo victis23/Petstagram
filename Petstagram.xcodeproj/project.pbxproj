@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7D118C7023DBBBFD0028B5DC /* PetstagramTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D118C6F23DBBBFD0028B5DC /* PetstagramTests.swift */; };
 		7D3ED8A923CA58B200CF8EB6 /* AccountImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D3ED8A823CA58B200CF8EB6 /* AccountImages.swift */; };
 		7D48913723D3A83B0037CDBA /* PostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D48913623D3A83B0037CDBA /* PostsViewController.swift */; };
 		7D48913923D3B64E0037CDBA /* Navigation+UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D48913823D3B64E0037CDBA /* Navigation+UserProfileViewController.swift */; };
@@ -53,6 +54,13 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
+		7D118C7223DBBBFD0028B5DC /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 7D4A53E7239C66ED0079A96A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 7D4A53EE239C66ED0079A96A;
+			remoteInfo = Petstagram;
+		};
 		7D4A5414239C66EE0079A96A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
 			containerPortal = 7D4A53E7239C66ED0079A96A /* Project object */;
@@ -64,6 +72,9 @@
 
 /* Begin PBXFileReference section */
 		30BAF6D66359D4754EAD6306 /* Pods-Petstagram.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Petstagram.release.xcconfig"; path = "Target Support Files/Pods-Petstagram/Pods-Petstagram.release.xcconfig"; sourceTree = "<group>"; };
+		7D118C6D23DBBBFD0028B5DC /* PetstagramTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PetstagramTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		7D118C6F23DBBBFD0028B5DC /* PetstagramTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetstagramTests.swift; sourceTree = "<group>"; };
+		7D118C7123DBBBFD0028B5DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7D3ED8A823CA58B200CF8EB6 /* AccountImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountImages.swift; sourceTree = "<group>"; };
 		7D48913623D3A83B0037CDBA /* PostsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsViewController.swift; sourceTree = "<group>"; };
 		7D48913823D3B64E0037CDBA /* Navigation+UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Navigation+UserProfileViewController.swift"; sourceTree = "<group>"; };
@@ -114,6 +125,13 @@
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
+		7D118C6A23DBBBFD0028B5DC /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7D4A53EC239C66ED0079A96A /* Frameworks */ = {
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
@@ -150,11 +168,21 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		7D118C6E23DBBBFD0028B5DC /* PetstagramTests */ = {
+			isa = PBXGroup;
+			children = (
+				7D118C6F23DBBBFD0028B5DC /* PetstagramTests.swift */,
+				7D118C7123DBBBFD0028B5DC /* Info.plist */,
+			);
+			path = PetstagramTests;
+			sourceTree = "<group>";
+		};
 		7D4A53E6239C66ED0079A96A = {
 			isa = PBXGroup;
 			children = (
 				7D4A53F1239C66ED0079A96A /* Petstagram */,
 				7D4A5416239C66EE0079A96A /* PetstagramUITests */,
+				7D118C6E23DBBBFD0028B5DC /* PetstagramTests */,
 				7D4A53F0239C66ED0079A96A /* Products */,
 				081BA26094B7FD432F43680B /* Pods */,
 				545AEDA17896944478FD0A83 /* Frameworks */,
@@ -166,6 +194,7 @@
 			children = (
 				7D4A53EF239C66ED0079A96A /* Petstagram.app */,
 				7D4A5413239C66EE0079A96A /* PetstagramUITests.xctest */,
+				7D118C6D23DBBBFD0028B5DC /* PetstagramTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -310,6 +339,24 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
+		7D118C6C23DBBBFD0028B5DC /* PetstagramTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 7D118C7423DBBBFD0028B5DC /* Build configuration list for PBXNativeTarget "PetstagramTests" */;
+			buildPhases = (
+				7D118C6923DBBBFD0028B5DC /* Sources */,
+				7D118C6A23DBBBFD0028B5DC /* Frameworks */,
+				7D118C6B23DBBBFD0028B5DC /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				7D118C7323DBBBFD0028B5DC /* PBXTargetDependency */,
+			);
+			name = PetstagramTests;
+			productName = PetstagramTests;
+			productReference = 7D118C6D23DBBBFD0028B5DC /* PetstagramTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 		7D4A53EE239C66ED0079A96A /* Petstagram */ = {
 			isa = PBXNativeTarget;
 			buildConfigurationList = 7D4A541C239C66EE0079A96A /* Build configuration list for PBXNativeTarget "Petstagram" */;
@@ -360,6 +407,10 @@
 				LastUpgradeCheck = 1120;
 				ORGANIZATIONNAME = DuhMarket;
 				TargetAttributes = {
+					7D118C6C23DBBBFD0028B5DC = {
+						CreatedOnToolsVersion = 11.3.1;
+						TestTargetID = 7D4A53EE239C66ED0079A96A;
+					};
 					7D4A53EE239C66ED0079A96A = {
 						CreatedOnToolsVersion = 11.2.1;
 					};
@@ -387,11 +438,19 @@
 			targets = (
 				7D4A53EE239C66ED0079A96A /* Petstagram */,
 				7D4A5412239C66EE0079A96A /* PetstagramUITests */,
+				7D118C6C23DBBBFD0028B5DC /* PetstagramTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		7D118C6B23DBBBFD0028B5DC /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7D4A53ED239C66ED0079A96A /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -461,6 +520,14 @@
 /* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
+		7D118C6923DBBBFD0028B5DC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				7D118C7023DBBBFD0028B5DC /* PetstagramTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		7D4A53EB239C66ED0079A96A /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -509,6 +576,11 @@
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXTargetDependency section */
+		7D118C7323DBBBFD0028B5DC /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 7D4A53EE239C66ED0079A96A /* Petstagram */;
+			targetProxy = 7D118C7223DBBBFD0028B5DC /* PBXContainerItemProxy */;
+		};
 		7D4A5415239C66EE0079A96A /* PBXTargetDependency */ = {
 			isa = PBXTargetDependency;
 			target = 7D4A53EE239C66ED0079A96A /* Petstagram */;
@@ -536,6 +608,46 @@
 /* End PBXVariantGroup section */
 
 /* Begin XCBuildConfiguration section */
+		7D118C7523DBBBFD0028B5DC /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 55P567K3FP;
+				INFOPLIST_FILE = PetstagramTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.duhmarket.PetstagramTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Petstagram.app/Petstagram";
+			};
+			name = Debug;
+		};
+		7D118C7623DBBBFD0028B5DC /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 55P567K3FP;
+				INFOPLIST_FILE = PetstagramTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@loader_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.duhmarket.PetstagramTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = "1,2";
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/Petstagram.app/Petstagram";
+			};
+			name = Release;
+		};
 		7D4A541A239C66EE0079A96A /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
@@ -731,6 +843,15 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
+		7D118C7423DBBBFD0028B5DC /* Build configuration list for PBXNativeTarget "PetstagramTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				7D118C7523DBBBFD0028B5DC /* Debug */,
+				7D118C7623DBBBFD0028B5DC /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
 		7D4A53EA239C66ED0079A96A /* Build configuration list for PBXProject "Petstagram" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
