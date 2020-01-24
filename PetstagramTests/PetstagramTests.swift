@@ -6,8 +6,12 @@
 //  Copyright © 2019 DuhMarket. All rights reserved.
 //
 
-import XCTest
 
+
+
+
+import XCTest
+@testable import Petstagram
 
 class PetstagramTests: XCTestCase {
 
