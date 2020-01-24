@@ -77,7 +77,6 @@
 		7D4A53FE239C66EE0079A96A /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		7D4A5401239C66EE0079A96A /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		7D4A5403239C66EE0079A96A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
-		7D4A540E239C66EE0079A96A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7D4A5413239C66EE0079A96A /* PetstagramUITests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PetstagramUITests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D4A5417239C66EE0079A96A /* PetstagramUITests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetstagramUITests.swift; sourceTree = "<group>"; };
 		7D4A5419239C66EE0079A96A /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -98,7 +97,6 @@
 		7D50726D23CAB59900FA54CA /* ProfilePhoto+UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "ProfilePhoto+UserProfileViewController.swift"; sourceTree = "<group>"; };
 		7D50726F23CAB7E400FA54CA /* KeyChain+GenericPassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeyChain+GenericPassword.swift"; sourceTree = "<group>"; };
 		7D50727123CBA28D00FA54CA /* ErrorHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHandler.swift; sourceTree = "<group>"; };
-		7D50727323CBA6DD00FA54CA /* KeyChainTest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyChainTest.swift; sourceTree = "<group>"; };
 		7D50727523CBB89100FA54CA /* KeyChain+AuthenticationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeyChain+AuthenticationModel.swift"; sourceTree = "<group>"; };
 		7D5512CE23D0EB32000C894D /* Extension+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+String.swift"; sourceTree = "<group>"; };
 		7D55817E239D2C710076AFEB /* LoginAesthetics+AppLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LoginAesthetics+AppLogin.swift"; sourceTree = "<group>"; };
@@ -156,7 +154,6 @@
 			isa = PBXGroup;
 			children = (
 				7D4A53F1239C66ED0079A96A /* Petstagram */,
-				7D4A540B239C66EE0079A96A /* PetstagramTests */,
 				7D4A5416239C66EE0079A96A /* PetstagramUITests */,
 				7D4A53F0239C66ED0079A96A /* Products */,
 				081BA26094B7FD432F43680B /* Pods */,
@@ -196,15 +193,6 @@
 				7D4A53FB239C66ED0079A96A /* Petstagram.xcdatamodeld */,
 			);
 			path = Petstagram;
-			sourceTree = "<group>";
-		};
-		7D4A540B239C66EE0079A96A /* PetstagramTests */ = {
-			isa = PBXGroup;
-			children = (
-				7D50727323CBA6DD00FA54CA /* KeyChainTest.swift */,
-				7D4A540E239C66EE0079A96A /* Info.plist */,
-			);
-			path = PetstagramTests;
 			sourceTree = "<group>";
 		};
 		7D4A5416239C66EE0079A96A /* PetstagramUITests */ = {
@@ -368,7 +356,7 @@
 		7D4A53E7239C66ED0079A96A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 1120;
+				LastSwiftUpdateCheck = 1130;
 				LastUpgradeCheck = 1120;
 				ORGANIZATIONNAME = DuhMarket;
 				TargetAttributes = {
