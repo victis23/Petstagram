@@ -12,6 +12,7 @@ import FirebaseFirestore
 
 /// Handles Authentication with Firebase & Updates Database for new users.
 struct Authentication {
+	
 	var email :String
 	var password :String
 	var userName :String?
