@@ -7,7 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		7D118C7023DBBBFD0028B5DC /* PetstagramTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D118C6F23DBBBFD0028B5DC /* PetstagramTests.swift */; };
+		7D118C7723DBBCA30028B5DC /* PetstagramTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D118C6F23DBBBFD0028B5DC /* PetstagramTests.swift */; };
 		7D3ED8A923CA58B200CF8EB6 /* AccountImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D3ED8A823CA58B200CF8EB6 /* AccountImages.swift */; };
 		7D48913723D3A83B0037CDBA /* PostsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D48913623D3A83B0037CDBA /* PostsViewController.swift */; };
 		7D48913923D3B64E0037CDBA /* Navigation+UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D48913823D3B64E0037CDBA /* Navigation+UserProfileViewController.swift */; };
@@ -524,7 +524,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				7D118C7023DBBBFD0028B5DC /* PetstagramTests.swift in Sources */,
+				7D118C7723DBBCA30028B5DC /* PetstagramTests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
