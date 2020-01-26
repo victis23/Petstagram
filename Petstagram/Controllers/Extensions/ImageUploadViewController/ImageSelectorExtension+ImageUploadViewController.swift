@@ -54,19 +54,12 @@ extension ImageUploadViewController: UINavigationControllerDelegate, UIImagePick
 						
 						PHImageManager.default().requestImage(for: assets, targetSize: imageSize, contentMode: .aspectFit, options: fetchOptions) { (image, hashDictionary) in
 							guard let image = image else {return}
-							self.imageArray.append(image)
+							self.albumImages.append(ImageAlbum(images: image))
+							self.selectedImage.image = self.albumImages.first?.images
+							self.selectedImage.contentMode = .scaleAspectFill
 						}
 					}
 				}
-				
-				
-				
-				imageArray.forEach { image in
-					albumImages.append(ImageAlbum(images: image))
-				}
-				
-				selectedImage.image = imageArray.first
-				selectedImage.contentMode = .scaleAspectFill
 			}
 			
 			if isCameraImage {
