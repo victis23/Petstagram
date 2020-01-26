@@ -18,12 +18,14 @@ class UserProfile {
 	let user = Auth.auth().currentUser?.uid
 	let db = Firestore.firestore()
 	let storage = Storage.storage().reference()
+	var imageCaption : String?
 	
 	static private var sharedUserProfile = UserProfile()
 	
 	// Creates empty data object and sets it to imageData.
 	private init(){
 		self.imageData = Data()
+		self.imageCaption = String()
 	}
 	
 	/// Uploads data storaged in `imageData` to Firebase Storage inside folder under userID.
