@@ -9,10 +9,12 @@
 import UIKit
 import Photos
 
+/// Extension contains methods that allow the user to access the device camera or photo album assets.
 extension ImageUploadViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
 	
 	func selectImageWithPicker(isCameraImage: Bool = false){
 		
+		// Controls the dismisal of the activity indicator, text prompt for submitting images and shadow that's applied to that prompt.
 		defer {
 			shareView.isHidden = false
 			setViewAesthetics()
@@ -26,6 +28,8 @@ extension ImageUploadViewController: UINavigationControllerDelegate, UIImagePick
 		
 		if UIImagePickerController.isSourceTypeAvailable(.camera) && UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
 			
+			// FIXME: - Query only happens once this needs to be refactored so it happens when the album is updated on the device.
+			// Query only happens one time.
 			if imageArray.isEmpty {
 				
 				let photoOptions = PHFetchOptions()
@@ -37,10 +41,13 @@ extension ImageUploadViewController: UINavigationControllerDelegate, UIImagePick
 				fetchOptions.deliveryMode = .highQualityFormat
 				fetchOptions.resizeMode = .exact
 				fetchOptions.normalizedCropRect = CGRect(x: 0, y: 0, width: view.frame.width, height: view.frame.width)
+				
+				// Must be a synchronous call otherwise the view loads before images are retrieved (result is an empty view).
 				fetchOptions.isSynchronous = true
 				
 				let imageSize : CGSize = CGSize(width: view.frame.width, height: view.frame.height)
 				
+				//Retrieves Images using assets.
 				allPhotos.enumerateObjects { (assets, index, pointer) in
 					
 					DispatchQueue.global(qos: .background).sync {
