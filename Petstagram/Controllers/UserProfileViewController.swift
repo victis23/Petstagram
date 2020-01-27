@@ -176,6 +176,7 @@ class UserProfileViewController: UIViewController {
 		}
 	}
 	
+	//FIXME: This method removes items from collection for no reason.
 	/// Downloads imageData from storage bucket and creates an `AccountImages` object which is sorted and apprended to the collection of images property `images`.
 	func setImageDataToView(){
 		
