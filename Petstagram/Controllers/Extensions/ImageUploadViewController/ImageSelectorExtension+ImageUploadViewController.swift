@@ -26,7 +26,7 @@ extension ImageUploadViewController: UINavigationControllerDelegate, UIImagePick
 		imagePickerController.delegate = self
 		
 		
-		if UIImagePickerController.isSourceTypeAvailable(.camera) && UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
+		if UIImagePickerController.isSourceTypeAvailable(.camera) || UIImagePickerController.isSourceTypeAvailable(.photoLibrary) {
 			
 			// FIXME: - Query only happens once this needs to be refactored so it happens when the album is updated on the device.
 			// Query only happens one time.
@@ -64,12 +64,23 @@ extension ImageUploadViewController: UINavigationControllerDelegate, UIImagePick
 				selectedImage.contentMode = .scaleAspectFill
 			}
 			
+			// Control statment checks if user has selected to get an image using the device's camera.
 			if isCameraImage {
-				imagePickerController.sourceType = .camera
-				imagePickerController.cameraCaptureMode = .photo
-				imagePickerController.showsCameraControls = true
-				imagePickerController.allowsEditing = true
-				present(imagePickerController, animated: true)
+				
+				// If camera is available we proceed - Otherwise the user is adviced that camera is not available. 
+				if UIImagePickerController.isSourceTypeAvailable(.camera) {
+					
+					imagePickerController.sourceType = .camera
+					imagePickerController.cameraCaptureMode = .photo
+					imagePickerController.showsCameraControls = true
+					imagePickerController.allowsEditing = true
+					present(imagePickerController, animated: true)
+				}else{
+					let alert = UIAlertController(title: "Camera is unavailable", message: "You device does not seem to have access to a camera.", preferredStyle: .alert)
+					let dismiss = UIAlertAction(title: "Dismiss", style: .cancel, handler: nil)
+					alert.addAction(dismiss)
+					present(alert, animated: true, completion: {})
+				}
 			}
 		}
 	}
