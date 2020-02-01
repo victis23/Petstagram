@@ -42,9 +42,7 @@ class UserProfile {
 	
 	/// Downloads **Metadata** for each item contained within Google Firebase Storage.
 	/// - Parameter downloadedImages: Captures returned metadata array.
-	func downloadImages(downloadedImages : @escaping (_ metaData : [StorageMetadata])->Void) {
-		
-		var metaDataKeys : [StorageMetadata] = []
+	func downloadImages(downloadedImages : @escaping (_ metaData : StorageMetadata)->Void) {
 		
 		guard let user = self.user else {fatalError()}
 		
@@ -67,10 +65,8 @@ class UserProfile {
 					}
 					if let metaData = metaData {
 						
-						metaDataKeys.append(metaData)
-						
-						// Capture the collection type containing the metadata keys.
-						downloadedImages(metaDataKeys)
+						// Capture the returned metaData key.
+						downloadedImages(metaData)
 					}
 				}
 			}
