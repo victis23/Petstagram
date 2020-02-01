@@ -183,38 +183,22 @@ class UserProfileViewController: UIViewController {
 		if let user = userAuth.currentUser?.uid {
 			
 			userData.downloadImages { (metaData) in
-				metaData.forEach { mData in
-					guard let fileName = mData.name else {return}
-					guard let date = mData.timeCreated else {return}
-					Storage.storage().reference().child(user).child(fileName).getData(maxSize: 99_999_999) { (data, error) in
-						
-						if let error = error {
-							print(error.localizedDescription)
-						}
-						
-						guard
-							let data = data,
-							let image = UIImage(data: data)
-							else {return}
-						
-						//Removes duplicates retrieved from storage before appending to our array of AccountImages.
-						if self.userProfileItems.contains(AccountImages(image: image, timeStamp: date, metaData: mData, id: fileName)) {
-							
-							//Call removes all objects that match the existing name or match the profile photograph.
-							self.userProfileItems.removeAll { item -> Bool in
-								item.id == fileName || item.id == "profilePhoto"
-							}
-							//If the new file is not the profile photo we append it to the collection.
-							if fileName != "profilePhoto" {
-								self.userProfileItems.append(AccountImages(image: image, timeStamp: date, metaData: mData, id: fileName))
-							}
-						}else{
-							// If the object does not exist in the data collection we append it.
-							if fileName != "profilePhoto" {
-								self.userProfileItems.append(AccountImages(image: image, timeStamp: date, metaData: mData, id: fileName))
-							}
-						}
+				
+				guard let fileName = metaData.name else {return}
+				guard let date = metaData.timeCreated else {return}
+				
+				Storage.storage().reference().child(user).child(fileName).getData(maxSize: 99_999_999) { (data, error) in
+					
+					if let error = error {
+						print(error.localizedDescription)
 					}
+					
+					guard
+					let data = data,
+					let image = UIImage(data: data)
+						else {return}
+					
+					self.userProfileItems.append(AccountImages(image: image, timeStamp: date, metaData: metaData, id: fileName))
 				}
 			}
 		}
