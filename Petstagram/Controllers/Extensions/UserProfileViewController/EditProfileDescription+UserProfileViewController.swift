@@ -38,5 +38,17 @@ extension UserProfileViewController {
 	
 	@objc func swipeToDismiss(_ sender: UIPanGestureRecognizer){
 		
+		let translation = sender.translation(in: self.view)
+		guard let movingView = sender.view else {return}
+		
+		if sender.state == .changed {
+		
+			movingView.center = CGPoint(x: movingView.center.x + translation.x, y: movingView.center.y + translation.y)
+			
+			sender.setTranslation(CGPoint(x: 0, y: 0), in: movingView)
+		}
+		
+		if sender.state == .ended {}
+		
 	}
 }
