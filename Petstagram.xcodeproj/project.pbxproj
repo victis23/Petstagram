@@ -39,6 +39,8 @@
 		7D50727023CAB7E400FA54CA /* KeyChain+GenericPassword.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D50726F23CAB7E400FA54CA /* KeyChain+GenericPassword.swift */; };
 		7D50727223CBA28D00FA54CA /* ErrorHandler.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D50727123CBA28D00FA54CA /* ErrorHandler.swift */; };
 		7D50727623CBB89100FA54CA /* KeyChain+AuthenticationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D50727523CBB89100FA54CA /* KeyChain+AuthenticationModel.swift */; };
+		7D53BAD823E521C100DD93BC /* EditProfileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D53BAD723E521C100DD93BC /* EditProfileView.xib */; };
+		7D53BADA23E5229000DD93BC /* EditProfileDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D53BAD923E5229000DD93BC /* EditProfileDescription.swift */; };
 		7D5512CF23D0EB32000C894D /* Extension+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D5512CE23D0EB32000C894D /* Extension+String.swift */; };
 		7D55817F239D2C710076AFEB /* LoginAesthetics+AppLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D55817E239D2C710076AFEB /* LoginAesthetics+AppLogin.swift */; };
 		7D558181239DDE2D0076AFEB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7D558180239DDE2D0076AFEB /* GoogleService-Info.plist */; };
@@ -109,6 +111,8 @@
 		7D50726F23CAB7E400FA54CA /* KeyChain+GenericPassword.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeyChain+GenericPassword.swift"; sourceTree = "<group>"; };
 		7D50727123CBA28D00FA54CA /* ErrorHandler.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ErrorHandler.swift; sourceTree = "<group>"; };
 		7D50727523CBB89100FA54CA /* KeyChain+AuthenticationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeyChain+AuthenticationModel.swift"; sourceTree = "<group>"; };
+		7D53BAD723E521C100DD93BC /* EditProfileView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditProfileView.xib; sourceTree = "<group>"; };
+		7D53BAD923E5229000DD93BC /* EditProfileDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileDescription.swift; sourceTree = "<group>"; };
 		7D5512CE23D0EB32000C894D /* Extension+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+String.swift"; sourceTree = "<group>"; };
 		7D55817E239D2C710076AFEB /* LoginAesthetics+AppLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LoginAesthetics+AppLogin.swift"; sourceTree = "<group>"; };
 		7D558180239DDE2D0076AFEB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -214,6 +218,7 @@
 				7D4A542E239C67AF0079A96A /* LikesStoryboard.storyboard */,
 				7D4A542F239C67AF0079A96A /* SearchStoryboard.storyboard */,
 				7D4A5430239C67AF0079A96A /* UserProfile.storyboard */,
+				7D53BAD723E521C100DD93BC /* EditProfileView.xib */,
 				7D4A53FE239C66EE0079A96A /* Assets.xcassets */,
 				7D4A5400239C66EE0079A96A /* LaunchScreen.storyboard */,
 				7D4A5403239C66EE0079A96A /* Info.plist */,
@@ -323,6 +328,7 @@
 				7D68E1AC23BD7E8D0084A2F0 /* AlbumImagesCollectionViewCell.swift */,
 				7D896A1B23C149AF0052C8E4 /* UserImageCollectionViewCell.swift */,
 				7D48913A23D3BEB50037CDBA /* PostsTableViewCell.swift */,
+				7D53BAD923E5229000DD93BC /* EditProfileDescription.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -464,6 +470,7 @@
 				7D4A53FF239C66EE0079A96A /* Assets.xcassets in Resources */,
 				7D4A53FA239C66ED0079A96A /* Main.storyboard in Resources */,
 				7D4A5447239C6A800079A96A /* Billabong.ttf in Resources */,
+				7D53BAD823E521C100DD93BC /* EditProfileView.xib in Resources */,
 				7D4A5434239C67AF0079A96A /* UserProfile.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -561,6 +568,7 @@
 				7D4A470B23D6A9C8002C2050 /* TimeFrames.swift in Sources */,
 				7D4A5444239C6A410079A96A /* Keys.swift in Sources */,
 				7D48913B23D3BEB50037CDBA /* PostsTableViewCell.swift in Sources */,
+				7D53BADA23E5229000DD93BC /* EditProfileDescription.swift in Sources */,
 				7DCD743A23C0595600BA9D52 /* UserProfile.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
