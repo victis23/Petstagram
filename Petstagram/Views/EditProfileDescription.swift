@@ -17,6 +17,7 @@ class EditProfileDescription: UIView {
 	@IBOutlet weak var profileDescription: UITextView!
 	
 	@IBAction func tapSubmitButton(_ sender: UIButton) {
+		
 		let vc = parentContainerViewController() as! UserProfileViewController
 		vc.aboutTheOwnerLabel.text = profileDescription.text
 		self.removeFromSuperview()
