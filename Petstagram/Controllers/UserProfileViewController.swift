@@ -177,7 +177,8 @@ class UserProfileViewController: UIViewController {
 	}
 	
 	//FIXME: This method removes items from collection for no reason.
-	/// Downloads imageData from storage bucket and creates an `AccountImages` object which is sorted and apprended to the collection of images property `images`.
+	/// Downloads imageData from storage bucket and creates an `AccountImages` object which is appended to `userProfileItems` array.
+	/// - Note: `UserProfileItems` is observed by a publisher.
 	func setImageDataToView(){
 		
 		if let user = userAuth.currentUser?.uid {
