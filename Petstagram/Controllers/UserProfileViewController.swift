@@ -297,6 +297,25 @@ class UserProfileViewController: UIViewController {
 	
 	@IBAction func editProfileTapped(_ sender: Any) {
 		
+		let editProfileView = Bundle.main.loadNibNamed("EditProfileView", owner: self, options: nil)
+		guard let editView = editProfileView?.first as? EditProfileDescription else {return}
+
+		editView.layer.cornerRadius = 5
+		editView.frame = CGRect(x: 0, y: 0, width: 300, height: 500)
+		editView.center = view.center
+		editView.submitButton.layer.cornerRadius = 5
+		
+		view.addSubview(editView)
+		
+		let transformations = CGAffineTransform(translationX: self.view.center.x + 50, y: 0)
+			.concatenating(CGAffineTransform(scaleX: 0, y: 0))
+		
+		editView.transform = transformations
+		
+		UIView.animate(withDuration: 0.5) {
+			editView.transform = .identity
+		}
+
 	}
 	
 	//MARK: Navigation
