@@ -298,29 +298,13 @@ class UserProfileViewController: UIViewController {
 	// When tapped presents a UIView users can use to update the description label on their profiles.
 	@IBAction func editProfileTapped(_ sender: Any) {
 		
-		// Creates instance variable for xib file containing view for editing profile.
-		let editProfileView = Bundle.main.loadNibNamed("EditProfileView", owner: self, options: nil)
-		// Downcast from Any to subclass of UIView.
-		guard let editView = editProfileView?.first as? EditProfileDescription else {return}
+		let swipeToDismiss = UIPanGestureRecognizer(target: self, action: #selector(swipeToDismiss(_:)))
+	
+		guard let editView = createEditProfileDescriptionView() else {return}
+		
+		editView.addGestureRecognizer(swipeToDismiss)
 
-		editView.layer.cornerRadius = 5
-		editView.frame = CGRect(x: 0, y: 0, width: 300, height: 500)
-		editView.center = view.center
-		editView.submitButton.layer.cornerRadius = 5
-		
-		if let description = editView.profileDescription {
-			
-			let color = UIColor(white: 0.9, alpha: 0.2)
-			description.text = ""
-			description.backgroundColor = color
-			description.textColor = .black
-			description.layer.cornerRadius = 5
-			description.becomeFirstResponder()
-		}
-		
-		
 		view.addSubview(editView)
-		
 		
 		let transformations = CGAffineTransform(translationX: self.view.center.x + 50, y: 0)
 			.concatenating(CGAffineTransform(scaleX: 0, y: 0))
@@ -330,8 +314,9 @@ class UserProfileViewController: UIViewController {
 		UIView.animate(withDuration: 0.5) {
 			editView.transform = .identity
 		}
-
 	}
+	
+
 	
 	//MARK: Navigation
 	
