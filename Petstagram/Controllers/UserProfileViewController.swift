@@ -307,6 +307,7 @@ class UserProfileViewController: UIViewController {
 		
 		view.addSubview(editView)
 		
+		
 		let transformations = CGAffineTransform(translationX: self.view.center.x + 50, y: 0)
 			.concatenating(CGAffineTransform(scaleX: 0, y: 0))
 		
