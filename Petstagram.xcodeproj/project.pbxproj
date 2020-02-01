@@ -41,6 +41,7 @@
 		7D50727623CBB89100FA54CA /* KeyChain+AuthenticationModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D50727523CBB89100FA54CA /* KeyChain+AuthenticationModel.swift */; };
 		7D53BAD823E521C100DD93BC /* EditProfileView.xib in Resources */ = {isa = PBXBuildFile; fileRef = 7D53BAD723E521C100DD93BC /* EditProfileView.xib */; };
 		7D53BADA23E5229000DD93BC /* EditProfileDescription.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D53BAD923E5229000DD93BC /* EditProfileDescription.swift */; };
+		7D53BADC23E53BF700DD93BC /* EditProfileDescription+UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D53BADB23E53BF700DD93BC /* EditProfileDescription+UserProfileViewController.swift */; };
 		7D5512CF23D0EB32000C894D /* Extension+String.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D5512CE23D0EB32000C894D /* Extension+String.swift */; };
 		7D55817F239D2C710076AFEB /* LoginAesthetics+AppLogin.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D55817E239D2C710076AFEB /* LoginAesthetics+AppLogin.swift */; };
 		7D558181239DDE2D0076AFEB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7D558180239DDE2D0076AFEB /* GoogleService-Info.plist */; };
@@ -113,6 +114,7 @@
 		7D50727523CBB89100FA54CA /* KeyChain+AuthenticationModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "KeyChain+AuthenticationModel.swift"; sourceTree = "<group>"; };
 		7D53BAD723E521C100DD93BC /* EditProfileView.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = EditProfileView.xib; sourceTree = "<group>"; };
 		7D53BAD923E5229000DD93BC /* EditProfileDescription.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditProfileDescription.swift; sourceTree = "<group>"; };
+		7D53BADB23E53BF700DD93BC /* EditProfileDescription+UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "EditProfileDescription+UserProfileViewController.swift"; sourceTree = "<group>"; };
 		7D5512CE23D0EB32000C894D /* Extension+String.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Extension+String.swift"; sourceTree = "<group>"; };
 		7D55817E239D2C710076AFEB /* LoginAesthetics+AppLogin.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "LoginAesthetics+AppLogin.swift"; sourceTree = "<group>"; };
 		7D558180239DDE2D0076AFEB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
@@ -296,6 +298,7 @@
 				7D50726B23CAB3EE00FA54CA /* CollectionView+UserProfileViewController.swift */,
 				7D50726D23CAB59900FA54CA /* ProfilePhoto+UserProfileViewController.swift */,
 				7D48913823D3B64E0037CDBA /* Navigation+UserProfileViewController.swift */,
+				7D53BADB23E53BF700DD93BC /* EditProfileDescription+UserProfileViewController.swift */,
 			);
 			path = UserProfileViewController;
 			sourceTree = "<group>";
@@ -545,6 +548,7 @@
 				7D50726C23CAB3EE00FA54CA /* CollectionView+UserProfileViewController.swift in Sources */,
 				7D558186239DE31C0076AFEB /* Authentication.swift in Sources */,
 				7D55817F239D2C710076AFEB /* LoginAesthetics+AppLogin.swift in Sources */,
+				7D53BADC23E53BF700DD93BC /* EditProfileDescription+UserProfileViewController.swift in Sources */,
 				7D896A1C23C149AF0052C8E4 /* UserImageCollectionViewCell.swift in Sources */,
 				7D48913923D3B64E0037CDBA /* Navigation+UserProfileViewController.swift in Sources */,
 				7D72C79D23CECF2C003361B8 /* ImageSelectorExtension+ImageUploadViewController.swift in Sources */,
