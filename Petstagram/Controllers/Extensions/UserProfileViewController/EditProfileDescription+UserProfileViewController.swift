@@ -64,24 +64,24 @@ extension UserProfileViewController {
 		}
 	}
 	
-	func setDisableSubsciber(){
-		isEditProfileSubscriber = isEditingDetails
-			.assign(to: \UIButton.isEnabled, on: editProfileInfoButton)
-	}
-	
-	func disableParentView(isDisabled:Bool){
-		
-		isEditingProfileDetails = isDisabled
-		
-		isEditingDetails = $isEditingProfileDetails
-			.map({ bool -> Bool in
-				if bool == true {
-					self.editProfileInfoButton.alpha = 0.2
-					return false
-				}
-				self.editProfileInfoButton.alpha = 1.0
-				return true
-			})
-			.eraseToAnyPublisher()
-	}
+//	func setDisableSubsciber(){
+//		isEditProfileSubscriber = isEditingDetails
+//			.assign(to: \UIButton.isEnabled, on: editProfileInfoButton)
+//	}
+//	
+//	func disableParentView(isDisabled:Bool){
+//		
+//		isEditingProfileDetails = isDisabled
+//		
+//		isEditingDetails = $isEditingProfileDetails
+//			.map({ bool -> Bool in
+//				if bool == true {
+//					self.editProfileInfoButton.alpha = 0.2
+//					return false
+//				}
+//				self.editProfileInfoButton.alpha = 1.0
+//				return true
+//			})
+//			.eraseToAnyPublisher()
+//	}
 }

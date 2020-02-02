@@ -20,7 +20,7 @@ class EditProfileDescription: UIView {
 		
 		let vc = parentContainerViewController() as! UserProfileViewController
 		vc.aboutTheOwnerLabel.text = profileDescription.text
-		vc.isEditingProfileDetails = false
+//		vc.isEditingProfileDetails = false
 		self.removeFromSuperview()
 	}
 }

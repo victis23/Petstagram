@@ -61,9 +61,9 @@ class UserProfileViewController: UIViewController {
 	@Published var userProfileItems : [AccountImages] = []
 	var dataSubscriber : AnyCancellable!
 	
-	@Published var isEditingProfileDetails : Bool = false
-	var isEditingDetails : AnyPublisher<Bool,Never>!
-	var isEditProfileSubscriber : AnyCancellable!
+//	@Published var isEditingProfileDetails : Bool = false
+//	var isEditingDetails : AnyPublisher<Bool,Never>!
+//	var isEditProfileSubscriber : AnyCancellable!
 	
 	//MARK: - App LifeCycle
 	
@@ -80,7 +80,7 @@ class UserProfileViewController: UIViewController {
 		fetchDataFromCoreData()
 		setImageCount()
 		setSubscription()
-		setDisableSubsciber()
+//		setDisableSubsciber()
 		setCollectionViewLayout()
 	}
 	
@@ -311,7 +311,7 @@ class UserProfileViewController: UIViewController {
 		
 		view.addSubview(editView)
 		
-		disableParentView(isDisabled: true)
+//		disableParentView(isDisabled: true)
 		
 		editViewAnimations(subView: editView)
 		
