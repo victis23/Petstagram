@@ -56,6 +56,8 @@ class UserProfileViewController: UIViewController {
 		}
 	}
 	
+	var profileDescriptionViewObject : EditProfileDescription!
+	
 	//MARK: Combine Subscribers & Publishers
 	
 	@Published var userProfileItems : [AccountImages] = []
@@ -307,6 +309,9 @@ class UserProfileViewController: UIViewController {
 		let swipeToDismiss = UIPanGestureRecognizer(target: self, action: #selector(swipeToDismiss(_:)))
 	
 		guard let editView = createEditProfileDescriptionView() else {return}
+		
+		// Pass reference
+		profileDescriptionViewObject = editView
 		
 		editView.addGestureRecognizer(swipeToDismiss)
 		
