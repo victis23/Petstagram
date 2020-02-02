@@ -7,8 +7,9 @@
 //
 
 import UIKit
+import Combine
 
-extension UserProfileViewController {
+extension UserProfileViewController : UITextViewDelegate {
 	
 	func createEditProfileDescriptionView()-> EditProfileDescription? {
 		
@@ -34,9 +35,34 @@ extension UserProfileViewController {
 			description.textColor = .black
 			description.layer.cornerRadius = 5
 			description.becomeFirstResponder()
+			description.delegate = self
 		}
 		
+		editView?.textCount.text = "0/150"
+		
 		return editView
+	}
+	
+	/// Updates count label for user input.
+	/// - Important: profileDescriptionViewObject references `editView's` textview in memory.
+	func textViewDidChange(_ textView: UITextView) {
+		
+		let count = textView.text.count
+		
+		if let countLabel = profileDescriptionViewObject.textCount {
+			
+			if count >= 130 {
+				countLabel.textColor = .orange
+			}
+			
+			if count > 150 {
+				countLabel.textColor = .red
+			}
+			countLabel.text = "\(textView.text.count)/150"
+		}
+		 
+		
+		 
 	}
 	
 	@objc func swipeToDismiss(_ sender: UIPanGestureRecognizer){
