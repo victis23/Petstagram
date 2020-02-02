@@ -298,42 +298,6 @@ class UserProfileViewController: UIViewController {
 		}
 	}
 	
-	func getAccountDescription(){
-		if let user = userAuth.currentUser?.uid {
-			let db = Firestore.firestore()
-			db.collection(user).document(Keys.GoogleFireStore.accountInfoDocument).getDocument { (document, error) in
-				
-				if let error = error {
-					print(error.localizedDescription)
-					return
-				}
-				
-				if let data = document?.data() {
-					let text = data["ProfileDescription"] as? String
-					self.aboutThePetLabel.text = text
-				}
-			}
-		}
-	}
-	
-	func saveAccountDescription(){
-		
-		if let user = userAuth.currentUser?.uid {
-			let db = Firestore.firestore()
-			db.collection(user).document(Keys.GoogleFireStore.accountInfoDocument).setData(
-				[
-					"ProfileDescription":"\(aboutThePetLabel.text ?? "")"
-				]
-			, merge: true) { (error) in
-				if let error = error {
-					print(error.localizedDescription)
-					return
-				}
-			}
-		}
-	}
-	
-	
 	//MARK: IBActions
 	
 	// When tapped presents a UIView users can use to update the description label on their profiles.
