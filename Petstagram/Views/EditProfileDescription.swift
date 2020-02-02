@@ -16,6 +16,8 @@ class EditProfileDescription: UIView {
 	
 	@IBOutlet weak var profileDescription: UITextView!
 	
+	@IBOutlet weak var textCount: UILabel!
+	
 	@IBAction func tapSubmitButton(_ sender: UIButton) {
 		
 		let vc = parentContainerViewController() as! UserProfileViewController
