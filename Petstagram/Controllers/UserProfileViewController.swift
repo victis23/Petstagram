@@ -347,7 +347,7 @@ class UserProfileViewController: UIViewController {
 	}
 }
 
-/// Sets Publisher and Subscriber.
+/// Sets Publisher and Subscriber that controls when the parent view is disabled.
 extension UserProfileViewController {
 	
 	/// Method sets subscribers for view.
@@ -365,19 +365,35 @@ extension UserProfileViewController {
 	/// - Note: Changes opacity of Edit Button and CollectionView.
 	func disableParentView(isDisabled:Bool){
 		
+		let views :[UIView] = [editProfileInfoButton,accountImages,aboutTheOwnerLabel,aboutThePetLabel]
+		
 		isEditingProfileDetails = isDisabled
 		
 		isEditingDetails = $isEditingProfileDetails
 			.map({ bool -> Bool in
+				// You are IN Edit mode. View Enabled = False
 				if bool == true {
-					self.editProfileInfoButton.alpha = 0.2
-					self.accountImages.alpha = 0.2
+					self.changeViewOpacity(with: views, alphaIsNotLowered: bool)
 					return false
 				}
-				self.editProfileInfoButton.alpha = 1.0
-				self.accountImages.alpha = 1.0
+				// Default: You are NOT in edit mode. View Enabled = True
+				self.changeViewOpacity(with: views, alphaIsNotLowered: bool)
 				return true
 			})
 			.eraseToAnyPublisher()
+	}
+	
+	func changeViewOpacity(with uiViews : [UIView], alphaIsNotLowered:Bool){
+		
+		var alpha : CGFloat = 1.0
+		
+		// The view opacity is not lowered.
+		if alphaIsNotLowered {
+			alpha = 0.2
+		}
+		
+		uiViews.forEach { view in
+			view.alpha = alpha
+		}
 	}
 }
