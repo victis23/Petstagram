@@ -61,6 +61,10 @@ class UserProfileViewController: UIViewController {
 	@Published var userProfileItems : [AccountImages] = []
 	var dataSubscriber : AnyCancellable!
 	
+	@Published var isEditingProfileDetails : Bool = false
+	var isEditingDetails : AnyPublisher<Bool,Never>!
+	var isEditProfileSubscriber : AnyCancellable!
+	
 	//MARK: - App LifeCycle
 	
 	override func viewDidLoad() {
@@ -76,6 +80,7 @@ class UserProfileViewController: UIViewController {
 		fetchDataFromCoreData()
 		setImageCount()
 		setSubscription()
+		setDisableSubsciber()
 		setCollectionViewLayout()
 	}
 	
@@ -303,20 +308,14 @@ class UserProfileViewController: UIViewController {
 		guard let editView = createEditProfileDescriptionView() else {return}
 		
 		editView.addGestureRecognizer(swipeToDismiss)
-
+		
 		view.addSubview(editView)
 		
-		let transformations = CGAffineTransform(translationX: self.view.center.x + 50, y: 0)
-			.concatenating(CGAffineTransform(scaleX: 0, y: 0))
+		disableParentView(isDisabled: true)
 		
-		editView.transform = transformations
+		editViewAnimations(subView: editView)
 		
-		UIView.animate(withDuration: 0.5) {
-			editView.transform = .identity
-		}
 	}
-	
-
 	
 	//MARK: Navigation
 	

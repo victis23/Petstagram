@@ -76,8 +76,10 @@ extension UserProfileViewController {
 		isEditingDetails = $isEditingProfileDetails
 			.map({ bool -> Bool in
 				if bool == true {
+					self.editProfileInfoButton.alpha = 0.2
 					return false
 				}
+				self.editProfileInfoButton.alpha = 1.0
 				return true
 			})
 			.eraseToAnyPublisher()
