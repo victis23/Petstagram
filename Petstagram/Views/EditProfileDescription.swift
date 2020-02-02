@@ -20,6 +20,8 @@ class EditProfileDescription: UIView {
 		
 		let vc = parentContainerViewController() as! UserProfileViewController
 		vc.aboutTheOwnerLabel.text = profileDescription.text
+		
+		// Triggers publisher that updates view enabled state.
 		vc.isEditingProfileDetails = false
 		self.removeFromSuperview()
 	}
