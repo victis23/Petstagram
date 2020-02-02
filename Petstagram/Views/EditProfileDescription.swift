@@ -23,6 +23,7 @@ class EditProfileDescription: UIView {
 		let vc = parentContainerViewController() as! UserProfileViewController
 		
 		vc.aboutThePetLabel.text = profileDescription.text
+		vc.saveAccountDescription()
 		
 		// Triggers publisher that updates view enabled state.
 		vc.isEditingProfileDetails = false
