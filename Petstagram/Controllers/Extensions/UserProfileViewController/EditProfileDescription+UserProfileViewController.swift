@@ -19,7 +19,7 @@ extension UserProfileViewController {
 		let editView = editProfileView?.first as? EditProfileDescription
 		
 		editView?.layer.cornerRadius = 5
-		editView?.frame = CGRect(x: 0, y: 0, width: 300, height: 500)
+		editView?.frame = CGRect(x: 0, y: 0, width: 300, height: 330)
 		editView?.center = view.center
 		editView?.submitButton.layer.cornerRadius = 5
 		
@@ -50,5 +50,36 @@ extension UserProfileViewController {
 		
 		if sender.state == .ended {}
 		
+	}
+	
+	func editViewAnimations(subView:UIView){
+		
+		let transformations = CGAffineTransform(translationX: self.view.center.x + 50, y: 0)
+			.concatenating(CGAffineTransform(scaleX: 0, y: 0))
+		
+		subView.transform = transformations
+		
+		UIView.animate(withDuration: 0.5) {
+			subView.transform = .identity
+		}
+	}
+	
+	func setDisableSubsciber(){
+		isEditProfileSubscriber = isEditingDetails
+			.assign(to: \UIButton.isEnabled, on: editProfileInfoButton)
+	}
+	
+	func disableParentView(isDisabled:Bool){
+		
+		isEditingProfileDetails = isDisabled
+		
+		isEditingDetails = $isEditingProfileDetails
+			.map({ bool -> Bool in
+				if bool == true {
+					return false
+				}
+				return true
+			})
+			.eraseToAnyPublisher()
 	}
 }
