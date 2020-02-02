@@ -350,11 +350,19 @@ class UserProfileViewController: UIViewController {
 /// Sets Publisher and Subscriber.
 extension UserProfileViewController {
 	
+	/// Method sets subscribers for view.
+	/// - NOTE: Controls whether user can interact with collectionview and edit profile button while profile editing dialog box is presented.
 	func setDisableSubsciber(){
+		
 		isEditProfileSubscriber = isEditingDetails
 			.assign(to: \UIButton.isEnabled, on: editProfileInfoButton)
+
+		isEditProfileSubscriber = isEditingDetails
+			.assign(to: \UICollectionView.isUserInteractionEnabled, on: accountImages)
 	}
 	
+	/// Sets value recieved by publisher when user taps on the edit profile button.
+	/// - Note: Changes opacity of Edit Button and CollectionView.
 	func disableParentView(isDisabled:Bool){
 		
 		isEditingProfileDetails = isDisabled
@@ -363,9 +371,11 @@ extension UserProfileViewController {
 			.map({ bool -> Bool in
 				if bool == true {
 					self.editProfileInfoButton.alpha = 0.2
+					self.accountImages.alpha = 0.2
 					return false
 				}
 				self.editProfileInfoButton.alpha = 1.0
+				self.accountImages.alpha = 1.0
 				return true
 			})
 			.eraseToAnyPublisher()
