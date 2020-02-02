@@ -27,18 +27,20 @@ extension UserProfileViewController : UITextViewDelegate {
 		editView?.layer.shadowOpacity = 0.3
 		editView?.layer.shadowRadius = 10
 		
+		
 		if let description = editView?.profileDescription {
 			
 			let color = UIColor(white: 0.9, alpha: 0.2)
-			description.text = ""
+			description.text = "\(aboutThePetLabel.text ?? "") \(aboutTheOwnerLabel.text ?? "")"
 			description.backgroundColor = color
 			description.textColor = .black
 			description.layer.cornerRadius = 5
 			description.becomeFirstResponder()
 			description.delegate = self
+			
+			let count = description.text.count
+			editView?.textCount.text = "\(count)/200"
 		}
-		
-		editView?.textCount.text = "0/150"
 		
 		return editView
 	}
@@ -51,14 +53,16 @@ extension UserProfileViewController : UITextViewDelegate {
 		
 		if let countLabel = profileDescriptionViewObject.textCount {
 			
-			if count >= 130 {
+			if count >= 189 {
 				countLabel.textColor = .orange
 			}
 			
-			if count > 150 {
+			if count >= 200 {
 				countLabel.textColor = .red
 			}
-			countLabel.text = "\(textView.text.count)/150"
+			
+			countLabel.text = "\(textView.text.count)/200"
+			
 		}
 		 
 		
