@@ -32,7 +32,6 @@ class UserProfileViewController: UIViewController {
 	@IBOutlet weak var followingCountLabel : UILabel!
 	@IBOutlet weak var editProfileInfoButton : UIButton!
 	@IBOutlet weak var aboutThePetLabel: UILabel!
-	@IBOutlet weak var aboutTheOwnerLabel: UILabel!
 	
 	
 	//MARK: CoreData Requiered Properties
@@ -121,7 +120,6 @@ class UserProfileViewController: UIViewController {
 		userNameLabel.text = ""
 		postCountLabel.text = ""
 		aboutThePetLabel.text = "About \(defaults.object(forKey: Keys.userDefaultsDB.username) as? String ?? ""): Higgsboy has been with the family since a pup. He is now 6 years old. He enjoys long walks on the beach, and casual talks..."
-		aboutTheOwnerLabel.text = "About Me: I am a retired Army Marine. Love animals, and I dont know what I would do without Higgsboy."
 		
 	}
 	
@@ -370,7 +368,7 @@ extension UserProfileViewController {
 	/// - Note: Changes opacity of Edit Button and CollectionView.
 	func disableParentView(isDisabled:Bool){
 		
-		let views :[UIView] = [editProfileInfoButton,accountImages,aboutTheOwnerLabel,aboutThePetLabel]
+		let views :[UIView] = [editProfileInfoButton,accountImages,aboutThePetLabel]
 		
 		isEditingProfileDetails = isDisabled
 		

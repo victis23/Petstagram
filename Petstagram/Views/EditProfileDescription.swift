@@ -21,7 +21,8 @@ class EditProfileDescription: UIView {
 	@IBAction func tapSubmitButton(_ sender: UIButton) {
 		
 		let vc = parentContainerViewController() as! UserProfileViewController
-		vc.aboutTheOwnerLabel.text = profileDescription.text
+		
+		vc.aboutThePetLabel.text = profileDescription.text
 		
 		// Triggers publisher that updates view enabled state.
 		vc.isEditingProfileDetails = false
