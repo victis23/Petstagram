@@ -318,27 +318,6 @@ class UserProfileViewController: UIViewController {
 		
 	}
 	
-	func setDisableSubsciber(){
-		isEditProfileSubscriber = isEditingDetails
-			.assign(to: \UIButton.isEnabled, on: editProfileInfoButton)
-	}
-	
-	func disableParentView(isDisabled:Bool){
-		
-		isEditingProfileDetails = isDisabled
-		
-		isEditingDetails = $isEditingProfileDetails
-			.map({ bool -> Bool in
-				if bool == true {
-					self.editProfileInfoButton.alpha = 0.2
-					return false
-				}
-				self.editProfileInfoButton.alpha = 1.0
-				return true
-			})
-			.eraseToAnyPublisher()
-	}
-	
 	//MARK: Navigation
 	
 	/// Temporary Method that will be migrated somewhere else eventually.
@@ -365,5 +344,30 @@ class UserProfileViewController: UIViewController {
 		// Returns user to login screen.
 		performSegue(withIdentifier: Keys.Segues.signOut, sender: nil)
 		
+	}
+}
+
+/// Sets Publisher and Subscriber.
+extension UserProfileViewController {
+	
+	func setDisableSubsciber(){
+		isEditProfileSubscriber = isEditingDetails
+			.assign(to: \UIButton.isEnabled, on: editProfileInfoButton)
+	}
+	
+	func disableParentView(isDisabled:Bool){
+		
+		isEditingProfileDetails = isDisabled
+		
+		isEditingDetails = $isEditingProfileDetails
+			.map({ bool -> Bool in
+				if bool == true {
+					self.editProfileInfoButton.alpha = 0.2
+					return false
+				}
+				self.editProfileInfoButton.alpha = 1.0
+				return true
+			})
+			.eraseToAnyPublisher()
 	}
 }
