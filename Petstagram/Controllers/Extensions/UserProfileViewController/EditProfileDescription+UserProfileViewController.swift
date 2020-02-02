@@ -22,6 +22,9 @@ extension UserProfileViewController {
 		editView?.frame = CGRect(x: 0, y: 0, width: 300, height: 330)
 		editView?.center = view.center
 		editView?.submitButton.layer.cornerRadius = 5
+		editView?.layer.shadowOffset = CGSize(width: 5, height: 5)
+		editView?.layer.shadowOpacity = 0.3
+		editView?.layer.shadowRadius = 10
 		
 		if let description = editView?.profileDescription {
 			
