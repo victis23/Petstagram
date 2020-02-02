@@ -61,9 +61,9 @@ class UserProfileViewController: UIViewController {
 	@Published var userProfileItems : [AccountImages] = []
 	var dataSubscriber : AnyCancellable!
 	
-//	@Published var isEditingProfileDetails : Bool = false
-//	var isEditingDetails : AnyPublisher<Bool,Never>!
-//	var isEditProfileSubscriber : AnyCancellable!
+	@Published var isEditingProfileDetails : Bool = false
+	var isEditingDetails : AnyPublisher<Bool,Never>!
+	var isEditProfileSubscriber : AnyCancellable!
 	
 	//MARK: - App LifeCycle
 	
