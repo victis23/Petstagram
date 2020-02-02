@@ -119,7 +119,7 @@ class UserProfileViewController: UIViewController {
 		userProfilePicture.layer.cornerRadius = 5
 		userNameLabel.text = ""
 		postCountLabel.text = ""
-		aboutThePetLabel.text = "About \(defaults.object(forKey: Keys.userDefaultsDB.username) as? String ?? ""): Higgsboy has been with the family since a pup. He is now 6 years old. He enjoys long walks on the beach, and casual talks..."
+		getAccountDescription()
 		
 	}
 	
@@ -298,6 +298,41 @@ class UserProfileViewController: UIViewController {
 		}
 	}
 	
+	func getAccountDescription(){
+		if let user = userAuth.currentUser?.uid {
+			let db = Firestore.firestore()
+			db.collection(user).document(Keys.GoogleFireStore.accountInfoDocument).getDocument { (document, error) in
+				
+				if let error = error {
+					print(error.localizedDescription)
+					return
+				}
+				
+				if let data = document?.data() {
+					let text = data["ProfileDescription"] as? String
+					self.aboutThePetLabel.text = text
+				}
+			}
+		}
+	}
+	
+	func saveAccountDescription(){
+		
+		if let user = userAuth.currentUser?.uid {
+			let db = Firestore.firestore()
+			db.collection(user).document(Keys.GoogleFireStore.accountInfoDocument).setData(
+				[
+					"ProfileDescription":"\(aboutThePetLabel.text ?? "")"
+				]
+			, merge: true) { (error) in
+				if let error = error {
+					print(error.localizedDescription)
+					return
+				}
+			}
+		}
+	}
+	
 	
 	//MARK: IBActions
 	
@@ -308,7 +343,7 @@ class UserProfileViewController: UIViewController {
 	
 		guard let editView = createEditProfileDescriptionView() else {return}
 		
-		// Pass reference
+		// Pass reference to editView
 		profileDescriptionViewObject = editView
 		
 		editView.addGestureRecognizer(swipeToDismiss)
