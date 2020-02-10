@@ -7,13 +7,17 @@
 //
 
 import UIKit
+import FirebaseAuth
+import FirebaseStorage
+import FirebaseFirestore
+import Combine
 
+/// Class allows user to search for other Petstagram Users.
 class SearchControllerViewController: UIViewController {
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		setNavigationBar()
-		// Do any additional setup after loading the view.
 	}
 	
 	func setNavigationBar(){
