@@ -19,15 +19,26 @@
                                 <rect key="frame" x="0.0" y="44" width="414" height="56"/>
                                 <textInputTraits key="textInputTraits"/>
                             </searchBar>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="g87-Lh-46b">
+                                <rect key="frame" x="0.0" y="100" width="414" height="762"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
+                            </tableView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
+                            <constraint firstItem="gGy-9d-0mI" firstAttribute="trailing" secondItem="g87-Lh-46b" secondAttribute="trailing" id="0MR-Kv-uic"/>
+                            <constraint firstItem="g87-Lh-46b" firstAttribute="top" secondItem="gju-59-eFx" secondAttribute="bottom" id="3TF-Nf-XUR"/>
                             <constraint firstItem="gju-59-eFx" firstAttribute="trailing" secondItem="gGy-9d-0mI" secondAttribute="trailing" id="HDO-Ff-xVj"/>
+                            <constraint firstItem="gGy-9d-0mI" firstAttribute="bottom" secondItem="g87-Lh-46b" secondAttribute="bottom" id="KVl-bc-kDO"/>
+                            <constraint firstItem="g87-Lh-46b" firstAttribute="leading" secondItem="gGy-9d-0mI" secondAttribute="leading" id="fyu-pq-EOn"/>
                             <constraint firstItem="gju-59-eFx" firstAttribute="top" secondItem="gGy-9d-0mI" secondAttribute="top" id="hZm-W9-jbH"/>
                             <constraint firstItem="gju-59-eFx" firstAttribute="leading" secondItem="gGy-9d-0mI" secondAttribute="leading" id="ncf-gt-AAh"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="gGy-9d-0mI"/>
                     </view>
+                    <connections>
+                        <outlet property="searchBar" destination="gju-59-eFx" id="9ai-ec-0Dg"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="plR-h0-RMy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
