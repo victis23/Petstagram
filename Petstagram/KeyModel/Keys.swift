@@ -26,12 +26,18 @@ struct Keys {
 	
 	// Keys for Google Firebase items.
 	struct GoogleFireStore {
+		
+		// Account information for selected profile.
 		static var accountInfoDocument = "accountInfo"
+		
+		// Key required to access an account username for specified uid.
 		static var usernameKey = "Username"
+		
+		// Key for collection that contains a list of all users in database.
 		static var userCollection = "Users"
+		
+		// Key for file that contains the keys for all users (username:UID)
 		static var userKeysDocument = "UserKeys"
-		static var accountImagesDocument = "ImagesDocument"
-		static var images = "images"
 	}
 	
 	// Keys for Google Firebase Storage.
