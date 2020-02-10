@@ -15,6 +15,17 @@ import Combine
 /// Class allows user to search for other Petstagram Users.
 class SearchControllerViewController: UIViewController {
 	
+	@IBOutlet weak var searchBar: UISearchBar!
+	
+	var firebaseAuthorization = Auth.auth()
+	var db = Firestore.firestore()
+	
+	@Published var searchTerm : String?
+	
+	var results : [String] = []
+	
+	//MARK: State
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		setNavigationBar()
