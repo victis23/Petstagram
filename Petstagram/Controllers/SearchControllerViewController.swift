@@ -16,6 +16,7 @@ import Combine
 class SearchControllerViewController: UIViewController {
 	
 	@IBOutlet weak var searchBar: UISearchBar!
+	@IBOutlet weak var tableView: UITableView!
 	
 	// Stored Properties for Google Firebase Authorization & Database.
 	var firebaseAuthorization = Auth.auth()
@@ -26,7 +27,10 @@ class SearchControllerViewController: UIViewController {
 	@Published var searchTerm : String?
 	var searchTermSubscriber : AnyCancellable!
 	
+	var dataSource : UITableViewDiffableDataSource<Section,PetstagramUsers>!
+	
 	var results : [String] = []
+	var userList : [PetstagramUsers] = []
 	
 	//MARK: State
 	
