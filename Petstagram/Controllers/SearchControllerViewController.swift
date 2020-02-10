@@ -46,6 +46,30 @@ class SearchControllerViewController: UIViewController {
 		self.navigationController?.navigationBar.tintColor = .label
 	}
 	
+	func setSubscription(){
+		searchTermSubscriber = $searchTerm
+		.eraseToAnyPublisher()
+			.debounce(for: 2, scheduler: DispatchQueue.global(qos: .background), options: nil)
+		.removeDuplicates()
+			.sink { searchValue in
+				self.searchFireBaseDataBaseForUser(searchValue: searchValue)
+		}
+	}
+	
+	func searchFireBaseDataBaseForUser(searchValue: String?){
+		guard let searchValue = searchValue?.lowercased() else {return}
+//		guard let user = firebaseAuthorization.currentUser?.uid else {return}
+		
+		db.collection(Keys.GoogleFireStore.userCollection).document(Keys.GoogleFireStore.userKeysDocument).getDocument { (document, error) in
+			if let error = error {
+				print(error.localizedDescription)
+			}
+			if let document = document {
+				let profileID = document[searchValue] as? String
+				print(profileID ?? "None")
+			}
+		}
+	}
 }
 
 extension SearchControllerViewController : UISearchBarDelegate {
