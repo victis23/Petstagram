@@ -17,10 +17,13 @@ class SearchControllerViewController: UIViewController {
 	
 	@IBOutlet weak var searchBar: UISearchBar!
 	
+	// Stored Properties for Google Firebase Authorization & Database.
 	var firebaseAuthorization = Auth.auth()
 	var db = Firestore.firestore()
 	
+	
 	@Published var searchTerm : String?
+	var searchTermSubscriber : AnyCancellable!
 	
 	var results : [String] = []
 	
@@ -29,6 +32,12 @@ class SearchControllerViewController: UIViewController {
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		setNavigationBar()
+		setSearchBarDelegate()
+		setSubscription()
+	}
+	
+	func setSearchBarDelegate(){
+		searchBar.delegate = self
 	}
 	
 	func setNavigationBar(){
