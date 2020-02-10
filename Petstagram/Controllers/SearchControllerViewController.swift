@@ -27,3 +27,11 @@ class SearchControllerViewController: UIViewController {
 	}
 	
 }
+
+extension SearchControllerViewController : UISearchBarDelegate {
+	
+	func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+		
+		searchTerm = searchText
+	}
+}
