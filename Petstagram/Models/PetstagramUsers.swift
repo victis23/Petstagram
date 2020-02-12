@@ -13,7 +13,12 @@ enum Section {
 	case main
 }
 
-struct PetstagramUsers : Hashable {
+class PetstagramUsers : Hashable {
+	
+	static func == (lhs: PetstagramUsers, rhs: PetstagramUsers) -> Bool {
+		lhs.uid == rhs.uid
+	}
+	
 	var username: String
 	var profileImage: UIImage?
 	var uid : String
