@@ -63,39 +63,9 @@ class SearchControllerViewController: UIViewController {
 		self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font : UIFont(name: "Billabong", size: 34)!]
 		self.navigationController?.navigationBar.tintColor = .label
 	}
-	
-	/// Sets publisher to subscriber
-	/// - Note:
-	///		- Identical queries are removed.
-	///		- 2 second delay implimented inorder to avoid over querying database.
-	func setSubscription(){
-		searchTermSubscriber = $searchTerm
-		.eraseToAnyPublisher()
-			.debounce(for: 2, scheduler: DispatchQueue.global(qos: .background), options: nil)
-		.removeDuplicates()
-			.sink { searchValue in
-				self.searchFireBaseDataBaseForUser(searchValue: searchValue)
-		}
-	}
-	
-	/// Hits GoogleFireBase for dictionary that contains username:uid key/value pair.
-	func searchFireBaseDataBaseForUser(searchValue: String?){
-		guard let searchValue = searchValue?.lowercased() else {return}
-//		guard let user = firebaseAuthorization.currentUser?.uid else {return}
-		
-		db.collection(Keys.GoogleFireStore.userCollection).document(Keys.GoogleFireStore.userKeysDocument).getDocument { (document, error) in
-			
-			if let error = error {
-				print(error.localizedDescription)
-			}
-			
-			if let document = document {
-				let profileID = document[searchValue] as? String
-				print(profileID ?? "None")
-			}
-		}
-	}
 }
+
+//MARK: - Search Bar
 
 /// Extension handles searchbar functions.
 extension SearchControllerViewController : UISearchBarDelegate {
@@ -105,4 +75,38 @@ extension SearchControllerViewController : UISearchBarDelegate {
 		// passes search term entered by user to publisher.
 		searchTerm = searchText
 	}
+	
+	/// Sets publisher to subscriber
+	/// - Note:
+	///		- Identical queries are removed.
+	///		- 2 second delay implimented inorder to avoid over querying database.
+	func setSubscription(){
+		searchTermSubscriber = $searchTerm
+			.eraseToAnyPublisher()
+			.debounce(for: 2, scheduler: DispatchQueue.global(qos: .background), options: nil)
+			.removeDuplicates()
+			.sink { searchValue in
+				self.searchFireBaseDataBaseForUser(searchValue: searchValue)
+		}
+	}
+	
+	/// Hits GoogleFireBase for dictionary that contains username:uid key/value pair.
+	func searchFireBaseDataBaseForUser(searchValue: String?){
+		guard let searchValue = searchValue?.lowercased() else {return}
+		//		guard let user = firebaseAuthorization.currentUser?.uid else {return}
+		
+		db.collection(Keys.GoogleFireStore.userCollection).document(Keys.GoogleFireStore.userKeysDocument).getDocument { (document, error) in
+			
+			if let error = error {
+				print(error.localizedDescription)
+			}
+			
+			if let document = document {
+				guard let profileID = document[searchValue] as? String else {return}
+				let foundUser = PetstagramUsers(searchValue, profileID)
+				print(foundUser.uid)
+			}
+		}
+	}
 }
+
