@@ -18,9 +18,10 @@ struct PetstagramUsers : Hashable {
 	var profileImage: UIImage?
 	var uid : String
 	
-	init(_ username : String,_ uid : String){
+	init(_ username : String,_ uid : String, _ profileImage : UIImage?){
 		self.username = username
 		self.uid = uid
+		self.profileImage = profileImage
 	}
 	
 	func hash(into hasher : inout Hasher){
