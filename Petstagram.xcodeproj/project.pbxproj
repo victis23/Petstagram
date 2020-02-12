@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		7D35AAB823F428A900EC4176 /* PetstagramUsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D35AAB723F428A900EC4176 /* PetstagramUsers.swift */; };
+		7D35AABA23F4290200EC4176 /* tableviewExtension+SearchControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D35AAB923F4290200EC4176 /* tableviewExtension+SearchControllerViewController.swift */; };
 		7D3ED8A923CA58B200CF8EB6 /* AccountImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D3ED8A823CA58B200CF8EB6 /* AccountImages.swift */; };
 		7D477C2323E71FDA003AA2D7 /* PetstagramTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D118C6F23DBBBFD0028B5DC /* PetstagramTests.swift */; };
 		7D477C2523E7604B003AA2D7 /* AccountDescriptionSave+UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D477C2423E7604B003AA2D7 /* AccountDescriptionSave+UserProfileViewController.swift */; };
@@ -79,6 +81,8 @@
 		7D118C6D23DBBBFD0028B5DC /* PetstagramTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PetstagramTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		7D118C6F23DBBBFD0028B5DC /* PetstagramTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetstagramTests.swift; sourceTree = "<group>"; };
 		7D118C7123DBBBFD0028B5DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		7D35AAB723F428A900EC4176 /* PetstagramUsers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetstagramUsers.swift; sourceTree = "<group>"; };
+		7D35AAB923F4290200EC4176 /* tableviewExtension+SearchControllerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "tableviewExtension+SearchControllerViewController.swift"; sourceTree = "<group>"; };
 		7D3ED8A823CA58B200CF8EB6 /* AccountImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountImages.swift; sourceTree = "<group>"; };
 		7D477C2423E7604B003AA2D7 /* AccountDescriptionSave+UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AccountDescriptionSave+UserProfileViewController.swift"; sourceTree = "<group>"; };
 		7D48913623D3A83B0037CDBA /* PostsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsViewController.swift; sourceTree = "<group>"; };
@@ -185,6 +189,14 @@
 			path = PetstagramTests;
 			sourceTree = "<group>";
 		};
+		7D35AAB623F4283F00EC4176 /* SearchControllerViewController */ = {
+			isa = PBXGroup;
+			children = (
+				7D35AAB923F4290200EC4176 /* tableviewExtension+SearchControllerViewController.swift */,
+			);
+			path = SearchControllerViewController;
+			sourceTree = "<group>";
+		};
 		7D4A53E6239C66ED0079A96A = {
 			isa = PBXGroup;
 			children = (
@@ -278,6 +290,7 @@
 			isa = PBXGroup;
 			children = (
 				7D5512CD23D0EB10000C894D /* String */,
+				7D35AAB623F4283F00EC4176 /* SearchControllerViewController */,
 				7D72C79923CECE63003361B8 /* ImageUploadViewController */,
 				7D50726A23CAB36400FA54CA /* UserProfileViewController */,
 				7D50726923CAB35000FA54CA /* AppLogin */,
@@ -324,6 +337,7 @@
 				7D50727123CBA28D00FA54CA /* ErrorHandler.swift */,
 				7D72C79723CEC180003361B8 /* ImageAlbum.swift */,
 				7D4A470A23D6A9C8002C2050 /* TimeFrames.swift */,
+				7D35AAB723F428A900EC4176 /* PetstagramUsers.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -545,6 +559,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				7D35AAB823F428A900EC4176 /* PetstagramUsers.swift in Sources */,
 				7D5512CF23D0EB32000C894D /* Extension+String.swift in Sources */,
 				7D4A544C239C91E90079A96A /* AccountCreation+AppLogin.swift in Sources */,
 				7D50727623CBB89100FA54CA /* KeyChain+AuthenticationModel.swift in Sources */,
@@ -578,6 +593,7 @@
 				7D48913B23D3BEB50037CDBA /* PostsTableViewCell.swift in Sources */,
 				7D53BADA23E5229000DD93BC /* EditProfileDescription.swift in Sources */,
 				7DCD743A23C0595600BA9D52 /* UserProfile.swift in Sources */,
+				7D35AABA23F4290200EC4176 /* tableviewExtension+SearchControllerViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
