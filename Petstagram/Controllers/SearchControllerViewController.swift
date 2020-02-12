@@ -21,6 +21,7 @@ class SearchControllerViewController: UIViewController {
 	// Stored Properties for Google Firebase Authorization & Database.
 	var firebaseAuthorization = Auth.auth()
 	var db = Firestore.firestore()
+	var fbStorage = Storage.storage()
 	
 	//MARK: Combine Subscribers & Publishers
 	
@@ -39,7 +40,17 @@ class SearchControllerViewController: UIViewController {
 		setNavigationBar()
 		setSearchBarDelegate()
 		setSubscription()
+		setDataSource()
 	}
+	
+	override func viewDidAppear(_ animated: Bool) {
+		super.viewDidAppear(animated)
+		
+		tableView.delegate = self
+		setSnapShot(users: userList)
+	}
+	
+	//MARK: Methods
 	
 	/// Set search bar delegate to this controller.
 	func setSearchBarDelegate(){
@@ -73,9 +84,11 @@ class SearchControllerViewController: UIViewController {
 //		guard let user = firebaseAuthorization.currentUser?.uid else {return}
 		
 		db.collection(Keys.GoogleFireStore.userCollection).document(Keys.GoogleFireStore.userKeysDocument).getDocument { (document, error) in
+			
 			if let error = error {
 				print(error.localizedDescription)
 			}
+			
 			if let document = document {
 				let profileID = document[searchValue] as? String
 				print(profileID ?? "None")
