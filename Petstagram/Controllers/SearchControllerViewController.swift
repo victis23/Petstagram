@@ -70,6 +70,7 @@ class SearchControllerViewController: UIViewController {
 /// Extension handles searchbar functions.
 extension SearchControllerViewController : UISearchBarDelegate {
 	
+	/// Assigns user search input to publisher.
 	func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
 		
 		// passes search term entered by user to publisher.
