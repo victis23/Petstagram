@@ -103,9 +103,25 @@ extension SearchControllerViewController : UISearchBarDelegate {
 			}
 			
 			if let document = document {
-				guard let profileID = document[searchValue] as? String else {return}
-				let foundUser = PetstagramUsers(searchValue, profileID)
-				print(foundUser.uid)
+				
+				let documentDictionary = document.data()
+				guard let documnetKeys = documentDictionary?.map({ (key, value) -> String in
+					key
+				}) else {return}
+				
+				let results = documnetKeys.compactMap { item -> String? in
+					
+					if item.contains(searchValue) {
+						return item
+					}
+					return nil
+				}
+				
+				print(results)
+				
+//				guard let profileID = document[searchValue] as? String else {return}
+//				let foundUser = PetstagramUsers(searchValue, profileID)
+//				print(foundUser.uid)
 			}
 		}
 	}
