@@ -16,6 +16,7 @@ struct Keys {
 		static var accessSegue = "accessSegue"
 		static var signOut = "unwindToLogin"
 		static var imageViewer = "imageViewer"
+		static var otherUsers = "otherUsers"
 	}
 	
 	// Keys that handle errors.
