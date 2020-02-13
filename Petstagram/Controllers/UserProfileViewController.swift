@@ -193,6 +193,7 @@ class UserProfileViewController: UIViewController {
 				
 				guard let fileName = metaData.name else {return}
 				guard let date = metaData.timeCreated else {return}
+				guard fileName != "profilePhoto" else {return}
 				
 				Storage.storage().reference().child(user).child(fileName).getData(maxSize: 99_999_999) { (data, error) in
 					
