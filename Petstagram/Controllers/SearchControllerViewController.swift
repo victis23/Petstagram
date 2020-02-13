@@ -127,11 +127,26 @@ extension SearchControllerViewController : UISearchBarDelegate {
 				}
 				
 				print(results)
-				
-//				guard let profileID = document[searchValue] as? String else {return}
-//				let foundUser = PetstagramUsers(searchValue, profileID)
-//				print(foundUser.uid)
+				self.setSnapShot(users: results)
 			}
+		}
+	}
+	
+	
+	/// Searches online storage for profile photo that cooresponds to the provided Uid.
+	/// - Parameters:
+	///   - user: Uid that corresponds to queried account.
+	///   - profileImage: Captures Image returned from GoogleFirebase Storage.
+	func getProfilePhoto(user: String, profileImage : @escaping (UIImage)->Void) {
+		
+		fbStorage.reference().child(user).child("profilePhoto").getData(maxSize: 99_999_999) { (data, error) in
+			
+			if let error = error {
+				print(error.localizedDescription)
+			}
+			
+			guard let data = data, let image = UIImage(data: data) else {return}
+			profileImage(image)
 		}
 	}
 }
