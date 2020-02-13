@@ -50,6 +50,7 @@
 		7D558181239DDE2D0076AFEB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7D558180239DDE2D0076AFEB /* GoogleService-Info.plist */; };
 		7D558183239DDE810076AFEB /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 7D558182239DDE810076AFEB /* Podfile */; };
 		7D558186239DE31C0076AFEB /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D558185239DE31C0076AFEB /* Authentication.swift */; };
+		7D610B3323F4A28700E20E36 /* AccountSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D610B3223F4A28700E20E36 /* AccountSearchTableViewCell.swift */; };
 		7D68E1AD23BD7E8D0084A2F0 /* AlbumImagesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D68E1AC23BD7E8D0084A2F0 /* AlbumImagesCollectionViewCell.swift */; };
 		7D72C79823CEC180003361B8 /* ImageAlbum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D72C79723CEC180003361B8 /* ImageAlbum.swift */; };
 		7D72C79B23CECE96003361B8 /* CollectionViewExtension+ImageUploadViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D72C79A23CECE96003361B8 /* CollectionViewExtension+ImageUploadViewController.swift */; };
@@ -126,6 +127,7 @@
 		7D558180239DDE2D0076AFEB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7D558182239DDE810076AFEB /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		7D558185239DE31C0076AFEB /* Authentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
+		7D610B3223F4A28700E20E36 /* AccountSearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSearchTableViewCell.swift; sourceTree = "<group>"; };
 		7D68E1AC23BD7E8D0084A2F0 /* AlbumImagesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumImagesCollectionViewCell.swift; sourceTree = "<group>"; };
 		7D72C79723CEC180003361B8 /* ImageAlbum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageAlbum.swift; sourceTree = "<group>"; };
 		7D72C79A23CECE96003361B8 /* CollectionViewExtension+ImageUploadViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CollectionViewExtension+ImageUploadViewController.swift"; sourceTree = "<group>"; };
@@ -349,6 +351,7 @@
 				7D896A1B23C149AF0052C8E4 /* UserImageCollectionViewCell.swift */,
 				7D48913A23D3BEB50037CDBA /* PostsTableViewCell.swift */,
 				7D53BAD923E5229000DD93BC /* EditProfileDescription.swift */,
+				7D610B3223F4A28700E20E36 /* AccountSearchTableViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -581,6 +584,7 @@
 				7D50727223CBA28D00FA54CA /* ErrorHandler.swift in Sources */,
 				7D4A543D239C69F00079A96A /* LikesViewController.swift in Sources */,
 				7D4A53F3239C66ED0079A96A /* AppDelegate.swift in Sources */,
+				7D610B3323F4A28700E20E36 /* AccountSearchTableViewCell.swift in Sources */,
 				7D3ED8A923CA58B200CF8EB6 /* AccountImages.swift in Sources */,
 				7D4A543F239C69F00079A96A /* UserFeedViewController.swift in Sources */,
 				7D50726E23CAB59900FA54CA /* ProfilePhoto+UserProfileViewController.swift in Sources */,
