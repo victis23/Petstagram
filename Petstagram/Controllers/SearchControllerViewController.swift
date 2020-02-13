@@ -93,9 +93,11 @@ extension SearchControllerViewController : UISearchBarDelegate {
 	
 	/// Hits GoogleFireBase for dictionary that contains username:uid key/value pair.
 	func searchFireBaseDataBaseForUser(searchValue: String?){
-		guard let searchValue = searchValue?.lowercased() else {return}
-		//		guard let user = firebaseAuthorization.currentUser?.uid else {return}
 		
+		// Transform user search term to lowercased string.
+		guard let searchValue = searchValue?.lowercased() else {return}
+		
+		// Retrieve dictionary containing list of application users from server.
 		db.collection(Keys.GoogleFireStore.userCollection).document(Keys.GoogleFireStore.userKeysDocument).getDocument { (document, error) in
 			
 			if let error = error {
@@ -104,15 +106,22 @@ extension SearchControllerViewController : UISearchBarDelegate {
 			
 			if let document = document {
 				
-				let documentDictionary = document.data()
-				guard let documnetKeys = documentDictionary?.map({ (key, value) -> String in
-					key
-				}) else {return}
+				// Convert document to dictionary.
+				guard let documentDictionary = document.data() else {return}
 				
-				let results = documnetKeys.compactMap { item -> String? in
+				// Convert key/value pair to PetstagramUser object.
+				let userProfileList = documentDictionary.map({ key, value -> PetstagramUsers? in
+					let value = value as! String
+					return PetstagramUsers(key, value)
+				})
+				
+				let results = userProfileList.compactMap { account -> PetstagramUsers? in
 					
-					if item.contains(searchValue) {
-						return item
+					if let account = account {
+						if account.username.contains(searchValue) {
+							return account
+						}
+						return nil
 					}
 					return nil
 				}
@@ -126,4 +135,5 @@ extension SearchControllerViewController : UISearchBarDelegate {
 		}
 	}
 }
+
 
