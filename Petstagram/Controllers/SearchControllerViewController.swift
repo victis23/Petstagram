@@ -63,6 +63,15 @@ class SearchControllerViewController: UIViewController {
 		self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font : UIFont(name: "Billabong", size: 34)!]
 		self.navigationController?.navigationBar.tintColor = .label
 	}
+	
+	//MARK: Navigation
+	
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+		
+		if segue.identifier == Keys.Segues.otherUsers {
+			
+		}
+	}
 }
 
 //MARK: - Search Bar
