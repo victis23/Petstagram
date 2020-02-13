@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16085" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="wmT-Bf-7fd">
+<document type="com.apple.InterfaceBuilder3.CocoaTouch.Storyboard.XIB" version="3.0" toolsVersion="16085" targetRuntime="iOS.CocoaTouch" propertyAccessControl="none" useAutolayout="YES" useTraitCollections="YES" useSafeAreas="YES" colorMatched="YES" initialViewController="xLH-5F-Xfu">
     <device id="retina6_1" orientation="portrait" appearance="light"/>
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="16078.1"/>
@@ -17,7 +17,7 @@
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="KCY-ab-YkI">
-                                <rect key="frame" x="10" y="378" width="394" height="498"/>
+                                <rect key="frame" x="10" y="422" width="394" height="454"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <collectionViewFlowLayout key="collectionViewLayout" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="YKH-90-lMG">
                                     <size key="itemSize" width="50" height="50"/>
@@ -26,7 +26,7 @@
                                     <inset key="sectionInset" minX="0.0" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 </collectionViewFlowLayout>
                                 <cells>
-                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="image" id="hQV-BA-tp8" customClass="UserImageCollectionViewCell" customModule="Petstagram" customModuleProvider="target">
+                                    <collectionViewCell opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" reuseIdentifier="accountImages" id="hQV-BA-tp8">
                                         <rect key="frame" x="0.0" y="0.0" width="50" height="50"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                         <collectionViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" insetsLayoutMarginsFromSafeArea="NO" id="Ar5-EF-jmv">
@@ -39,20 +39,14 @@
                                                 </imageView>
                                             </subviews>
                                         </collectionViewCellContentView>
-                                        <connections>
-                                            <outlet property="imageCell" destination="utg-sA-rkC" id="u46-Eu-7Ql"/>
-                                        </connections>
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a6a-IV-1vD">
-                                <rect key="frame" x="20" y="69" width="110" height="110"/>
-                                <connections>
-                                    <action selector="tappedProfileImageWithSender:" destination="wmT-Bf-7fd" eventType="touchUpInside" id="WAK-Cp-3Dz"/>
-                                </connections>
+                                <rect key="frame" x="20" y="113" width="110" height="110"/>
                             </button>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="28" translatesAutoresizingMaskIntoConstraints="NO" id="hIg-mh-BIR">
-                                <rect key="frame" x="135" y="110" width="264" height="69"/>
+                                <rect key="frame" x="135" y="154" width="264" height="69"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="center" spacing="-30" translatesAutoresizingMaskIntoConstraints="NO" id="AYM-Ye-lAw">
                                         <rect key="frame" x="0.0" y="0.0" width="69.5" height="69"/>
@@ -108,7 +102,7 @@
                                 </subviews>
                             </stackView>
                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="defaultUserImage" translatesAutoresizingMaskIntoConstraints="NO" id="q6i-HV-9BR">
-                                <rect key="frame" x="20" y="69" width="110" height="110"/>
+                                <rect key="frame" x="20" y="113" width="110" height="110"/>
                                 <color key="backgroundColor" cocoaTouchSystemColor="lightTextColor"/>
                                 <constraints>
                                     <constraint firstAttribute="width" constant="110" id="olD-uC-5vk"/>
@@ -116,7 +110,7 @@
                                 </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="V2q-sP-WgN">
-                                <rect key="frame" x="15" y="187" width="384" height="183"/>
+                                <rect key="frame" x="15" y="231" width="384" height="183"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O6d-SF-zSd">
                                         <rect key="frame" x="0.0" y="0.0" width="384" height="122"/>
@@ -137,16 +131,13 @@
                                                 <state key="normal" title="Follow ">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
-                                                <connections>
-                                                    <action selector="editProfileTapped:" destination="wmT-Bf-7fd" eventType="touchUpInside" id="MXO-Vf-vNV"/>
-                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>
                                 </subviews>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UGB-3o-qn2">
-                                <rect key="frame" x="145" y="79.5" width="259" height="20.5"/>
+                                <rect key="frame" x="145" y="123.5" width="259" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -181,20 +172,26 @@
                     <navigationItem key="navigationItem" id="2ne-DK-efs">
                         <barButtonItem key="rightBarButtonItem" image="settings" id="oRT-8i-TgO"/>
                     </navigationItem>
-                    <connections>
-                        <outlet property="aboutThePetLabel" destination="O6d-SF-zSd" id="IBH-SK-1xH"/>
-                        <outlet property="accountImages" destination="KCY-ab-YkI" id="zpf-3d-qjb"/>
-                        <outlet property="editProfileInfoButton" destination="pCY-1R-UwP" id="PpX-uI-WBW"/>
-                        <outlet property="followerCountLabel" destination="gQu-es-HeF" id="EyQ-op-jdX"/>
-                        <outlet property="followingCountLabel" destination="sRI-9q-oFn" id="6GH-79-zVK"/>
-                        <outlet property="postCountLabel" destination="7xG-R1-aXO" id="9CY-d2-Zcw"/>
-                        <outlet property="userNameLabel" destination="UGB-3o-qn2" id="bFi-8S-OC5"/>
-                        <outlet property="userProfilePicture" destination="q6i-HV-9BR" id="VNs-8f-NFI"/>
-                        <segue destination="k83-oT-zt7" kind="unwind" identifier="unwindToLogin" unwindAction="unwindToLogin:" id="u7W-qX-JM6"/>
-                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YKw-R3-n0L" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
-                <exit id="k83-oT-zt7" userLabel="Exit" sceneMemberID="exit"/>
+            </objects>
+            <point key="canvasLocation" x="2055.072463768116" y="156.69642857142856"/>
+        </scene>
+        <!--Navigation Controller-->
+        <scene sceneID="efB-hv-4Nc">
+            <objects>
+                <navigationController automaticallyAdjustsScrollViewInsets="NO" id="xLH-5F-Xfu" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <navigationBar key="navigationBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="O7W-HV-INS">
+                        <rect key="frame" x="0.0" y="44" width="414" height="44"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </navigationBar>
+                    <nil name="viewControllers"/>
+                    <connections>
+                        <segue destination="wmT-Bf-7fd" kind="relationship" relationship="rootViewController" id="7sa-Hc-ly6"/>
+                    </connections>
+                </navigationController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="Ntj-Em-GZE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1144.9275362318842" y="156.69642857142856"/>
         </scene>
