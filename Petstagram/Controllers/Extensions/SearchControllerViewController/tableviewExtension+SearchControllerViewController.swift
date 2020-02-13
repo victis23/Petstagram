@@ -48,6 +48,8 @@ extension SearchControllerViewController : UITableViewDelegate {
 		
 		let selectedAccount = dataSource.itemIdentifier(for: indexPath)
 		
+		performSegue(withIdentifier: Keys.Segues.otherUsers, sender: selectedAccount)
+		
 		tableView.deselectRow(at: indexPath, animated: true)
 	}
 }
