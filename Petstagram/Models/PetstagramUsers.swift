@@ -20,13 +20,11 @@ class PetstagramUsers : Hashable {
 	}
 	
 	var username: String
-	var profileImage: UIImage?
 	var uid : String
 	
-	init(_ username : String,_ uid : String, _ profileImage : UIImage?){
+	init(_ username : String,_ uid : String){
 		self.username = username
 		self.uid = uid
-		self.profileImage = profileImage
 	}
 	
 	func hash(into hasher : inout Hasher){
