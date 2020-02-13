@@ -329,6 +329,7 @@ class UserProfileViewController: UIViewController {
 		defaults.removeObject(forKey: Keys.userDefaultsDB.profilePhoto)
 		defaults.removeObject(forKey: Keys.userDefaultsDB.username)
 		defaults.removeObject(forKey: Keys.keyChainKeys.email)
+		defaults.removeObject(forKey: Keys.userDefaultsDB.imageCount)
 		
 		// Removes all items from keychain.
 		Authentication.removeCredsFromKeyChain()
