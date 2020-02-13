@@ -16,9 +16,25 @@ extension SearchControllerViewController : UITableViewDelegate {
 	func setDataSource(){
 		dataSource = UITableViewDiffableDataSource<Section,PetstagramUsers>(tableView: tableView, cellProvider: { (tableView, indexPath, appUsers) -> UITableViewCell? in
 			
-			let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath)
+			guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? AccountSearchTableViewCell else {fatalError()}
+			
+			cell.userName.text = appUsers.username
+			cell.followButton.layer.cornerRadius = 5
+			
+			DispatchQueue.main.async {
+				self.getProfilePhoto(user: appUsers.uid) { (image) in
+					cell.profilePhoto.layer.cornerRadius = cell.profilePhoto.frame.height / 2
+					cell.profilePhoto.image = image
+					cell.profilePhoto.contentMode = .scaleAspectFit
+				}
+			}
+			
 			return cell
 		})
+	}
+	
+	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+		return 100
 	}
 	
 	func setSnapShot(users : [PetstagramUsers]){
