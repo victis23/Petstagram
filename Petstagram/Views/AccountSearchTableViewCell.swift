@@ -22,4 +22,6 @@ class AccountSearchTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
     }
 
+	@IBAction func followButtonTapped(_ sender: Any) {
+	}
 }
