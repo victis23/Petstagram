@@ -43,4 +43,11 @@ extension SearchControllerViewController : UITableViewDelegate {
 		snapShot.appendItems(users, toSection: .main)
 		dataSource.apply(snapShot, animatingDifferences: true, completion: {})
 	}
+	
+	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		
+		let selectedAccount = dataSource.itemIdentifier(for: indexPath)
+		
+		tableView.deselectRow(at: indexPath, animated: true)
+	}
 }
