@@ -14,6 +14,7 @@ class GenericProfileViewController: UIViewController {
 	@IBOutlet weak var userName: UILabel!
 	@IBOutlet weak var accountImageCollection: UICollectionView!
 	@IBOutlet weak var followButton: UIButton!
+	@IBOutlet weak var profileDescription: UILabel!
 	
 	var account : PetstagramUsers!
 	
