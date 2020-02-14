@@ -68,10 +68,14 @@ class SearchControllerViewController: UIViewController {
 	
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		
+		guard let sender = sender as? PetstagramUsers else {return}
+		
 		if segue.identifier == Keys.Segues.otherUsers {
 			
 			//Changes text that will be displayed on the back button.
-			navigationItem.backBarButtonItem = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
+			navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
+			let vc = segue.destination as! GenericProfileViewController
+			vc.account = sender
 		}
 	}
 }
