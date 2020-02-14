@@ -172,6 +172,12 @@
                     <navigationItem key="navigationItem" id="2ne-DK-efs">
                         <barButtonItem key="rightBarButtonItem" image="settings" id="oRT-8i-TgO"/>
                     </navigationItem>
+                    <connections>
+                        <outlet property="accountImageCollection" destination="KCY-ab-YkI" id="1yH-wj-Ald"/>
+                        <outlet property="followButton" destination="a6a-IV-1vD" id="QLx-dD-Jyy"/>
+                        <outlet property="profileImage" destination="q6i-HV-9BR" id="DVY-kE-tnp"/>
+                        <outlet property="userName" destination="UGB-3o-qn2" id="BEA-we-gVH"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YKw-R3-n0L" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>

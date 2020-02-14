@@ -10,14 +10,23 @@ import UIKit
 
 class GenericProfileViewController: UIViewController {
 	
+	@IBOutlet weak var profileImage: UIImageView!
+	@IBOutlet weak var userName: UILabel!
+	@IBOutlet weak var accountImageCollection: UICollectionView!
+	@IBOutlet weak var followButton: UIButton!
+	
 	var account : PetstagramUsers!
-	var profileImage : UIImage!
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		setNavigationBar()
+		setAccountVisuals()
 	}
 	
+	func setAccountVisuals(){
+		userName.text = account.username
+		profileImage.image = account.image
+	}
 	
 	/// Sets attributes for navigation bar.
 	func setNavigationBar(){
