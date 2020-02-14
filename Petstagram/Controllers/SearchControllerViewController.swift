@@ -70,6 +70,8 @@ class SearchControllerViewController: UIViewController {
 		
 		if segue.identifier == Keys.Segues.otherUsers {
 			
+			//Changes text that will be displayed on the back button.
+			navigationItem.backBarButtonItem = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
 		}
 	}
 }
