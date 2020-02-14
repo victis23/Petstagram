@@ -24,7 +24,8 @@ extension SearchControllerViewController : UITableViewDelegate {
 			DispatchQueue.main.async {
 				self.getProfilePhoto(user: appUsers.uid) { (image) in
 					cell.profilePhoto.layer.cornerRadius = cell.profilePhoto.frame.height / 2
-					cell.profilePhoto.image = image
+					appUsers.image = image
+					cell.profilePhoto.image = appUsers.image
 					cell.profilePhoto.contentMode = .scaleAspectFit
 				}
 			}
@@ -45,6 +46,9 @@ extension SearchControllerViewController : UITableViewDelegate {
 	}
 	
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		
+		searchBar.text = nil
+		searchBar.resignFirstResponder()
 		
 		let selectedAccount = dataSource.itemIdentifier(for: indexPath)
 		
