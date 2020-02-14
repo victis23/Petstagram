@@ -95,7 +95,7 @@
                     <connections>
                         <outlet property="searchBar" destination="gju-59-eFx" id="9ai-ec-0Dg"/>
                         <outlet property="tableView" destination="g87-Lh-46b" id="LMP-7m-AN7"/>
-                        <segue destination="ZAZ-Av-Kcx" kind="presentation" identifier="otherUsers" id="U7x-5f-Sm5"/>
+                        <segue destination="ZAZ-Av-Kcx" kind="show" identifier="otherUsers" id="93K-Vq-9nf"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="plR-h0-RMy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -105,10 +105,12 @@
         <!--GenericProfile-->
         <scene sceneID="Yes-aq-nSQ">
             <objects>
-                <viewControllerPlaceholder storyboardName="GenericProfile" id="ZAZ-Av-Kcx" sceneMemberID="viewController"/>
+                <viewControllerPlaceholder storyboardName="GenericProfile" id="ZAZ-Av-Kcx" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="Wh1-Kb-dRj"/>
+                </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EvQ-xt-Kob" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="841" y="38"/>
+            <point key="canvasLocation" x="772" y="63"/>
         </scene>
     </scenes>
 </document>
