@@ -32,3 +32,15 @@ class PetstagramUsers : Hashable {
 		hasher.combine(uid)
 	}
 }
+
+
+extension PetstagramUsers {
+
+	func getDescription(){
+		
+	}
+	
+	func getProfileImages(){
+		
+	}
+}
