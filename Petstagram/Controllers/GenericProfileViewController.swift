@@ -9,9 +9,25 @@
 import UIKit
 
 class GenericProfileViewController: UIViewController {
-
-    override func viewDidLoad() {
-        super.viewDidLoad()
-
-    }
+	
+	var account : PetstagramUsers!
+	var profileImage : UIImage!
+	
+	override func viewDidLoad() {
+		super.viewDidLoad()
+		setNavigationBar()
+	}
+	
+	
+	/// Sets attributes for navigation bar.
+	func setNavigationBar(){
+		self.navigationItem.title = "Petstagram"
+		
+		if let font = UIFont(name: "Billabong", size: 34) {
+			
+			self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font : font]
+		}
+		
+		self.navigationController?.navigationBar.tintColor = .label
+	}
 }
