@@ -21,6 +21,7 @@ class PetstagramUsers : Hashable {
 	var username: String
 	var uid : String
 	var image : UIImage?
+	var following : Bool = false
 	
 	init(_ username : String,_ uid : String){
 		self.username = username
