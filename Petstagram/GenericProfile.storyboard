@@ -45,9 +45,6 @@
                                     </collectionViewCell>
                                 </cells>
                             </collectionView>
-                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="a6a-IV-1vD">
-                                <rect key="frame" x="20" y="69" width="110" height="110"/>
-                            </button>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="28" translatesAutoresizingMaskIntoConstraints="NO" id="hIg-mh-BIR">
                                 <rect key="frame" x="135" y="110" width="264" height="69"/>
                                 <subviews>
@@ -113,16 +110,16 @@
                                 </constraints>
                             </imageView>
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="V2q-sP-WgN">
-                                <rect key="frame" x="15" y="187" width="384" height="183"/>
+                                <rect key="frame" x="15" y="309" width="384" height="61"/>
                                 <subviews>
                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="O6d-SF-zSd">
-                                        <rect key="frame" x="0.0" y="0.0" width="384" height="122"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="384" height="0.0"/>
                                         <fontDescription key="fontDescription" style="UICTFontTextStyleBody"/>
                                         <nil key="textColor"/>
                                         <nil key="highlightedColor"/>
                                     </label>
                                     <stackView opaque="NO" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="pcC-1X-iFN">
-                                        <rect key="frame" x="0.0" y="122" width="384" height="61"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="384" height="61"/>
                                         <subviews>
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="pCY-1R-UwP">
                                                 <rect key="frame" x="0.0" y="0.0" width="384" height="61"/>
@@ -140,7 +137,7 @@
                                 </subviews>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UGB-3o-qn2">
-                                <rect key="frame" x="145" y="79.5" width="259" height="20.5"/>
+                                <rect key="frame" x="362" y="79.5" width="42" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -148,21 +145,15 @@
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                         <constraints>
-                            <constraint firstItem="q6i-HV-9BR" firstAttribute="leading" secondItem="a6a-IV-1vD" secondAttribute="leading" id="5yB-95-32T"/>
-                            <constraint firstItem="UGB-3o-qn2" firstAttribute="leading" secondItem="a6a-IV-1vD" secondAttribute="trailing" constant="15" id="6Dv-oQ-1Lq"/>
                             <constraint firstItem="KCY-ab-YkI" firstAttribute="top" secondItem="V2q-sP-WgN" secondAttribute="bottom" constant="8" id="8IL-XU-wzA"/>
                             <constraint firstItem="q6i-HV-9BR" firstAttribute="top" secondItem="hIg-mh-BIR" secondAttribute="top" constant="-41" id="ACh-Gk-Jn4"/>
-                            <constraint firstItem="q6i-HV-9BR" firstAttribute="bottom" secondItem="a6a-IV-1vD" secondAttribute="bottom" id="KWx-q0-8kg"/>
                             <constraint firstAttribute="bottom" secondItem="KCY-ab-YkI" secondAttribute="bottom" constant="20" symbolic="YES" id="NW5-0M-rVp"/>
                             <constraint firstItem="KUT-Ac-bBr" firstAttribute="trailing" secondItem="V2q-sP-WgN" secondAttribute="trailing" constant="15" id="Slf-pC-Hnl"/>
                             <constraint firstItem="hIg-mh-BIR" firstAttribute="top" secondItem="KUT-Ac-bBr" secondAttribute="top" constant="66" id="TAe-Vb-Hni"/>
                             <constraint firstItem="q6i-HV-9BR" firstAttribute="leading" secondItem="1pZ-ni-cV9" secondAttribute="leadingMargin" id="TVV-ng-w8z"/>
                             <constraint firstItem="KCY-ab-YkI" firstAttribute="trailing" secondItem="KUT-Ac-bBr" secondAttribute="trailing" constant="-10" id="XLs-fQ-i3p"/>
                             <constraint firstItem="KCY-ab-YkI" firstAttribute="top" secondItem="hIg-mh-BIR" secondAttribute="bottom" constant="199" id="XeR-mi-wDE"/>
-                            <constraint firstItem="V2q-sP-WgN" firstAttribute="top" secondItem="a6a-IV-1vD" secondAttribute="bottom" constant="8" id="h3X-mj-HmH"/>
                             <constraint firstItem="KCY-ab-YkI" firstAttribute="leading" secondItem="KUT-Ac-bBr" secondAttribute="leading" constant="10" id="iJs-Sz-u62"/>
-                            <constraint firstItem="q6i-HV-9BR" firstAttribute="trailing" secondItem="a6a-IV-1vD" secondAttribute="trailing" id="nzc-1O-Sgd"/>
-                            <constraint firstItem="q6i-HV-9BR" firstAttribute="top" secondItem="a6a-IV-1vD" secondAttribute="top" id="pE7-eT-leJ"/>
                             <constraint firstItem="KUT-Ac-bBr" firstAttribute="trailing" secondItem="UGB-3o-qn2" secondAttribute="trailing" constant="10" id="paA-R0-2NN"/>
                             <constraint firstItem="hIg-mh-BIR" firstAttribute="leading" secondItem="q6i-HV-9BR" secondAttribute="trailing" constant="5" id="t9n-aA-Qy5"/>
                             <constraint firstItem="V2q-sP-WgN" firstAttribute="leading" secondItem="KUT-Ac-bBr" secondAttribute="leading" constant="15" id="tMB-WM-qmq"/>
@@ -177,7 +168,8 @@
                     </navigationItem>
                     <connections>
                         <outlet property="accountImageCollection" destination="KCY-ab-YkI" id="1yH-wj-Ald"/>
-                        <outlet property="followButton" destination="a6a-IV-1vD" id="QLx-dD-Jyy"/>
+                        <outlet property="followButton" destination="pCY-1R-UwP" id="CdS-sz-ZON"/>
+                        <outlet property="postCount" destination="7xG-R1-aXO" id="9HI-DP-Hux"/>
                         <outlet property="profileDescription" destination="O6d-SF-zSd" id="OTI-Op-TTf"/>
                         <outlet property="profileImage" destination="q6i-HV-9BR" id="DVY-kE-tnp"/>
                         <outlet property="userName" destination="UGB-3o-qn2" id="BEA-we-gVH"/>
