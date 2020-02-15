@@ -21,7 +21,6 @@ class GenericProfileViewController: UIViewController {
 	
 	var accountImages : [AccountImages] = [] {
 		didSet {
-			setSnapShot()
 			postCount.text = "\(accountImages.count)"
 		}
 	}
@@ -103,6 +102,8 @@ class GenericProfileViewController: UIViewController {
 					self.accountImages.sort { (value1, value2) -> Bool in
 						value1.timeStamp > value2.timeStamp
 					}
+					
+					self.setSnapShot()
 				}
 			}
 		}
