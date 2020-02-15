@@ -16,19 +16,12 @@ extension UserProfileViewController {
 	/// Retrieves profile description.
 	func getAccountDescription(){
 		if let user = userAuth.currentUser?.uid {
-			let db = Firestore.firestore()
-			db.collection(user).document(Keys.GoogleFireStore.accountInfoDocument).getDocument { (document, error) in
-				
-				if let error = error {
-					print(error.localizedDescription)
-					return
-				}
-				
-				if let data = document?.data() {
-					let text = data["ProfileDescription"] as? String
-					self.aboutThePetLabel.text = text
-				}
-			}
+			
+			let descriptionRetriever = DescriptionRetriever(userID: user)
+			
+			descriptionRetriever.getDescription(completion: { description in
+				self.aboutThePetLabel.text = description
+			})
 		}
 	}
 	
