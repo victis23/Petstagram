@@ -191,19 +191,10 @@ class UserProfileViewController: UIViewController {
 				guard let date = metaData.timeCreated else {return}
 				guard fileName != "profilePhoto" else {return}
 				
-				Storage.storage().reference().child(user).child(fileName).getData(maxSize: 99_999_999) { (data, error) in
-					
-					if let error = error {
-						print(error.localizedDescription)
-					}
-					
-					guard
-						let data = data,
-						let image = UIImage(data: data)
-						else {return}
+				imageDownloader.downloadImages(for: fileName, imageItem: { image in
 					
 					self.userProfileItems.append(AccountImages(image: image, timeStamp: date, metaData: metaData, id: fileName))
-				}
+				})
 			})
 		}
 	}
