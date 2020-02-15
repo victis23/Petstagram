@@ -34,7 +34,7 @@ extension UserProfileViewController : UICollectionViewDelegate {
 	func setDataSource(){
 		datasource = UICollectionViewDiffableDataSource<Sections,AccountImages>(collectionView: accountImages, cellProvider: { (collectionView, indexPath, ImageObject) -> UICollectionViewCell? in
 			
-			guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "image", for: indexPath) as? UserImageCollectionViewCell else {fatalError()}
+			guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Keys.Cells.image, for: indexPath) as? UserImageCollectionViewCell else {fatalError()}
 			
 			cell.imageCell.image = ImageObject.image
 			cell.imageCell.contentMode = .scaleAspectFill

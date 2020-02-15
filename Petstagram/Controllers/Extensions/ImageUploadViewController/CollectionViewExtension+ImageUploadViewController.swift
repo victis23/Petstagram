@@ -14,7 +14,7 @@ extension ImageUploadViewController: UICollectionViewDelegate {
 	/// Creates visable reusable cells that will hold the images retrieved from disk.
 	func setDataSource(){
 		datasource = UICollectionViewDiffableDataSource<Sections,ImageAlbum>(collectionView: albumImageCollection, cellProvider: { (collectionView, indexPath, images) -> UICollectionViewCell? in
-			guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "cell", for: indexPath) as? AlbumImagesCollectionViewCell else {fatalError()}
+			guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Keys.Cells.albumCell, for: indexPath) as? AlbumImagesCollectionViewCell else {fatalError()}
 			
 			cell.imageFromAlbum.image = images.images
 			cell.imageFromAlbum.contentMode = .scaleAspectFill

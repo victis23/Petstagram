@@ -19,6 +19,12 @@ struct Keys {
 		static var otherUsers = "otherUsers"
 	}
 	
+	struct Cells {
+		static var accountImages = "accountImages"
+		static var image = "image"
+		static var albumCell = "cell"
+	}
+	
 	// Keys that handle errors.
 	struct ErrorKeys {
 		static var loginFailed = "loginError"
