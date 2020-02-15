@@ -164,12 +164,12 @@ extension GenericProfileViewController : UICollectionViewDelegate {
 		
 		guard let selectedImage = dataSource.itemIdentifier(for: indexPath) else {return}
 		
-		performSegue(withIdentifier: Keys.Segues.imageViewer, sender: selectedImage)
+		performSegue(withIdentifier: Keys.Segues.viewOtherUserImages, sender: selectedImage)
 	}
 	
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		
-		if segue .identifier == Keys.Segues.imageViewer {
+		if segue .identifier == Keys.Segues.viewOtherUserImages {
 			
 			//Changes text that will be displayed on the back button.
 			navigationItem.backBarButtonItem = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
