@@ -15,35 +15,45 @@ class GenericProfileViewController: UIViewController {
 	@IBOutlet weak var accountImageCollection: UICollectionView!
 	@IBOutlet weak var followButton: UIButton!
 	@IBOutlet weak var profileDescription: UILabel!
+	@IBOutlet weak var postCount: UILabel!
 	
 	var account : PetstagramUsers!
+	
+	var accountImages : [AccountImages] = [] {
+		didSet {
+			setSnapShot()
+			postCount.text = "\(accountImages.count)"
+		}
+	}
+	
+	var dataSource : UICollectionViewDiffableDataSource<Sections,AccountImages>!
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		setNavigationBar()
 		setAccountVisuals()
+		setLayout()
 		getProfileDescription(user: account)
+		getImagesForAccount()
 	}
 	
-	/// Sets description to view using helper class to get data from Google FireStore database.
-	func getProfileDescription(user:PetstagramUsers){
+	override func viewDidAppear(_ animated: Bool) {
+		super.viewDidAppear(animated)
 		
-		let descriptionRetriever = DescriptionRetriever(userID: user.uid)
-		
-		descriptionRetriever.getDescription { retrievedString in
-			
-			self.profileDescription.text = retrievedString
-		}
+		setDataSource()
+		setSnapShot()
 	}
 	
 	func setAccountVisuals(){
 		userName.text = account.username
+		userName.font = UIFont.monospacedSystemFont(ofSize: 30, weight: .heavy)
 		profileImage.image = account.image
+		followButton.layer.cornerRadius = 5
 	}
 	
 	/// Sets attributes for navigation bar.
 	func setNavigationBar(){
-		self.navigationItem.title = "Petstagram"
+		self.navigationItem.title = "  Petstagram"
 		
 		if let font = UIFont(name: "Billabong", size: 34) {
 			
