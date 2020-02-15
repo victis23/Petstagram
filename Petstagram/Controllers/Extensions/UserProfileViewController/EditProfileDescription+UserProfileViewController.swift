@@ -9,6 +9,8 @@
 import UIKit
 import Combine
 
+/// Handles views used when user is changing the description information on their profile.
+/// - Important: Doesn't actually handle the data in view.
 extension UserProfileViewController : UITextViewDelegate {
 	
 	func createEditProfileDescriptionView()-> EditProfileDescription? {
