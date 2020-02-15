@@ -34,6 +34,7 @@ class GenericProfileViewController: UIViewController {
 		setLayout()
 		getProfileDescription(user: account)
 		getImagesForAccount()
+		accountImageCollection.delegate = self
 	}
 	
 	override func viewDidAppear(_ animated: Bool) {
@@ -128,7 +129,7 @@ class GenericProfileViewController: UIViewController {
 		
 		dataSource = UICollectionViewDiffableDataSource<Sections,AccountImages>(collectionView: accountImageCollection, cellProvider: { (collectionView, indexPath, images) -> UICollectionViewCell? in
 			
-			guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "accountImages", for: indexPath) as? UserImageCollectionViewCell else {fatalError()}
+			guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Keys.Cells.accountImages, for: indexPath) as? UserImageCollectionViewCell else {fatalError()}
 			
 			cell.imageCell.image = images.image
 			cell.imageCell.layer.cornerRadius = 5
@@ -155,4 +156,33 @@ class GenericProfileViewController: UIViewController {
 		let layout = collectionBuilder.setLayout()
 		accountImageCollection.collectionViewLayout = layout
 	}
+}
+
+extension GenericProfileViewController : UICollectionViewDelegate {
+	
+	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+		
+		guard let selectedImage = dataSource.itemIdentifier(for: indexPath) else {return}
+		
+		performSegue(withIdentifier: Keys.Segues.imageViewer, sender: selectedImage)
+	}
+	
+	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+		
+		if segue .identifier == Keys.Segues.imageViewer {
+			
+			//Changes text that will be displayed on the back button.
+			navigationItem.backBarButtonItem = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
+			
+			guard let selectedObject = sender as? String else {return}
+			
+			guard let destinationController = segue.destination as? PostsTableViewController else {return}
+			
+			destinationController.profileImages = accountImages
+			destinationController.imagePointer = selectedObject
+			destinationController.userName = userName.text
+			destinationController.profileImage = profileImage.image
+		}
+	}
+	
 }
