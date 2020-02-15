@@ -22,6 +22,18 @@ class GenericProfileViewController: UIViewController {
 		super.viewDidLoad()
 		setNavigationBar()
 		setAccountVisuals()
+		getProfileDescription(user: account)
+	}
+	
+	/// Sets description to view using helper class to get data from Google FireStore database.
+	func getProfileDescription(user:PetstagramUsers){
+		
+		let descriptionRetriever = DescriptionRetriever(userID: user.uid)
+		
+		descriptionRetriever.getDescription { retrievedString in
+			
+			self.profileDescription.text = retrievedString
+		}
 	}
 	
 	func setAccountVisuals(){
