@@ -189,7 +189,9 @@ class UserProfileViewController: UIViewController {
 		
 		if let user = userAuth.currentUser?.uid {
 			
-			userData.downloadImages { (metaData) in
+			let imageDownloader = ImageDownloader(account: user)
+			
+			imageDownloader.downloadImages(downloadedImages: { metaData in
 				
 				guard let fileName = metaData.name else {return}
 				guard let date = metaData.timeCreated else {return}
@@ -202,13 +204,13 @@ class UserProfileViewController: UIViewController {
 					}
 					
 					guard
-					let data = data,
-					let image = UIImage(data: data)
+						let data = data,
+						let image = UIImage(data: data)
 						else {return}
 					
 					self.userProfileItems.append(AccountImages(image: image, timeStamp: date, metaData: metaData, id: fileName))
 				}
-			}
+			})
 		}
 	}
 	
