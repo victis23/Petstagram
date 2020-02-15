@@ -43,6 +43,7 @@ class GenericProfileViewController: UIViewController {
 		setSnapShot()
 	}
 	
+	/// Sets the aesthetic properties on views.
 	func setAccountVisuals(){
 		
 		userName.text = account.username
@@ -79,11 +80,15 @@ class GenericProfileViewController: UIViewController {
 		}
 	}
 	
+	/// Retrieves images from firebase storage using metadata.
 	func getImagesForAccount(){
 		
 		let imageDownloader = ImageDownloader(account: account.uid)
 		
+		// Retrieves metadata information for each image on storage.
 		imageDownloader.downloadImages { (metaData) in
+			
+			// Uses metadata to provide actual image.
 			imageDownloader.downloadImages(for: metaData.name) { (image) in
 				
 				guard let timestamp = metaData.timeCreated,
@@ -91,21 +96,31 @@ class GenericProfileViewController: UIViewController {
 				
 				let item = AccountImages(image: image, timeStamp: timestamp, metaData: metaData, id: id)
 				
+				// Check for repeated images or profile images.
 				let contains = self.accountImages.contains { accountImageItem in
 					accountImageItem.id == item.id || item.id == "profileImage"
 				}
 				
-				if !contains {
-					
-					self.accountImages.append(item)
-					
-					self.accountImages.sort { (value1, value2) -> Bool in
-						value1.timeStamp > value2.timeStamp
-					}
-					
-					self.setSnapShot()
-				}
+				// Adds images to collection.
+				self.updateCollectionViewContent(contains: contains, accountImage: item)
 			}
+		}
+	}
+	
+	/// Makes sure items added to collectionview are unique and sorted with the last added item first.
+	func updateCollectionViewContent(contains:Bool, accountImage:AccountImages){
+		
+		guard !contains else {return}
+		
+		accountImages.append(accountImage)
+		sort()
+		setSnapShot()
+	}
+	
+	/// Sorts objects from last to first.
+	func sort(){
+		accountImages.sort { value1, value2 -> Bool in
+			value1.timeStamp > value2.timeStamp
 		}
 	}
 	
@@ -131,6 +146,7 @@ class GenericProfileViewController: UIViewController {
 		dataSource.apply(snapshot, animatingDifferences: false, completion: {})
 	}
 	
+	/// Sets layout for collectionView.
 	func setLayout(){
 		
 		// Group height is 40% the height of the UICollectionView Frame.
