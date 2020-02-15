@@ -45,15 +45,21 @@ class GenericProfileViewController: UIViewController {
 	}
 	
 	func setAccountVisuals(){
+		
 		userName.text = account.username
 		userName.font = UIFont.monospacedSystemFont(ofSize: 30, weight: .heavy)
+		
 		profileImage.image = account.image
+		profileImage.layer.borderColor = UIColor.label.cgColor
+		profileImage.layer.borderWidth = 2
+		profileImage.layer.cornerRadius = 5
+		
 		followButton.layer.cornerRadius = 5
 	}
 	
 	/// Sets attributes for navigation bar.
 	func setNavigationBar(){
-		self.navigationItem.title = "  Petstagram"
+		self.navigationItem.title = "Petstagram"
 		
 		if let font = UIFont(name: "Billabong", size: 34) {
 			
