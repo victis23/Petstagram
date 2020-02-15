@@ -137,7 +137,7 @@
                                 </subviews>
                             </stackView>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="UGB-3o-qn2">
-                                <rect key="frame" x="362" y="79.5" width="42" height="20.5"/>
+                                <rect key="frame" x="135" y="79.5" width="269" height="20.5"/>
                                 <fontDescription key="fontDescription" type="system" pointSize="17"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -153,6 +153,7 @@
                             <constraint firstItem="q6i-HV-9BR" firstAttribute="leading" secondItem="1pZ-ni-cV9" secondAttribute="leadingMargin" id="TVV-ng-w8z"/>
                             <constraint firstItem="KCY-ab-YkI" firstAttribute="trailing" secondItem="KUT-Ac-bBr" secondAttribute="trailing" constant="-10" id="XLs-fQ-i3p"/>
                             <constraint firstItem="KCY-ab-YkI" firstAttribute="top" secondItem="hIg-mh-BIR" secondAttribute="bottom" constant="199" id="XeR-mi-wDE"/>
+                            <constraint firstItem="UGB-3o-qn2" firstAttribute="leading" secondItem="q6i-HV-9BR" secondAttribute="trailing" constant="5" id="ex0-eI-Nml"/>
                             <constraint firstItem="KCY-ab-YkI" firstAttribute="leading" secondItem="KUT-Ac-bBr" secondAttribute="leading" constant="10" id="iJs-Sz-u62"/>
                             <constraint firstItem="KUT-Ac-bBr" firstAttribute="trailing" secondItem="UGB-3o-qn2" secondAttribute="trailing" constant="10" id="paA-R0-2NN"/>
                             <constraint firstItem="hIg-mh-BIR" firstAttribute="leading" secondItem="q6i-HV-9BR" secondAttribute="trailing" constant="5" id="t9n-aA-Qy5"/>
