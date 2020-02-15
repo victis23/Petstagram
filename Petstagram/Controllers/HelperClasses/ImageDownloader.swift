@@ -51,4 +51,24 @@ class ImageDownloader {
 			}
 		}
 	}
+	
+	/// Captures actual image.
+	func downloadImages(for file : String?, imageItem : @escaping (UIImage)->Void) {
+		
+		guard let file = file else {fatalError()}
+		
+		let bucket = storage.reference().child(account).child(file)
+		
+		bucket.getData(maxSize: 99_999_999) { (data, error) in
+			
+			if let error = error {
+				print(error.localizedDescription)
+			}
+			
+			guard let data = data,
+			let image = UIImage(data: data)
+				else {return}
+			imageItem(image)
+		}
+	}
 }
