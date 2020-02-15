@@ -7,8 +7,6 @@
 //
 
 import UIKit
-import FirebaseStorage
-
 
 enum Section {
 	case main
@@ -36,10 +34,6 @@ class PetstagramUsers : Hashable {
 
 
 extension PetstagramUsers {
-
-	func getDescription(){
-		
-	}
 	
 	func getProfileImages(){
 		
