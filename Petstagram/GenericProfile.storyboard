@@ -174,7 +174,7 @@
                         <outlet property="profileDescription" destination="O6d-SF-zSd" id="OTI-Op-TTf"/>
                         <outlet property="profileImage" destination="q6i-HV-9BR" id="DVY-kE-tnp"/>
                         <outlet property="userName" destination="UGB-3o-qn2" id="BEA-we-gVH"/>
-                        <segue destination="n2Z-ux-0jE" kind="show" identifier="imageViewer" id="GsG-xL-NfC"/>
+                        <segue destination="n2Z-ux-0jE" kind="show" identifier="otherUserImageViewer" id="GsG-xL-NfC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YKw-R3-n0L" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
