@@ -40,42 +40,11 @@ class UserProfile {
 		self.imageData = nil
 	}
 	
-	/// Downloads **Metadata** for each item contained within Google Firebase Storage.
-	/// - Parameter downloadedImages: Captures returned metadata array.
-	func downloadImages(downloadedImages : @escaping (_ metaData : StorageMetadata)->Void) {
-		
-		guard let user = self.user else {fatalError()}
-		
-		// Variable holds path to user's storage bucket.
-		let filePath = storage.child(user)
-		
-		filePath.listAll { (list, error) in
-			
-			if let error = error {
-				print(error.localizedDescription)
-				return
-			}
-			
-			// For each item in the bucket method downloads its metadata and appends it to the metaDataKeys array.
-			list.items.forEach { item in
-				Storage.storage().reference(forURL: "\(item)").getMetadata { (metaData, Error) in
-					if let error = error {
-						print(error.localizedDescription)
-						return
-					}
-					if let metaData = metaData {
-						
-						// Capture the returned metaData key.
-						downloadedImages(metaData)
-					}
-				}
-			}
-		}
-	}
-	
 	/// Creates instance of `UserProfile`
 	static func shared() -> UserProfile {
 		return sharedUserProfile
 	}
 	
 }
+
+
