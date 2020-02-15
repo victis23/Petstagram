@@ -15,13 +15,7 @@ import Combine
 
 /// Class which controls data displayed on the user's home profile tab.
 class UserProfileViewController: UIViewController {
-	
-	
-	// Sections Enum that will be used in the collectionView's DataSource.
-	enum Sections {
-		case main
-	}
-	
+
 	//MARK: IBOutlets
 	
 	@IBOutlet weak var accountImages: UICollectionView!

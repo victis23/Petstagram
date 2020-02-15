@@ -10,11 +10,7 @@ import UIKit
 
 /// Accesses user image albums and presents them in a collectionView.
 class ImageUploadViewController: UIViewController {
-	
-	enum Sections {
-		case main
-	}
-	
+
 	//MARK: - Instance Properties
 	
 	// Collection that holds Images obtained from user's image assets.
