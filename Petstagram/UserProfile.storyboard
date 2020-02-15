@@ -202,7 +202,7 @@
         <!--Posts Table View Controller-->
         <scene sceneID="YD1-nf-g1b">
             <objects>
-                <tableViewController modalPresentationStyle="fullScreen" id="yxp-0O-xJP" customClass="PostsTableViewController" customModule="Petstagram" customModuleProvider="target" sceneMemberID="viewController">
+                <tableViewController storyboardIdentifier="ImageListTable" modalPresentationStyle="fullScreen" id="yxp-0O-xJP" customClass="PostsTableViewController" customModule="Petstagram" customModuleProvider="target" sceneMemberID="viewController">
                     <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="Alz-X4-Akr">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>

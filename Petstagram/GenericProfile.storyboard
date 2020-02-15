@@ -174,11 +174,22 @@
                         <outlet property="profileDescription" destination="O6d-SF-zSd" id="OTI-Op-TTf"/>
                         <outlet property="profileImage" destination="q6i-HV-9BR" id="DVY-kE-tnp"/>
                         <outlet property="userName" destination="UGB-3o-qn2" id="BEA-we-gVH"/>
+                        <segue destination="n2Z-ux-0jE" kind="show" identifier="imageViewer" id="GsG-xL-NfC"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YKw-R3-n0L" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="2055.072463768116" y="156.69642857142856"/>
+        </scene>
+        <!--ImageListTable-->
+        <scene sceneID="XcP-5H-XFM">
+            <objects>
+                <viewControllerPlaceholder storyboardName="UserProfile" referencedIdentifier="ImageListTable" id="n2Z-ux-0jE" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="SkH-UA-lcw"/>
+                </viewControllerPlaceholder>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="P1x-eP-E4M" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="2857" y="157"/>
         </scene>
     </scenes>
     <resources>
