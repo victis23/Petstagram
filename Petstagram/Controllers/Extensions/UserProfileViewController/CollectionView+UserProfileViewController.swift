@@ -22,17 +22,11 @@ extension UserProfileViewController : UICollectionViewDelegate {
 	/// - Note: Current layout consists of 2 rows & 3 columns.
 	func setCollectionViewLayout(){
 		
-		let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
-		let cell = NSCollectionLayoutItem(layoutSize: itemSize)
-		cell.contentInsets = NSDirectionalEdgeInsets(top: 1, leading: 1, bottom: 1, trailing: 1)
-		
 		// Group height is 40% the height of the UICollectionView Frame.
-		let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(0.4))
-		let cellGroup = NSCollectionLayoutGroup.horizontal(layoutSize: groupSize, subitem: cell, count: 3)
+		let collectionBuilder = CollectionViewBuilder(cellFractionalHeight: 1, cellFractionalWidth: 1, groupFractionalHeight: 0.4, groupFractionalWidth: 1, columns: 3, evenInsets: 1)
 		
-		let section = NSCollectionLayoutSection(group: cellGroup)
+		let layout = collectionBuilder.setLayout()
 		
-		let layout = UICollectionViewCompositionalLayout(section: section)
 		accountImages.collectionViewLayout = layout
 	}
 	
