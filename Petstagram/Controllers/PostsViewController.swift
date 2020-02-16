@@ -54,16 +54,16 @@ class PostsTableViewController: UITableViewController {
 	private var datasource : UITableViewDiffableDataSource<Sections,AccountImages>!
 	
 	override func viewDidLoad() {
-		
 		super.viewDidLoad()
+		
 		setNavigationBar()
 		createDataSource()
-		self.createSnapshot(accountImages: self.profileImages)
-		
 	}
 	
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
+		
+		self.createSnapshot(accountImages: self.profileImages)
 		determineTableViewPosition()
 	}
 	
