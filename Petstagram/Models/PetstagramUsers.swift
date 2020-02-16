@@ -33,10 +33,3 @@ class PetstagramUsers : Hashable {
 	}
 }
 
-
-extension PetstagramUsers {
-	
-	func getProfileImages(){
-		
-	}
-}
