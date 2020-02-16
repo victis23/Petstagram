@@ -21,6 +21,7 @@ extension SearchControllerViewController : UITableViewDelegate {
 			cell.userName.text = appUsers.username
 			cell.followButton.layer.cornerRadius = 5
 			
+			//Control checks if user is a follower of not.
 			if appUsers.following {
 				cell.followButton.setTitle("Unfollow", for: .normal)
 			}
