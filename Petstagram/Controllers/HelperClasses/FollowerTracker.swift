@@ -35,7 +35,11 @@ class FollowerTracker {
 	func addFollower(){
 		
 		let db = Firestore.firestore()
-		guard let user = user.user else {return}
+		let defaults = UserDefaults()
+		
+		guard let user = user.user,
+			let currentUsername = defaults.string(forKey: Keys.userDefaultsDB.username)
+			else {return}
 		
 		db.collection(user).document(Keys.GoogleFireStore.accountInfoDocument).collection("Friends").document("Following").setData([
 			"Following" : [follower.username:follower.uid]
@@ -46,7 +50,7 @@ class FollowerTracker {
 		})
 		
 		db.collection(follower.uid).document(Keys.GoogleFireStore.accountInfoDocument).collection("Friends").document("Followers").setData([
-			"Follower" : ["currentUser":user]
+			"Follower" : [currentUsername:user]
 		], merge: true) { (error) in
 			if let error = error {
 				print(error.localizedDescription)
