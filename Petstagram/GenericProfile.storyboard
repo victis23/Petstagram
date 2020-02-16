@@ -131,6 +131,9 @@
                                                 <state key="normal" title="Follow ">
                                                     <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 </state>
+                                                <connections>
+                                                    <action selector="tapFollowButtonWithSender:" destination="wmT-Bf-7fd" eventType="touchUpInside" id="X3p-PX-HRg"/>
+                                                </connections>
                                             </button>
                                         </subviews>
                                     </stackView>

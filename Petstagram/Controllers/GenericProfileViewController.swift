@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Combine
 
 class GenericProfileViewController: UIViewController {
 	
@@ -18,6 +19,8 @@ class GenericProfileViewController: UIViewController {
 	@IBOutlet weak var postCount: UILabel!
 	
 	var account : PetstagramUsers!
+	@Published var isFollowing : Bool = false
+	var followerButtonSubscriber : AnyCancellable!
 	
 	var accountImages : [AccountImages] = [] {
 		didSet {
@@ -27,6 +30,8 @@ class GenericProfileViewController: UIViewController {
 	
 	var dataSource : UICollectionViewDiffableDataSource<Sections,AccountImages>!
 	
+	//MARK: LifeCycle
+	
 	override func viewDidLoad() {
 		super.viewDidLoad()
 		setNavigationBar()
@@ -34,6 +39,7 @@ class GenericProfileViewController: UIViewController {
 		setLayout()
 		getProfileDescription(user: account)
 		accountImageCollection.delegate = self
+		updateFollowState()
 	}
 	
 	override func viewDidAppear(_ animated: Bool) {
@@ -43,6 +49,8 @@ class GenericProfileViewController: UIViewController {
 		getImagesForAccount()
 		setSnapShot()
 	}
+	
+	//MARK: Methods
 	
 	/// Sets the aesthetic properties on views.
 	func setAccountVisuals(){
@@ -56,6 +64,25 @@ class GenericProfileViewController: UIViewController {
 		profileImage.layer.cornerRadius = 5
 		
 		followButton.layer.cornerRadius = 5
+	}
+	
+	func updateFollowState(){
+		
+		followerButtonSubscriber = $isFollowing
+			.compactMap { boolean -> (String, UIControl.State) in
+				if boolean == false {
+					return ("Follow", .normal)
+				}
+				return ("Unfollow", .normal)
+		}
+		.eraseToAnyPublisher()
+		.sink { state in
+			self.followButton.setTitle(state.0, for: state.1)
+		}
+	}
+	
+	@IBAction func tapFollowButton(sender:UIButton){
+		isFollowing = !isFollowing
 	}
 	
 	/// Sets attributes for navigation bar.
@@ -125,47 +152,7 @@ class GenericProfileViewController: UIViewController {
 		}
 	}
 	
-	func setDataSource(){
-		
-		dataSource = UICollectionViewDiffableDataSource<Sections,AccountImages>(collectionView: accountImageCollection, cellProvider: { (collectionView, indexPath, images) -> UICollectionViewCell? in
-			
-			guard let cell = collectionView.dequeueReusableCell(withReuseIdentifier: Keys.Cells.accountImages, for: indexPath) as? UserImageCollectionViewCell else {fatalError()}
-			
-			cell.imageCell.image = images.image
-			cell.imageCell.layer.cornerRadius = 5
-			cell.imageCell.contentMode = .scaleAspectFill
-			
-			return cell
-		})
-	}
-	
-	func setSnapShot(){
-		
-		var snapshot = NSDiffableDataSourceSnapshot<Sections,AccountImages>()
-		snapshot.appendSections([.main])
-		snapshot.appendItems(accountImages, toSection: .main)
-		dataSource.apply(snapshot, animatingDifferences: false, completion: {})
-	}
-	
-	/// Sets layout for collectionView.
-	func setLayout(){
-		
-		// Group height is 40% the height of the UICollectionView Frame.
-		let collectionBuilder = CollectionViewBuilder(cellFractionalHeight: 1, cellFractionalWidth: 1, groupFractionalHeight: 0.4, groupFractionalWidth: 1, columns: 3, evenInsets: 1)
-		
-		let layout = collectionBuilder.setLayout()
-		accountImageCollection.collectionViewLayout = layout
-	}
-}
-
-extension GenericProfileViewController : UICollectionViewDelegate {
-	
-	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-		
-		guard let selectedImage = dataSource.itemIdentifier(for: indexPath) else {return}
-		
-		performSegue(withIdentifier: Keys.Segues.viewOtherUserImages, sender: selectedImage)
-	}
+	//MARK: Navigation
 	
 	override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 		
@@ -184,5 +171,4 @@ extension GenericProfileViewController : UICollectionViewDelegate {
 			destinationController.profileImage = profileImage.image
 		}
 	}
-	
 }
