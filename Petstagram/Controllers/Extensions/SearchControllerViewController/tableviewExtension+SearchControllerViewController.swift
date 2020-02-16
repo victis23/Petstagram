@@ -21,6 +21,10 @@ extension SearchControllerViewController : UITableViewDelegate {
 			cell.userName.text = appUsers.username
 			cell.followButton.layer.cornerRadius = 5
 			
+			if appUsers.following {
+				cell.followButton.setTitle("Unfollow", for: .normal)
+			}
+			
 			DispatchQueue.main.async {
 				self.getProfilePhoto(user: appUsers.uid) { (image) in
 					cell.profilePhoto.layer.cornerRadius = cell.profilePhoto.frame.height / 2
