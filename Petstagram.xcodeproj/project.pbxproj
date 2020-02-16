@@ -50,6 +50,7 @@
 		7D558181239DDE2D0076AFEB /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 7D558180239DDE2D0076AFEB /* GoogleService-Info.plist */; };
 		7D558183239DDE810076AFEB /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 7D558182239DDE810076AFEB /* Podfile */; };
 		7D558186239DE31C0076AFEB /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D558185239DE31C0076AFEB /* Authentication.swift */; };
+		7D5726B523F97921005D13E8 /* CollectionViewExtension+GenericProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D5726B423F97921005D13E8 /* CollectionViewExtension+GenericProfileViewController.swift */; };
 		7D610B3323F4A28700E20E36 /* AccountSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D610B3223F4A28700E20E36 /* AccountSearchTableViewCell.swift */; };
 		7D68E1AD23BD7E8D0084A2F0 /* AlbumImagesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D68E1AC23BD7E8D0084A2F0 /* AlbumImagesCollectionViewCell.swift */; };
 		7D72C79823CEC180003361B8 /* ImageAlbum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D72C79723CEC180003361B8 /* ImageAlbum.swift */; };
@@ -134,6 +135,7 @@
 		7D558180239DDE2D0076AFEB /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
 		7D558182239DDE810076AFEB /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		7D558185239DE31C0076AFEB /* Authentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
+		7D5726B423F97921005D13E8 /* CollectionViewExtension+GenericProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CollectionViewExtension+GenericProfileViewController.swift"; sourceTree = "<group>"; };
 		7D610B3223F4A28700E20E36 /* AccountSearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSearchTableViewCell.swift; sourceTree = "<group>"; };
 		7D68E1AC23BD7E8D0084A2F0 /* AlbumImagesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumImagesCollectionViewCell.swift; sourceTree = "<group>"; };
 		7D72C79723CEC180003361B8 /* ImageAlbum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageAlbum.swift; sourceTree = "<group>"; };
@@ -308,6 +310,7 @@
 		7D4A544A239C91B00079A96A /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				7D5726B323F978E4005D13E8 /* GenericProfileViewController */,
 				7D5512CD23D0EB10000C894D /* String */,
 				7D35AAB623F4283F00EC4176 /* SearchControllerViewController */,
 				7D72C79923CECE63003361B8 /* ImageUploadViewController */,
@@ -361,6 +364,14 @@
 				7D7D1E7B23F8409000EC9346 /* SingleSectionDataSource.swift */,
 			);
 			path = Models;
+			sourceTree = "<group>";
+		};
+		7D5726B323F978E4005D13E8 /* GenericProfileViewController */ = {
+			isa = PBXGroup;
+			children = (
+				7D5726B423F97921005D13E8 /* CollectionViewExtension+GenericProfileViewController.swift */,
+			);
+			path = GenericProfileViewController;
 			sourceTree = "<group>";
 		};
 		7D68E1AB23BD7E570084A2F0 /* Views */ = {
@@ -602,6 +613,7 @@
 				7D55817F239D2C710076AFEB /* LoginAesthetics+AppLogin.swift in Sources */,
 				7D53BADC23E53BF700DD93BC /* EditProfileDescription+UserProfileViewController.swift in Sources */,
 				7D896A1C23C149AF0052C8E4 /* UserImageCollectionViewCell.swift in Sources */,
+				7D5726B523F97921005D13E8 /* CollectionViewExtension+GenericProfileViewController.swift in Sources */,
 				7D7D1E7C23F8409000EC9346 /* SingleSectionDataSource.swift in Sources */,
 				7D477C2523E7604B003AA2D7 /* AccountDescriptionSave+UserProfileViewController.swift in Sources */,
 				7D7D1E7423F828B300EC9346 /* DescriptionRetriever.swift in Sources */,
