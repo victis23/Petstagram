@@ -135,7 +135,7 @@ class GenericProfileViewController: UIViewController {
 				
 				// Check for repeated images or profile images.
 				let contains = self.accountImages.contains { accountImageItem in
-					accountImageItem.id == item.id || item.id == "profileImage"
+					accountImageItem.id == item.id || item.id == Keys.GoogleStorage.profilePhoto
 				}
 				
 				// Adds images to collection.

@@ -188,7 +188,7 @@ class UserProfileViewController: UIViewController {
 				
 				guard let fileName = metaData.name else {return}
 				guard let date = metaData.timeCreated else {return}
-				guard fileName != "profilePhoto" else {return}
+				guard fileName != Keys.GoogleStorage.profilePhoto else {return}
 				
 				imageDownloader.downloadImages(for: fileName, imageItem: { image in
 					
