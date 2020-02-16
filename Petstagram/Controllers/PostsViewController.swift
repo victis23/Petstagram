@@ -98,7 +98,7 @@ class PostsTableViewController: UITableViewController {
 	func createDataSource(){
 		datasource = UITableViewDiffableDataSource<Sections,AccountImages>(tableView: tableView, cellProvider: { (tableView, indexPath, accountImages) -> UITableViewCell? in
 			
-			guard let imageCell = tableView.dequeueReusableCell(withIdentifier: "image", for: indexPath) as? PostsTableViewCell else {return UITableViewCell()}
+			guard let imageCell = tableView.dequeueReusableCell(withIdentifier: Keys.Cells.image, for: indexPath) as? PostsTableViewCell else {return UITableViewCell()}
 			
 			imageCell.profileImageView.image = accountImages.image
 			imageCell.profileImageView.clipsToBounds = true
