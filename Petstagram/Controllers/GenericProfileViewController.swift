@@ -20,7 +20,7 @@ class GenericProfileViewController: UIViewController {
 	
 	var account : PetstagramUsers!
 	let currentAccount = UserProfile.shared()
-	@Published var isFollowing : Bool = false
+	@Published var isFollowing : Bool!
 	var followerButtonSubscriber : AnyCancellable!
 	
 	var accountImages : [AccountImages] = [] {
