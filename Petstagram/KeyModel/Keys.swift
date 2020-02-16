@@ -51,6 +51,7 @@ struct Keys {
 	// Keys for Google Firebase Storage.
 	struct GoogleStorage {
 		static var imageDataArray = "ImageDataArray"
+		static var profilePhoto = "profilePhoto"
 	}
 	
 	// Keys for userDefaults Database.
