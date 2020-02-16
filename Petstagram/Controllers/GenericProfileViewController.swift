@@ -19,6 +19,7 @@ class GenericProfileViewController: UIViewController {
 	@IBOutlet weak var postCount: UILabel!
 	
 	var account : PetstagramUsers!
+	let currentAccount = UserProfile.shared()
 	@Published var isFollowing : Bool = false
 	var followerButtonSubscriber : AnyCancellable!
 	
@@ -68,6 +69,8 @@ class GenericProfileViewController: UIViewController {
 	
 	func updateFollowState(){
 		
+		
+		
 		followerButtonSubscriber = $isFollowing
 			.compactMap { boolean -> (String, UIControl.State) in
 				if boolean == false {
@@ -77,12 +80,18 @@ class GenericProfileViewController: UIViewController {
 		}
 		.eraseToAnyPublisher()
 		.sink { state in
+			
 			self.followButton.setTitle(state.0, for: state.1)
 		}
 	}
 	
 	@IBAction func tapFollowButton(sender:UIButton){
+		
 		isFollowing = !isFollowing
+		
+		let followerTracker = FollowerTracker(follower: account, isFollowing: self.isFollowing)
+		
+		followerTracker.checkState()
 	}
 	
 	/// Sets attributes for navigation bar.
