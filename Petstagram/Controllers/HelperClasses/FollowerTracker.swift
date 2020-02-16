@@ -11,31 +11,42 @@ import FirebaseFirestore
 
 class FollowerTracker {
 	
-	var user : String
-	var follower : String
+	var user : UserProfile
+	var follower : PetstagramUsers
 	var isFollowing : Bool
 	
-	init(user:String, follower:String, isFollowing:Bool) {
-		self.user = user
+	init(follower:PetstagramUsers, isFollowing:Bool) {
+		self.user = UserProfile.shared()
 		self.follower = follower
 		self.isFollowing = isFollowing
+	}
+	
+	func checkState(){
+		
+		if isFollowing {
+			addFollower()
+			return
+		}
+		
+		removeFollower()
 	}
 	
 	/// Writes to Firebase - Method updates the user's friends list and updates friend's followers list.
 	func addFollower(){
 		
 		let db = Firestore.firestore()
+		guard let user = user.user else {return}
 		
 		db.collection(user).document(Keys.GoogleFireStore.accountInfoDocument).collection("Friends").document("Following").setData([
-			"Following" : follower
+			"Following" : [follower.username:follower.uid]
 		], merge: true, completion: { error in
 			if let error = error {
 				print(error.localizedDescription)
 			}
 		})
 		
-		db.collection(follower).document(Keys.GoogleFireStore.accountInfoDocument).collection("Friends").document("Followers").setData([
-			"Follower" : user
+		db.collection(follower.uid).document(Keys.GoogleFireStore.accountInfoDocument).collection("Friends").document("Followers").setData([
+			"Follower" : ["currentUser":user]
 		], merge: true) { (error) in
 			if let error = error {
 				print(error.localizedDescription)
