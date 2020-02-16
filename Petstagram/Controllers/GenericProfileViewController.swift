@@ -33,7 +33,6 @@ class GenericProfileViewController: UIViewController {
 		setAccountVisuals()
 		setLayout()
 		getProfileDescription(user: account)
-		getImagesForAccount()
 		accountImageCollection.delegate = self
 	}
 	
@@ -41,6 +40,7 @@ class GenericProfileViewController: UIViewController {
 		super.viewDidAppear(animated)
 		
 		setDataSource()
+		getImagesForAccount()
 		setSnapShot()
 	}
 	
@@ -174,12 +174,12 @@ extension GenericProfileViewController : UICollectionViewDelegate {
 			//Changes text that will be displayed on the back button.
 			navigationItem.backBarButtonItem = UIBarButtonItem(title: " ", style: .plain, target: nil, action: nil)
 			
-			guard let selectedObject = sender as? String else {return}
+			guard let selectedObject = sender as? AccountImages else {return}
 			
 			guard let destinationController = segue.destination as? PostsTableViewController else {return}
 			
 			destinationController.profileImages = accountImages
-			destinationController.imagePointer = selectedObject
+			destinationController.imagePointer = selectedObject.id
 			destinationController.userName = userName.text
 			destinationController.profileImage = profileImage.image
 		}
