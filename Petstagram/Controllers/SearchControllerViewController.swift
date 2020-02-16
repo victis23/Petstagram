@@ -20,6 +20,7 @@ class SearchControllerViewController: UIViewController {
 	// Stored Properties for Google Firebase Authorization & Database.
 	var db = Firestore.firestore()
 	var fbStorage = Storage.storage()
+	var userProfile = UserProfile.shared()
 	
 	//MARK: Combine Subscribers & Publishers
 	
@@ -113,7 +114,7 @@ extension SearchControllerViewController : UISearchBarDelegate {
 		
 		// Retrieve dictionary containing list of application users from server.
 		db.collection(Keys.GoogleFireStore.userCollection).document(Keys.GoogleFireStore.userKeysDocument).getDocument { (document, error) in
-			
+		
 			if let error = error {
 				print(error.localizedDescription)
 			}
@@ -126,6 +127,7 @@ extension SearchControllerViewController : UISearchBarDelegate {
 				// Convert key/value pair to PetstagramUser object.
 				// If dictionary contains a key that partically matches search term it is returned to user.
 				let results = documentDictionary.compactMap({ key, value -> PetstagramUsers? in
+					
 					let value = value as! String
 					
 					if key.contains(searchValue){
@@ -140,6 +142,34 @@ extension SearchControllerViewController : UISearchBarDelegate {
 		}
 	}
 	
+	func createPetstagramUser(key:String, value:String) -> AnyPublisher<PetstagramUsers,Error> {
+		
+		guard let user = userProfile.user else {fatalError()}
+		
+		return Future<PetstagramUsers,Error> { promise in
+			
+			let petstagramUser = PetstagramUsers(key, value)
+			
+			self.db.collection(user).document(Keys.GoogleFireStore.accountInfoDocument).collection("Friends").document("Following").getDocument { (document, error) in
+				
+				if let error = error {
+					promise(.failure(error))
+				}
+				
+				if let document = document {
+					
+					if let profile = document["Following"] as? [String:String] {
+						
+						if (profile.keys.contains(key)) {
+							
+							petstagramUser.following = true
+						}
+					}
+				}
+				promise(.success(petstagramUser))
+			}
+		}.eraseToAnyPublisher()
+	}
 	
 	/// Searches online storage for profile photo that cooresponds to the provided Uid.
 	/// - Parameters:
