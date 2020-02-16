@@ -77,7 +77,7 @@ extension UserProfileViewController : UINavigationControllerDelegate, UIImagePic
 	/// - Note: 12.5 mb Limit on image downloads.
 	func uploadProfileImageToStorage(isRetrieve: Bool) {
 		
-		guard let user = userAuth.currentUser?.uid else {return}
+		guard let user = userData.user else {return}
 		let storage = Storage.storage().reference().child(user).child(Keys.userDefaultsDB.profilePhoto)
 		
 		switch isRetrieve {

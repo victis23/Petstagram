@@ -15,7 +15,7 @@ extension UserProfileViewController {
 	
 	/// Retrieves profile description.
 	func getAccountDescription(){
-		if let user = userAuth.currentUser?.uid {
+		if let user = userData.user {
 			
 			let descriptionRetriever = DescriptionRetriever(userID: user)
 			
@@ -28,7 +28,7 @@ extension UserProfileViewController {
 	/// Writes profile description to database.
 	func saveAccountDescription(){
 		
-		if let user = userAuth.currentUser?.uid {
+		if let user = userData.user {
 			let db = Firestore.firestore()
 			db.collection(user).document(Keys.GoogleFireStore.accountInfoDocument).setData(
 				[

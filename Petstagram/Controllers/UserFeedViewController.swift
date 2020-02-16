@@ -8,7 +8,6 @@
 
 import UIKit
 import FirebaseFirestore
-import FirebaseAuth
 import CoreData
 
 class UserFeedViewController: UIViewController {

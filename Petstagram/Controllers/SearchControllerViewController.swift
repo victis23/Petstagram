@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import FirebaseAuth
 import FirebaseStorage
 import FirebaseFirestore
 import Combine
@@ -19,7 +18,6 @@ class SearchControllerViewController: UIViewController {
 	@IBOutlet weak var tableView: UITableView!
 	
 	// Stored Properties for Google Firebase Authorization & Database.
-	var firebaseAuthorization = Auth.auth()
 	var db = Firestore.firestore()
 	var fbStorage = Storage.storage()
 	

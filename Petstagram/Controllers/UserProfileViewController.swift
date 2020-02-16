@@ -7,9 +7,9 @@
 //
 
 import UIKit
-import FirebaseAuth
 import FirebaseFirestore
 import FirebaseStorage
+import FirebaseAuth // Imported for signout method only.
 import CoreData
 import Combine
 
@@ -37,7 +37,6 @@ class UserProfileViewController: UIViewController {
 	
 	//MARK: Singletons
 	var userData: UserProfile = UserProfile.shared()
-	var userAuth = Auth.auth()
 	let defaults = UserDefaults()
 	
 	//Main collection type property for our data.
@@ -136,7 +135,7 @@ class UserProfileViewController: UIViewController {
 	func getUserName(){
 		
 		let db = Firestore.firestore()
-		guard let user = userAuth.currentUser?.uid else {fatalError()}
+		guard let user = userData.user else {fatalError()}
 		
 		db.collection(user).document(Keys.GoogleFireStore.accountInfoDocument).getDocument { (usernameDocument, error) in
 			if let error = error {
@@ -181,7 +180,7 @@ class UserProfileViewController: UIViewController {
 	/// - Note: `UserProfileItems` is observed by a publisher.
 	func setImageDataToView(){
 		
-		if let user = userAuth.currentUser?.uid {
+		if let user = userData.user {
 			
 			let imageDownloader = ImageDownloader(account: user)
 			
