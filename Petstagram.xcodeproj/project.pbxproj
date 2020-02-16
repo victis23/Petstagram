@@ -51,6 +51,7 @@
 		7D558183239DDE810076AFEB /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = 7D558182239DDE810076AFEB /* Podfile */; };
 		7D558186239DE31C0076AFEB /* Authentication.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D558185239DE31C0076AFEB /* Authentication.swift */; };
 		7D5726B523F97921005D13E8 /* CollectionViewExtension+GenericProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D5726B423F97921005D13E8 /* CollectionViewExtension+GenericProfileViewController.swift */; };
+		7D5726B723F98096005D13E8 /* FollowerTracker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D5726B623F98096005D13E8 /* FollowerTracker.swift */; };
 		7D610B3323F4A28700E20E36 /* AccountSearchTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D610B3223F4A28700E20E36 /* AccountSearchTableViewCell.swift */; };
 		7D68E1AD23BD7E8D0084A2F0 /* AlbumImagesCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D68E1AC23BD7E8D0084A2F0 /* AlbumImagesCollectionViewCell.swift */; };
 		7D72C79823CEC180003361B8 /* ImageAlbum.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D72C79723CEC180003361B8 /* ImageAlbum.swift */; };
@@ -136,6 +137,7 @@
 		7D558182239DDE810076AFEB /* Podfile */ = {isa = PBXFileReference; lastKnownFileType = text; path = Podfile; sourceTree = SOURCE_ROOT; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
 		7D558185239DE31C0076AFEB /* Authentication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Authentication.swift; sourceTree = "<group>"; };
 		7D5726B423F97921005D13E8 /* CollectionViewExtension+GenericProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "CollectionViewExtension+GenericProfileViewController.swift"; sourceTree = "<group>"; };
+		7D5726B623F98096005D13E8 /* FollowerTracker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowerTracker.swift; sourceTree = "<group>"; };
 		7D610B3223F4A28700E20E36 /* AccountSearchTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountSearchTableViewCell.swift; sourceTree = "<group>"; };
 		7D68E1AC23BD7E8D0084A2F0 /* AlbumImagesCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AlbumImagesCollectionViewCell.swift; sourceTree = "<group>"; };
 		7D72C79723CEC180003361B8 /* ImageAlbum.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageAlbum.swift; sourceTree = "<group>"; };
@@ -401,6 +403,7 @@
 				7D7D1E7323F828B300EC9346 /* DescriptionRetriever.swift */,
 				7D7D1E7523F8313E00EC9346 /* ImageDownloader.swift */,
 				7D7D1E7923F839C300EC9346 /* CollectionViewBuilder.swift */,
+				7D5726B623F98096005D13E8 /* FollowerTracker.swift */,
 			);
 			path = HelperClasses;
 			sourceTree = "<group>";
@@ -641,6 +644,7 @@
 				7D48913723D3A83B0037CDBA /* PostsViewController.swift in Sources */,
 				7D4A470B23D6A9C8002C2050 /* TimeFrames.swift in Sources */,
 				7D4A5444239C6A410079A96A /* Keys.swift in Sources */,
+				7D5726B723F98096005D13E8 /* FollowerTracker.swift in Sources */,
 				7D48913B23D3BEB50037CDBA /* PostsTableViewCell.swift in Sources */,
 				7D53BADA23E5229000DD93BC /* EditProfileDescription.swift in Sources */,
 				7D7D1E7823F838A300EC9346 /* DisableBackgroundView.swift in Sources */,
