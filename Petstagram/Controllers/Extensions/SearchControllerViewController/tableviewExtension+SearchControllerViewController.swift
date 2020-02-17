@@ -59,13 +59,13 @@ extension SearchControllerViewController : UITableViewDelegate, AccountSearchDel
 		
 		guard let user = userProfile.user else {fatalError()}
 		
-		self.db.collection(user).document(Keys.GoogleFireStore.accountInfoDocument).collection("Friends").document("Following").getDocument { (document, error) in
+		self.db.collection(user).document(Keys.GoogleFireStore.accountInfoDocument).collection(Keys.GoogleFireStore.friends).document(Keys.GoogleFireStore.following).getDocument { (document, error) in
 			
 			if let error = error {
 				print(error.localizedDescription)
 			}
 			
-			guard let document = document, let profile = document["Following"] as? [String:String] else {return}
+			guard let document = document, let profile = document[Keys.GoogleFireStore.following] as? [String:String] else {return}
 			
 			// If account is listed in the user's follower list control updates follow state for item.
 			if profile[account.username] != nil {

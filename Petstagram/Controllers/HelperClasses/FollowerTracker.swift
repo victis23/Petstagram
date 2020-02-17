@@ -40,16 +40,16 @@ class FollowerTracker {
 			let currentUsername = defaults.string(forKey: Keys.userDefaultsDB.username)
 			else {return}
 		
-		db.collection(user).document(Keys.GoogleFireStore.accountInfoDocument).collection("Friends").document("Following").setData([
-			"Following" : [follower.username:follower.uid]
+		db.collection(user).document(Keys.GoogleFireStore.accountInfoDocument).collection(Keys.GoogleFireStore.friends).document(Keys.GoogleFireStore.following).setData([
+			Keys.GoogleFireStore.following : [follower.username:follower.uid]
 		], merge: true, completion: { error in
 			if let error = error {
 				print(error.localizedDescription)
 			}
 		})
 		
-		db.collection(follower.uid).document(Keys.GoogleFireStore.accountInfoDocument).collection("Friends").document("Followers").setData([
-			"Follower" : [currentUsername:user]
+		db.collection(follower.uid).document(Keys.GoogleFireStore.accountInfoDocument).collection(Keys.GoogleFireStore.friends).document(Keys.GoogleFireStore.followers).setData([
+			Keys.GoogleFireStore.followers : [currentUsername:user]
 		], merge: true) { (error) in
 			if let error = error {
 				print(error.localizedDescription)
@@ -63,7 +63,7 @@ class FollowerTracker {
 			let currentUsername = defaults.string(forKey: Keys.userDefaultsDB.username)
 			else {return}
 		
-		db.collection(user).document(Keys.GoogleFireStore.accountInfoDocument).collection("Friends").document("Following").getDocument { (document, error) in
+		db.collection(user).document(Keys.GoogleFireStore.accountInfoDocument).collection(Keys.GoogleFireStore.friends).document(Keys.GoogleFireStore.following).getDocument { (document, error) in
 			
 			if let error = error {
 				print(error.localizedDescription)
@@ -73,14 +73,14 @@ class FollowerTracker {
 			guard let document = document, let unwrappedDocument = document.data() else {return}
 			
 			var file = unwrappedDocument
-			var nestedFile = file["Following"] as! [String:String]
+			var nestedFile = file[Keys.GoogleFireStore.following] as! [String:String]
 			file.removeAll()
 			nestedFile.removeValue(forKey: self.follower.username)
-			file["Following"] = nestedFile
-			self.db.collection(user).document(Keys.GoogleFireStore.accountInfoDocument).collection("Friends").document("Following").setData(file, merge: false)
+			file[Keys.GoogleFireStore.following] = nestedFile
+			self.db.collection(user).document(Keys.GoogleFireStore.accountInfoDocument).collection(Keys.GoogleFireStore.friends).document(Keys.GoogleFireStore.following).setData(file, merge: false)
 		}
 		
-		db.collection(follower.uid).document(Keys.GoogleFireStore.accountInfoDocument).collection("Friends").document("Followers").getDocument { (document, error) in
+		db.collection(follower.uid).document(Keys.GoogleFireStore.accountInfoDocument).collection(Keys.GoogleFireStore.friends).document(Keys.GoogleFireStore.followers).getDocument { (document, error) in
 			
 			if let error = error {
 				print(error.localizedDescription)
@@ -90,11 +90,11 @@ class FollowerTracker {
 			guard let document = document, let unwrappedDocument = document.data() else {return}
 			
 			var file = unwrappedDocument
-			var nestedFile = file["Follower"] as! [String:String]
+			var nestedFile = file[Keys.GoogleFireStore.followers] as! [String:String]
 			file.removeAll()
 			nestedFile.removeValue(forKey: currentUsername)
-			file["Follower"] = nestedFile
-			self.db.collection(self.follower.uid).document(Keys.GoogleFireStore.accountInfoDocument).collection("Friends").document("Followers").setData(file, merge: false)
+			file[Keys.GoogleFireStore.followers] = nestedFile
+			self.db.collection(self.follower.uid).document(Keys.GoogleFireStore.accountInfoDocument).collection(Keys.GoogleFireStore.friends).document(Keys.GoogleFireStore.followers).setData(file, merge: false)
 		}
 		
 	}

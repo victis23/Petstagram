@@ -46,6 +46,15 @@ struct Keys {
 		
 		// Key for file that contains the keys for all users (username:UID)
 		static var userKeysDocument = "UserKeys"
+		
+		// Key for accessing friends list.
+		static var friends = "Friends"
+		
+		//Key for accessing followers.
+		static var followers = "Followers"
+		
+		//Key for accessing following.
+		static var following = "Following"
 	}
 	
 	// Keys for Google Firebase Storage.
