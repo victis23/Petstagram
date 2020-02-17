@@ -59,7 +59,7 @@ extension SearchControllerViewController : UITableViewDelegate, AccountSearchDel
 		
 		guard let user = userProfile.user else {fatalError()}
 		
-		self.db.collection(user).document(Keys.GoogleFireStore.accountInfoDocument).collection(Keys.GoogleFireStore.friends).document(Keys.GoogleFireStore.following).getDocument { (document, error) in
+		self.db.collection(user).document(Keys.GoogleFireStore.accountInfoDocument).collection(Keys.GoogleFireStore.friends).document(Keys.GoogleFireStore.following).addSnapshotListener(includeMetadataChanges: true) { (document, error) in
 			
 			if let error = error {
 				print(error.localizedDescription)
