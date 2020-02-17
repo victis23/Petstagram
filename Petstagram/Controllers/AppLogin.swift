@@ -226,6 +226,7 @@ class AppLogin: UIViewController{
 	@objc func createNewAccount(){
 		
 		userAuth = Authentication(email: submittedEmail.lowercased(), password: passwordConfirmation, userName: userName.lowercased())
+		
 		do {
 			try userAuth.firebaseUserRegistration(isRegistration: true, isError: { [weak self] (error) in
 				
@@ -251,12 +252,19 @@ class AppLogin: UIViewController{
 	@IBAction func logInButtonTapped(_ sender: Any) {
 		
 		userAuth = Authentication(email: email.lowercased(), password: password)
+		
 		do {
 			try userAuth.firebaseUserRegistration(isRegistration: false, isError: { [weak self] (error) in
 				
 				self?.loginErrorHandler(error, isRegistration: false)
 				
 				}, segue: { [weak self](authResult) in
+					
+					// Get uid of currently signed in user.
+					let user = authResult.user.uid
+					let descriptionRetriever = DescriptionRetriever(userID: user)
+					// Gets username and saves it to user defaults when the user signs in.
+					descriptionRetriever.getUserName { _ in }
 					
 					self?.performSegue(withIdentifier: Keys.Segues.accessSegue, sender: false)
 			})
@@ -310,6 +318,7 @@ class AppLogin: UIViewController{
 		}
 	}
 	
+	/// Shows user message containing error from database.
 	func loginErrorHandler(_ error : Error, isRegistration: Bool) {
 		
 		let errorAlert = UIAlertController(title: "Login Error", message: "\(error.localizedDescription)", preferredStyle: .alert)
