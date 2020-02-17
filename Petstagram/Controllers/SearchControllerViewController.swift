@@ -26,7 +26,7 @@ class SearchControllerViewController: UIViewController {
 	
 	@Published var searchTerm : String?
 	var searchTermSubscriber : AnyCancellable!
-
+	
 	var dataSource : UITableViewDiffableDataSource<Section,PetstagramUsers>!
 	
 	var results : [String] = []
@@ -114,7 +114,7 @@ extension SearchControllerViewController : UISearchBarDelegate {
 		
 		// Retrieve dictionary containing list of application users from server.
 		db.collection(Keys.GoogleFireStore.userCollection).document(Keys.GoogleFireStore.userKeysDocument).getDocument { (document, error) in
-		
+			
 			if let error = error {
 				print(error.localizedDescription)
 			}
@@ -131,6 +131,7 @@ extension SearchControllerViewController : UISearchBarDelegate {
 					let value = value as! String
 					
 					if key.contains(searchValue){
+						
 						return PetstagramUsers(key, value)
 					}
 					return nil
@@ -142,38 +143,6 @@ extension SearchControllerViewController : UISearchBarDelegate {
 		}
 	}
 	
-	func createPetstagramUser(key:String, value:String) -> AnyPublisher<PetstagramUsers,Never> {
-		
-		guard let user = userProfile.user else {fatalError()}
-		
-		let future =  Future<PetstagramUsers,Never> { promise in
-			
-			let petstagramUser = PetstagramUsers(key, value)
-			
-			self.db.collection(user).document(Keys.GoogleFireStore.accountInfoDocument).collection("Friends").document("Following").getDocument { (document, error) in
-				
-				if let error = error {
-					print(error.localizedDescription)
-				}
-				
-				if let document = document {
-					
-					if let profile = document["Following"] as? [String:String] {
-						
-						if (profile.keys.contains(key)) {
-							
-							petstagramUser.following = true
-						}
-					}
-					promise(.success(petstagramUser))
-				}
-			}
-		}
-		.receive(on: RunLoop.main)
-		.eraseToAnyPublisher()
-		
-		return future
-	}
 	
 	/// Searches online storage for profile photo that cooresponds to the provided Uid.
 	/// - Parameters:
