@@ -29,7 +29,7 @@ extension SearchControllerViewController : UITableViewDelegate, AccountSearchDel
 					cell.followButton.backgroundColor = .red
 				}else{
 					cell.followButton.setTitle("Follow", for: .normal)
-					cell.followButton.backgroundColor = .cyan
+					cell.followButton.backgroundColor = .link
 				}
 			})
 			
@@ -70,8 +70,10 @@ extension SearchControllerViewController : UITableViewDelegate, AccountSearchDel
 			// If account is listed in the user's follower list control updates follow state for item.
 			if profile[account.username] != nil {
 				account.following = true
-				completion()
+			}else{
+				account.following = false
 			}
+			completion()
 		}
 	}
 	
