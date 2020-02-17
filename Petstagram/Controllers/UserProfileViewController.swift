@@ -38,6 +38,7 @@ class UserProfileViewController: UIViewController {
 	//MARK: Singletons
 	var userData: UserProfile = UserProfile.shared()
 	let defaults = UserDefaults()
+	let descriptionRetriever = DescriptionRetriever(userID: UserProfile.shared().user!)
 	
 	//Main collection type property for our data.
 	var images : [AccountImages] = [] {
@@ -134,19 +135,11 @@ class UserProfileViewController: UIViewController {
 	/// - NOTE: This is also the method that writes the username to the UserDefaults.
 	func getUserName(){
 		
-		let db = Firestore.firestore()
-		guard let user = userData.user else {fatalError()}
-		
-		db.collection(user).document(Keys.GoogleFireStore.accountInfoDocument).getDocument { (usernameDocument, error) in
-			if let error = error {
-				print(error.localizedDescription)
-			}
-			guard let usernameDocument = usernameDocument else {fatalError()}
-			guard let retrievedUserName = usernameDocument[Keys.GoogleFireStore.usernameKey] as? String else {fatalError()}
-			self.userNameLabel.text = retrievedUserName
-			self.defaults.set(retrievedUserName, forKey: Keys.userDefaultsDB.username)
+		descriptionRetriever.getUserName { (username) in
+			self.userNameLabel.text = username
+			
+			self.userNameLabel.font = UIFont.monospacedSystemFont(ofSize: 30, weight: .heavy)
 		}
-		userNameLabel.font = UIFont.monospacedSystemFont(ofSize: 30, weight: .heavy)
 	}
 	
 	/// This method waits until all images are loaded into memory before adding them to the userprofile collection.
