@@ -26,7 +26,7 @@ class SearchControllerViewController: UIViewController {
 	
 	@Published var searchTerm : String?
 	var searchTermSubscriber : AnyCancellable!
-	
+
 	var dataSource : UITableViewDiffableDataSource<Section,PetstagramUsers>!
 	
 	var results : [String] = []
@@ -142,18 +142,18 @@ extension SearchControllerViewController : UISearchBarDelegate {
 		}
 	}
 	
-	func createPetstagramUser(key:String, value:String) -> AnyPublisher<PetstagramUsers,Error> {
+	func createPetstagramUser(key:String, value:String) -> AnyPublisher<PetstagramUsers,Never> {
 		
 		guard let user = userProfile.user else {fatalError()}
 		
-		return Future<PetstagramUsers,Error> { promise in
+		let future =  Future<PetstagramUsers,Never> { promise in
 			
 			let petstagramUser = PetstagramUsers(key, value)
 			
 			self.db.collection(user).document(Keys.GoogleFireStore.accountInfoDocument).collection("Friends").document("Following").getDocument { (document, error) in
 				
 				if let error = error {
-					promise(.failure(error))
+					print(error.localizedDescription)
 				}
 				
 				if let document = document {
@@ -165,10 +165,14 @@ extension SearchControllerViewController : UISearchBarDelegate {
 							petstagramUser.following = true
 						}
 					}
+					promise(.success(petstagramUser))
 				}
-				promise(.success(petstagramUser))
 			}
-		}.eraseToAnyPublisher()
+		}
+		.receive(on: RunLoop.main)
+		.eraseToAnyPublisher()
+		
+		return future
 	}
 	
 	/// Searches online storage for profile photo that cooresponds to the provided Uid.
