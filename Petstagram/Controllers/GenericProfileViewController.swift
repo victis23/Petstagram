@@ -67,9 +67,8 @@ class GenericProfileViewController: UIViewController {
 		followButton.layer.cornerRadius = 5
 	}
 	
+	/// Sets subscription to `isFollowing` property and updates view to reflect current following state.
 	func updateFollowState(){
-		
-		
 		
 		followerButtonSubscriber = $isFollowing
 			.compactMap { boolean -> (String, UIControl.State) in
