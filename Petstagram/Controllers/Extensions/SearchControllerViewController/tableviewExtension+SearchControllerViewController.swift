@@ -11,8 +11,6 @@ import UIKit
 /// Handles required methods for UITableViewDiffableDataSource & building tableview for user.
 extension SearchControllerViewController : UITableViewDelegate {
 	
-	// FIXME: Need to add TableView Cell Class to Method.
-	
 	func setDataSource(){
 		dataSource = UITableViewDiffableDataSource<Section,PetstagramUsers>(tableView: tableView, cellProvider: { (tableView, indexPath, appUsers) -> UITableViewCell? in
 			
@@ -21,10 +19,14 @@ extension SearchControllerViewController : UITableViewDelegate {
 			cell.userName.text = appUsers.username
 			cell.followButton.layer.cornerRadius = 5
 			
-			//Control checks if user is a follower of not.
-			if appUsers.following {
-				cell.followButton.setTitle("Unfollow", for: .normal)
-			}
+			self.checkFollowStatus(account: appUsers, completion: {
+				
+				//Control checks if user is a follower of not.
+				if appUsers.following {
+					cell.followButton.setTitle("Unfollow", for: .normal)
+					cell.followButton.backgroundColor = .red
+				}
+			})
 			
 			DispatchQueue.main.async {
 				self.getProfilePhoto(user: appUsers.uid) { (image) in
@@ -37,6 +39,28 @@ extension SearchControllerViewController : UITableViewDelegate {
 			
 			return cell
 		})
+	}
+	
+	
+	/// Checks database to determine is user follows the account in question. If the user does follow the account method updates list of accounts on client side.
+	func checkFollowStatus(account:PetstagramUsers, completion : @escaping ()->Void) {
+		
+		guard let user = userProfile.user else {fatalError()}
+		
+		self.db.collection(user).document(Keys.GoogleFireStore.accountInfoDocument).collection("Friends").document("Following").getDocument { (document, error) in
+			
+			if let error = error {
+				print(error.localizedDescription)
+			}
+			
+			guard let document = document, let profile = document["Following"] as? [String:String] else {return}
+			
+			// If account is listed in the user's follower list control updates follow state for item.
+			if profile[account.username] != nil {
+				account.following = true
+				completion()
+			}
+		}
 	}
 	
 	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
