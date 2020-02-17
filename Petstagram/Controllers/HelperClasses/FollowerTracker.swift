@@ -17,6 +17,12 @@ class FollowerTracker {
 	let db = Firestore.firestore()
 	let defaults = UserDefaults()
 	
+	var currentUser : (username:String,uid:String) {
+		
+		guard let user = user.user, let currentUserName = defaults.string(forKey: Keys.userDefaultsDB.username) else {fatalError()}
+		return (currentUserName,user)
+	}
+	
 	init(follower:PetstagramUsers, isFollowing:Bool) {
 		self.user = UserProfile.shared()
 		self.follower = follower
@@ -45,12 +51,8 @@ class FollowerTracker {
 	/// Writes to Firebase - Method updates the user's friends list and updates friend's followers list.
 	func addFollower(){
 		
-		guard let user = user.user,
-			let currentUsername = defaults.string(forKey: Keys.userDefaultsDB.username)
-			else {return}
-		
 		// Adds selected follower to user's follower list document.
-		db.collection(user).document(Keys.GoogleFireStore.accountInfoDocument).collection(Keys.GoogleFireStore.friends).document(Keys.GoogleFireStore.following).setData([
+		db.collection(currentUser.uid).document(Keys.GoogleFireStore.accountInfoDocument).collection(Keys.GoogleFireStore.friends).document(Keys.GoogleFireStore.following).setData([
 			Keys.GoogleFireStore.following : [follower.username:follower.uid]
 		], merge: true, completion: { error in
 			
@@ -61,7 +63,7 @@ class FollowerTracker {
 		
 		// Adds user to following list of user they are following.
 		db.collection(follower.uid).document(Keys.GoogleFireStore.accountInfoDocument).collection(Keys.GoogleFireStore.friends).document(Keys.GoogleFireStore.followers).setData([
-			Keys.GoogleFireStore.followers : [currentUsername:user]
+			Keys.GoogleFireStore.followers : [currentUser.username:currentUser.uid]
 		], merge: true) { (error) in
 			
 			if let error = error {
@@ -73,12 +75,9 @@ class FollowerTracker {
 	/// Removes followers from user's follower list and updates local state by re-uploading the modified file.
 	func removeFollower(){
 		
-		guard let user = user.user,
-			let currentUsername = defaults.string(forKey: Keys.userDefaultsDB.username)
-			else {return}
 		
 		// Remove account from following list on current user's account.
-		db.collection(user).document(Keys.GoogleFireStore.accountInfoDocument).collection(Keys.GoogleFireStore.friends).document(Keys.GoogleFireStore.following).getDocument { (document, error) in
+		db.collection(currentUser.uid).document(Keys.GoogleFireStore.accountInfoDocument).collection(Keys.GoogleFireStore.friends).document(Keys.GoogleFireStore.following).getDocument { (document, error) in
 			
 			if let error = error {
 				print(error.localizedDescription)
@@ -99,7 +98,7 @@ class FollowerTracker {
 			// Write revised file back into empty dictionary file["Following"] = [username:uid].
 			file[Keys.GoogleFireStore.following] = nestedFile
 			// Write to database - replace existing file.
-			self.db.collection(user).document(Keys.GoogleFireStore.accountInfoDocument).collection(Keys.GoogleFireStore.friends).document(Keys.GoogleFireStore.following).setData(file, merge: false)
+			self.db.collection(self.currentUser.uid).document(Keys.GoogleFireStore.accountInfoDocument).collection(Keys.GoogleFireStore.friends).document(Keys.GoogleFireStore.following).setData(file, merge: false)
 		}
 		
 		// Remove current user as a follower on selected account.
@@ -116,7 +115,7 @@ class FollowerTracker {
 			var file = unwrappedDocument
 			var nestedFile = file[Keys.GoogleFireStore.followers] as! [String:String]
 			file.removeAll()
-			nestedFile.removeValue(forKey: currentUsername)
+			nestedFile.removeValue(forKey: self.currentUser.username)
 			file[Keys.GoogleFireStore.followers] = nestedFile
 			self.db.collection(self.follower.uid).document(Keys.GoogleFireStore.accountInfoDocument).collection(Keys.GoogleFireStore.friends).document(Keys.GoogleFireStore.followers).setData(file, merge: false)
 		}
