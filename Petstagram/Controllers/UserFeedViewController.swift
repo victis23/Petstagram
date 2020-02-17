@@ -12,7 +12,13 @@ import CoreData
 
 class UserFeedViewController: UIViewController {
 	
-	let context = (UIApplication.shared.delegate as! AppDelegate).persistentContainer.viewContext
+	@IBOutlet weak var tableView : UITableView!
+	@IBOutlet weak var collectionView : UICollectionView!
+	
+	var tableViewDataSource : UITableViewDiffableDataSource<Section,AccountImages>?
+	var collectionViewDataSource : UICollectionViewDiffableDataSource<Section,PetstagramUsers>?
+	
+	var following : [AccountImages] = []
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
