@@ -27,10 +27,9 @@ class FollowerTracker {
 		
 		if isFollowing {
 			addFollower()
-			return
+		}else{
+			removeFollower()
 		}
-		
-		removeFollower()
 	}
 	
 	/// Writes to Firebase - Method updates the user's friends list and updates friend's followers list.
