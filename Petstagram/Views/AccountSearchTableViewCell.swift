@@ -8,7 +8,15 @@
 
 import UIKit
 
+protocol AccountSearchDelegate {
+	
+	func updateFollower(account:PetstagramUsers)
+}
+
 class AccountSearchTableViewCell: UITableViewCell {
+	
+	var delegate: AccountSearchDelegate?
+	var account : PetstagramUsers?
 	
 	@IBOutlet weak var userName: UILabel!
 	@IBOutlet weak var profilePhoto : UIImageView!
@@ -23,5 +31,8 @@ class AccountSearchTableViewCell: UITableViewCell {
     }
 
 	@IBAction func followButtonTapped(_ sender: Any) {
+		
+		guard let account = account else {return}
+		delegate?.updateFollower(account: account)
 	}
 }
