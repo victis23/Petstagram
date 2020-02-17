@@ -27,6 +27,9 @@ extension SearchControllerViewController : UITableViewDelegate, AccountSearchDel
 				if appUsers.following {
 					cell.followButton.setTitle("Unfollow", for: .normal)
 					cell.followButton.backgroundColor = .red
+				}else{
+					cell.followButton.setTitle("Follow", for: .normal)
+					cell.followButton.backgroundColor = .cyan
 				}
 			})
 			
