@@ -25,6 +25,12 @@ class UserFeedViewController: UIViewController {
 		setupNavigation()
 	}
 	
+	override func viewDidAppear(_ animated: Bool) {
+		setDataSource()
+		tableViewSnapShot()
+		collectionViewSnapShot()
+	}
+	
 	func setupNavigation(){
 		// used navigataion item title property instead of \.view.title because I dont want titles in tab bar.
 		self.navigationItem.title = "Petstagram"
