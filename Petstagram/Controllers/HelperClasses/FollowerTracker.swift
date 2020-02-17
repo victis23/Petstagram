@@ -14,6 +14,8 @@ class FollowerTracker {
 	var user : UserProfile
 	var follower : PetstagramUsers
 	var isFollowing : Bool
+	let db = Firestore.firestore()
+	let defaults = UserDefaults()
 	
 	init(follower:PetstagramUsers, isFollowing:Bool) {
 		self.user = UserProfile.shared()
@@ -33,9 +35,6 @@ class FollowerTracker {
 	
 	/// Writes to Firebase - Method updates the user's friends list and updates friend's followers list.
 	func addFollower(){
-		
-		let db = Firestore.firestore()
-		let defaults = UserDefaults()
 		
 		guard let user = user.user,
 			let currentUsername = defaults.string(forKey: Keys.userDefaultsDB.username)
@@ -59,6 +58,44 @@ class FollowerTracker {
 	}
 	
 	func removeFollower(){
+		
+		guard let user = user.user,
+			let currentUsername = defaults.string(forKey: Keys.userDefaultsDB.username)
+			else {return}
+		
+		db.collection(user).document(Keys.GoogleFireStore.accountInfoDocument).collection("Friends").document("Following").getDocument { (document, error) in
+			
+			if let error = error {
+				print(error.localizedDescription)
+				return
+			}
+			
+			guard let document = document, let unwrappedDocument = document.data() else {return}
+			
+			var file = unwrappedDocument
+			var nestedFile = file["Following"] as! [String:String]
+			file.removeAll()
+			nestedFile.removeValue(forKey: self.follower.username)
+			file["Following"] = nestedFile
+			self.db.collection(user).document(Keys.GoogleFireStore.accountInfoDocument).collection("Friends").document("Following").setData(file, merge: false)
+		}
+		
+		db.collection(follower.uid).document(Keys.GoogleFireStore.accountInfoDocument).collection("Friends").document("Followers").getDocument { (document, error) in
+			
+			if let error = error {
+				print(error.localizedDescription)
+				return
+			}
+			
+			guard let document = document, let unwrappedDocument = document.data() else {return}
+			
+			var file = unwrappedDocument
+			var nestedFile = file["Follower"] as! [String:String]
+			file.removeAll()
+			nestedFile.removeValue(forKey: currentUsername)
+			file["Follower"] = nestedFile
+			self.db.collection(self.follower.uid).document(Keys.GoogleFireStore.accountInfoDocument).collection("Friends").document("Followers").setData(file, merge: false)
+		}
 		
 	}
 	
