@@ -9,13 +9,15 @@
 import UIKit
 
 /// Handles required methods for UITableViewDiffableDataSource & building tableview for user.
-extension SearchControllerViewController : UITableViewDelegate {
+extension SearchControllerViewController : UITableViewDelegate, AccountSearchDelegate {
 	
 	func setDataSource(){
 		dataSource = UITableViewDiffableDataSource<Section,PetstagramUsers>(tableView: tableView, cellProvider: { (tableView, indexPath, appUsers) -> UITableViewCell? in
 			
 			guard let cell = tableView.dequeueReusableCell(withIdentifier: "cell", for: indexPath) as? AccountSearchTableViewCell else {fatalError()}
 			
+			cell.delegate = self
+			cell.account = appUsers
 			cell.userName.text = appUsers.username
 			cell.followButton.layer.cornerRadius = 5
 			
@@ -41,6 +43,13 @@ extension SearchControllerViewController : UITableViewDelegate {
 		})
 	}
 	
+	/// Conforms to protocol
+	func updateFollower(account: PetstagramUsers) {
+		
+		let followerTracker = FollowerTracker(follower: account, isFollowing: !account.following)
+		followerTracker.checkState()
+		tableView.reloadData()
+	}
 	
 	/// Checks database to determine is user follows the account in question. If the user does follow the account method updates list of accounts on client side.
 	func checkFollowStatus(account:PetstagramUsers, completion : @escaping ()->Void) {
