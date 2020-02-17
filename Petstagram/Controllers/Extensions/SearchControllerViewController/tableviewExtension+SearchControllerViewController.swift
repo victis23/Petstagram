@@ -48,8 +48,8 @@ extension SearchControllerViewController : UITableViewDelegate, AccountSearchDel
 	
 	/// Conforms to protocol
 	func updateFollower(account: PetstagramUsers) {
-		
-		let followerTracker = FollowerTracker(follower: account, isFollowing: !account.following)
+		let following = !account.following
+		let followerTracker = FollowerTracker(follower: account, isFollowing: following)
 		followerTracker.checkState()
 		tableView.reloadData()
 	}
