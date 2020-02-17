@@ -37,7 +37,6 @@ class UserFeedViewController: UIViewController {
 		self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font : UIFont(name: "Billabong", size: 34)!]
 		
 	}
-	
 }
 
 extension UserFeedViewController : UITableViewDelegate {

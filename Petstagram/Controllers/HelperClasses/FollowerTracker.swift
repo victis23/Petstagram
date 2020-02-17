@@ -23,6 +23,14 @@ class FollowerTracker {
 		self.isFollowing = isFollowing
 	}
 	
+	func getFollowingList(){
+		
+	}
+	
+	func getFollowerList(){
+		
+	}
+	
 	/// Checks current state for selected account and runs updates database appropriately.
 	/// - Note: Remember that the `isFollowing` property is the inverse of the actual state for each incoming object.
 	func checkState(){
