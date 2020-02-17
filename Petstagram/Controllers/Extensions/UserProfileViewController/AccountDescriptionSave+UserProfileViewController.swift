@@ -15,14 +15,10 @@ extension UserProfileViewController {
 	
 	/// Retrieves profile description.
 	func getAccountDescription(){
-		if let user = userData.user {
-			
-			let descriptionRetriever = DescriptionRetriever(userID: user)
-			
-			descriptionRetriever.getDescription(completion: { description in
-				self.aboutThePetLabel.text = description
-			})
-		}
+		
+		descriptionRetriever.getDescription(completion: { description in
+			self.aboutThePetLabel.text = description
+		})
 	}
 	
 	/// Writes profile description to database.
