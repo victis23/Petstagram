@@ -120,7 +120,7 @@ extension FollowerTracker {
 		
 		let db = Firestore.firestore()
 		
-		db.collection(userID).document(Keys.GoogleFireStore.accountInfoDocument).collection(Keys.GoogleFireStore.friends).document(Keys.GoogleFireStore.following).addSnapshotListener(includeMetadataChanges: true) { (document, error) in
+		db.collection(userID).document(Keys.GoogleFireStore.accountInfoDocument).collection(Keys.GoogleFireStore.friends).document(Keys.GoogleFireStore.following).getDocument { (document, error) in
 			
 			if let error = error {
 				print(error.localizedDescription)
