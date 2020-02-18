@@ -28,6 +28,7 @@ class UserFeedViewController: UIViewController {
 		tableView.delegate = self
 		collectionView.delegate = self
 		setDataSource()
+		getFriends()
 	}
 	
 	override func viewDidAppear(_ animated: Bool) {
@@ -35,6 +36,31 @@ class UserFeedViewController: UIViewController {
 		
 		tableViewSnapShot(following: following)
 		collectionViewSnapShot(friends: friends)
+	}
+	
+	func getFriends(){
+		
+		/*
+		FollowerTracker.getFollowingList { (users) in
+			users.forEach({ user in
+				
+				let descriptionRetriever = DescriptionRetriever(userID: user)
+				descriptionRetriever.getUserName(completion: { username in
+					let account = PetstagramUsers(username, user)
+					print(account.username)
+					
+				})
+				
+				let imageDownloader = ImageDownloader(account: user)
+				imageDownloader.downloadImages { (metadata) in
+					imageDownloader.downloadImages(for: metadata.name) { (image) in
+						let accountImages = AccountImages(image: image, timeStamp: metadata.timeCreated!, metaData: metadata, id: metadata.name!)
+						print(accountImages)
+					}
+				}
+			})
+		}
+		*/
 	}
 	
 	func setupNavigation(){
