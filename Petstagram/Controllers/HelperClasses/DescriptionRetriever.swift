@@ -8,10 +8,12 @@
 
 import Foundation
 import FirebaseFirestore
+import FirebaseStorage
 
 class DescriptionRetriever {
 	
 	let db = Firestore.firestore()
+	let storage = Storage.storage()
 	var userID : String
 	
 	func getDescription(completion : @escaping (String?)->Void) {
@@ -44,6 +46,22 @@ class DescriptionRetriever {
 			defaults.set(retrievedUserName, forKey: Keys.userDefaultsDB.username)
 			
 			completion(retrievedUserName)
+		}
+	}
+	
+	/// Searches online storage for profile photo that cooresponds to the provided Uid.
+	/// - Parameters:
+	///   - completion: Captures Image returned from GoogleFirebase Storage.
+	func getProfilePhoto( completion : @escaping (UIImage)->Void) {
+		
+		storage.reference().child(userID).child("profilePhoto").getData(maxSize: 99_999_999) { (data, error) in
+			
+			if let error = error {
+				print(error.localizedDescription)
+			}
+			
+			guard let data = data, let image = UIImage(data: data) else {return}
+			completion(image)
 		}
 	}
 	
