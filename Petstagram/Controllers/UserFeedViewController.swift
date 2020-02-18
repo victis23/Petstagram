@@ -53,12 +53,18 @@ extension UserFeedViewController : UITableViewDelegate, UICollectionViewDelegate
 	func setDataSource(){
 		
 		tableViewDataSource = UITableViewDiffableDataSource<Section,AccountImages>(tableView: tableView, cellProvider: { (tableView, indexPath, profileImages) -> UITableViewCell? in
+			
 			let cell = tableView.dequeueReusableCell(withIdentifier: "feedCells", for: indexPath) as! FeedTableViewCell
+			cell.feedImage.image = profileImages.image
+			
 			return cell
 		})
 		
 		collectionViewDataSource = UICollectionViewDiffableDataSource<Section,PetstagramUsers>(collectionView: collectionView, cellProvider: { (collectionView, indexPath, account) -> UICollectionViewCell? in
+			
 			let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "friendsListCells", for: indexPath) as! FeedCollectionViewCell
+			cell.username.text = account.username
+			
 			return cell
 		})
 	}
