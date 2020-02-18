@@ -116,6 +116,7 @@ extension UserFeedViewController : UITableViewDelegate, UICollectionViewDelegate
 			
 			let cell = tableView.dequeueReusableCell(withIdentifier: "feedCells", for: indexPath) as! FeedTableViewCell
 			cell.feedImage.image = profileImages.image
+			cell.feedImage.contentMode = .scaleAspectFill
 			
 			return cell
 		})
@@ -133,7 +134,8 @@ extension UserFeedViewController : UITableViewDelegate, UICollectionViewDelegate
 				cell.FriendImages.contentMode = .scaleAspectFit
 				cell.FriendImages.layer.borderColor = UIColor.label.cgColor
 				cell.FriendImages.layer.borderWidth = 2
-				cell.FriendImages.layer.cornerRadius = 5
+				cell.FriendImages.layer.masksToBounds = true
+				cell.FriendImages.clipsToBounds = true
 			})
 			
 			return cell
