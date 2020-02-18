@@ -148,6 +148,10 @@ extension UserFeedViewController : UITableViewDelegate, UICollectionViewDelegate
 		
 	}
 	
+	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+		return 600
+	}
+	
 	func tableViewSnapShot(following : [AccountImages]){
 		var snapshot = NSDiffableDataSourceSnapshot<Section,AccountImages>()
 		snapshot.appendSections([.main])
