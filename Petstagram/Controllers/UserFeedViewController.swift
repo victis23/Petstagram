@@ -19,16 +19,22 @@ class UserFeedViewController: UIViewController {
 	var collectionViewDataSource : UICollectionViewDiffableDataSource<Section,PetstagramUsers>?
 	
 	var following : [AccountImages] = []
+	var friends : [PetstagramUsers] = []
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
+		
 		setupNavigation()
+		tableView.delegate = self
+		collectionView.delegate = self
+		setDataSource()
 	}
 	
 	override func viewDidAppear(_ animated: Bool) {
-		setDataSource()
-		tableViewSnapShot()
-		collectionViewSnapShot()
+		super.viewDidAppear(animated)
+		
+		tableViewSnapShot(following: following)
+		collectionViewSnapShot(friends: friends)
 	}
 	
 	func setupNavigation(){
@@ -39,29 +45,44 @@ class UserFeedViewController: UIViewController {
 	}
 }
 
-extension UserFeedViewController : UITableViewDelegate {
+extension UserFeedViewController : UITableViewDelegate, UICollectionViewDelegate {
 	
 	
 	// MARK: TableView & collectionView Methods
 	
 	func setDataSource(){
+		
 		tableViewDataSource = UITableViewDiffableDataSource<Section,AccountImages>(tableView: tableView, cellProvider: { (tableView, indexPath, profileImages) -> UITableViewCell? in
-			let cell = tableView.dequeueReusableCell(withIdentifier: "", for: indexPath)
+			let cell = tableView.dequeueReusableCell(withIdentifier: "feedCells", for: indexPath) as! FeedTableViewCell
 			return cell
 		})
 		
 		collectionViewDataSource = UICollectionViewDiffableDataSource<Section,PetstagramUsers>(collectionView: collectionView, cellProvider: { (collectionView, indexPath, account) -> UICollectionViewCell? in
-			let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "", for: indexPath)
+			let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "friendsListCells", for: indexPath) as! FeedCollectionViewCell
 			return cell
 		})
 	}
 	
-	func tableViewSnapShot(){
-		
+	func tableViewSnapShot(following : [AccountImages]){
+		var snapshot = NSDiffableDataSourceSnapshot<Section,AccountImages>()
+		snapshot.appendSections([.main])
+		snapshot.appendItems(following, toSection: .main)
+		tableViewDataSource?.apply(snapshot, animatingDifferences: true, completion: {})
 	}
 	
-	func collectionViewSnapShot(){
-		
+	func collectionViewSnapShot(friends : [PetstagramUsers]){
+		var snapshot = NSDiffableDataSourceSnapshot<Section,PetstagramUsers>()
+		snapshot.appendSections([.main])
+		snapshot.appendItems(friends, toSection: .main)
+		collectionViewDataSource?.apply(snapshot, animatingDifferences: true, completion: {})
 	}
+	
+}
+
+class FeedTableViewCell : UITableViewCell {
+	
+}
+
+class FeedCollectionViewCell : UICollectionViewCell {
 	
 }
