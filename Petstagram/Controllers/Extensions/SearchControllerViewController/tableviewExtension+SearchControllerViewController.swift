@@ -34,7 +34,9 @@ extension SearchControllerViewController : UITableViewDelegate, AccountSearchDel
 			})
 			
 			DispatchQueue.main.async {
-				self.getProfilePhoto(user: appUsers.uid) { (image) in
+				
+				let descriptionRetriever = DescriptionRetriever(userID: appUsers.uid)
+				descriptionRetriever.getProfilePhoto { (image) in
 					cell.profilePhoto.layer.cornerRadius = cell.profilePhoto.frame.height / 2
 					appUsers.image = image
 					cell.profilePhoto.image = appUsers.image
