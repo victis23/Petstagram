@@ -63,15 +63,11 @@ class UserFeedViewController: UIViewController {
 	
 	func getFriends(){
 		
-		/*
-		FollowerTracker.getFollowingList { (users) in
-			users.forEach({ user in
-				
-				let descriptionRetriever = DescriptionRetriever(userID: user)
-				descriptionRetriever.getUserName(completion: { username in
-					let account = PetstagramUsers(username, user)
-					print(account.username)
-					
+		FollowerTracker.getFollowingList(completion: { accounts in
+			accounts.forEach { account in
+				let descriptionRetriever = DescriptionRetriever(userID: account)
+				descriptionRetriever.getUserName(completion: { userName in
+					self.friends.append(PetstagramUsers(userName, account))
 				})
 			}
 		})
