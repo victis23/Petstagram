@@ -73,33 +73,17 @@ class FollowerTracker {
 	}
 	
 	/// Removes followers from user's follower list and updates local state by re-uploading the modified file.
+	/// - Note: The first method uses dot notation to access field user wants to remove. `["Following.username" : delete]`
+	/// The second method which removes the current user from the follower list of the account in question actually downloads the entire document, converts it into a dictionary, removes the account information from the file and overwrites the existing document.
 	func removeFollower(){
 		
-		
-		// Remove account from following list on current user's account.
-		db.collection(currentUser.uid).document(Keys.GoogleFireStore.accountInfoDocument).collection(Keys.GoogleFireStore.friends).document(Keys.GoogleFireStore.following).getDocument { (document, error) in
+		// "Following.`account being removed`"
+		db.collection(self.currentUser.uid).document(Keys.GoogleFireStore.accountInfoDocument).collection(Keys.GoogleFireStore.friends).document(Keys.GoogleFireStore.following).updateData(["\(Keys.GoogleFireStore.following).\(self.follower.username)":FieldValue.delete()], completion: { error in
 			
 			if let error = error {
 				print(error.localizedDescription)
-				return
 			}
-			
-			// Convert DocumentSnapshot into a common dictionary of type [String:Any] that is no longer and optional.
-			guard let document = document, let unwrappedDocument = document.data() else {return}
-			
-			// Create instance of file that mutable.
-			var file = unwrappedDocument
-			// Access contained dictionary of type [String:String] using file["Following"] key, where key = String(username), value = String(uid).
-			var nestedFile = file[Keys.GoogleFireStore.following] as! [String:String]
-			// Remove all key/value pairs from file document.
-			file.removeAll()
-			// Remove PetstagramUser Object in question from retrieved dictionary [username:uid].
-			nestedFile.removeValue(forKey: self.follower.username)
-			// Write revised file back into empty dictionary file["Following"] = [username:uid].
-			file[Keys.GoogleFireStore.following] = nestedFile
-			// Write to database - replace existing file.
-			self.db.collection(self.currentUser.uid).document(Keys.GoogleFireStore.accountInfoDocument).collection(Keys.GoogleFireStore.friends).document(Keys.GoogleFireStore.following).setData(file, merge: false)
-		}
+		})
 		
 		// Remove current user as a follower on selected account.
 		db.collection(follower.uid).document(Keys.GoogleFireStore.accountInfoDocument).collection(Keys.GoogleFireStore.friends).document(Keys.GoogleFireStore.followers).getDocument { (document, error) in
@@ -109,14 +93,21 @@ class FollowerTracker {
 				return
 			}
 			
-			// Same steps as above. 
+			// Alternative and painful way to remove items from database. Kept here just to remind myself of how I originally did this.
+			// Convert DocumentSnapshot into a common dictionary of type [String:Any] that is no longer and optional.
 			guard let document = document, let unwrappedDocument = document.data() else {return}
 			
+			// Create instance of file that mutable.
 			var file = unwrappedDocument
+			// Access contained dictionary of type [String:String] using file["Followers"] key, where key = String(username), value = String(uid).
 			var nestedFile = file[Keys.GoogleFireStore.followers] as! [String:String]
+			// Remove all key/value pairs from file document.
 			file.removeAll()
+			// Remove PetstagramUser Object in question from retrieved dictionary [username:uid].
 			nestedFile.removeValue(forKey: self.currentUser.username)
+			// Write revised file back into empty dictionary file["Followers"] = [username:uid].
 			file[Keys.GoogleFireStore.followers] = nestedFile
+			// Write to database - replace existing file.
 			self.db.collection(self.follower.uid).document(Keys.GoogleFireStore.accountInfoDocument).collection(Keys.GoogleFireStore.friends).document(Keys.GoogleFireStore.followers).setData(file, merge: false)
 		}
 		
