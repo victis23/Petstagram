@@ -68,21 +68,36 @@ class UserFeedViewController: UIViewController {
 	
 	func getFriends(){
 		
+		// Gets list of accounts user is following.
 		FollowerTracker.getFollowingList(completion: { accounts in
+			
+			// Loops through each retrieved account and gets username, and uploaded images.
 			accounts.forEach { account in
 				let descriptionRetriever = DescriptionRetriever(userID: account)
 				let imageDownloader = ImageDownloader(account: account)
+				
+				// Callback gets username.
 				descriptionRetriever.getUserName(completion: { userName in
 					self.friends.append(PetstagramUsers(userName, account))
+					
+					// Callback gets metadata for each image user has uploaded.
 					imageDownloader.downloadImages { (metadata) in
+						
+						// Call back gets images, for each image an AccountImages object is created.
 						imageDownloader.downloadImages(for: metadata.name, imageItem: { image in
 							guard let timestamp = metadata.timeCreated, let id = metadata.name else {return}
+							
+							// Checks to see if following array already contains image.
 							let contains = self.following.contains { (image) -> Bool in
 								image.id == id
 							}
+							
+							// If the following array does not contain image than account image is appended.
 							if !contains {
 								self.following.append(AccountImages(image: image, timeStamp: timestamp, metaData: metadata, id: id))
 							}
+							
+							// following array is sorted from newest item to oldest. 
 							self.sort()
 						})
 					}
