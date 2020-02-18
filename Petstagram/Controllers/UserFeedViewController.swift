@@ -85,18 +85,12 @@ class UserFeedViewController: UIViewController {
 				})
 			}
 		})
-		
-		/*
-				let imageDownloader = ImageDownloader(account: user)
-				imageDownloader.downloadImages { (metadata) in
-					imageDownloader.downloadImages(for: metadata.name) { (image) in
-						let accountImages = AccountImages(image: image, timeStamp: metadata.timeCreated!, metaData: metadata, id: metadata.name!)
-						print(accountImages)
-					}
-				}
-			})
+	}
+	
+	func sort(){
+		following.sort { value1, value2 -> Bool in
+			value1.timeStamp > value2.timeStamp
 		}
-		*/
 	}
 	
 	func setupNavigation(){
