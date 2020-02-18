@@ -113,6 +113,17 @@ extension UserFeedViewController : UITableViewDelegate, UICollectionViewDelegate
 			let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "friendsListCells", for: indexPath) as! FeedCollectionViewCell
 			cell.username.text = account.username
 			
+			let descriptionRetriever = DescriptionRetriever(userID: account.uid)
+			descriptionRetriever.getProfilePhoto(completion: { image in
+				
+				cell.FriendImages.image = image
+				cell.FriendImages.layer.cornerRadius = cell.FriendImages.frame.width / 2
+				cell.FriendImages.contentMode = .scaleAspectFit
+				cell.FriendImages.layer.borderColor = UIColor.label.cgColor
+				cell.FriendImages.layer.borderWidth = 2
+				cell.FriendImages.layer.cornerRadius = 5
+			})
+			
 			return cell
 		})
 	}
