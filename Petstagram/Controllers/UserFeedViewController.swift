@@ -18,7 +18,11 @@ class UserFeedViewController: UIViewController {
 	var tableViewDataSource : UITableViewDiffableDataSource<Section,AccountImages>?
 	var collectionViewDataSource : UICollectionViewDiffableDataSource<Section,PetstagramUsers>?
 	
-	var following : [AccountImages] = []
+	var following : [AccountImages] = [] {
+		didSet {
+			tableViewSnapShot(following: following)
+		}
+	}
 	var friends : [PetstagramUsers] = [] {
 		didSet {
 			collectionViewSnapShot(friends: friends)
