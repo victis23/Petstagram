@@ -29,26 +29,6 @@ class FollowerTracker {
 		self.isFollowing = isFollowing
 	}
 	
-	/// Retrieves the list of accounts the current user is following.
-	func getFollowingList(completion : @escaping ([String])->Void){
-		
-		db.collection(currentUser.uid).document(Keys.GoogleFireStore.accountInfoDocument).collection(Keys.GoogleFireStore.friends).document(Keys.GoogleFireStore.following).addSnapshotListener(includeMetadataChanges: true) { (document, error) in
-			
-			if let error = error {
-				print(error.localizedDescription)
-				return
-			}
-			
-			guard let document = document,
-				let documentDictionary = document.data(),
-				let FollowingListDictionary = documentDictionary[Keys.GoogleFireStore.following] as? [String:String]
-				else {return}
-			
-			let userUserIDs = FollowingListDictionary.map {$0.1}
-			completion(userUserIDs)
-		}
-	}
-	
 	func getFollowerList(){
 		
 	}
@@ -129,4 +109,31 @@ class FollowerTracker {
 		
 	}
 	
+}
+
+extension FollowerTracker {
+	
+	/// Retrieves the list of accounts the current user is following.
+	static func getFollowingList(completion : @escaping ([String])->Void){
+		
+		guard let userID = UserProfile.shared().user else {return}
+		
+		let db = Firestore.firestore()
+		
+		db.collection(userID).document(Keys.GoogleFireStore.accountInfoDocument).collection(Keys.GoogleFireStore.friends).document(Keys.GoogleFireStore.following).addSnapshotListener(includeMetadataChanges: true) { (document, error) in
+			
+			if let error = error {
+				print(error.localizedDescription)
+				return
+			}
+			
+			guard let document = document,
+				let documentDictionary = document.data(),
+				let FollowingListDictionary = documentDictionary[Keys.GoogleFireStore.following] as? [String:String]
+				else {return}
+			
+			let userUserIDs = FollowingListDictionary.map {$0.1}
+			completion(userUserIDs)
+		}
+	}
 }
