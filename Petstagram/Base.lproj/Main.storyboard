@@ -194,7 +194,6 @@
                                                     <rect key="frame" x="0.0" y="65" width="414" height="414"/>
                                                     <constraints>
                                                         <constraint firstAttribute="height" constant="414" id="8NW-Ml-V0l"/>
-                                                        <constraint firstAttribute="width" constant="414" id="C4u-za-voW"/>
                                                     </constraints>
                                                 </imageView>
                                             </subviews>
