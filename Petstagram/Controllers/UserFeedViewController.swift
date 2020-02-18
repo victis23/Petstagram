@@ -31,12 +31,13 @@ class UserFeedViewController: UIViewController {
 		setupNavigation()
 		tableView.delegate = self
 		collectionView.delegate = self
+		setCollectionViewLayout()
 		setDataSource()
 	}
 	
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
-		
+		friends.removeAll()
 		tableViewSnapShot(following: following)
 		collectionViewSnapShot(friends: friends)
 		getFriends()
