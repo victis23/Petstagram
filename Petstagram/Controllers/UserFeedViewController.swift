@@ -81,8 +81,11 @@ extension UserFeedViewController : UITableViewDelegate, UICollectionViewDelegate
 
 class FeedTableViewCell : UITableViewCell {
 	
+	@IBOutlet weak var feedImage: UIImageView!
 }
 
 class FeedCollectionViewCell : UICollectionViewCell {
 	
+	@IBOutlet weak var FriendImages: UIImageView!
+	@IBOutlet weak var username: UILabel!
 }
