@@ -67,8 +67,21 @@ class UserFeedViewController: UIViewController {
 		FollowerTracker.getFollowingList(completion: { accounts in
 			accounts.forEach { account in
 				let descriptionRetriever = DescriptionRetriever(userID: account)
+				let imageDownloader = ImageDownloader(account: account)
 				descriptionRetriever.getUserName(completion: { userName in
 					self.friends.append(PetstagramUsers(userName, account))
+					imageDownloader.downloadImages { (metadata) in
+						imageDownloader.downloadImages(for: metadata.name, imageItem: { image in
+							guard let timestamp = metadata.timeCreated, let id = metadata.name else {return}
+							let contains = self.following.contains { (image) -> Bool in
+								image.id == id
+							}
+							if !contains {
+								self.following.append(AccountImages(image: image, timeStamp: timestamp, metaData: metadata, id: id))
+							}
+							self.sort()
+						})
+					}
 				})
 			}
 		})
