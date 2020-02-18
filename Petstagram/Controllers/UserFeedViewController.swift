@@ -19,7 +19,11 @@ class UserFeedViewController: UIViewController {
 	var collectionViewDataSource : UICollectionViewDiffableDataSource<Section,PetstagramUsers>?
 	
 	var following : [AccountImages] = []
-	var friends : [PetstagramUsers] = []
+	var friends : [PetstagramUsers] = [] {
+		didSet {
+			collectionViewSnapShot(friends: friends)
+		}
+	}
 	
 	override func viewDidLoad() {
 		super.viewDidLoad()
@@ -114,6 +118,14 @@ extension UserFeedViewController : UITableViewDelegate, UICollectionViewDelegate
 			
 			return cell
 		})
+	}
+	
+	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+		
+	}
+	
+	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+		
 	}
 	
 	func tableViewSnapShot(following : [AccountImages]){
