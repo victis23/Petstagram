@@ -28,7 +28,6 @@ class UserFeedViewController: UIViewController {
 		tableView.delegate = self
 		collectionView.delegate = self
 		setDataSource()
-		getFriends()
 	}
 	
 	override func viewDidAppear(_ animated: Bool) {
@@ -36,6 +35,25 @@ class UserFeedViewController: UIViewController {
 		
 		tableViewSnapShot(following: following)
 		collectionViewSnapShot(friends: friends)
+		getFriends()
+	}
+	
+	func setCollectionViewLayout(){
+		
+		let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
+		let cell = NSCollectionLayoutItem(layoutSize: itemSize)
+		cell.contentInsets = NSDirectionalEdgeInsets(top: 1, leading: 1, bottom: 1, trailing: 1)
+		
+		
+		let groupSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(0.25), heightDimension: .fractionalHeight(1))
+		let cellGroup = NSCollectionLayoutGroup.vertical(layoutSize: groupSize, subitem: cell, count: 1)
+		
+		let section = NSCollectionLayoutSection(group: cellGroup)
+		section.orthogonalScrollingBehavior = .continuous
+		
+		let layout = UICollectionViewCompositionalLayout(section: section)
+		
+		collectionView.collectionViewLayout = layout
 	}
 	
 	func getFriends(){
@@ -50,7 +68,10 @@ class UserFeedViewController: UIViewController {
 					print(account.username)
 					
 				})
-				
+			}
+		})
+		
+		/*
 				let imageDownloader = ImageDownloader(account: user)
 				imageDownloader.downloadImages { (metadata) in
 					imageDownloader.downloadImages(for: metadata.name) { (image) in
