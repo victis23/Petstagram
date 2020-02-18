@@ -38,6 +38,7 @@ class UserFeedViewController: UIViewController {
 	override func viewDidAppear(_ animated: Bool) {
 		super.viewDidAppear(animated)
 		friends.removeAll()
+		following.removeAll()
 		tableViewSnapShot(following: following)
 		collectionViewSnapShot(friends: friends)
 		getFriends()
