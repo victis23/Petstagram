@@ -8,6 +8,7 @@
 
 import UIKit
 import FirebaseFirestore
+import Combine
 
 class UserFeedViewController: UIViewController {
 	
@@ -45,6 +46,7 @@ class UserFeedViewController: UIViewController {
 		tableViewSnapShot(following: following)
 		collectionViewSnapShot(friends: friends)
 		getFriends()
+		getAccounts()
 	}
 	
 	func setCollectionViewLayout(){
@@ -64,6 +66,66 @@ class UserFeedViewController: UIViewController {
 		
 		collectionView.collectionViewLayout = layout
 	}
+	
+	var future : Future<[String],Never>!
+	@Published var retrievedAccounts : [AnyPublisher<String,Never>]!
+	var cancellable : AnyCancellable!
+	var retrievedAccountSubscriber : AnyCancellable!
+	
+	func getFollowerList()-> Future<[String],Never> {
+		
+		return Future { promise in
+			FollowerTracker.getFollowingList(completion: { accounts in
+				promise(.success(accounts))
+			})
+		}
+	}
+	
+	func getUserName(account : String) -> Future<String,Never> {
+		
+		let future = Future<String,Never> { promise in
+			let descriptionRetriever = DescriptionRetriever(userID: account)
+			descriptionRetriever.getUserName(completion: {username in
+				promise(.success(username))
+			})
+		}
+		
+		return future
+	}
+	
+	
+	func getAccounts(){
+		
+		 cancellable = getFollowerList()
+			.sink(receiveValue: { accounts in
+				accounts.forEach { account in
+					self.retrievedAccounts.append(self.getUserName(account: account).eraseToAnyPublisher())
+				}
+			})
+		
+		retrievedAccountSubscriber = $retrievedAccounts
+			.sink(receiveValue: { publishers in
+			
+			if let publishers = publishers {
+				
+				publishers.forEach { publisher in
+				}
+			}
+		})
+		
+		
+		/*
+		retrievedAccountSubscriber = $retrievedAccounts
+			.sink(receiveValue: { accounts in
+			if let accounts = accounts {
+				accounts.forEach {account in
+					print(account)
+				}
+			}
+		})
+		*/
+	}
+
 	
 	func getFriends(){
 		
