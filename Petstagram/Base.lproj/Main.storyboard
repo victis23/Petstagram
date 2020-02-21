@@ -190,11 +190,9 @@
                                             <rect key="frame" x="0.0" y="0.0" width="414" height="600"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <subviews>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="d4g-9q-DgY">
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="d4g-9q-DgY">
                                                     <rect key="frame" x="0.0" y="65" width="414" height="414"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="height" constant="414" id="8NW-Ml-V0l"/>
-                                                    </constraints>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="kMs-ne-Lna">
                                                     <rect key="frame" x="83" y="16" width="67" height="34"/>
@@ -202,23 +200,14 @@
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
                                                 </label>
-                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="Rcc-zw-RGZ">
-                                                    <rect key="frame" x="10" y="6" width="53" height="53"/>
-                                                    <constraints>
-                                                        <constraint firstAttribute="width" secondItem="Rcc-zw-RGZ" secondAttribute="height" multiplier="1:1" id="s4i-51-WtG"/>
-                                                    </constraints>
+                                                <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" fixedFrame="YES" translatesAutoresizingMaskIntoConstraints="NO" id="Rcc-zw-RGZ">
+                                                    <rect key="frame" x="10" y="7" width="53" height="52"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
                                                 </imageView>
                                             </subviews>
                                             <constraints>
-                                                <constraint firstItem="Rcc-zw-RGZ" firstAttribute="leading" secondItem="uG4-Xg-TZI" secondAttribute="leading" constant="10" id="7rl-hp-7ss"/>
-                                                <constraint firstItem="Rcc-zw-RGZ" firstAttribute="top" secondItem="uG4-Xg-TZI" secondAttribute="top" constant="6" id="ADZ-r4-jzO"/>
                                                 <constraint firstItem="kMs-ne-Lna" firstAttribute="centerY" secondItem="uG4-Xg-TZI" secondAttribute="centerY" constant="-267" id="FKs-P7-N5V"/>
-                                                <constraint firstItem="kMs-ne-Lna" firstAttribute="leading" secondItem="Rcc-zw-RGZ" secondAttribute="trailing" constant="20" id="dJz-0k-sfe"/>
-                                                <constraint firstItem="d4g-9q-DgY" firstAttribute="centerY" secondItem="uG4-Xg-TZI" secondAttribute="centerY" constant="-28" id="erk-bJ-8OW"/>
-                                                <constraint firstItem="d4g-9q-DgY" firstAttribute="centerX" secondItem="uG4-Xg-TZI" secondAttribute="centerX" id="gm6-gL-n1U"/>
-                                                <constraint firstItem="d4g-9q-DgY" firstAttribute="top" secondItem="Rcc-zw-RGZ" secondAttribute="bottom" constant="6" id="iIC-5S-C6g"/>
-                                                <constraint firstItem="d4g-9q-DgY" firstAttribute="leading" secondItem="uG4-Xg-TZI" secondAttribute="leading" id="oFY-IR-FCp"/>
-                                                <constraint firstAttribute="trailing" secondItem="d4g-9q-DgY" secondAttribute="trailing" id="pNp-wU-pAr"/>
+                                                <constraint firstItem="kMs-ne-Lna" firstAttribute="leading" secondItem="uG4-Xg-TZI" secondAttribute="leading" constant="83" id="n8X-fP-CbW"/>
                                                 <constraint firstAttribute="trailing" relation="greaterThanOrEqual" secondItem="kMs-ne-Lna" secondAttribute="trailing" constant="20" symbolic="YES" id="qVs-yD-NiT"/>
                                             </constraints>
                                         </tableViewCellContentView>
