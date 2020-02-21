@@ -18,6 +18,9 @@ class UserFeedViewController: UIViewController {
 	var tableViewDataSource : UITableViewDiffableDataSource<Section,AccountImages>?
 	var collectionViewDataSource : UICollectionViewDiffableDataSource<Section,PetstagramUsers>?
 	
+	var profileImagePublisher : AnyPublisher<UIImage,Never>!
+	var profileImageSubscriber : AnyCancellable!
+	
 	var following : [AccountImages] = [] {
 		didSet {
 			tableViewSnapShot(following: following)
@@ -48,6 +51,18 @@ class UserFeedViewController: UIViewController {
 		getFriends()
 	}
 	
+	func getProfilePhotoFuture(for account : String)-> AnyPublisher<UIImage,Never> {
+		
+		let accountProfileImageFuture = Future<UIImage,Never> { promise in
+			let descriptionRetriever = DescriptionRetriever(userID: account)
+			descriptionRetriever.getProfilePhoto(completion: { image in
+				promise(.success(image))
+			})
+		}.eraseToAnyPublisher()
+		
+		return accountProfileImageFuture
+	}
+
 	func setCollectionViewLayout(){
 		
 		let itemSize = NSCollectionLayoutSize(widthDimension: .fractionalWidth(1), heightDimension: .fractionalHeight(1))
@@ -95,7 +110,8 @@ class UserFeedViewController: UIViewController {
 							
 							// If the following array does not contain image than account image is appended.
 							if !contains {
-								self.following.append(AccountImages(image: image, timeStamp: timestamp, metaData: metadata, id: id))
+								let accountImages = AccountImages(account: account, userName: userName, image: image, timeStamp: timestamp, metaData: metadata, id: id)
+								self.following.append(accountImages)
 							}
 							
 							// following array is sorted from newest item to oldest. 
@@ -134,6 +150,17 @@ extension UserFeedViewController : UITableViewDelegate, UICollectionViewDelegate
 			cell.feedImage.image = profileImages.image
 			cell.feedImage.contentMode = .scaleAspectFill
 			
+			cell.accountLabel.text = profileImages.userName
+			
+			self.profileImagePublisher = self.getProfilePhotoFuture(for: profileImages.account)
+			
+			self.profileImageSubscriber = self.profileImagePublisher
+				.sink(receiveValue: { image in
+					cell.profileImage.image = image
+					cell.profileImage.layer.cornerRadius = cell.profileImage.frame.height / 2
+					cell.profileImage.contentMode = .scaleAspectFill
+				})
+			
 			return cell
 		})
 		
@@ -143,6 +170,7 @@ extension UserFeedViewController : UITableViewDelegate, UICollectionViewDelegate
 			cell.username.text = account.username
 			
 			let descriptionRetriever = DescriptionRetriever(userID: account.uid)
+			
 			descriptionRetriever.getProfilePhoto(completion: { image in
 				
 				cell.FriendImages.image = image
@@ -189,6 +217,9 @@ extension UserFeedViewController : UITableViewDelegate, UICollectionViewDelegate
 class FeedTableViewCell : UITableViewCell {
 	
 	@IBOutlet weak var feedImage: UIImageView!
+	@IBOutlet weak var accountLabel: UILabel!
+	@IBOutlet weak var profileImage: UIImageView!
+	
 }
 
 class FeedCollectionViewCell : UICollectionViewCell {
