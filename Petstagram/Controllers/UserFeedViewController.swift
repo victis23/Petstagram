@@ -17,10 +17,7 @@ class UserFeedViewController: UIViewController {
 	
 	var tableViewDataSource : UITableViewDiffableDataSource<Section,AccountImages>?
 	var collectionViewDataSource : UICollectionViewDiffableDataSource<Section,PetstagramUsers>?
-	
-	var profileImagePublisher : AnyPublisher<UIImage,Never>!
-	var profileImageSubscriber : AnyCancellable!
-	
+
 	var following : [AccountImages] = [] {
 		didSet {
 			tableViewSnapShot(following: following)
@@ -49,18 +46,6 @@ class UserFeedViewController: UIViewController {
 		tableViewSnapShot(following: following)
 		collectionViewSnapShot(friends: friends)
 		getFriends()
-	}
-	
-	func getProfilePhotoFuture(for account : String)-> AnyPublisher<UIImage,Never> {
-		
-		let accountProfileImageFuture = Future<UIImage,Never> { promise in
-			let descriptionRetriever = DescriptionRetriever(userID: account)
-			descriptionRetriever.getProfilePhoto(completion: { image in
-				promise(.success(image))
-			})
-		}.eraseToAnyPublisher()
-		
-		return accountProfileImageFuture
 	}
 
 	func setCollectionViewLayout(){
@@ -150,16 +135,20 @@ extension UserFeedViewController : UITableViewDelegate, UICollectionViewDelegate
 			cell.feedImage.image = profileImages.image
 			cell.feedImage.contentMode = .scaleAspectFill
 			
-			cell.accountLabel.text = profileImages.userName
+			if let userName = profileImages.userName {
+				
+				let attributedTextUserName : NSAttributedString = NSAttributedString(string: userName, attributes: [NSAttributedString.Key.font : UIFont.systemFont(ofSize: 30, weight: .heavy)])
+				
+				cell.accountLabel.attributedText = attributedTextUserName
+			}
 			
-			self.profileImagePublisher = self.getProfilePhotoFuture(for: profileImages.account)
-			
-			self.profileImageSubscriber = self.profileImagePublisher
-				.sink(receiveValue: { image in
-					cell.profileImage.image = image
-					cell.profileImage.layer.cornerRadius = cell.profileImage.frame.height / 2
-					cell.profileImage.contentMode = .scaleAspectFill
-				})
+			let descriptionRetriever = DescriptionRetriever(userID: profileImages.account)
+			descriptionRetriever.getProfilePhoto(completion: { image in
+				
+				cell.profileImage.image = image
+				cell.profileImage.layer.cornerRadius = cell.profileImage.frame.height / 2
+				cell.profileImage.contentMode = .scaleAspectFill
+			})
 			
 			return cell
 		})
