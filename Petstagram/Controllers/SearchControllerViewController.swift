@@ -100,7 +100,7 @@ extension SearchControllerViewController : UISearchBarDelegate {
 		searchTermSubscriber = $searchTerm
 			.eraseToAnyPublisher()
 			.debounce(for: 2, scheduler: DispatchQueue.global(qos: .background), options: nil)
-			.removeDuplicates()
+//			.removeDuplicates()
 			.sink { searchValue in
 				self.searchFireBaseDataBaseForUser(searchValue: searchValue)
 		}
