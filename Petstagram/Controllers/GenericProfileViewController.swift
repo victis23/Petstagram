@@ -130,7 +130,7 @@ class GenericProfileViewController: UIViewController {
 				guard let timestamp = metaData.timeCreated,
 					let id = metaData.name else {return}
 				
-				let item = AccountImages(image: image, timeStamp: timestamp, metaData: metaData, id: id)
+				let item = AccountImages(account: self.account.uid, image: image, timeStamp: timestamp, metaData: metaData, id: id)
 				
 				// Check for repeated images or profile images.
 				let contains = self.accountImages.contains { accountImageItem in

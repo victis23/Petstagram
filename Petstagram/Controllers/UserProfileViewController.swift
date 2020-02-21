@@ -159,8 +159,11 @@ class UserProfileViewController: UIViewController {
 					
 					// If result of object check comes back false, append new object with values.
 					if !contains {
-						self.images.append(AccountImages(image: item.image, timeStamp: item.timeStamp, metaData: item.metaData, id: item.id))
-						self.sort()
+						if let user = self.userData.user {
+							self.images.append(AccountImages(account: user, image: item.image, timeStamp: item.timeStamp, metaData: item.metaData, id: item.id))
+							self.sort()
+						}
+						
 					}
 					
 				}
@@ -185,7 +188,7 @@ class UserProfileViewController: UIViewController {
 				
 				imageDownloader.downloadImages(for: fileName, imageItem: { image in
 					
-					self.userProfileItems.append(AccountImages(image: image, timeStamp: date, metaData: metaData, id: fileName))
+					self.userProfileItems.append(AccountImages(account: user, image: image, timeStamp: date, metaData: metaData, id: fileName))
 				})
 			})
 		}
@@ -242,9 +245,9 @@ class UserProfileViewController: UIViewController {
 		// Map each element in the data collection retrieved into a new AccountImages Object with a nil metaData property.
 		let value = userProfileCoreDataCollection.map { item -> AccountImages in
 			
-			guard let imageData = item.photo, let image = UIImage(data: imageData), let name = item.photoName, let date = item.date else  {fatalError()}
+			guard let imageData = item.photo, let image = UIImage(data: imageData), let name = item.photoName, let date = item.date, let user = userData.user else  {fatalError()}
 			
-			return	AccountImages(image: image, timeStamp: date, metaData: nil, id: name)
+			return	AccountImages(account: user, image: image, timeStamp: date, metaData: nil, id: name)
 			
 		}
 		
