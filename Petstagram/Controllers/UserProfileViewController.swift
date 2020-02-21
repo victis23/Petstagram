@@ -84,6 +84,7 @@ class UserProfileViewController: UIViewController {
 		
 		super.viewDidAppear(animated)
 		setImageDataToView()
+		setSnapShot()
 	}
 	
 	
