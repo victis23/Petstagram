@@ -17,6 +17,8 @@ class GenericProfileViewController: UIViewController {
 	@IBOutlet weak var followButton: UIButton!
 	@IBOutlet weak var profileDescription: UILabel!
 	@IBOutlet weak var postCount: UILabel!
+	@IBOutlet weak var followingCountLabel: UILabel!
+	@IBOutlet weak var followerCountLabel: UILabel!
 	
 	var account : PetstagramUsers!
 	let currentAccount = UserProfile.shared()
@@ -41,6 +43,7 @@ class GenericProfileViewController: UIViewController {
 		getProfileDescription(user: account)
 		accountImageCollection.delegate = self
 		updateFollowState()
+		getFollowerAndFriendCount()
 	}
 	
 	override func viewDidAppear(_ animated: Bool) {
@@ -114,6 +117,18 @@ class GenericProfileViewController: UIViewController {
 			
 			self.profileDescription.text = retrievedString
 		}
+	}
+	
+	/// Gets details for user's followers and friends...
+	func getFollowerAndFriendCount(){
+		
+		FollowerTracker.getFriendCount(user: account.uid, completion: { count in
+			self.followingCountLabel.text = "\(count)"
+		})
+		
+		FollowerTracker.getFollowerCount(user: account.uid, completion: { count in
+			self.followerCountLabel.text = "\(count)"
+		})
 	}
 	
 	/// Retrieves images from firebase storage using metadata.
