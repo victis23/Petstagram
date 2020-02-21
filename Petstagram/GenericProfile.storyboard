@@ -173,6 +173,8 @@
                     <connections>
                         <outlet property="accountImageCollection" destination="KCY-ab-YkI" id="1yH-wj-Ald"/>
                         <outlet property="followButton" destination="pCY-1R-UwP" id="CdS-sz-ZON"/>
+                        <outlet property="followerCountLabel" destination="gQu-es-HeF" id="Ges-uS-nJt"/>
+                        <outlet property="followingCountLabel" destination="sRI-9q-oFn" id="XEW-jQ-P1U"/>
                         <outlet property="postCount" destination="7xG-R1-aXO" id="9HI-DP-Hux"/>
                         <outlet property="profileDescription" destination="O6d-SF-zSd" id="OTI-Op-TTf"/>
                         <outlet property="profileImage" destination="q6i-HV-9BR" id="DVY-kE-tnp"/>
