@@ -11,13 +11,13 @@ import FirebaseFirestore
 
 class FollowerTracker {
 	
-	var user : UserProfile
-	var follower : PetstagramUsers
-	var isFollowing : Bool
-	let db = Firestore.firestore()
-	let defaults = UserDefaults()
+	private var user : UserProfile
+	private var follower : PetstagramUsers
+	private var isFollowing : Bool
+	private let db = Firestore.firestore()
+	private let defaults = UserDefaults()
 	
-	var currentUser : (username:String,uid:String) {
+	private var currentUser : (username:String,uid:String) {
 		
 		guard let user = user.user, let currentUserName = defaults.string(forKey: Keys.userDefaultsDB.username) else {fatalError()}
 		return (currentUserName,user)
@@ -29,9 +29,6 @@ class FollowerTracker {
 		self.isFollowing = isFollowing
 	}
 	
-	func getFollowerList(){
-		
-	}
 	
 	/// Checks current state for selected account and runs updates database appropriately.
 	/// - Note: Remember that the `isFollowing` property is the inverse of the actual state for each incoming object.
@@ -50,11 +47,11 @@ class FollowerTracker {
 		// Adds selected follower to user's follower list document.
 		db.collection(currentUser.uid).document(Keys.GoogleFireStore.accountInfoDocument).collection(Keys.GoogleFireStore.friends).document(Keys.GoogleFireStore.following).setData([
 			Keys.GoogleFireStore.following : [follower.username:follower.uid]
-		], merge: true, completion: { error in
-			
-			if let error = error {
-				print(error.localizedDescription)
-			}
+			], merge: true, completion: { error in
+				
+				if let error = error {
+					print(error.localizedDescription)
+				}
 		})
 		
 		// Adds user to following list of user they are following.
@@ -109,6 +106,34 @@ class FollowerTracker {
 		
 	}
 	
+	
+	func getFollowerCount(user: String, completion : @escaping (Int)->Void){
+		
+		db.collection(user).document(Keys.GoogleFireStore.accountInfoDocument).collection(Keys.GoogleFireStore.friends).document(Keys.GoogleFireStore.followers).getDocument { (document, error) in
+			
+			if let error = error {
+				print(error.localizedDescription)
+				return
+			}
+			
+			guard let document = document?.data() else {return}
+			completion(document.count)
+		}
+	}
+	
+	func getFriendCount(user: String, completion: @escaping (Int)->Void){
+		
+		db.collection(user).document(Keys.GoogleFireStore.accountInfoDocument).collection(Keys.GoogleFireStore.friends).document(Keys.GoogleFireStore.following).getDocument { (document, error) in
+			
+			if let error = error {
+				print(error.localizedDescription)
+				return
+			}
+			
+			guard let document = document?.data() else {return}
+			completion(document.count)
+		}
+	}
 }
 
 extension FollowerTracker {
