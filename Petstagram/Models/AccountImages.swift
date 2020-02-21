@@ -12,6 +12,9 @@ import FirebaseStorage
 
 /// Contains object that will be used in datasource snapshot on `UserProfileViewController`.
 struct AccountImages : Hashable, Identifiable, Equatable {
+	
+	var account : String
+	var userName : String?
 	var image : UIImage
 	var timeStamp : Date
 	var metaData : StorageMetadata?
