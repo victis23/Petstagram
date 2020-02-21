@@ -132,4 +132,33 @@ extension FollowerTracker {
 			completion(userUserIDs)
 		}
 	}
+	
+	
+	static func getFollowerCount(user: String, completion : @escaping (Int)->Void){
+		
+		db.collection(user).document(Keys.GoogleFireStore.accountInfoDocument).collection(Keys.GoogleFireStore.friends).document(Keys.GoogleFireStore.followers).getDocument { (document, error) in
+			
+			if let error = error {
+				print(error.localizedDescription)
+				return
+			}
+			
+			guard let document = document?.data() else {return}
+			completion((document[Keys.GoogleFireStore.followers] as! [String:String]).count)
+		}
+	}
+	
+	static func getFriendCount(user: String, completion: @escaping (Int)->Void){
+		
+		db.collection(user).document(Keys.GoogleFireStore.accountInfoDocument).collection(Keys.GoogleFireStore.friends).document(Keys.GoogleFireStore.following).getDocument { (document, error) in
+			
+			if let error = error {
+				print(error.localizedDescription)
+				return
+			}
+			
+			guard let document = document?.data() else {return}
+			completion((document[Keys.GoogleFireStore.following] as! [String:String]).count)
+		}
+	}
 }
