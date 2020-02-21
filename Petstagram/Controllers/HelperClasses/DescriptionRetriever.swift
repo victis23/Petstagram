@@ -12,9 +12,9 @@ import FirebaseStorage
 
 class DescriptionRetriever {
 	
-	let db = Firestore.firestore()
-	let storage = Storage.storage()
-	var userID : String
+	private let db = Firestore.firestore()
+	private let storage = Storage.storage()
+	private var userID : String
 	
 	func getDescription(completion : @escaping (String?)->Void) {
 		db.collection(userID).document(Keys.GoogleFireStore.accountInfoDocument).getDocument { (document, error) in

@@ -12,8 +12,8 @@ import FirebaseStorage
 
 class ImageDownloader {
 	
-	var storage = Storage.storage()
-	var account : String
+	private var storage = Storage.storage()
+	private var account : String
 	
 	init(account : String) {
 		self.account = account

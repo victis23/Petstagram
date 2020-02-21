@@ -10,12 +10,12 @@ import UIKit
 
 class CollectionViewBuilder {
 	
-	var cellFractionalHeight : CGFloat
-	var cellFractionalWidth : CGFloat
-	var groupFractionalHeight : CGFloat
-	var groupFractionalWidth : CGFloat
-	var evenInsets : CGFloat
-	var columns : Int
+	private var cellFractionalHeight : CGFloat
+	private var cellFractionalWidth : CGFloat
+	private var groupFractionalHeight : CGFloat
+	private var groupFractionalWidth : CGFloat
+	private var evenInsets : CGFloat
+	private var columns : Int
 	
 	init(cellFractionalHeight:CGFloat,cellFractionalWidth:CGFloat,  groupFractionalHeight:CGFloat, groupFractionalWidth:CGFloat,  columns:Int, evenInsets : CGFloat) {
 		
