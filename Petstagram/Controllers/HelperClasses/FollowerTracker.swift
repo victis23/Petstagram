@@ -14,7 +14,7 @@ class FollowerTracker {
 	private var user : UserProfile
 	private var follower : PetstagramUsers
 	private var isFollowing : Bool
-	private let db = Firestore.firestore()
+	private static let db = Firestore.firestore()
 	private let defaults = UserDefaults()
 	
 	private var currentUser : (username:String,uid:String) {
@@ -45,7 +45,7 @@ class FollowerTracker {
 	func addFollower(){
 		
 		// Adds selected follower to user's follower list document.
-		db.collection(currentUser.uid).document(Keys.GoogleFireStore.accountInfoDocument).collection(Keys.GoogleFireStore.friends).document(Keys.GoogleFireStore.following).setData([
+		FollowerTracker.db.collection(currentUser.uid).document(Keys.GoogleFireStore.accountInfoDocument).collection(Keys.GoogleFireStore.friends).document(Keys.GoogleFireStore.following).setData([
 			Keys.GoogleFireStore.following : [follower.username:follower.uid]
 			], merge: true, completion: { error in
 				
@@ -55,7 +55,7 @@ class FollowerTracker {
 		})
 		
 		// Adds user to following list of user they are following.
-		db.collection(follower.uid).document(Keys.GoogleFireStore.accountInfoDocument).collection(Keys.GoogleFireStore.friends).document(Keys.GoogleFireStore.followers).setData([
+		FollowerTracker.db.collection(follower.uid).document(Keys.GoogleFireStore.accountInfoDocument).collection(Keys.GoogleFireStore.friends).document(Keys.GoogleFireStore.followers).setData([
 			Keys.GoogleFireStore.followers : [currentUser.username:currentUser.uid]
 		], merge: true) { (error) in
 			
@@ -71,7 +71,7 @@ class FollowerTracker {
 	func removeFollower(){
 		
 		// "Following.`account being removed`"
-		db.collection(self.currentUser.uid).document(Keys.GoogleFireStore.accountInfoDocument).collection(Keys.GoogleFireStore.friends).document(Keys.GoogleFireStore.following).updateData(["\(Keys.GoogleFireStore.following).\(self.follower.username)":FieldValue.delete()], completion: { error in
+		FollowerTracker.db.collection(self.currentUser.uid).document(Keys.GoogleFireStore.accountInfoDocument).collection(Keys.GoogleFireStore.friends).document(Keys.GoogleFireStore.following).updateData(["\(Keys.GoogleFireStore.following).\(self.follower.username)":FieldValue.delete()], completion: { error in
 			
 			if let error = error {
 				print(error.localizedDescription)
@@ -79,7 +79,7 @@ class FollowerTracker {
 		})
 		
 		// Remove current user as a follower on selected account.
-		db.collection(follower.uid).document(Keys.GoogleFireStore.accountInfoDocument).collection(Keys.GoogleFireStore.friends).document(Keys.GoogleFireStore.followers).getDocument { (document, error) in
+		FollowerTracker.db.collection(follower.uid).document(Keys.GoogleFireStore.accountInfoDocument).collection(Keys.GoogleFireStore.friends).document(Keys.GoogleFireStore.followers).getDocument { (document, error) in
 			
 			if let error = error {
 				print(error.localizedDescription)
@@ -101,38 +101,9 @@ class FollowerTracker {
 			// Write revised file back into empty dictionary file["Followers"] = [username:uid].
 			file[Keys.GoogleFireStore.followers] = nestedFile
 			// Write to database - replace existing file.
-			self.db.collection(self.follower.uid).document(Keys.GoogleFireStore.accountInfoDocument).collection(Keys.GoogleFireStore.friends).document(Keys.GoogleFireStore.followers).setData(file, merge: false)
+			FollowerTracker.self.db.collection(self.follower.uid).document(Keys.GoogleFireStore.accountInfoDocument).collection(Keys.GoogleFireStore.friends).document(Keys.GoogleFireStore.followers).setData(file, merge: false)
 		}
 		
-	}
-	
-	
-	func getFollowerCount(user: String, completion : @escaping (Int)->Void){
-		
-		db.collection(user).document(Keys.GoogleFireStore.accountInfoDocument).collection(Keys.GoogleFireStore.friends).document(Keys.GoogleFireStore.followers).getDocument { (document, error) in
-			
-			if let error = error {
-				print(error.localizedDescription)
-				return
-			}
-			
-			guard let document = document?.data() else {return}
-			completion(document.count)
-		}
-	}
-	
-	func getFriendCount(user: String, completion: @escaping (Int)->Void){
-		
-		db.collection(user).document(Keys.GoogleFireStore.accountInfoDocument).collection(Keys.GoogleFireStore.friends).document(Keys.GoogleFireStore.following).getDocument { (document, error) in
-			
-			if let error = error {
-				print(error.localizedDescription)
-				return
-			}
-			
-			guard let document = document?.data() else {return}
-			completion(document.count)
-		}
 	}
 }
 
