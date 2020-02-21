@@ -66,7 +66,6 @@ class UserProfileViewController: UIViewController {
 		super.viewDidLoad()
 		setDataSource()
 		accountImages.delegate = self
-		setSnapShot()
 		setValuesFromUserDefaults()
 		setAesthetics()
 		uploadProfileImageToStorage(isRetrieve: true)
@@ -78,6 +77,7 @@ class UserProfileViewController: UIViewController {
 		disableParentView(isDisabled: isEditingProfileDetails)
 		setDisableSubsciber()
 		setCollectionViewLayout()
+		getFollowerAndFriendCount()
 	}
 	
 	override func viewDidAppear(_ animated: Bool) {
@@ -140,6 +140,20 @@ class UserProfileViewController: UIViewController {
 			
 			self.userNameLabel.font = UIFont.monospacedSystemFont(ofSize: 30, weight: .heavy)
 		}
+	}
+	
+	/// Gets details for user's followers and friends...
+	func getFollowerAndFriendCount(){
+		
+		guard let user = userData.user else {return}
+		
+		FollowerTracker.getFriendCount(user: user, completion: { count in
+			self.followingCountLabel.text = "\(count)"
+		})
+		
+		FollowerTracker.getFollowerCount(user: user, completion: { count in
+			self.followerCountLabel.text = "\(count)"
+		})
 	}
 	
 	/// This method waits until all images are loaded into memory before adding them to the userprofile collection.
