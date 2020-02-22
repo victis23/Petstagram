@@ -35,4 +35,13 @@ class PetstagramTests: XCTestCase {
     override func tearDown() {
 		
     }
+	
+	func testCollectionWasBuilt(){
+		
+		let layout = collectionViewBuilder.setLayout()
+		let layoutType = type(of: layout)
+		
+		let istypeCorrect = layoutType == UICollectionViewCompositionalLayout.self ? true : false
+		XCTAssertTrue(istypeCorrect, "Type is correct.")
+	}
 }
