@@ -12,24 +12,35 @@ import FirebaseStorage
 
 class DescriptionRetriever {
 	
+	let test : TestDescriptionRetrieverCall!
+	
 	private let db = Firestore.firestore()
 	private let storage = Storage.storage()
 	private var userID : String
 	
 	func getDescription(completion : @escaping (String?)->Void) {
-		db.collection(userID).document(Keys.GoogleFireStore.accountInfoDocument).getDocument { (document, error) in
+		
+		let query = self.db.collection(self.userID).document(Keys.GoogleFireStore.accountInfoDocument)
+		
+		// Call is used only for testing.
+		self.test?.execute(query: query)
+		
+		query.getDocument { (document, error) in
 			
 			guard error == nil else {
 				guard let error = error else {return}
 				print(error.localizedDescription)
 				return
 			}
+			
 			guard let document = document else {return}
 			let description = document["ProfileDescription"] as? String
 			completion(description)
 		}
 	}
 	
+	/// Retrieves username for queried account ID and sets value for username key in userdefaults.
+	/// - Note: Closure captures retrieved username.
 	func getUserName(completion: @escaping (String)->Void){
 		
 		let defaults = UserDefaults()
