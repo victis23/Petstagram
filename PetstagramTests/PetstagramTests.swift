@@ -18,6 +18,7 @@ class PetstagramTests: XCTestCase {
 	var account = "fakeUser"
 	var username = "fakeUser"
 	var petstagramAccount : PetstagramUsers!
+	var appLoginController : AppLogin!
 
     override func setUp() {
 		
@@ -30,18 +31,23 @@ class PetstagramTests: XCTestCase {
 		petstagramAccount = PetstagramUsers(username, account)
 		
 		followerTracker = FollowerTracker(follower: petstagramAccount, isFollowing: false)
+		
+		appLoginController = AppLogin()
     }
 
     override func tearDown() {
 		
+		
     }
 	
+	/// Test verfies that the correct type has been created using the initializer Since `UICollectionViewLayout` effectivly equals `UICollectionViewCompositionalLayout` there is no need to downcast in this situation, simply test that we are actually getting back a layout.
+	/// - Important: This class only had one method, so unit tests are complete.
 	func testCollectionWasBuilt(){
 		
 		let layout = collectionViewBuilder.setLayout()
+		
 		let layoutType = type(of: layout)
 		
-		let istypeCorrect = layoutType == UICollectionViewCompositionalLayout.self ? true : false
-		XCTAssertTrue(istypeCorrect, "Type is correct.")
+		XCTAssertTrue(layoutType == UICollectionViewCompositionalLayout.self)
 	}
 }
