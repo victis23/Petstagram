@@ -22,7 +22,7 @@ class PetstagramTests: XCTestCase {
 
     override func setUp() {
 		
-        descriptionReceiver = DescriptionRetriever(userID: account)
+        descriptionReceiver = DescriptionRetriever(userID: account, test: TesterForDescription())
 		
 		imageDownloader = ImageDownloader(account: account)
 		
@@ -49,5 +49,17 @@ class PetstagramTests: XCTestCase {
 		let layoutType = type(of: layout)
 		
 		XCTAssertTrue(layoutType == UICollectionViewCompositionalLayout.self)
+	}
+	
+	/// Verifes that a network call was made and that the query was not nil.
+	func testGetDescriptionMethod(){
+		
+		let verifier = descriptionReceiver.test as! TesterForDescription
+		
+		descriptionReceiver.getDescription(completion: { _ in })
+		
+		XCTAssertNotNil(verifier.retrieveQuery())
+		XCTAssertTrue(verifier.callwasExecuted())
+		
 	}
 }
