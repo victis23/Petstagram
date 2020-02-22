@@ -76,7 +76,16 @@ class DescriptionRetriever {
 		}
 	}
 	
-	init(userID:String){
+	/// Designated Initializer used primarily for testing.
+	init(userID:String, test : TestDescriptionRetrieverCall?){
 		self.userID = userID
+		self.test = test
+	}
+	
+	/// Initalizer that will be used throughout the app to retrieve description information.
+	convenience init(userID:String) {
+		
+		let test : TestDescriptionRetrieverCall? = nil
+		self.init(userID:userID, test: test)
 	}
 }
