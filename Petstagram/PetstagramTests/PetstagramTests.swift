@@ -20,7 +20,16 @@ class PetstagramTests: XCTestCase {
 	var petstagramAccount : PetstagramUsers!
 
     override func setUp() {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+		
+        descriptionReceiver = DescriptionRetriever(userID: account)
+		
+		imageDownloader = ImageDownloader(account: account)
+		
+		collectionViewBuilder = CollectionViewBuilder(cellFractionalHeight: 1, cellFractionalWidth: 1, groupFractionalHeight: 1, groupFractionalWidth: 1, columns: 1, evenInsets: 1)
+		
+		petstagramAccount = PetstagramUsers(username, account)
+		
+		followerTracker = FollowerTracker(follower: petstagramAccount, isFollowing: false)
     }
 
     override func tearDown() {
