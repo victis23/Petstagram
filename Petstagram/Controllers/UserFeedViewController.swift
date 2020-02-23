@@ -79,7 +79,12 @@ class UserFeedViewController: UIViewController {
 				
 				// Callback gets username.
 				descriptionRetriever.getUserName(completion: { userName in
-					self.friends.append(PetstagramUsers(userName, account))
+					
+					let retrievedAccount = PetstagramUsers(userName, account)
+					// Will always be true otherwise the account wouldnt be here.
+					retrievedAccount.following = true
+					
+					self.friends.append(retrievedAccount)
 					
 					// Callback gets metadata for each image user has uploaded.
 					imageDownloader.downloadImages { (metadata) in
@@ -188,9 +193,12 @@ extension UserFeedViewController : UITableViewDelegate, UICollectionViewDelegate
 		hapticFeedback()
 		
 		// Get instance of view controller from storyboard.
-		guard let vc = UIStoryboard(name: "GenericProfile", bundle: .main).instantiateInitialViewController() as? GenericProfileViewController else {return}
+		guard let vc = UIStoryboard(name: "GenericProfile", bundle: .main).instantiateInitialViewController() as? GenericProfileViewController,
+			let account = collectionViewDataSource?.itemIdentifier(for: indexPath) else {return}
 		
-		vc.account = collectionViewDataSource?.itemIdentifier(for: indexPath)
+		vc.account = account
+		
+		vc.setIsFollowing(isFollowing: account.following)
 		
 		//Push viewcontroller to current navigation controller stack.
 		navigationController?.pushViewController(vc, animated: true)
