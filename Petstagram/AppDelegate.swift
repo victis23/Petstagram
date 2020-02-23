@@ -35,8 +35,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		keyboardManger.shouldResignOnTouchOutside = true
 		keyboardManger.keyboardDistanceFromTextField = 100
 		
-		
-		
 		//MARK: - Keychain Login
 		let userDefaults = UserDefaults()
 		
