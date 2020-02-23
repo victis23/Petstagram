@@ -61,7 +61,7 @@ class GenericProfileViewController: UIViewController {
 	}
 	
 	/// Sets the aesthetic properties on views.
-	func setAccountVisuals(){
+	private func setAccountVisuals(){
 		
 		userName.text = account.username
 		userName.font = UIFont.monospacedSystemFont(ofSize: 30, weight: .heavy)
@@ -75,7 +75,7 @@ class GenericProfileViewController: UIViewController {
 	}
 	
 	/// Sets subscription to `isFollowing` property and updates view to reflect current following state.
-	func updateFollowState(){
+	private func updateFollowState(){
 		
 		followerButtonSubscriber = $isFollowing
 			.compactMap { boolean -> (String, UIControl.State) in
