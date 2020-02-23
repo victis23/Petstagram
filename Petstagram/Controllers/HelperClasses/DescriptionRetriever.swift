@@ -10,16 +10,46 @@ import Foundation
 import FirebaseFirestore
 import FirebaseStorage
 
+protocol descriptionTestProtocol {
+	func execute(query : DocumentReference)
+}
+
+/// Class created strictly for testing Description Retriever class.
+class TesterForDescription : descriptionTestProtocol {
+	
+	private var query : DocumentReference?
+	private var wasExecuted : Bool?
+	
+	/// Sets value to `query` property and `wasExecuted` when method is called.
+	func execute(query: DocumentReference) {
+		self.query = query
+		self.wasExecuted = true
+	}
+	
+	/// Returns reference to document if not nil.
+	func retrieveQuery()-> DocumentReference? {
+		return query
+	}
+	
+	/// Verifies whether method was called.
+	func callwasExecuted()->Bool{
+		guard let wasExecuted = wasExecuted else {fatalError()}
+		return wasExecuted
+	}
+	
+}
+
+/// Handles retrieving information about queried users such as username, profile image, and description. 
 class DescriptionRetriever {
 	
-	private let test : TestDescriptionRetrieverCall!
+	private let test : descriptionTestProtocol!
 	
 	private let db = Firestore.firestore()
 	private let storage = Storage.storage()
 	private var userID : String
 	
 	/// Returns instance of `TestDescriptionRetrieverCall` that initialized the Class when used for testing.
-	func returnTestProperty() -> TestDescriptionRetrieverCall {
+	func returnTestProperty() -> descriptionTestProtocol {
 		return test
 	}
 	
@@ -82,7 +112,7 @@ class DescriptionRetriever {
 	}
 	
 	/// Designated Initializer used primarily for testing.
-	init(userID:String, test : TestDescriptionRetrieverCall?){
+	init(userID:String, test : descriptionTestProtocol?){
 		self.userID = userID
 		self.test = test
 	}
@@ -90,7 +120,7 @@ class DescriptionRetriever {
 	/// Initalizer that will be used throughout the app to retrieve description information.
 	convenience init(userID:String) {
 		
-		let test : TestDescriptionRetrieverCall? = nil
+		let test : descriptionTestProtocol? = nil
 		self.init(userID:userID, test: test)
 	}
 }
