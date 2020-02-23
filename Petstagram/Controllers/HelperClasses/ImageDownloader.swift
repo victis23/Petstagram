@@ -17,7 +17,11 @@ class ImageDownloader {
 	private var storage = Storage.storage()
 	private var account : String
 	
-	init(account : String) {
+	convenience init(account : String) {
+		self.init(account : account, testClass : nil)
+	}
+	
+	init(account : String, testClass : ImageDownloaderTestProtocol?) {
 		self.account = account
 		self.test = testClass
 	}
