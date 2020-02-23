@@ -118,6 +118,13 @@ class UserProfileViewController: UIViewController {
 		
 	}
 	
+	/// Provides user with tactile feedback when a choice is made.
+	func hapticFeedback(){
+		let feedback = UIImpactFeedbackGenerator(style: .medium)
+		feedback.prepare()
+		feedback.impactOccurred()
+	}
+	
 	// MARK: Data Retrieval Methods
 	
 	/// Retrieves defaults for the user's profile such as the profile photograph and the account username.
@@ -179,6 +186,9 @@ class UserProfileViewController: UIViewController {
 							self.sort()
 						}
 						
+						self.images.removeAll(where: { account in
+							account.id == Keys.GoogleStorage.profilePhoto
+						})
 					}
 					
 				}
@@ -186,7 +196,7 @@ class UserProfileViewController: UIViewController {
 		}
 	}
 	
-	//FIXME: This method removes items from collection for no reason.
+	
 	/// Downloads imageData from storage bucket and creates an `AccountImages` object which is appended to `userProfileItems` array.
 	/// - Note: `UserProfileItems` is observed by a publisher.
 	func setImageDataToView(){
@@ -300,6 +310,8 @@ class UserProfileViewController: UIViewController {
 	
 	// When tapped presents a UIView users can use to update the description label on their profiles.
 	@IBAction func editProfileTapped(_ sender: Any) {
+		
+		hapticFeedback()
 		
 		let swipeToDismiss = UIPanGestureRecognizer(target: self, action: #selector(swipeToDismiss(_:)))
 	

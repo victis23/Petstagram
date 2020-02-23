@@ -15,6 +15,8 @@ extension UserProfileViewController : UICollectionViewDelegate {
 		
 		guard let item = datasource.itemIdentifier(for: indexPath) else {return}
 		
+		hapticFeedback()
+		
 		performSegue(withIdentifier: Keys.Segues.imageViewer, sender: item.id)
 	}
 	

@@ -17,6 +17,8 @@ extension UserProfileViewController : UINavigationControllerDelegate, UIImagePic
 	/// - Photo Album : Presents Album list for user to select image for profile photo.
 	@IBAction func tappedProfileImage(sender : UIButton) {
 		
+		hapticFeedback()
+		
 		let imageController = UIImagePickerController()
 		imageController.delegate = self
 		
