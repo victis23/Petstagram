@@ -54,7 +54,7 @@ class PetstagramTests: XCTestCase {
 	/// Verifes that a network call was made and that the query was not nil.
 	func testGetDescriptionMethod(){
 		
-		let verifier = descriptionReceiver.test as! TesterForDescription
+		let verifier = descriptionReceiver.returnTestProperty() as! TesterForDescription
 		
 		descriptionReceiver.getDescription(completion: { _ in })
 		
