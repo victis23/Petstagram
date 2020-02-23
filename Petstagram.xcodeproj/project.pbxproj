@@ -66,6 +66,7 @@
 		7D7D1E7C23F8409000EC9346 /* SingleSectionDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D7D1E7B23F8409000EC9346 /* SingleSectionDataSource.swift */; };
 		7D896A1C23C149AF0052C8E4 /* UserImageCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D896A1B23C149AF0052C8E4 /* UserImageCollectionViewCell.swift */; };
 		7DBBC0FE240291A300149170 /* UserFeedViewControllerCells.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBBC0FD240291A300149170 /* UserFeedViewControllerCells.swift */; };
+		7DBBC10024029C7C00149170 /* appLogin+Tests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DBBC0FF24029C7C00149170 /* appLogin+Tests.swift */; };
 		7DCD743A23C0595600BA9D52 /* UserProfile.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7DCD743923C0595600BA9D52 /* UserProfile.swift */; };
 		CA3BA1F47FF6371A405E2A88 /* Pods_Petstagram.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F0F63C2E600878E17487E8C0 /* Pods_Petstagram.framework */; };
 /* End PBXBuildFile section */
@@ -153,6 +154,7 @@
 		7D7D1E7B23F8409000EC9346 /* SingleSectionDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SingleSectionDataSource.swift; sourceTree = "<group>"; };
 		7D896A1B23C149AF0052C8E4 /* UserImageCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserImageCollectionViewCell.swift; sourceTree = "<group>"; };
 		7DBBC0FD240291A300149170 /* UserFeedViewControllerCells.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserFeedViewControllerCells.swift; sourceTree = "<group>"; };
+		7DBBC0FF24029C7C00149170 /* appLogin+Tests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "appLogin+Tests.swift"; sourceTree = "<group>"; };
 		7DCD743923C0595600BA9D52 /* UserProfile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserProfile.swift; sourceTree = "<group>"; };
 		ADB9CC2E38F2A8EE4903487C /* Pods-Petstagram.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Petstagram.debug.xcconfig"; path = "Target Support Files/Pods-Petstagram/Pods-Petstagram.debug.xcconfig"; sourceTree = "<group>"; };
 		F0F63C2E600878E17487E8C0 /* Pods_Petstagram.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Petstagram.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -206,6 +208,7 @@
 			isa = PBXGroup;
 			children = (
 				7D118C6F23DBBBFD0028B5DC /* PetstagramTests.swift */,
+				7DBBC0FF24029C7C00149170 /* appLogin+Tests.swift */,
 				7D118C7123DBBBFD0028B5DC /* Info.plist */,
 			);
 			path = PetstagramTests;
@@ -602,6 +605,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				7D477C2323E71FDA003AA2D7 /* PetstagramTests.swift in Sources */,
+				7DBBC10024029C7C00149170 /* appLogin+Tests.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
