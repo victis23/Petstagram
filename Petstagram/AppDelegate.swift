@@ -20,6 +20,14 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 	
 	func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
 		
+		//MARK: - FireBase Configure
+		FirebaseApp.configure()
+		
+		// This property is set using the build schema.
+		let isTesting : Bool = ProcessInfo.processInfo.environment["isTesting"] == "true"
+		
+		// If true we skip unneeded setup.
+		if isTesting {return true}
 		
 		let keyboardManger = IQKeyboardManager.shared
 		keyboardManger.enable = true
@@ -27,8 +35,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
 		keyboardManger.shouldResignOnTouchOutside = true
 		keyboardManger.keyboardDistanceFromTextField = 100
 		
-		//MARK: - FireBase Configure
-		FirebaseApp.configure()
+		
 		
 		//MARK: - Keychain Login
 		let userDefaults = UserDefaults()
