@@ -21,17 +21,17 @@ class GenericProfileViewController: UIViewController {
 	@IBOutlet weak var followerCountLabel: UILabel!
 	
 	var account : PetstagramUsers!
-	let currentAccount = UserProfile.shared()
-	@Published var isFollowing : Bool!
-	var followerButtonSubscriber : AnyCancellable!
+	private let currentAccount = UserProfile.shared()
+	@Published private var isFollowing : Bool!
+	private var followerButtonSubscriber : AnyCancellable!
 	
-	var accountImages : [AccountImages] = [] {
+	internal var accountImages : [AccountImages] = [] {
 		didSet {
 			postCount.text = "\(accountImages.count)"
 		}
 	}
 	
-	var dataSource : UICollectionViewDiffableDataSource<Sections,AccountImages>!
+	internal var dataSource : UICollectionViewDiffableDataSource<Sections,AccountImages>!
 	
 	//MARK: LifeCycle
 	
@@ -55,6 +55,10 @@ class GenericProfileViewController: UIViewController {
 	}
 	
 	//MARK: Methods
+	
+	func setIsFollowing(isFollowing:Bool){
+		self.isFollowing = isFollowing
+	}
 	
 	/// Sets the aesthetic properties on views.
 	func setAccountVisuals(){

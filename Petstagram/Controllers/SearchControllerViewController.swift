@@ -75,7 +75,7 @@ class SearchControllerViewController: UIViewController {
 			navigationItem.backBarButtonItem = UIBarButtonItem(title: "", style: .plain, target: nil, action: nil)
 			let vc = segue.destination as! GenericProfileViewController
 			vc.account = sender
-			vc.isFollowing = sender.following
+			vc.setIsFollowing(isFollowing: sender.following)
 		}
 	}
 }
