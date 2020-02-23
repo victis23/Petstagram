@@ -12,11 +12,14 @@ import FirebaseStorage
 
 class ImageDownloader {
 	
+	var test : ImageDownloaderTestProtocol!
+	
 	private var storage = Storage.storage()
 	private var account : String
 	
 	init(account : String) {
 		self.account = account
+		self.test = testClass
 	}
 	
 	/// Downloads **Metadata** for each item contained within Google Firebase Storage.
@@ -24,6 +27,7 @@ class ImageDownloader {
 	func downloadImages(downloadedImages : @escaping (_ metaData : StorageMetadata)->Void) {
 		
 		let user = account
+		test.hasExecuted(hasExecuted: true)
 		
 		// Variable holds path to user's storage bucket.
 		let filePath = storage.reference().child(user)
@@ -56,6 +60,8 @@ class ImageDownloader {
 	func downloadImages(for file : String?, imageItem : @escaping (UIImage)->Void) {
 		
 		guard let file = file else {fatalError()}
+		
+		test.hasExecuted(hasExecuted: true)
 		
 		let bucket = storage.reference().child(account).child(file)
 		
