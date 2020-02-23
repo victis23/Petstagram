@@ -120,6 +120,11 @@ class UserFeedViewController: UIViewController {
 		self.navigationController?.navigationBar.titleTextAttributes = [NSAttributedString.Key.font : UIFont(name: "Billabong", size: 34)!]
 		
 	}
+	
+	func hapticFeedback(){
+		let feedback = UIImpactFeedbackGenerator(style: .medium)
+		feedback.impactOccurred()
+	}
 }
 
 extension UserFeedViewController : UITableViewDelegate, UICollectionViewDelegate {
@@ -179,6 +184,8 @@ extension UserFeedViewController : UITableViewDelegate, UICollectionViewDelegate
 	
 	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 		
+		hapticFeedback()
+		
 		// Get instance of view controller from storyboard.
 		guard let vc = UIStoryboard(name: "GenericProfile", bundle: .main).instantiateInitialViewController() as? GenericProfileViewController else {return}
 		
@@ -190,6 +197,7 @@ extension UserFeedViewController : UITableViewDelegate, UICollectionViewDelegate
 	
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
 		
+		hapticFeedback()
 	}
 	
 	func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
