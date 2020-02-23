@@ -177,6 +177,13 @@ extension UserFeedViewController : UITableViewDelegate, UICollectionViewDelegate
 	
 	func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
 		
+		// Get instance of view controller from storyboard.
+		guard let vc = UIStoryboard(name: "GenericProfile", bundle: .main).instantiateInitialViewController() as? GenericProfileViewController else {return}
+		
+		vc.account = collectionViewDataSource?.itemIdentifier(for: indexPath)
+		
+		//Push viewcontroller to current navigation controller stack.
+		navigationController?.pushViewController(vc, animated: true)
 	}
 	
 	func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
