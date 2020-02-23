@@ -9,7 +9,26 @@
 import Foundation
 import FirebaseStorage
 
+protocol ImageDownloaderTestProtocol {
+	func hasExecuted(hasExecuted: Bool)
+}
 
+class ImageDownloadTester : ImageDownloaderTestProtocol {
+	
+	private var hasExecuted : Bool?
+	
+	func hasExecuted(hasExecuted: Bool) {
+		self.hasExecuted = hasExecuted
+	}
+	
+	func wasCalled() -> Bool {
+		guard let hasExecuted = hasExecuted else {return false}
+		return hasExecuted
+	}
+}
+
+
+/// Downloads  images metadata and files from selected account.
 class ImageDownloader {
 	
 	var test : ImageDownloaderTestProtocol!
