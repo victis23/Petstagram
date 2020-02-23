@@ -62,4 +62,26 @@ class PetstagramTests: XCTestCase {
 		XCTAssertTrue(verifier.callwasExecuted())
 		
 	}
+	
+	/// Verifies that a call was executed to retrieve username.
+	func testGetUserName() {
+		
+		let verifier = descriptionReceiver.returnTestProperty() as! TesterForDescription
+		
+		descriptionReceiver.getUserName(completion: { _ in })
+		
+		XCTAssertNotNil(verifier.retrieveQuery())
+		XCTAssertTrue(verifier.callwasExecuted())
+	}
+	
+	/// Verifies that a call was executed to retrieve profile image.
+	func testGetProfileImage() {
+		
+		let verifier = descriptionReceiver.returnTestProperty() as! TesterForDescription
+		
+		descriptionReceiver.getProfilePhoto(completion: { _ in })
+		
+		XCTAssertNotNil(verifier.retrieveQuery())
+		XCTAssertTrue(verifier.callwasExecuted())
+	}
 }
