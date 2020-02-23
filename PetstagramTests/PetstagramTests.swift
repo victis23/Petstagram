@@ -40,6 +40,12 @@ class PetstagramTests: XCTestCase {
 		
     }
 	
+	//MARK: - Helper Class Tests
+	
+	
+	
+	//MARK: CollectionViewBuilder Tests
+	
 	/// Test verfies that the correct type has been created using the initializer Since `UICollectionViewLayout` effectivly equals `UICollectionViewCompositionalLayout` there is no need to downcast in this situation, simply test that we are actually getting back a layout.
 	/// - Important: This class only had one method, so unit tests are complete.
 	func testCollectionWasBuilt(){
@@ -50,6 +56,9 @@ class PetstagramTests: XCTestCase {
 		
 		XCTAssertTrue(layoutType == UICollectionViewCompositionalLayout.self)
 	}
+	
+	
+	//MARK: DescriptionRetriever Tests
 	
 	/// Verifes that a network call was made and that the query was not nil.
 	func testGetDescriptionMethod(){
@@ -84,4 +93,7 @@ class PetstagramTests: XCTestCase {
 		XCTAssertNotNil(verifier.retrieveQuery())
 		XCTAssertTrue(verifier.callwasExecuted())
 	}
+	
+	// MARK: Image Downloader Tests
+	
 }
