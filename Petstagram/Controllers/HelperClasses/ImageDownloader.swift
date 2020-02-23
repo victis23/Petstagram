@@ -31,7 +31,7 @@ class ImageDownloadTester : ImageDownloaderTestProtocol {
 /// Downloads  images metadata and files from selected account.
 class ImageDownloader {
 	
-	private var test : ImageDownloaderTestProtocol!
+	private var test : ImageDownloaderTestProtocol?
 	
 	private var storage = Storage.storage()
 	private var account : String
@@ -54,7 +54,7 @@ class ImageDownloader {
 	func downloadImages(downloadedImages : @escaping (_ metaData : StorageMetadata)->Void) {
 		
 		let user = account
-		test.hasExecuted(hasExecuted: true)
+		test?.hasExecuted(hasExecuted: true)
 		
 		// Variable holds path to user's storage bucket.
 		let filePath = storage.reference().child(user)
@@ -88,7 +88,7 @@ class ImageDownloader {
 		
 		guard let file = file else {fatalError()}
 		
-		test.hasExecuted(hasExecuted: true)
+		test?.hasExecuted(hasExecuted: true)
 		
 		let bucket = storage.reference().child(account).child(file)
 		
