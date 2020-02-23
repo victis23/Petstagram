@@ -12,11 +12,16 @@ import FirebaseStorage
 
 class DescriptionRetriever {
 	
-	let test : TestDescriptionRetrieverCall!
+	private let test : TestDescriptionRetrieverCall!
 	
 	private let db = Firestore.firestore()
 	private let storage = Storage.storage()
 	private var userID : String
+	
+	/// Returns instance of `TestDescriptionRetrieverCall` that initialized the Class when used for testing.
+	func returnTestProperty() -> TestDescriptionRetrieverCall {
+		return test
+	}
 	
 	func getDescription(completion : @escaping (String?)->Void) {
 		
