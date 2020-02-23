@@ -24,7 +24,7 @@ class PetstagramTests: XCTestCase {
 		
         descriptionReceiver = DescriptionRetriever(userID: account, test: TesterForDescription())
 		
-		imageDownloader = ImageDownloader(account: account)
+		imageDownloader = ImageDownloader(account: account, testClass: ImageDownloadTester())
 		
 		collectionViewBuilder = CollectionViewBuilder(cellFractionalHeight: 1, cellFractionalWidth: 1, groupFractionalHeight: 1, groupFractionalWidth: 1, columns: 1, evenInsets: 1)
 		
