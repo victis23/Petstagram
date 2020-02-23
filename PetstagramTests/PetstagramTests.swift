@@ -113,4 +113,23 @@ class PetstagramTests: XCTestCase {
 	
 	// MARK: Image Downloader Tests
 	
+	/// Checks if method used to retrieve image metadata was executed.
+	func testImageMetaDataDownload(){
+		
+		imageDownloader.downloadImages(downloadedImages: { _ in })
+		
+		let tester = imageDownloader.test as! ImageDownloadTester
+		
+		XCTAssertTrue(tester.wasCalled())
+	}
+	
+	/// Checks if method used to retrieve images was executed.
+	func testImagesDownload(){
+		
+		imageDownloader.downloadImages(for: account, imageItem: { _ in })
+		
+		// performed call in one line versus two as above.
+		XCTAssertTrue((imageDownloader.test as! ImageDownloadTester).wasCalled())
+	}
+	
 }
