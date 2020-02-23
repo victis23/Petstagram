@@ -12,22 +12,28 @@ import FirebaseStorage
 
 protocol descriptionTestProtocol {
 	func execute(query : DocumentReference)
+	func execute(query : StorageReference)
 }
 
 /// Class created strictly for testing Description Retriever class.
 class TesterForDescription : descriptionTestProtocol {
 	
-	private var query : DocumentReference?
+	private var query : String?
 	private var wasExecuted : Bool?
 	
 	/// Sets value to `query` property and `wasExecuted` when method is called.
 	func execute(query: DocumentReference) {
-		self.query = query
+		self.query = query.path
+		self.wasExecuted = true
+	}
+	
+	func execute(query: StorageReference) {
+		self.query = query.fullPath
 		self.wasExecuted = true
 	}
 	
 	/// Returns reference to document if not nil.
-	func retrieveQuery()-> DocumentReference? {
+	func retrieveQuery()-> String? {
 		return query
 	}
 	
@@ -81,6 +87,9 @@ class DescriptionRetriever {
 		let defaults = UserDefaults()
 		let query = db.collection(userID).document(Keys.GoogleFireStore.accountInfoDocument)
 		
+		// Call is used only for testing.
+		self.test?.execute(query: query)
+		
 		query.getDocument { (usernameDocument, error) in
 			if let error = error {
 				print(error.localizedDescription)
@@ -101,7 +110,12 @@ class DescriptionRetriever {
 	///   - completion: Captures Image returned from GoogleFirebase Storage.
 	func getProfilePhoto( completion : @escaping (UIImage)->Void) {
 		
-		storage.reference().child(userID).child("profilePhoto").getData(maxSize: 99_999_999) { (data, error) in
+		let query = storage.reference().child(userID).child("profilePhoto")
+		
+		// Call is used only for testing.
+		self.test?.execute(query: query)
+		
+		query.getData(maxSize: 99_999_999) { (data, error) in
 			
 			if let error = error {
 				print(error.localizedDescription)
