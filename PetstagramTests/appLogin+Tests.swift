@@ -10,9 +10,12 @@ import XCTest
 @testable import Petstagram
 
 class appLogin_Tests: XCTestCase {
+	
+	var appLoginController : AppLogin!
 
     override func setUpWithError() throws {
-        // Put setup code here. This method is called before the invocation of each test method in the class.
+		
+       appLoginController = AppLogin()
     }
 
     override func tearDownWithError() throws {

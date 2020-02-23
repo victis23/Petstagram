@@ -18,7 +18,7 @@ class PetstagramTests: XCTestCase {
 	var account = "fakeUser"
 	var username = "fakeUser"
 	var petstagramAccount : PetstagramUsers!
-	var appLoginController : AppLogin!
+	
 
     override func setUp() {
 		
@@ -32,7 +32,6 @@ class PetstagramTests: XCTestCase {
 		
 		followerTracker = FollowerTracker(follower: petstagramAccount, isFollowing: false)
 		
-		appLoginController = AppLogin()
     }
 
     override func tearDown() {
