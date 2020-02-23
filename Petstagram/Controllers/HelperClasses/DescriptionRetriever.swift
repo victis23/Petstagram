@@ -79,8 +79,9 @@ class DescriptionRetriever {
 	func getUserName(completion: @escaping (String)->Void){
 		
 		let defaults = UserDefaults()
+		let query = db.collection(userID).document(Keys.GoogleFireStore.accountInfoDocument)
 		
-		db.collection(userID).document(Keys.GoogleFireStore.accountInfoDocument).getDocument { (usernameDocument, error) in
+		query.getDocument { (usernameDocument, error) in
 			if let error = error {
 				print(error.localizedDescription)
 			}
