@@ -118,9 +118,9 @@ class PetstagramTests: XCTestCase {
 		
 		imageDownloader.downloadImages(downloadedImages: { _ in })
 		
-		let tester = imageDownloader.test as! ImageDownloadTester
+		let wasCalled = imageDownloader.returnTestProperty().wasCalled()
 		
-		XCTAssertTrue(tester.wasCalled())
+		XCTAssertTrue(wasCalled)
 	}
 	
 	/// Checks if method used to retrieve images was executed.
@@ -129,7 +129,7 @@ class PetstagramTests: XCTestCase {
 		imageDownloader.downloadImages(for: account, imageItem: { _ in })
 		
 		// performed call in one line versus two as above.
-		XCTAssertTrue((imageDownloader.test as! ImageDownloadTester).wasCalled())
+		XCTAssertTrue(imageDownloader.returnTestProperty().wasCalled())
 	}
 	
 }
