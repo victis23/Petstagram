@@ -162,6 +162,8 @@ extension UserFeedViewController : UITableViewDelegate, UICollectionViewDelegate
 			
 			descriptionRetriever.getProfilePhoto(completion: { image in
 				
+				
+				account.image = image
 				cell.FriendImages.image = image
 				cell.FriendImages.layer.cornerRadius = cell.FriendImages.frame.width / 2
 				cell.FriendImages.contentMode = .scaleAspectFit
