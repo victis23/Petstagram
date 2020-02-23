@@ -31,7 +31,7 @@ class ImageDownloadTester : ImageDownloaderTestProtocol {
 /// Downloads  images metadata and files from selected account.
 class ImageDownloader {
 	
-	var test : ImageDownloaderTestProtocol!
+	private var test : ImageDownloaderTestProtocol!
 	
 	private var storage = Storage.storage()
 	private var account : String
@@ -43,6 +43,10 @@ class ImageDownloader {
 	init(account : String, testClass : ImageDownloaderTestProtocol?) {
 		self.account = account
 		self.test = testClass
+	}
+	
+	func returnTestProperty() -> ImageDownloadTester {
+		test as! ImageDownloadTester
 	}
 	
 	/// Downloads **Metadata** for each item contained within Google Firebase Storage.
