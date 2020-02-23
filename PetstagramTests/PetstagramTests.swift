@@ -40,6 +40,23 @@ class PetstagramTests: XCTestCase {
 		
     }
 	
+	// MARK: Test Extension on Optional<Wrapped> where Wrapped == String
+	
+	func testValidEmail(){
+		let email :String? = "test@test.com"
+		XCTAssertTrue(email.isValidEmail)
+	}
+	
+	func testEmailIsNotValid(){
+		let email : String? = "test.com"
+		XCTAssertFalse(email.isValidEmail)
+	}
+	
+	func testEmailIsNotValid2(){
+		let email : String? = "test@test,com"
+		XCTAssertFalse(email.isValidEmail)
+	}
+	
 	//MARK: - Helper Class Tests
 	
 	
