@@ -39,7 +39,7 @@ class TesterForDescription : descriptionTestProtocol {
 	
 	/// Verifies whether method was called.
 	func callwasExecuted()->Bool{
-		guard let wasExecuted = wasExecuted else {fatalError()}
+		guard let wasExecuted = wasExecuted else {return false}
 		return wasExecuted
 	}
 	
