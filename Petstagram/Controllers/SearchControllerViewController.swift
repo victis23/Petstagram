@@ -126,13 +126,13 @@ extension SearchControllerViewController : UISearchBarDelegate {
 				
 				// Convert key/value pair to PetstagramUser object.
 				// If dictionary contains a key that partically matches search term it is returned to user.
-				let results = documentDictionary.compactMap({ key, value -> PetstagramUsers? in
+				let results = documentDictionary.compactMap({ username, uid -> PetstagramUsers? in
 					
-					let value = value as! String
+					let uid = uid as! String
 					
-					if key.contains(searchValue){
+					if username.contains(searchValue){
 						
-						return PetstagramUsers(key, value)
+						return PetstagramUsers(username, uid)
 					}
 					return nil
 				})
