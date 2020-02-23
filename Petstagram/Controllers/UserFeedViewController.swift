@@ -123,6 +123,7 @@ class UserFeedViewController: UIViewController {
 	
 	func hapticFeedback(){
 		let feedback = UIImpactFeedbackGenerator(style: .medium)
+		feedback.prepare()
 		feedback.impactOccurred()
 	}
 }
