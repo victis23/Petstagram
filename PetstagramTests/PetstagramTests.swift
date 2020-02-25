@@ -22,7 +22,7 @@ class PetstagramTests: XCTestCase {
 
     override func setUp() {
 		
-        descriptionReceiver = DescriptionRetriever(userID: account, test: TesterForDescription())
+		descriptionReceiver = DescriptionRetriever(userID: account, test: TesterForDescription(), db: MockDatabaseClass(db: StorageMock()))
 		
 		imageDownloader = ImageDownloader(account: account, testClass: ImageDownloadTester())
 		
