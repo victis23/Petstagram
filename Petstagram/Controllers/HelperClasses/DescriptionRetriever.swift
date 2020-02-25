@@ -10,6 +10,7 @@ import Foundation
 import FirebaseFirestore
 import FirebaseStorage
 
+/*
 protocol DataBaseTestProtocol {
 	associatedtype Type1
 	associatedtype Type2
@@ -65,6 +66,7 @@ class MockDatabaseClass<T> where T : DataBaseTestProtocol {
 		return database
 	}
 }
+*/
 
 /// Handles retrieving information about queried users such as username, profile image, and description. 
 class DescriptionRetriever {
