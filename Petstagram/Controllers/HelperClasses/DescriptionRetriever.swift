@@ -10,7 +10,7 @@ import Foundation
 import FirebaseFirestore
 import FirebaseStorage
 
-/*
+
 protocol DataBaseTestProtocol {
 	associatedtype Type1
 	associatedtype Type2
@@ -20,6 +20,9 @@ protocol DataBaseTestProtocol {
 }
 
 class StorageMock : DataBaseTestProtocol {
+	
+	typealias Type1 = Mock
+	typealias Type2 = Mock
 	
 	func collection(_ collectionPath: String) -> Mock {
 		Mock(collectionPath)
@@ -52,28 +55,29 @@ extension Firestore : DataBaseTestProtocol {
 	
 }
 
+protocol TestWrapper {}
 
-class MockDatabaseClass<T> where T : DataBaseTestProtocol {
+class MockDatabaseClass<T> : TestWrapper where T : DataBaseTestProtocol {
 	
-	var mockdb : T
+	var db : T
 	
-	init?(mockdb : T){
-		self.mockdb = mockdb
+	init?(db : T){
+		self.db = db
 	}
 	
 	func mockDataBase() -> some DataBaseTestProtocol {
-		let database = mockdb
+		let database = db
 		return database
 	}
 }
-*/
+
 
 /// Handles retrieving information about queried users such as username, profile image, and description. 
 class DescriptionRetriever {
 	
 	private let test : DescriptionTestProtocol!
 	
-	private let db = Firestore.firestore()
+	private let db : TestWrapper! //= Firestore.firestore()
 	private let storage = Storage.storage()
 	private var userID : String
 	
@@ -84,7 +88,20 @@ class DescriptionRetriever {
 	
 	func getDescription(completion : @escaping (String?)->Void) {
 		
-		let query = self.db.collection(self.userID).document(Keys.GoogleFireStore.accountInfoDocument)
+		guard let db = db as? MockDatabaseClass<Firestore> else {
+			
+			let db = self.db as? MockDatabaseClass<StorageMock>
+			let database = db?.mockDataBase() as? StorageMock
+			database?.collection("Test String").getDocument(completion: { value in
+				completion(value)
+			})
+			
+			return
+		}
+		
+		guard let database = db.mockDataBase() as? Firestore else {return}
+		
+		let query = database.collection(self.userID).document(Keys.GoogleFireStore.accountInfoDocument)
 		
 		// Call is used only for testing.
 		self.test?.execute(query: query)
@@ -108,7 +125,12 @@ class DescriptionRetriever {
 	func getUserName(completion: @escaping (String)->Void){
 		
 		let defaults = UserDefaults()
-		let query = db.collection(userID).document(Keys.GoogleFireStore.accountInfoDocument)
+		
+		guard let db = db as? MockDatabaseClass<Firestore>,
+			let database = db.mockDataBase() as?  Firestore
+			else {return}
+		
+		let query = database.collection(userID).document(Keys.GoogleFireStore.accountInfoDocument)
 		
 		// Call is used only for testing.
 		self.test?.execute(query: query)
@@ -150,15 +172,17 @@ class DescriptionRetriever {
 	}
 	
 	/// Designated Initializer used primarily for testing.
-	init(userID:String, test : DescriptionTestProtocol?){
+	init(userID:String, test : DescriptionTestProtocol?, db : TestWrapper?){
 		self.userID = userID
 		self.test = test
+		self.db = db
 	}
 	
 	/// Initalizer that will be used throughout the app to retrieve description information.
 	convenience init(userID:String) {
 		
 		let test : DescriptionTestProtocol? = nil
-		self.init(userID:userID, test: test)
+		let provider = MockDatabaseClass(db: Firestore.firestore())
+		self.init(userID:userID, test: test, db: provider)
 	}
 }
