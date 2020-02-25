@@ -10,13 +10,13 @@ import UIKit
 import FirebaseFirestore
 import FirebaseStorage
 
-protocol descriptionTestProtocol {
+protocol DescriptionTestProtocol {
 	func execute(query : DocumentReference)
 	func execute(query : StorageReference)
 }
 
 /// Class created strictly for testing Description Retriever class.
-class TesterForDescription : descriptionTestProtocol {
+class TesterForDescription : DescriptionTestProtocol {
 	
 	private var query : String?
 	private var wasExecuted : Bool?

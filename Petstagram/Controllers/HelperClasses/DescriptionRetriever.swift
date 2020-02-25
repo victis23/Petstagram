@@ -54,14 +54,14 @@ extension Firestore : DataBaseTestProtocol {
 /// Handles retrieving information about queried users such as username, profile image, and description. 
 class DescriptionRetriever {
 	
-	private let test : descriptionTestProtocol!
+	private let test : DescriptionTestProtocol!
 	
 	private let db = Firestore.firestore()
 	private let storage = Storage.storage()
 	private var userID : String
 	
 	/// Returns instance of `TestDescriptionRetrieverCall` that initialized the Class when used for testing.
-	func returnTestProperty() -> descriptionTestProtocol {
+	func returnTestProperty() -> DescriptionTestProtocol {
 		return test
 	}
 	
@@ -133,7 +133,7 @@ class DescriptionRetriever {
 	}
 	
 	/// Designated Initializer used primarily for testing.
-	init(userID:String, test : descriptionTestProtocol?){
+	init(userID:String, test : DescriptionTestProtocol?){
 		self.userID = userID
 		self.test = test
 	}
@@ -141,7 +141,7 @@ class DescriptionRetriever {
 	/// Initalizer that will be used throughout the app to retrieve description information.
 	convenience init(userID:String) {
 		
-		let test : descriptionTestProtocol? = nil
+		let test : DescriptionTestProtocol? = nil
 		self.init(userID:userID, test: test)
 	}
 }
