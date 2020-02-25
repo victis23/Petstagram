@@ -25,12 +25,20 @@ class DescriptionRetriever {
 		return test
 	}
 	
+	/// Captures the account description for the specified user account.
+	/// - Note: Testing implimentation has been added directly to the method instead of creating another class for testing.
+	/// 	- `MockDatabaseClass<T:DatabaseTestProtocol>` has a failable init, guard statement checks whether this value is nil or not.
 	func getDescription(completion : @escaping (String?)->Void) {
 		
+		// Guard statment determines if instantiation is testing or user facing. If instance is testing app executes enclosed block and returns.
 		guard let db = db as? MockDatabaseClass<Firestore> else {
 			
+			//Must use self since declaration is happening within a block with same name.
 			let db = self.db as? MockDatabaseClass<StorageMock>
+			
+			// Downcast from TestWrapper to StorageMock.
 			let database = db?.mockDataBase() as? StorageMock
+			
 			database?.collection("Test String").getDocument(completion: { value in
 				completion(value)
 			})
@@ -38,6 +46,7 @@ class DescriptionRetriever {
 			return
 		}
 		
+		//Downcast from TestWrapper to Firestore.
 		guard let database = db.mockDataBase() as? Firestore else {return}
 		
 		let query = database.collection(self.userID).document(Keys.GoogleFireStore.accountInfoDocument)
