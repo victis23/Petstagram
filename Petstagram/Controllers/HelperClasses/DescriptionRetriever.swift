@@ -51,6 +51,21 @@ extension Firestore : DataBaseTestProtocol {
 	
 }
 
+
+class MockDatabaseClass<T> where T : DataBaseTestProtocol {
+	
+	var mockdb : T
+	
+	init?(mockdb : T){
+		self.mockdb = mockdb
+	}
+	
+	func mockDataBase() -> some DataBaseTestProtocol {
+		let database = mockdb
+		return database
+	}
+}
+
 /// Handles retrieving information about queried users such as username, profile image, and description. 
 class DescriptionRetriever {
 	
