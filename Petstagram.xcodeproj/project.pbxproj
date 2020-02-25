@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		7D35AAB823F428A900EC4176 /* PetstagramUsers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D35AAB723F428A900EC4176 /* PetstagramUsers.swift */; };
 		7D35AABA23F4290200EC4176 /* tableviewExtension+SearchControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D35AAB923F4290200EC4176 /* tableviewExtension+SearchControllerViewController.swift */; };
+		7D3987272405C64F00CF0B3E /* GoogleFireBaseFireStoreMock+TestProtocol.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D3987262405C64F00CF0B3E /* GoogleFireBaseFireStoreMock+TestProtocol.swift */; };
 		7D3ED8A923CA58B200CF8EB6 /* AccountImages.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D3ED8A823CA58B200CF8EB6 /* AccountImages.swift */; };
 		7D477C2323E71FDA003AA2D7 /* PetstagramTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D118C6F23DBBBFD0028B5DC /* PetstagramTests.swift */; };
 		7D477C2523E7604B003AA2D7 /* AccountDescriptionSave+UserProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7D477C2423E7604B003AA2D7 /* AccountDescriptionSave+UserProfileViewController.swift */; };
@@ -96,6 +97,7 @@
 		7D118C7123DBBBFD0028B5DC /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		7D35AAB723F428A900EC4176 /* PetstagramUsers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PetstagramUsers.swift; sourceTree = "<group>"; };
 		7D35AAB923F4290200EC4176 /* tableviewExtension+SearchControllerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "tableviewExtension+SearchControllerViewController.swift"; sourceTree = "<group>"; };
+		7D3987262405C64F00CF0B3E /* GoogleFireBaseFireStoreMock+TestProtocol.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "GoogleFireBaseFireStoreMock+TestProtocol.swift"; sourceTree = "<group>"; };
 		7D3ED8A823CA58B200CF8EB6 /* AccountImages.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountImages.swift; sourceTree = "<group>"; };
 		7D477C2423E7604B003AA2D7 /* AccountDescriptionSave+UserProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "AccountDescriptionSave+UserProfileViewController.swift"; sourceTree = "<group>"; };
 		7D48913623D3A83B0037CDBA /* PostsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PostsViewController.swift; sourceTree = "<group>"; };
@@ -421,6 +423,7 @@
 			isa = PBXGroup;
 			children = (
 				7DBBC10224032E4400149170 /* DescriptionRetriever+TestProtocol.swift */,
+				7D3987262405C64F00CF0B3E /* GoogleFireBaseFireStoreMock+TestProtocol.swift */,
 			);
 			path = "TesterProtocols+Classes";
 			sourceTree = "<group>";
@@ -655,6 +658,7 @@
 				7D610B3323F4A28700E20E36 /* AccountSearchTableViewCell.swift in Sources */,
 				7D3ED8A923CA58B200CF8EB6 /* AccountImages.swift in Sources */,
 				7D4A543F239C69F00079A96A /* UserFeedViewController.swift in Sources */,
+				7D3987272405C64F00CF0B3E /* GoogleFireBaseFireStoreMock+TestProtocol.swift in Sources */,
 				7D50726E23CAB59900FA54CA /* ProfilePhoto+UserProfileViewController.swift in Sources */,
 				7D7D1E7623F8313E00EC9346 /* ImageDownloader.swift in Sources */,
 				7D4A53F5239C66ED0079A96A /* SceneDelegate.swift in Sources */,
