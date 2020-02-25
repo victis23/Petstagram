@@ -111,17 +111,17 @@ class DescriptionRetriever {
 	}
 	
 	/// Designated Initializer used primarily for testing.
-	init(userID:String, test : DescriptionTestProtocol?, db : TestWrapper?){
+	init(userID:String, test : DescriptionTestProtocol?, db : TestWrapper? = MockDatabaseClass(db: Firestore.firestore())){
 		self.userID = userID
 		self.test = test
 		self.db = db
 	}
 	
 	/// Initalizer that will be used throughout the app to retrieve description information.
-	convenience init(userID:String) {
+	convenience init(userID:String, db: TestWrapper? = MockDatabaseClass(db: Firestore.firestore())) {
 		
 		let test : DescriptionTestProtocol? = nil
-		let provider = MockDatabaseClass(db: Firestore.firestore())
-		self.init(userID:userID, test: test, db: provider)
+		self.init(userID:userID, test: test, db: db)
 	}
+	
 }

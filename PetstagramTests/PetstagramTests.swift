@@ -12,6 +12,7 @@ import XCTest
 class PetstagramTests: XCTestCase {
 	
 	var descriptionReceiver : DescriptionRetriever!
+	var defaultDescriptionReceiver : DescriptionRetriever!
 	var imageDownloader : ImageDownloader!
 	var collectionViewBuilder : CollectionViewBuilder!
 	var followerTracker : FollowerTracker!
@@ -23,6 +24,8 @@ class PetstagramTests: XCTestCase {
     override func setUp() {
 		
 		descriptionReceiver = DescriptionRetriever(userID: account, test: TesterForDescription(), db: MockDatabaseClass(db: StorageMock()))
+		
+		defaultDescriptionReceiver = DescriptionRetriever(userID: account, test: TesterForDescription())
 		
 		imageDownloader = ImageDownloader(account: account, testClass: ImageDownloadTester())
 		
@@ -79,9 +82,9 @@ class PetstagramTests: XCTestCase {
 	/// Verifes that a network call was made and that the query was not nil.
 	func testGetDescriptionMethod(){
 		
-		let verifier = descriptionReceiver.returnTestProperty() as! TesterForDescription
+		let verifier = defaultDescriptionReceiver.returnTestProperty() as! TesterForDescription
 		
-		descriptionReceiver.getDescription(completion: { _ in })
+		defaultDescriptionReceiver.getDescription(completion: { _ in })
 		
 		XCTAssertNotNil(verifier.retrieveQuery())
 		XCTAssertTrue(verifier.callwasExecuted())
@@ -101,9 +104,9 @@ class PetstagramTests: XCTestCase {
 	/// Verifies that a call was executed to retrieve username.
 	func testGetUserName() {
 		
-		let verifier = descriptionReceiver.returnTestProperty() as! TesterForDescription
+		let verifier = defaultDescriptionReceiver.returnTestProperty() as! TesterForDescription
 		
-		descriptionReceiver.getUserName(completion: { _ in })
+		defaultDescriptionReceiver.getUserName(completion: { _ in })
 		
 		XCTAssertNotNil(verifier.retrieveQuery())
 		XCTAssertTrue(verifier.callwasExecuted())
