@@ -79,7 +79,7 @@ class PetstagramTests: XCTestCase {
 	
 	//MARK: DescriptionRetriever Tests
 	
-	/// Verifes that a network call was made and that the query was not nil.
+	/// Verifes that a network call was made and that the query was not nil using the `defaultDescriptionReceiver`.
 	func testGetDescriptionMethod(){
 		
 		let verifier = defaultDescriptionReceiver.returnTestProperty() as! TesterForDescription
@@ -91,7 +91,7 @@ class PetstagramTests: XCTestCase {
 		
 	}
 	
-	/// Verifies that a call was executed to retrieve username.
+	/// Verifies that a call was executed to retrieve username using the `defaultDescriptionReceiver`.
 	func testGetUserName() {
 		
 		let verifier = defaultDescriptionReceiver.returnTestProperty() as! TesterForDescription
