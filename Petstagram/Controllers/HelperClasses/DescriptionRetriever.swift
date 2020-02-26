@@ -20,6 +20,20 @@ class DescriptionRetriever {
 	private let storage = Storage.storage()
 	private var userID : String
 	
+	/// Designated Initializer used primarily for testing.
+	init(userID:String, test : DescriptionTestProtocol?, db : TestWrapper? = MockDatabaseClass(db: Firestore.firestore())){
+		self.userID = userID
+		self.test = test
+		self.db = db
+	}
+	
+	/// Initalizer that will be used throughout the app to retrieve description information.
+	convenience init(userID:String, db: TestWrapper? = MockDatabaseClass(db: Firestore.firestore())) {
+		
+		let test : DescriptionTestProtocol? = nil
+		self.init(userID:userID, test: test, db: db)
+	}
+	
 	/// Returns instance of `TestDescriptionRetrieverCall` that initialized the Class when used for testing.
 	func returnTestProperty() -> DescriptionTestProtocol {
 		return test
@@ -129,19 +143,4 @@ class DescriptionRetriever {
 			completion(image)
 		}
 	}
-	
-	/// Designated Initializer used primarily for testing.
-	init(userID:String, test : DescriptionTestProtocol?, db : TestWrapper? = MockDatabaseClass(db: Firestore.firestore())){
-		self.userID = userID
-		self.test = test
-		self.db = db
-	}
-	
-	/// Initalizer that will be used throughout the app to retrieve description information.
-	convenience init(userID:String, db: TestWrapper? = MockDatabaseClass(db: Firestore.firestore())) {
-		
-		let test : DescriptionTestProtocol? = nil
-		self.init(userID:userID, test: test, db: db)
-	}
-	
 }
