@@ -76,7 +76,18 @@ class DescriptionRetriever {
 		
 		guard let db = db as? MockDatabaseClass<Firestore>,
 			let database = db.mockDataBase() as?  Firestore
-			else {return}
+			else {
+				
+				let db = self.db as? MockDatabaseClass<StorageMock>
+				
+				let database = db?.mockDataBase() as? StorageMock
+				
+				database?.collection("Test Username").getDocument(completion: { value in
+					completion(value)
+				})
+				
+				return
+		}
 		
 		let query = database.collection(userID).document(Keys.GoogleFireStore.accountInfoDocument)
 		
