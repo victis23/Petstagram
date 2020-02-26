@@ -129,7 +129,7 @@ class PetstagramTests: XCTestCase {
 		
 		let verifier = descriptionReceiver
 		
-		verifier?.getDescription(completion: {string in
+		verifier?.getUserName(completion: {string in
 			XCTAssertEqual("Test Username", string)
 		})
 	}
