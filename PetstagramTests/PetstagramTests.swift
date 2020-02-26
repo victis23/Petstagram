@@ -91,16 +91,6 @@ class PetstagramTests: XCTestCase {
 		
 	}
 	
-	/// Using a mock to verify if the correct path is being sent to server.
-	func testDescriptionPathIsReceived(){
-		
-		let verifier = descriptionReceiver
-		
-		verifier?.getDescription(completion: {string in
-			XCTAssertEqual("Test String", string)
-		})
-	}
-	
 	/// Verifies that a call was executed to retrieve username.
 	func testGetUserName() {
 		
@@ -121,6 +111,27 @@ class PetstagramTests: XCTestCase {
 		
 		XCTAssertNotNil(verifier.retrieveQuery())
 		XCTAssertTrue(verifier.callwasExecuted())
+	}
+	
+	
+	/// Using a mock to verify if the correct path is being sent to server.
+	func testDescriptionPathIsReceived(){
+		
+		let verifier = descriptionReceiver
+		
+		verifier?.getDescription(completion: {string in
+			XCTAssertEqual("Test Description", string)
+		})
+	}
+	
+	/// Using a mock to verify if the username method path is being sent to server.
+	func testUserNamePathIsReceived(){
+		
+		let verifier = descriptionReceiver
+		
+		verifier?.getDescription(completion: {string in
+			XCTAssertEqual("Test Username", string)
+		})
 	}
 	
 	// MARK: Image Downloader Tests
