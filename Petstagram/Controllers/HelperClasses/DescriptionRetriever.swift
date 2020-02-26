@@ -39,7 +39,7 @@ class DescriptionRetriever {
 			// Downcast from TestWrapper to StorageMock.
 			let database = db?.mockDataBase() as? StorageMock
 			
-			database?.collection("Test String").getDocument(completion: { value in
+			database?.collection("Test Description").getDocument(completion: { value in
 				completion(value)
 			})
 			
