@@ -47,15 +47,9 @@ class DescriptionRetriever {
 		// Guard statment determines if instantiation is testing or user facing. If instance is testing app executes enclosed block and returns.
 		guard let db = db as? MockDatabaseClass<Firestore> else {
 			
-			//Must use self since declaration is happening within a block with same name.
-			let db = self.db as? MockDatabaseClass<StorageMock>
-			
-			// Downcast from TestWrapper to StorageMock.
-			let database = db?.mockDataBase() as? StorageMock
-			
-			database?.collection("Test Description").getDocument(completion: { value in
-				completion(value)
-			})
+			testingClassSetup(testString: "Test Description") { (string) in
+				completion(string)
+			}
 			
 			return
 		}
@@ -92,13 +86,9 @@ class DescriptionRetriever {
 			let database = db.mockDataBase() as?  Firestore
 			else {
 				
-				let db = self.db as? MockDatabaseClass<StorageMock>
-				
-				let database = db?.mockDataBase() as? StorageMock
-				
-				database?.collection("Test Username").getDocument(completion: { value in
-					completion(value)
-				})
+				testingClassSetup(testString: "Test Username") { username in
+					completion(username)
+				}
 				
 				return
 		}
@@ -143,4 +133,23 @@ class DescriptionRetriever {
 			completion(image)
 		}
 	}
+}
+
+extension DescriptionRetriever {
+	
+	/// Extraction of testing class setup.
+	func testingClassSetup(testString:String, completion: @escaping (String)->Void){
+		
+		//Must use self since declaration is happening within a block with same name.
+		let db = self.db as? MockDatabaseClass<StorageMock>
+		
+		// Downcast from TestWrapper to StorageMock.
+		let database = db?.mockDataBase() as? StorageMock
+		
+		// Calls StorageMocks own collection method.
+		database?.collection(testString).getDocument(completion: { value in
+			completion(value)
+		})
+	}
+	
 }
