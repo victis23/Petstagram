@@ -18,7 +18,7 @@ We all love our pets, right?
 
 Everybody loves their pet. I was sitting with some friends thinking about what sample project I could come up with for my portfolio when it dawned on me that perhaps I could make an Instagram clone for people's pets.
 
-I knew that re-creating the whole Instagram app would be a daunting task but I found the challenge interesting. An so I set off on the first part of the journey; creating the UI which is a mixure of storyboard and programatic items. Once the majority of the UI was created I wrote out a plan which included which features I would start out with and began coding. 
+I knew that re-creating the whole Instagram app would be a daunting task but I found the challenge interesting. And so I set off on the first part of the journey; creating the UI which is a mixure of storyboard and programatic items. Once the majority of the UI was created I wrote out a plan which included which features I would start out with and began coding. 
 
 No tutorials were involved in the creation of this app, so perhaps my implimentation varies from what the Facebook Devs did in the original app; again this is just my fun take on the Instagram app but for pets. 
 
